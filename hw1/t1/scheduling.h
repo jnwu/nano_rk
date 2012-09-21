@@ -23,6 +23,7 @@ class Scheduling {
 	void hyperbolicBoundTest();
 	void WCRTTest();
 	
+	void printTaskSet();
 };
 
 #endif

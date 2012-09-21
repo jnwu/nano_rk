@@ -1,5 +1,6 @@
 #include "task.h"
 #include "scheduling.h"
+#include <iostream>
 #include <list>
 
 using namespace std;
@@ -11,7 +12,7 @@ bool compare_SJF(Task &a, Task &b)
 
 bool compare_MUF(Task &a, Task &b)
 {
-	return (a.getUtilization() < b.getUtilization());
+	return (a.getUtilization() > b.getUtilization());
 }
 
 bool compare_RM(Task &a, Task &b)
@@ -52,4 +53,17 @@ void Scheduling::hyperbolicBoundTest()
 void Scheduling::WCRTTest()
 {
 
+}
+
+void Scheduling::printTaskSet()
+{
+	cout << "Debug task set print" << endl;
+	list<Task>::iterator it;
+	for (it=taskSet.begin(); it!=taskSet.end(); ++it)
+    {
+    	Task t = *it;
+    	cout << t.mExecTime << "\t" << t.mRelativeDeadline << "\t" << t.mPeriod << endl;
+    }
+    
+    cout << "End debug task set print" << endl;
 }

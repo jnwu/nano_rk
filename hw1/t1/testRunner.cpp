@@ -54,10 +54,15 @@ int main (int argc, char *argv [])
 		{
 			begin = false;
 			Scheduling schedule(taskSet);
-			//TODO
-			//sort
-			//test
-			//print
+			
+			schedule.sortRM();
+			//schedule.printTaskSet();
+			
+			schedule.sortSJF();
+			//schedule.printTaskSet();
+			
+			schedule.sortMUF();
+			//schedule.printTaskSet();
 			
 			taskSet.clear();
 			cout << endl;
@@ -68,24 +73,16 @@ int main (int argc, char *argv [])
 		{
 			Task task;
 		
-		stringstream ss(line);
-		string item;
-		
 		stringstream doublestream;
+		doublestream << line;
 		double f;
 		
-		getline(ss,item, ' ');		
-		doublestream << item;
 		doublestream >> f;
 		task.mExecTime = f;
 		
-		getline(ss,item, ' ');		
-		doublestream << item;
 		doublestream >> f;
 		task.mRelativeDeadline = f;
 		
-		getline(ss,item, ' ');		
-		doublestream << item;
 		doublestream >> f;
 		task.mPeriod = f;
 		
