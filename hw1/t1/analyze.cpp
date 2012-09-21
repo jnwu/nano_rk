@@ -6,7 +6,7 @@
 *
 *	Team:		Nick Adams
 *			Oscar Lee
-*			Catherine 
+*			Catherine Wang
 *			Jack Wu
 *
 */
@@ -17,6 +17,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <list>
+
+#include "task.h"
+#include "scheduling.h"
+
+using namespace std;
 
 /* ---- Public Constants and Types ---------------------------------------- */
 typedef struct
@@ -42,8 +48,16 @@ void usage ();
 
 int main (int argc, char *argv [])
 {	
+
+	Task task(0.0,0.0,0.0);
+	list<Task> list;
+	
+	list.push_back(task);
+	Scheduling schedule(list);
+	 
+	
 	FILE *file;           
-   	char line[80]; 
+   	char line[80];
   	char *tok;
 	int i=0, j;
 
