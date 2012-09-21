@@ -7,6 +7,11 @@ Task::Task(double execTime, double relativeDeadline, double period)
 	mPeriod = period;
 }
 
+Task::Task()
+{
+
+}
+
 double Task::getUtilization()
 {
 	return (mExecTime / mPeriod);

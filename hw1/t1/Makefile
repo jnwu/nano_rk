@@ -10,8 +10,8 @@
 #*
 #******************************************************************************
 
-TARGET := analyze
-SRCS := task.cpp scheduling.cpp analyze.cpp
+TARGET := testRunner
+SRCS := task.cpp scheduling.cpp testRunner.cpp
 
 all: $(TARGET)
 

@@ -10,6 +10,7 @@ class Task {
 		double mPeriod;
 	
 		Task(double execTime, double relativeDeadline, double period);
+		Task();
 	
 		double getUtilization();
 };
