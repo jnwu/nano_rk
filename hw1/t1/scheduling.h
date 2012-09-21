@@ -8,6 +8,8 @@ using namespace std;
 
 class Scheduling {
 
+	private:
+
 	public:
 	list<Task> taskSet;
 	

@@ -9,6 +9,5 @@ Task::Task(double execTime, double relativeDeadline, double period)
 
 double Task::getUtilization()
 {
-	//TODO
-	return 0;
+	return (mExecTime / mPeriod);
 }
