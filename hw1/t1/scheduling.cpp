@@ -2,6 +2,7 @@
 #include "scheduling.h"
 #include <iostream>
 #include <list>
+#include <math.h>
 
 using namespace std;
 
@@ -42,17 +43,35 @@ void Scheduling::sortMUF()
 
 void Scheduling::LLBoundTest()
 {
-
+	double utilization = 0;
+	
+	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
+		utilization += (*it).getUtilization();
+		
+	double bound = this->taskSet.size() * (pow(2, 1/this->taskSet.size()) - 1);
+	
+	if (utilization <= bound)
+		cout << "Liu and Layland Bound Test: Pass";
+	else
+		cout << "Liu and Layland Bound Test: Fail";
 }
 
 void Scheduling::hyperbolicBoundTest()
 {
-
+	double utilization = 1;
+	
+	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
+		utilization = utilization * (1 + (*it).getUtilization());
+		
+	if (utilization <= 2)
+		cout << "Hyperbolic Bound Test: Pass";
+	else
+		cout << "Hyperbolic Bound Test: Fail";
 }
 
 void Scheduling::WCRTTest()
 {
-
+	
 }
 
 void Scheduling::printTaskSet()
