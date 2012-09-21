@@ -1,3 +1,6 @@
+#ifndef TASK_H
+#define TASK_H
+
 class Task {
 
 	public:
@@ -10,3 +13,5 @@ class Task {
 	
 		double getUtilization();
 };
+
+#endif
