@@ -51,9 +51,9 @@ void Scheduling::LLBoundTest()
 	double bound = this->taskSet.size() * (pow(2, 1/this->taskSet.size()) - 1);
 	
 	if (utilization <= bound)
-		cout << "Liu and Layland Bound Test: Pass";
+		cout << "Liu and Layland Bound Test: Pass" << endl;
 	else
-		cout << "Liu and Layland Bound Test: Fail";
+		cout << "Liu and Layland Bound Test: Fail" << endl;
 }
 
 void Scheduling::hyperbolicBoundTest()
@@ -64,9 +64,9 @@ void Scheduling::hyperbolicBoundTest()
 		utilization = utilization * (1 + it->getUtilization());
 		
 	if (utilization <= 2)
-		cout << "Hyperbolic Bound Test: Pass";
+		cout << "Hyperbolic Bound Test: Pass" << endl;
 	else
-		cout << "Hyperbolic Bound Test: Fail";
+		cout << "Hyperbolic Bound Test: Fail" << endl;
 }
 
 void Scheduling::WCRTTest()
@@ -95,12 +95,12 @@ void Scheduling::WCRTTest()
 		
 		if (response > it->mRelativeDeadline)
 		{
-			cout << "WCRT Test: Fail";
+			cout << "WCRT Test: Fail" << endl;
 			return;
 		}
 	}
 	
-	cout << "WCRT Test: Pass";
+	cout << "WCRT Test: Pass" << endl;
 }
 
 void Scheduling::printTaskSet()
