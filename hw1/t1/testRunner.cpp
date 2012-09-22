@@ -56,8 +56,8 @@ int main (int argc, char *argv [])
 			Scheduling schedule(taskSet);
 			
 			schedule.sortRM();
-			schedule.LLBoundTest();
-			schedule.hyperbolicBoundTest();
+			//schedule.LLBoundTest();
+			//schedule.hyperbolicBoundTest();
 			schedule.WCRTTest();
 			
 			schedule.sortSJF();
