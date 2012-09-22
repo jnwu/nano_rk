@@ -93,7 +93,7 @@ void Scheduling::WCRTTest()
 			else
 				response = interference + it->mExecTime;
 			
-			cout << "interference = " << interference << " response = " << response << endl;			
+			//cout << "interference = " << interference << " response = " << response << endl;			
 		}
 		
 		if (response > it->mRelativeDeadline)
@@ -113,7 +113,7 @@ void Scheduling::printTaskSet()
 	for (it=taskSet.begin(); it!=taskSet.end(); ++it)
     {
     	Task t = *it;
-    	cout << t.mExecTime << "\t" << t.mRelativeDeadline << "\t" << t.mPeriod << endl;
+    	t.printTask();
     }
     
     cout << "End debug task set print" << endl;
