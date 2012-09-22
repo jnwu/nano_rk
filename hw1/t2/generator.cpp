@@ -42,7 +42,7 @@ vector<double> generator::generateExec (vector<double> utilRate, vector<double> 
 
 void generator::outputFile (vector<double> e, vector<double> p){
 	ofstream myfile;
-  	myfile.open ("inputfile.txt");
+  	myfile.open ("inputfile.txt",ios_base::app);
         myfile << "<begin task set>\n";
 	for (int i =0; i< e.size();i++){
 		myfile << e.at(i) << " " << p.at(i)<< " "<< p.at(i)<<endl;
