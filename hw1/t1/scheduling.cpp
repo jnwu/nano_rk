@@ -71,7 +71,6 @@ void Scheduling::hyperbolicBoundTest()
 
 void Scheduling::WCRTTest()
 {
-	bool skip = true;
 	for (list<Task>::iterator it = ++(this->taskSet.begin()); it != this->taskSet.end(); it++)
 	{				
 		double response = it->mExecTime;
@@ -82,24 +81,31 @@ void Scheduling::WCRTTest()
 			
 			for (list<Task>::iterator it2 = this->taskSet.begin(); it2 != this->taskSet.end(); it2++)
 			{
-				if (it2 == it)
+				if (it == it2)
 					break;
 					
 				interference += ceil(response / it2->mPeriod) * it2->mExecTime;
-			}
+			}			
 			
-			if ((response == interference + it->mExecTime) && (response < it->mRelativeDeadline))
+			if ((response == interference + it->mExecTime) && (response <= it->mRelativeDeadline))
+			{
+				cout << "found response: " << interference + it->mExecTime << endl;
 				break;
+			}
 			else
 				response = interference + it->mExecTime;
-			
-			cout << "interference = " << interference << " response = " << response << endl;			
+				
+			cout << "interference = " << interference << " response = " << response << endl;
 		}
-		
+				
 		if (response > it->mRelativeDeadline)
 		{
 			cout << "WCRT Test: Fail" << endl;
 			return;
+		}
+		else
+		{
+			cout << "add task" << endl;
 		}
 	}
 	
