@@ -56,7 +56,9 @@ int main (int argc, char *argv [])
 			Scheduling schedule(taskSet);
 			
 			schedule.sortRM();
-			//schedule.printTaskSet();
+			schedule.LLBoundTest();
+			schedule.hyperbolicBoundTest();
+			schedule.WCRTTest();
 			
 			schedule.sortSJF();
 			//schedule.printTaskSet();
@@ -87,7 +89,7 @@ int main (int argc, char *argv [])
 		task.mPeriod = f;
 		
 		taskSet.push_back(task);
-		cout << task.mExecTime << " " << task.mRelativeDeadline << " " << task.mPeriod << endl;
+		//cout << task.mExecTime << " " << task.mRelativeDeadline << " " << task.mPeriod << endl;
 		}
 		
     }
