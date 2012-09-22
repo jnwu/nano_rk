@@ -46,7 +46,7 @@ void Scheduling::LLBoundTest()
 	double utilization = 0;
 	
 	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
-		utilization += (*it).getUtilization();
+		utilization += it->getUtilization();
 		
 	double bound = this->taskSet.size() * (pow(2, 1/this->taskSet.size()) - 1);
 	
@@ -61,7 +61,7 @@ void Scheduling::hyperbolicBoundTest()
 	double utilization = 1;
 	
 	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
-		utilization = utilization * (1 + (*it).getUtilization());
+		utilization = utilization * (1 + it->getUtilization());
 		
 	if (utilization <= 2)
 		cout << "Hyperbolic Bound Test: Pass";
@@ -70,8 +70,44 @@ void Scheduling::hyperbolicBoundTest()
 }
 
 void Scheduling::WCRTTest()
-{
+{	
+	int taskCount = 0;
+
+	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
+	{
+		double response = 0;
+		
+		while (response <= it->mRelativeDeadline)
+		{
+			double interference = 0;
+			
+			int k = 0;
+			for (list<Task>::iterator it2 = this->taskSet.begin(); it2 != this->taskSet.end(); it2++)
+			{
+				if (k >= taskCount)
+					break;
+					
+				interference += response * it2->mExecTime / it2->mPeriod;
+				
+				k++;
+			}
+			
+			if (response == interference + it->mExecTime)
+				break;
+			else
+				response = interference + it->mExecTime;
+		}
+		
+		if (response > it->mRelativeDeadline)
+		{
+			cout << "WCRT Test: Fail";
+			return;
+		}
+		
+		taskCount++;
+	}
 	
+	cout << "WCRT Test: Pass";
 }
 
 void Scheduling::printTaskSet()
