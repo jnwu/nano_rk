@@ -61,9 +61,11 @@ int main (int argc, char *argv [])
 			schedule.WCRTTest();
 			
 			schedule.sortSJF();
+			schedule.WCRTTest();
 			//schedule.printTaskSet();
 			
 			schedule.sortMUF();
+			schedule.WCRTTest();
 			//schedule.printTaskSet();
 			
 			taskSet.clear();
