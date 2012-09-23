@@ -13,6 +13,8 @@ class Task {
 		Task();
 	
 		double getUtilization();
+		
+		void printTask();
 };
 
 #endif

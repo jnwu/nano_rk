@@ -1,4 +1,7 @@
 #include "task.h"
+#include <iostream>
+
+using namespace std;
 
 Task::Task(double execTime, double relativeDeadline, double period)
 {
@@ -16,3 +19,9 @@ double Task::getUtilization()
 {
 	return (mExecTime / mPeriod);
 }
+
+void Task::printTask()
+{
+	cout << mExecTime << "\t" << mRelativeDeadline << "\t" << mPeriod << endl;
+}
+
