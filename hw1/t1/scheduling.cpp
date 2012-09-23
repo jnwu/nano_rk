@@ -3,7 +3,6 @@
 #include <iostream>
 #include <list>
 #include <math.h>
-#include <time.h>
 
 using namespace std;
 
@@ -42,7 +41,7 @@ void Scheduling::sortMUF()
 	taskSet.sort(compare_MUF);
 }
 
-void Scheduling::LLBoundTest()
+bool Scheduling::LLBoundTest()
 {
 	int start = clock();
 
@@ -53,13 +52,17 @@ void Scheduling::LLBoundTest()
 		
 	double bound = this->taskSet.size() * (pow(2, 1/this->taskSet.size()) - 1);
 	
-	if (utilization <= bound)
-		cout << "Liu and Layland Bound Test: Pass; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
-	else
-		cout << "Liu and Layland Bound Test: Fail; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
+	if (utilization <= bound) {
+		//cout << "Liu and Layland Bound Test: Pass" << endl;
+		return true;
+	} else {
+		//cout << "Liu and Layland Bound Test: Fail" << endl;
+		return false;
+
+	}
 }
 
-void Scheduling::hyperbolicBoundTest()
+bool Scheduling::hyperbolicBoundTest()
 {
 	int start = clock();
 	
@@ -69,12 +72,14 @@ void Scheduling::hyperbolicBoundTest()
 		utilization = utilization * (1 + it->getUtilization());
 		
 	if (utilization <= 2)
-		cout << "Hyperbolic Bound Test: Pass; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
+		//cout << "Hyperbolic Bound Test: Pass" << endl;
+		return true;
 	else
-		cout << "Hyperbolic Bound Test: Fail; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
+		//cout << "Hyperbolic Bound Test: Fail" << endl;
+		return false;
 }
 
-void Scheduling::WCRTTest()
+bool Scheduling::WCRTTest()
 {
 	int start = clock();
 	
@@ -107,17 +112,16 @@ void Scheduling::WCRTTest()
 				
 		if (response > it->mRelativeDeadline)
 		{
-			
-			cout << "WCRT Test: Fail; Time Taken: " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
-			return;
+			//cout << "WCRT Test: Fail" << endl;
+			return false;
 		}
 		else
 		{
 			//cout << "add task" << endl;
 		}
 	}
-	
-	cout << "WCRT Test: Pass; Time Taken: " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
+	//cout << "WCRT Test: Pass" << endl;
+	return true;
 }
 
 void Scheduling::printTaskSet()

@@ -52,25 +52,46 @@ int main (int argc, char *argv [])
 		
 		if (line.find("end") != string::npos)
 		{
+			bool result;
+			int ticksAtStart;
+			
 			begin = false;
 			Scheduling schedule(taskSet);
 			
-			cout << "Sort by rate monotonic scheduling... " << endl;
 			schedule.sortRM();
-			schedule.LLBoundTest();
+			
+			ticksAtStart = clock();
+			result = schedule.LLBoundTest();
+			cout << "Schedulable using RM scheduling / Liu and Layland bound test: " << (result?"Y":"N") << endl;
+			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+			
+			ticksAtStart = clock();
 			schedule.hyperbolicBoundTest();
-			schedule.WCRTTest();
-			cout << endl;
+			cout << "Schedulable using RM scheduling / Hyperbolic bound test: " << (result?"Y":"N") << endl;
+			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+
 			
-			cout << "Sort by shortest job first... " << endl;
+			ticksAtStart = clock();
+			schedule.WCRTTest();
+			cout << "Schedulable using RM scheduling / WCRT test: " << (result?"Y":"N") << endl;
+			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+
+			
 			schedule.sortSJF();
-			schedule.WCRTTest();
-			cout << endl;
 			
-			cout << "Sort by maximum utilization first..." << endl;
-			schedule.sortMUF();
+			ticksAtStart = clock();
 			schedule.WCRTTest();
-			cout << endl;
+			cout << "Schedulable using SJF scheduling / WCRT test: " << (result?"Y":"N") << endl;
+			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+			//schedule.printTaskSet();
+			
+			schedule.sortMUF();
+			
+			ticksAtStart = clock();
+			schedule.WCRTTest();
+			cout << "Schedulable using MUF scheduling / WCRT test: " << (result?"Y":"N") << endl;
+			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+			//schedule.printTaskSet();
 			
 			taskSet.clear();
 			cout << endl;
