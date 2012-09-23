@@ -3,6 +3,7 @@
 #include <iostream>
 #include <list>
 #include <math.h>
+#include <time.h>
 
 using namespace std;
 
@@ -43,6 +44,8 @@ void Scheduling::sortMUF()
 
 void Scheduling::LLBoundTest()
 {
+	int start = clock();
+
 	double utilization = 0;
 	
 	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
@@ -51,26 +54,30 @@ void Scheduling::LLBoundTest()
 	double bound = this->taskSet.size() * (pow(2, 1/this->taskSet.size()) - 1);
 	
 	if (utilization <= bound)
-		cout << "Liu and Layland Bound Test: Pass" << endl;
+		cout << "Liu and Layland Bound Test: Pass; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
 	else
-		cout << "Liu and Layland Bound Test: Fail" << endl;
+		cout << "Liu and Layland Bound Test: Fail; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
 }
 
 void Scheduling::hyperbolicBoundTest()
 {
+	int start = clock();
+	
 	double utilization = 1;
 	
 	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
 		utilization = utilization * (1 + it->getUtilization());
 		
 	if (utilization <= 2)
-		cout << "Hyperbolic Bound Test: Pass" << endl;
+		cout << "Hyperbolic Bound Test: Pass; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
 	else
-		cout << "Hyperbolic Bound Test: Fail" << endl;
+		cout << "Hyperbolic Bound Test: Fail; " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
 }
 
 void Scheduling::WCRTTest()
 {
+	int start = clock();
+	
 	for (list<Task>::iterator it = ++(this->taskSet.begin()); it != this->taskSet.end(); it++)
 	{				
 		double response = it->mExecTime;
@@ -89,27 +96,28 @@ void Scheduling::WCRTTest()
 			
 			if ((response == interference + it->mExecTime) && (response <= it->mRelativeDeadline))
 			{
-				cout << "found response: " << interference + it->mExecTime << endl;
+				//cout << "found response: " << interference + it->mExecTime << endl;
 				break;
 			}
 			else
 				response = interference + it->mExecTime;
 
-			cout << "interference = " << interference << " response = " << response << endl;
+			//cout << "interference = " << interference << " response = " << response << endl;
 		}
 				
 		if (response > it->mRelativeDeadline)
 		{
-			cout << "WCRT Test: Fail" << endl;
+			
+			cout << "WCRT Test: Fail; Time Taken: " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
 			return;
 		}
 		else
 		{
-			cout << "add task" << endl;
+			//cout << "add task" << endl;
 		}
 	}
 	
-	cout << "WCRT Test: Pass" << endl;
+	cout << "WCRT Test: Pass; Time Taken: " << (float)(clock() - start) / CLOCKS_PER_SEC << " seconds" << endl;
 }
 
 void Scheduling::printTaskSet()

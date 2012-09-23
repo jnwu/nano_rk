@@ -55,16 +55,22 @@ int main (int argc, char *argv [])
 			begin = false;
 			Scheduling schedule(taskSet);
 			
+			cout << "Sort by rate monotonic scheduling... " << endl;
 			schedule.sortRM();
 			schedule.LLBoundTest();
 			schedule.hyperbolicBoundTest();
 			schedule.WCRTTest();
+			cout << endl;
 			
+			cout << "Sort by shortest job first... " << endl;
 			schedule.sortSJF();
 			schedule.WCRTTest();
+			cout << endl;
 			
+			cout << "Sort by maximum utilization first..." << endl;
 			schedule.sortMUF();
 			schedule.WCRTTest();
+			cout << endl;
 			
 			taskSet.clear();
 			cout << endl;
@@ -75,21 +81,21 @@ int main (int argc, char *argv [])
 		{
 			Task task;
 		
-		stringstream doublestream;
-		doublestream << line;
-		double f;
-		
-		doublestream >> f;
-		task.mExecTime = f;
-		
-		doublestream >> f;
-		task.mRelativeDeadline = f;
-		
-		doublestream >> f;
-		task.mPeriod = f;
-		
-		taskSet.push_back(task);
-		//cout << task.mExecTime << " " << task.mRelativeDeadline << " " << task.mPeriod << endl;
+			stringstream doublestream;
+			doublestream << line;
+			double f;
+			
+			doublestream >> f;
+			task.mExecTime = f;
+			
+			doublestream >> f;
+			task.mRelativeDeadline = f;
+			
+			doublestream >> f;
+			task.mPeriod = f;
+			
+			taskSet.push_back(task);
+			//cout << task.mExecTime << " " << task.mRelativeDeadline << " " << task.mPeriod << endl;
 		}
 		
     }
