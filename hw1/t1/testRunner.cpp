@@ -52,20 +52,29 @@ int main (int argc, char *argv [])
 		
 		if (line.find("end") != string::npos)
 		{
+			bool result;
 			begin = false;
 			Scheduling schedule(taskSet);
 			
 			schedule.sortRM();
-			schedule.LLBoundTest();
+			result = schedule.LLBoundTest();
+			
+			cout << "Schedulable using RM scheduling / Liu and Layland bound test: " << (result?"Y":"N") << endl;
+			
 			schedule.hyperbolicBoundTest();
+			cout << "Schedulable using RM scheduling / Hyperbolic bound test: " << (result?"Y":"N") << endl;
+			
 			schedule.WCRTTest();
+			cout << "Schedulable using RM scheduling / WCRT test: " << (result?"Y":"N") << endl;
 			
 			schedule.sortSJF();
 			schedule.WCRTTest();
+			cout << "Schedulable using SJF scheduling / WCRT test: " << (result?"Y":"N") << endl;
 			//schedule.printTaskSet();
 			
 			schedule.sortMUF();
 			schedule.WCRTTest();
+			cout << "Schedulable using MUF scheduling / WCRT test: " << (result?"Y":"N") << endl;
 			//schedule.printTaskSet();
 			
 			taskSet.clear();

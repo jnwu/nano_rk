@@ -41,7 +41,7 @@ void Scheduling::sortMUF()
 	taskSet.sort(compare_MUF);
 }
 
-void Scheduling::LLBoundTest()
+bool Scheduling::LLBoundTest()
 {
 	double utilization = 0;
 	
@@ -50,13 +50,17 @@ void Scheduling::LLBoundTest()
 		
 	double bound = this->taskSet.size() * (pow(2, 1/this->taskSet.size()) - 1);
 	
-	if (utilization <= bound)
-		cout << "Liu and Layland Bound Test: Pass" << endl;
-	else
-		cout << "Liu and Layland Bound Test: Fail" << endl;
+	if (utilization <= bound) {
+		//cout << "Liu and Layland Bound Test: Pass" << endl;
+		return true;
+	} else {
+		//cout << "Liu and Layland Bound Test: Fail" << endl;
+		return false;
+
+	}
 }
 
-void Scheduling::hyperbolicBoundTest()
+bool Scheduling::hyperbolicBoundTest()
 {
 	double utilization = 1;
 	
@@ -64,12 +68,14 @@ void Scheduling::hyperbolicBoundTest()
 		utilization = utilization * (1 + it->getUtilization());
 		
 	if (utilization <= 2)
-		cout << "Hyperbolic Bound Test: Pass" << endl;
+		//cout << "Hyperbolic Bound Test: Pass" << endl;
+		return true;
 	else
-		cout << "Hyperbolic Bound Test: Fail" << endl;
+		//cout << "Hyperbolic Bound Test: Fail" << endl;
+		return false;
 }
 
-void Scheduling::WCRTTest()
+bool Scheduling::WCRTTest()
 {	
 	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
 	{
@@ -95,12 +101,13 @@ void Scheduling::WCRTTest()
 		
 		if (response > it->mRelativeDeadline)
 		{
-			cout << "WCRT Test: Fail" << endl;
-			return;
+			//cout << "WCRT Test: Fail" << endl;
+			return false;
 		}
 	}
 	
-	cout << "WCRT Test: Pass" << endl;
+	//cout << "WCRT Test: Pass" << endl;
+	return true;
 }
 
 void Scheduling::printTaskSet()

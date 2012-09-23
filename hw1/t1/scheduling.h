@@ -19,9 +19,9 @@ class Scheduling {
 	void sortSJF();
 	void sortMUF();
 	
-	void LLBoundTest();
-	void hyperbolicBoundTest();
-	void WCRTTest();
+	bool LLBoundTest();
+	bool hyperbolicBoundTest();
+	bool WCRTTest();
 	
 	void printTaskSet();
 };
