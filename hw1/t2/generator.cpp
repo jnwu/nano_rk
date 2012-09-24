@@ -21,7 +21,7 @@ vector<double> generator::generateUtilVector(double utilRate, int n){
 
 	int y = n;
 	for (int i = 0; i< y-1; i++){
-		u = (rand()%100+1) * tmpRate/100;
+		u = ((double)rand()/RAND_MAX) * (tmpRate/2);
 		r.push_back(u);
 		tmpRate -= u;
 		
