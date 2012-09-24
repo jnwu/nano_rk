@@ -1,8 +1,4 @@
-#include "task.h"
 #include "scheduling.h"
-#include <iostream>
-#include <list>
-#include <math.h>
 
 using namespace std;
 

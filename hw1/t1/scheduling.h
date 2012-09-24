@@ -2,6 +2,10 @@
 #define SCHEDULING_H
 
 #include "task.h"
+#include "testResult.h"
+#include <iostream>
+#include <list>
+#include <math.h>
 #include <list>
 
 using namespace std;

@@ -11,7 +11,7 @@
 #******************************************************************************
 
 TARGET := testRunner
-SRCS := task.cpp scheduling.cpp testRunner.cpp
+SRCS := task.cpp scheduling.cpp testRunner.cpp testResult.cpp
 
 all: $(TARGET)
 

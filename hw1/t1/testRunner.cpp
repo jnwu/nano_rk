@@ -25,16 +25,23 @@ using namespace std;
 
 int main (int argc, char *argv [])
 {	
-
 	ifstream in(argv[1],ifstream::in);
-
-
 	if (!in.is_open())
 	{
 		cout << "error, unable to open file" << endl;
 		return -1;
 		
 	}
+	
+	ofstream testResultFile;
+	testResultFile.open ("results.csv",ios_base::app);
+	if (!testResultFile.is_open())
+	{
+		cout << "error, unable to open file" << endl;
+		return -1;
+	}
+	
+	TestResult testResult;
 	
 	string line; 
 	
@@ -52,8 +59,8 @@ int main (int argc, char *argv [])
 		
 		if (line.find("end") != string::npos)
 		{
-			bool result;
 			int ticksAtStart;
+			TestData testData;
 			
 			begin = false;
 			Scheduling schedule(taskSet);
@@ -61,40 +68,41 @@ int main (int argc, char *argv [])
 			schedule.sortRM();
 			
 			ticksAtStart = clock();
-			result = schedule.LLBoundTest();
-			cout << "Schedulable using RM scheduling / Liu and Layland bound test: " << (result?"Y":"N") << endl;
+			testData.rmLL = schedule.LLBoundTest();
+			cout << "Schedulable using RM scheduling / Liu and Layland bound test: " << (testData.rmLL?"Y":"N") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			
 			ticksAtStart = clock();
-			schedule.hyperbolicBoundTest();
-			cout << "Schedulable using RM scheduling / Hyperbolic bound test: " << (result?"Y":"N") << endl;
+			testData.rmHB = schedule.hyperbolicBoundTest();
+			cout << "Schedulable using RM scheduling / Hyperbolic bound test: " << (testData.rmHB?"Y":"N") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
-
 			
 			ticksAtStart = clock();
-			schedule.WCRTTest();
-			cout << "Schedulable using RM scheduling / WCRT test: " << (result?"Y":"N") << endl;
+			testData.rmWCRT = schedule.WCRTTest();
+			cout << "Schedulable using RM scheduling / WCRT test: " << (testData.rmWCRT?"Y":"N") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
-
 			
 			schedule.sortSJF();
 			
 			ticksAtStart = clock();
-			schedule.WCRTTest();
-			cout << "Schedulable using SJF scheduling / WCRT test: " << (result?"Y":"N") << endl;
+			testData.sjfWCRT = schedule.WCRTTest();
+			cout << "Schedulable using SJF scheduling / WCRT test: " << (testData.sjfWCRT?"Y":"N") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			//schedule.printTaskSet();
 			
 			schedule.sortMUF();
 			
 			ticksAtStart = clock();
-			schedule.WCRTTest();
-			cout << "Schedulable using MUF scheduling / WCRT test: " << (result?"Y":"N") << endl;
+			testData.mufWCRT = schedule.WCRTTest();
+			cout << "Schedulable using MUF scheduling / WCRT test: " << (testData.mufWCRT?"Y":"N") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			//schedule.printTaskSet();
 			
 			taskSet.clear();
 			cout << endl;
+			
+			testResult.mData.push_back(testData);
+			
 			continue;
 		}
 		
@@ -122,6 +130,10 @@ int main (int argc, char *argv [])
     }
 
   	in.close();
+  	
+  	testResult.parseData();
+  	testResult.writeData(testResultFile);
+  	testResultFile.close();
 
 	return 0;
 }
