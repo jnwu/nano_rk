@@ -3,50 +3,63 @@ this is the main function for generating the fileinput
 */
 
 #include <iostream>
+#include <sstream>
+#include <cstdlib>
 #include <vector>
+#include <string>
+#include <math.h>
 #include "generator.h"
 
-//this function is here for testing purpose.
-double getUtilRate();
+string getFileName(double uRate, int n, string s);
 
-//this function is here temporarily for testing purpose
-vector<double> genU(double utilRate);
+string getFileName(double uRate, int n, string s){
+   stringstream ss;
+   ss <<"+"<<uRate <<"+"<<n;
+   return s.append(ss.str());
+}
 
 int main (){
 
-	double utilRate;
-	utilRate = getUtilRate();
-	vector<double> u; 	//u is being hard coded for now
+	//utilRate = getUtilRate();
+	vector<double> u; 	
 	vector<double> p;
 	vector<double> e;
-	generator g(utilRate);
-	u = genU(utilRate);
-	p = g.generatePeriod(u.size());
-	e = g.generateExec(u, p);
-	g.outputFile(e,p);
-	
-	
-}
-
-//test
-double getUtilRate(){
-	double r;
-	cout<<"enter the util rate between 0 and 1: "<<endl;
-	cin>>r;
-	return r;
-}
-
-vector<double> genU(double util){
-	vector<double> u;
+	generator g;
+	string fileName;
+	double uRate;
 	int n;
-	cout<<"please enter n for the size of vector: "<<endl; 
-	cin >> n;
-	cout<<"make sure the sum equals to "<<util<<endl;
-	for (int i=0; i<n; i++){
-		double rate;
-		cout<<"please enter U "<<i<<endl;
-		cin >>rate;
-		u.push_back(rate);
+	srand(time(NULL));
+
+for (int i = 1; i<=20; i++){
+	uRate = 0.05*i;
+	for (int j = 3; j<=6; j++){
+		n = pow(2,j);
+		fileName = getFileName(uRate, n, "inputFile1");
+	for (int k = 0; k<100000; k++){	
+		u = g.generateUtilVector(uRate,n);
+		p = g.generatePeriod(u.size());
+		e = g.generateExec(u, p);
+		g.outputFile(e,p, fileName.c_str());
+	
 	}
-	return u;
+   }
+
 }
+
+	for (int i = 1; i<=9; i++){
+	  uRate = 0.1*i;
+	  fileName = getFileName(uRate, 16, "inputFile2");
+	for (int k = 0; k<100; k++){	
+		u = g.generateUtilVector(uRate,16);
+		p = g.generatePeriod(u.size());
+		e = g.generateExec(u, p);
+		g.outputFile(e,p, fileName.c_str());
+	
+	    }
+   
+
+	}
+	
+}
+
+

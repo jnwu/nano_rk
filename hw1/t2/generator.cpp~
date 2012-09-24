@@ -2,41 +2,25 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <string>
 #include <math.h>
 #include "generator.h"
 
 
 using namespace std;
 
-generator::generator(){
-	
+generator::generator(double passedUtilRate){
+	utilRate = passedUtilRate;
 }
 
-vector<double> generator::generateUtilVector(double utilRate, int n){
-	//srand(time(NULL));
-	vector<double> r;
-	double tmpRate =utilRate;
-	double u;
-
-	int y = n;
-	for (int i = 0; i< y-1; i++){
-		u = (rand()%100+1) * tmpRate/100;
-		r.push_back(u);
-		tmpRate -= u;
-		
-		
-	}
-	r.push_back(tmpRate);
-
-	return r;
+vector<double> generator::generateUtilVector(){
+	//to the implemented
 }
 
 vector<double> generator::generatePeriod(int utilVecLength){
 	vector<double> r;
 	int x, y;
 	double e;
-	//srand(time(NULL));
+	srand(time(NULL));
 	for (int i = 0; i<utilVecLength; i++){
 		 x = rand();
 		 y = (x%101) * 5 + 100;
@@ -56,9 +40,9 @@ vector<double> generator::generateExec (vector<double> utilRate, vector<double> 
 	return e;
 }
 
-void generator::outputFile (vector<double> e, vector<double> p, const char* fileName){
+void generator::outputFile (vector<double> e, vector<double> p){
 	ofstream myfile;
-  	myfile.open (fileName,ios_base::app);
+  	myfile.open ("inputfile.txt",ios_base::app);
         myfile << "<begin task set>\n";
 	for (int i =0; i< e.size();i++){
 		myfile << e.at(i) << " " << p.at(i)<< " "<< p.at(i)<<endl;
