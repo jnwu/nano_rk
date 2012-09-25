@@ -42,11 +42,11 @@ int main (){
 		for (int j = 3; j<=6; j++){
 			n = pow(2,j);
 			fileName = getFileName(uRate, n, "inputFile1");
-			vs = g.generateVectorSpace(uRate, 1250, n);
+			vs = g.generateVectorSpace(uRate, 100000, n);
 
 			cout << "utilRate: " << uRate << "\tnTask: " << n << endl;
 			// Task Set
-			for (int k = 0; k<1250; k++){	
+			for (int k = 0; k<100000; k++){	
 
 				u = g.generateUtilVector(vs);
 				p = g.generatePeriod(u.size(), 1, 6);
