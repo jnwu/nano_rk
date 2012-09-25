@@ -32,6 +32,7 @@ int main (){
 	srand(time(NULL));
 
 
+
 	cout << "Generate Task Sets for T3.1" << endl;
 	// Rate
 	for (int i = 1; i<=20; i++){
@@ -48,7 +49,7 @@ int main (){
 			for (int k = 0; k<1250; k++){	
 
 				u = g.generateUtilVector(vs);
-				p = g.generatePeriod(u.size());
+				p = g.generatePeriod(u.size(), 1, 6);
 				e = g.generateExec(u, p);
 				g.outputFile(e,p, fileName.c_str());
 			}
@@ -65,7 +66,7 @@ int main (){
 		cout << "utilRate: " << uRate << endl;
 		for (int k = 0; k<100; k++){	
 			u = g.generateUtilVector(vs);
-			p = g.generatePeriod(u.size());
+			p = g.generatePeriod(u.size(), 1,5);
 			e = g.generateExec(u, p);
 			g.outputFile(e,p, fileName.c_str());
 		}

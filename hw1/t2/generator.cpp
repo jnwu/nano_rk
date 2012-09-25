@@ -56,15 +56,23 @@ vector<double> generator::generateUtilVector(vector< vector<double> > vs) {
 	return r;
 }
 
-vector<double> generator::generatePeriod(int utilVecLength){
-	vector<double> r;
-	int x, y;
+double generator::uniRandom(int lower, int upper){
+	int x, y, n;
 	double e;
-	//srand(time(NULL));
+	n = (int)( (upper - lower)/0.01 )+ 1;
+	x = rand();
+	y = (x%n) + 100;
+	e = y / 100.00;
+	return e;
+}
+
+vector<double> generator::generatePeriod(int utilVecLength,int lower,int upper){
+	vector<double> r;
+
+	double e;
+
 	for (int i = 0; i<utilVecLength; i++){
-		 x = rand();
-		 y = (x%101) * 5 + 100;
-		 e = y / 100.00;
+		 e = this->uniRandom(lower, upper);
 		r.push_back(pow(10,e));
 	}
 	
