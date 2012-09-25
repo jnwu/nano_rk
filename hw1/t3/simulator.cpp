@@ -93,13 +93,13 @@ bool Simulator::adjustJobs(int timeIncrement, int index)
 	for (int i = 0; i < taskVector.size(); i++)
 	{
 		//failed deadline
-		taskVector[i].remainingDeadline -= timeIncrement;
-		if (taskVector[i].remainingDeadline < 0)
-			return false;
-			
-		if (i == index)
-			continue;
-			
+		if (taskVector[i].remainingDeadline != 0)
+		{
+			taskVector[i].remainingDeadline -= timeIncrement;
+			if (taskVector[i].remainingDeadline < 0 )
+				return false;
+		}	
+		
 		int periodCounts = ((timeIncrement + currentTime)/taskVector[i].mPeriod) - taskVector[i].periodCount;
 		
 		//missed a cycle
