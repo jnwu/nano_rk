@@ -2,29 +2,77 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 #include <math.h>
 #include "generator.h"
 
 
 using namespace std;
 
-generator::generator(double passedUtilRate){
-	utilRate = passedUtilRate;
+generator::generator(){
+	
 }
 
-vector<double> generator::generateUtilVector(){
-	//to the implemented
+
+vector< vector<double> > generator::generateVectorSpace(double utilRate, int nSample, int nTask) {
+	vector<double>* r = NULL;
+	vector< vector<double> > vs;
+
+	for (int i = 0; i<nSample; i++){	
+		double u;
+		double tmpRate = utilRate;
+
+		r = new vector<double>();
+		for(int i = 0; i<nTask ; i++) 
+			r->push_back(0);
+
+		for(int i=0; i<nTask; i++) {
+			if(i == (nTask-1)) {
+				r->at(i) = tmpRate;
+				break;
+			}
+
+			u = ((double)rand()/RAND_MAX) * (tmpRate/3);
+			if(u < 1e-4) continue;		// Bound minimum rate 
+			r->at(i) = u;
+
+			tmpRate -= u;
+		}
+		
+		vs.push_back(*r);
+	}
+
+	return vs;
 }
 
-vector<double> generator::generatePeriod(int utilVecLength){
+
+vector<double> generator::generateUtilVector(vector< vector<double> > vs) {
 	vector<double> r;
-	int x, y;
+	int n = ((double)rand()/RAND_MAX) * (vs.size());
+	
+	for(int i = 0 ; i < vs.at(n).size() ; i++) 
+		r.push_back(vs.at(n).at(i));
+	
+	return r;
+}
+
+double generator::uniRandom(int lower, int upper){
+	int x, y, n;
 	double e;
-	srand(time(NULL));
+	n = (int)( (upper - lower)/0.01 )+ 1;
+	x = rand();
+	y = (x%n) + 100;
+	e = y / 100.00;
+	return e;
+}
+
+vector<double> generator::generatePeriod(int utilVecLength,int lower,int upper){
+	vector<double> r;
+
+	double e;
+
 	for (int i = 0; i<utilVecLength; i++){
-		 x = rand();
-		 y = (x%101) * 5 + 100;
-		 e = y / 100.00;
+		 e = this->uniRandom(lower, upper);
 		r.push_back(pow(10,e));
 	}
 	
@@ -40,9 +88,9 @@ vector<double> generator::generateExec (vector<double> utilRate, vector<double> 
 	return e;
 }
 
-void generator::outputFile (vector<double> e, vector<double> p){
+void generator::outputFile (vector<double> e, vector<double> p, const char* fileName){
 	ofstream myfile;
-  	myfile.open ("inputfile.txt",ios_base::app);
+  	myfile.open (fileName,ios_base::app);
         myfile << "<begin task set>\n";
 	for (int i =0; i< e.size();i++){
 		myfile << e.at(i) << " " << p.at(i)<< " "<< p.at(i)<<endl;

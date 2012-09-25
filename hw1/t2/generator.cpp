@@ -95,7 +95,7 @@ void generator::outputFile (vector<double> e, vector<double> p, const char* file
 	for (int i =0; i< e.size();i++){
 		myfile << e.at(i) << " " << p.at(i)<< " "<< p.at(i)<<endl;
 	}
-	myfile << "<begin task set>\n";
+	myfile << "<end task set>\n";
 	myfile<<"\n";
   	myfile.close();
 }
