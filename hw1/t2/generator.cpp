@@ -13,22 +13,46 @@ generator::generator(){
 	
 }
 
-vector<double> generator::generateUtilVector(double utilRate, int n){
-	//srand(time(NULL));
-	vector<double> r;
-	double tmpRate =utilRate;
-	double u;
 
-	int y = n;
-	for (int i = 0; i< y-1; i++){
-		u = ((double)rand()/RAND_MAX) * (tmpRate/2);
-		r.push_back(u);
-		tmpRate -= u;
+vector< vector<double> > generator::generateVectorSpace(double utilRate, int nSample, int nTask) {
+	vector<double>* r = NULL;
+	vector< vector<double> > vs;
+
+	for (int i = 0; i<nSample; i++){	
+		double u;
+		double tmpRate = utilRate;
+
+		r = new vector<double>();
+		for(int i = 0; i<nTask ; i++) 
+			r->push_back(0);
+
+		for(int i=0; i<nTask; i++) {
+			if(i == (nTask-1)) {
+				r->at(i) = tmpRate;
+				break;
+			}
+
+			u = ((double)rand()/RAND_MAX) * (tmpRate/3);
+			if(u < 1e-4) continue;		// Bound minimum rate 
+			r->at(i) = u;
+
+			tmpRate -= u;
+		}
 		
-		
+		vs.push_back(*r);
 	}
-	r.push_back(tmpRate);
 
+	return vs;
+}
+
+
+vector<double> generator::generateUtilVector(vector< vector<double> > vs) {
+	vector<double> r;
+	int n = ((double)rand()/RAND_MAX) * (vs.size());
+	
+	for(int i = 0 ; i < vs.at(n).size() ; i++) 
+		r.push_back(vs.at(n).at(i));
+	
 	return r;
 }
 

@@ -9,11 +9,10 @@ using namespace std;
 class generator {
 
 	public:
-		
-
 		generator();
 
-		vector<double> generateUtilVector(double passedUtilRate, int passedN);
+		vector< vector<double> > generateVectorSpace(double utilRate, int nSample, int nTask);
+		vector<double> generateUtilVector(vector< vector<double> > vs);
 		vector<double> generatePeriod(int utilVecLength);
 		vector<double> generateExec (vector<double> utilRate, vector<double> p);
 
