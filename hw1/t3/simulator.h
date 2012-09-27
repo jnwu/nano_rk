@@ -20,7 +20,7 @@ class Simulator {
 		int processJob(int index);
 		bool adjustJobs(int timeIncrement, int index);
 		
-		int currentTime;
+		double currentTime;
 		
 	public:
 	list<Task> taskSet;

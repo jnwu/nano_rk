@@ -22,6 +22,6 @@ double Task::getUtilization()
 
 void Task::printTask()
 {
-	cout << mExecTime << "\t" << mRelativeDeadline << "\t" << mPeriod << endl;
+	cout << mExecTime << "\t" << mRelativeDeadline << "\t" << mPeriod << "\t" << execTimeRemaining << "\t" << remainingDeadline <<endl;
 }
 

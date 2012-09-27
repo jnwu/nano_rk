@@ -102,9 +102,9 @@ int main (int argc, char *argv [])
 
   	in.close();
   	
-  	testResult.parseData();
-  	testResult.writeData(testResultFile);
-  	testResultFile.close();
+  	//testResult.parseData();
+  	//testResult.writeData(testResultFile);
+  	//testResultFile.close();
 
 	return 0;
 }

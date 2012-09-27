@@ -1,5 +1,6 @@
 #include "simulator.h"
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ Simulator::Simulator(list<Task> tasks)
 {
 	taskSet = tasks;
 	currentTime = 0;
+	printTaskSet();
 }
 
 void Simulator::sortRM()
@@ -40,6 +42,7 @@ bool Simulator::simulate()
 		
 		timeIncrement = processJob(index);
 		
+		cout << currentTime << " " << timeIncrement << endl << endl;;
 		bool failed = adjustJobs(timeIncrement,index);
 		
 		currentTime += timeIncrement;
@@ -66,24 +69,30 @@ int Simulator::findHighestPriority()
 
 int Simulator::processJob(int index)
 {
-	if (index < 0)
-		index = taskVector.size();
+	int currentJob = index;
+	if (currentJob < 0)
+		currentJob = taskVector.size() - 1;
 		
-	double min = 0;
-	for (int i = 0; i < index; i++)
+	//cout << (currentTime/taskVector[0].mPeriod + 1) << " " << (currentTime/taskVector[0].mPeriod + 1) * taskVector[0].mPeriod << " " << currentTime << endl;
+	double min = (int)(currentTime/taskVector[0].mPeriod + 1) * taskVector[0].mPeriod - currentTime;
+	for (int i = 1; i <= currentJob; i++)
 	{
-		double newMin = currentTime/taskVector[i].mPeriod +1;
-		if((newMin) - currentTime < min)
+		double newMin = (int)(currentTime/taskVector[i].mPeriod + 1) * taskVector[i].mPeriod - currentTime;
+		if(newMin < min)
 			min = newMin;
+			
+		//cout << "min: " << min << "newMin: " << newMin << endl;
+	}
+
+	if (index >= 0)
+	{
+		if (taskVector[index].execTimeRemaining < min)
+			min = taskVector[index].execTimeRemaining;
+		
+		taskVector[index].execTimeRemaining -= min;
 	}
 	
-	if (index == taskVector.size())
-		return min;
-	
-	if (taskVector[index].execTimeRemaining < min)
-		min = taskVector[index].execTimeRemaining;
-		
-	taskVector[index].execTimeRemaining -= min;
+	cout << index << " " << min << endl;
 	
 	return min;
 }
@@ -93,36 +102,32 @@ bool Simulator::adjustJobs(int timeIncrement, int index)
 	for (int i = 0; i < taskVector.size(); i++)
 	{
 		//failed deadline
-		if (taskVector[i].remainingDeadline != 0)
+		if (taskVector[i].remainingDeadline != 0 && taskVector[i].execTimeRemaining != 0)
 		{
 			taskVector[i].remainingDeadline -= timeIncrement;
-			if (taskVector[i].remainingDeadline < 0 )
-				return false;
+			if (taskVector[i].remainingDeadline <= 0 )
+				return true;
 		}	
+		double intpart, fractpart;
+		fractpart = modf((timeIncrement + currentTime)/taskVector[i].mPeriod, &intpart);
+		//cout << "period count:" << fractpart << endl;
 		
-		int periodCounts = ((timeIncrement + currentTime)/taskVector[i].mPeriod) - taskVector[i].periodCount;
-		
-		//missed a cycle
-		if (periodCounts > 1)
-			return false;
-		else if (periodCounts == 1)
+		if (!fractpart)
 		{
 			taskVector[i].execTimeRemaining = taskVector[i].mExecTime;
-			taskVector[i].remainingDeadline = taskVector[i].mRelativeDeadline - ((timeIncrement + currentTime) - taskVector[i].periodCount * taskVector[i].mPeriod);
+			taskVector[i].remainingDeadline = taskVector[i].mRelativeDeadline;
 		}
 	}
-	
-	return true;
+	//printTaskSet();
+	return false;
 }
 
 void Simulator::printTaskSet()
 {
 	cout << "Debug task set print" << endl;
-	list<Task>::iterator it;
-	for (it=taskSet.begin(); it!=taskSet.end(); ++it)
+	for (int i = 0; i < taskVector.size(); i++)
     {
-    	Task t = *it;
-    	t.printTask();
+    	taskVector[i].printTask();
     }
     
     cout << "End debug task set print" << endl;
