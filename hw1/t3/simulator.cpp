@@ -4,9 +4,19 @@
 
 using namespace std;
 
+bool compare_SJF(Task &a, Task &b)
+{
+	return (a.mExecTime < b.mExecTime);
+}
+
 bool compare_RM(Task &a, Task &b)
 {
 	return (a.mPeriod < b.mPeriod);
+}
+
+bool compare_MUF(Task &a, Task &b)
+{
+	return (a.getUtilization() > b.getUtilization());
 }
 
 Simulator::Simulator(list<Task> tasks)
@@ -19,6 +29,16 @@ Simulator::Simulator(list<Task> tasks)
 void Simulator::sortRM()
 {
 	taskSet.sort(compare_RM);
+}
+
+void Simulator::sortSJF()
+{
+	taskSet.sort(compare_SJF);
+}
+
+void Simulator::sortMUF()
+{
+	taskSet.sort(compare_MUF);
 }
 
 bool Simulator::simulate()

@@ -41,7 +41,7 @@ int main (int argc, char *argv [])
 		return -1;
 	}
 	
-	TestResult testResult;
+	TestResult *testResult = new TestResult();
 	
 	string line; 
 	
@@ -66,13 +66,24 @@ int main (int argc, char *argv [])
 			Simulator simulator(taskSet);
 			
 			simulator.sortRM();
-			
 			ticksAtStart = clock();
-			
-			bool simulationResult = simulator.simulate();
-			
-			cout << "Simulation result = " << (simulationResult?"Success":"Fail") << endl;
+			testData.rmTest = simulator.simulate();
+			cout << "Simulation result = " << (testData.rmTest?"Success":"Fail") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+			
+			simulator.sortSJF();
+			ticksAtStart = clock();
+			testData.sjfTest = simulator.simulate();
+			cout << "Simulation result = " << (testData.sjfTest?"Success":"Fail") << endl;
+			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+			
+			simulator.sortMUF();
+			ticksAtStart = clock();
+			testData.mufTest = simulator.simulate();
+			cout << "Simulation result = " << (testData.mufTest?"Success":"Fail") << endl;
+			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
+			
+			testResult->mData.push_back(testData);
 			
 			continue;
 		}
@@ -102,9 +113,9 @@ int main (int argc, char *argv [])
 
   	in.close();
   	
-  	//testResult.parseData();
-  	//testResult.writeData(testResultFile);
-  	//testResultFile.close();
+  	testResult->parseData();
+  	testResult->writeData(testResultFile);
+  	testResultFile.close();
 
 	return 0;
 }

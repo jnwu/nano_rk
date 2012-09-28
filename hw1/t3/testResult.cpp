@@ -17,13 +17,13 @@ void TestResult::parseData()
 	
 	for (list<TestData>::iterator it = this->mData.begin(); it != this->mData.end(); it++)
 	{
-		if (it->rmLL == true || it->rmHB == true || it->rmWCRT)
+		if (it->rmTest)
 			rmNumTaskSetsSchedulable++;
 		
-		if (it->sjfWCRT == true)
+		if (it->sjfTest == true)
 			sjfNumTaskSetsSchedulable++;
 		
-		if (it->mufWCRT == true)
+		if (it->mufTest == true)
 			mufNumTaskSetsSchedulable++;		
 	}
 	

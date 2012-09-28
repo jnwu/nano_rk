@@ -3,11 +3,11 @@
 
 struct TestData
 {
-	bool rmLL;
-	bool rmHB;
-	bool rmWCRT;
-	bool sjfWCRT;
-	bool mufWCRT;
+	bool rmLLTest;
+	bool rmHBTest;
+	bool rmWCRTTest;
+	bool sjfWCRTTest;
+	bool mufWCRTTest;
 };
 
 #endif

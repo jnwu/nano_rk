@@ -44,7 +44,10 @@ bool Scheduling::LLBoundTest()
 	double utilization = 0;
 	
 	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
-		utilization += it->getUtilization();
+		if (it->mRelativeDeadline < it->mPeriod)
+			utilization += it->mExecTime / it->mRelativeDeadline;
+		else
+			utilization += it->getUtilization();
 		
 	double bound = this->taskSet.size() * (pow(2, 1/this->taskSet.size()) - 1);
 	
@@ -65,7 +68,12 @@ bool Scheduling::hyperbolicBoundTest()
 	double utilization = 1;
 	
 	for (list<Task>::iterator it = this->taskSet.begin(); it != this->taskSet.end(); it++)
-		utilization = utilization * (1 + it->getUtilization());
+	{
+		if (it->mRelativeDeadline < it->mPeriod)
+			utilization = utilization * (1 + it->mExecTime / it->mRelativeDeadline);
+		else
+			utilization = utilization * (1 + it->getUtilization());
+	}
 		
 	if (utilization <= 2)
 		//cout << "Hyperbolic Bound Test: Pass" << endl;

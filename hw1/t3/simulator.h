@@ -29,9 +29,9 @@ class Simulator {
 	Simulator(list<Task> tasks);
 	
 	void sortRM();
-	
+	void sortSJF();
+	void sortMUF();
 	bool simulate();
-	
 	void printTaskSet();
 };
 
