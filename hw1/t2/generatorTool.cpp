@@ -20,7 +20,6 @@ string getFileName(double uRate, int n, string s){
 }
 
 int main (){
-	//utilRate = getUtilRate();
 	vector< vector<double> > vs;
 	vector<double> u; 	
 	vector<double> p;
@@ -31,8 +30,7 @@ int main (){
 	int n;
 	srand(time(NULL));
 
-
-
+	vs = g.generateVectorSpace();
 	cout << "Generate Task Sets for T3.1" << endl;
 	// Rate
 	for (int i = 1; i<=20; i++){
@@ -42,13 +40,11 @@ int main (){
 		for (int j = 3; j<=6; j++){
 			n = pow(2,j);
 			fileName = getFileName(uRate, n, "inputFile1");
-			vs = g.generateVectorSpace(uRate, 100000, n);
 
 			cout << "utilRate: " << uRate << "\tnTask: " << n << endl;
 			// Task Set
 			for (int k = 0; k<100000; k++){	
-
-				u = g.generateUtilVector(vs);
+				u = g.generateUtilVector(vs, uRate, n);
 				p = g.generatePeriod(u.size(), 1, 6);
 				e = g.generateExec(u, p);
 				g.outputFile(e,p, fileName.c_str());
@@ -61,11 +57,10 @@ int main (){
 	for (int i = 1; i<=9; i++){
 		uRate = 0.1*i;
 	  	fileName = getFileName(uRate, 16, "inputFile2");
-		vs = g.generateVectorSpace(uRate, 100, 16);
 		
 		cout << "utilRate: " << uRate << endl;
 		for (int k = 0; k<100; k++){	
-			u = g.generateUtilVector(vs);
+			u = g.generateUtilVector(vs, uRate, 16);
 			p = g.generatePeriod(u.size(), 1,5);
 			e = g.generateExec(u, p);
 			g.outputFile(e,p, fileName.c_str());
