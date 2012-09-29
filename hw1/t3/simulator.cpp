@@ -58,11 +58,11 @@ bool Simulator::simulate()
 	while (currentTime < SIMULATION_TIME)
 	{
 		int index = findHighestPriority();
-		int timeIncrement = 0;
+		double timeIncrement = 0;
 		
 		timeIncrement = processJob(index);
 		
-		cout << currentTime << " " << timeIncrement << endl << endl;;
+		cout << currentTime << " " << timeIncrement << endl << endl;
 		bool failed = adjustJobs(timeIncrement,index);
 		
 		currentTime += timeIncrement;
@@ -87,21 +87,28 @@ int Simulator::findHighestPriority()
 	return -1;
 }
 
-int Simulator::processJob(int index)
+double Simulator::processJob(int index)
 {
 	int currentJob = index;
 	if (currentJob < 0)
 		currentJob = taskVector.size() - 1;
 		
-	//cout << (currentTime/taskVector[0].mPeriod + 1) << " " << (currentTime/taskVector[0].mPeriod + 1) * taskVector[0].mPeriod << " " << currentTime << endl;
+	//printTaskSet();
+	
 	double min = (int)(currentTime/taskVector[0].mPeriod + 1) * taskVector[0].mPeriod - currentTime;
+	
+	if (min < 0.000001)
+		min = taskVector[0].mPeriod;
+		
 	for (int i = 1; i <= currentJob; i++)
 	{
 		double newMin = (int)(currentTime/taskVector[i].mPeriod + 1) * taskVector[i].mPeriod - currentTime;
-		if(newMin < min)
+		
+		//cout << "min: " << min << "newMin: " << newMin << endl;
+				
+		if(newMin < min && newMin > 0.000001)
 			min = newMin;
 			
-		//cout << "min: " << min << "newMin: " << newMin << endl;
 	}
 
 	if (index >= 0)
@@ -112,12 +119,12 @@ int Simulator::processJob(int index)
 		taskVector[index].execTimeRemaining -= min;
 	}
 	
-	cout << index << " " << min << endl;
+	//cout << index << " " << min << endl;
 	
 	return min;
 }
 
-bool Simulator::adjustJobs(int timeIncrement, int index)
+bool Simulator::adjustJobs(double timeIncrement, int index)
 {
 	for (int i = 0; i < taskVector.size(); i++)
 	{
@@ -130,16 +137,25 @@ bool Simulator::adjustJobs(int timeIncrement, int index)
 		}	
 		double intpart, fractpart;
 		fractpart = modf((timeIncrement + currentTime)/taskVector[i].mPeriod, &intpart);
-		//cout << "period count:" << fractpart << endl;
+		//cout << "period count:" << fractpart << " " << intpart << endl;
+		if ((intpart - taskVector[i].periodCount) > 1)
+			return true;
 		
-		if (!fractpart)
+		if (!fractpart || intpart - taskVector[i].periodCount == 1)
 		{
 			taskVector[i].execTimeRemaining = taskVector[i].mExecTime;
 			taskVector[i].remainingDeadline = taskVector[i].mRelativeDeadline;
 		}
+		
+		taskVector[i].periodCount = intpart;
 	}
 	//printTaskSet();
 	return false;
+}
+
+void Simulator::reset()
+{
+	currentTime = 0;
 }
 
 void Simulator::printTaskSet()

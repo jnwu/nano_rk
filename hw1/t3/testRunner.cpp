@@ -68,18 +68,21 @@ int main (int argc, char *argv [])
 			simulator.sortRM();
 			ticksAtStart = clock();
 			testData.rmTest = simulator.simulate();
+			simulator.reset();
 			cout << "Simulation result = " << (testData.rmTest?"Success":"Fail") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			
 			simulator.sortSJF();
 			ticksAtStart = clock();
 			testData.sjfTest = simulator.simulate();
+			simulator.reset();
 			cout << "Simulation result = " << (testData.sjfTest?"Success":"Fail") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			
 			simulator.sortMUF();
 			ticksAtStart = clock();
 			testData.mufTest = simulator.simulate();
+			simulator.reset();
 			cout << "Simulation result = " << (testData.mufTest?"Success":"Fail") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			

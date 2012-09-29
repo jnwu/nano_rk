@@ -17,8 +17,8 @@ class Simulator {
 		static const long SIMULATION_TIME = 100000;
 		
 		int findHighestPriority();
-		int processJob(int index);
-		bool adjustJobs(int timeIncrement, int index);
+		double processJob(int index);
+		bool adjustJobs(double timeIncrement, int index);
 		
 		double currentTime;
 		
@@ -33,6 +33,8 @@ class Simulator {
 	void sortMUF();
 	bool simulate();
 	void printTaskSet();
+	
+	void reset();
 };
 
 #endif
