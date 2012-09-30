@@ -88,6 +88,9 @@ int main (int argc, char *argv [])
 			cout << "Simulation result = " << (testData.mufTest?"Success":"Fail") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			
+			taskSet.clear();
+			cout << endl;
+			
 			testResult->mData.push_back(testData);
 			
 			continue;

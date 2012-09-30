@@ -20,10 +20,10 @@ void TestResult::parseData()
 		if (it->rmTest)
 			rmNumTaskSetsSchedulable++;
 		
-		if (it->sjfTest == true)
+		if (it->sjfTest)
 			sjfNumTaskSetsSchedulable++;
 		
-		if (it->mufTest == true)
+		if (it->mufTest)
 			mufNumTaskSetsSchedulable++;		
 	}
 	
