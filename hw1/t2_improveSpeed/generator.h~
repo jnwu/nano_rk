@@ -18,7 +18,7 @@ class generator {
 		vector<double> generatePeriod(int utilVecLength,int lower, int upper);
 		vector<double> generateExec (vector<double> utilRate, vector<double> p);
 
-		void outputFile (vector<vector<double> > es, vector<vector<double> > ps, const char* fileName);
+		void outputFile (vector<vector<double>> es, vector<vector<double>> ps, const char* fileName);
 		
 };
 

@@ -81,15 +81,18 @@ vector<double> generator::generateExec (vector<double> utilRate, vector<double> 
 	return e;
 }
 
-void generator::outputFile (vector<double> e, vector<double> p, const char* fileName){
+void generator::outputFile (vector<vector<double> > e, vector<vector<double> > p, const char* fileName){
 	ofstream myfile;
   	myfile.open (fileName,ios_base::app);
-        myfile << "<begin task set>\n";
 	for (int i =0; i< e.size();i++){
-		myfile << e.at(i) << " " << p.at(i)<< " "<< p.at(i)<<endl;
+		myfile << "<begin task set>\n";
+		for (int k = 0; k<e.at(i).size(); k++){
+			myfile << e.at(i).at(k) << " " << p.at(i).at(k)<< " "<< p.at(i).at(k)<<endl;
+		}
+		myfile << "<end task set>\n";
+		myfile<<"\n";
 	}
-	myfile << "<end task set>\n";
-	myfile<<"\n";
+	
   	myfile.close();
 }
 
