@@ -1,3 +1,10 @@
+/**
+* EECE 494 Programming assignment 1
+* File: simulator.cpp
+* 
+* Task set simulator
+*/
+
 #ifndef SIMULATOR_H
 #define SIMULATOR_H
 
@@ -16,6 +23,7 @@ class Simulator {
 	private:
 		static const long SIMULATION_TIME = 100000;
 		
+		//simulator private helper functions
 		int findHighestPriority();
 		double processJob(int index);
 		bool adjustJobs(double timeIncrement, int index);
@@ -28,10 +36,15 @@ class Simulator {
 	
 	Simulator(list<Task> tasks);
 	
+	//sorting functions to sort based on fixed priority
 	void sortRM();
 	void sortSJF();
 	void sortMUF();
+	
+	//simulate jobs
 	bool simulate();
+	
+	//debug print
 	void printTaskSet();
 	
 	void reset();

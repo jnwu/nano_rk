@@ -57,6 +57,7 @@ int main (int argc, char *argv [])
 			continue;
 		}
 		
+		//run simulation
 		if (line.find("end") != string::npos)
 		{
 			int ticksAtStart;
@@ -64,6 +65,8 @@ int main (int argc, char *argv [])
 			
 			begin = false;
 			Simulator simulator(taskSet);
+			
+			//RM simulation
 			
 			simulator.sortRM();
 			ticksAtStart = clock();
@@ -73,6 +76,9 @@ int main (int argc, char *argv [])
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			
 			//usleep(10000000);
+			
+			//SJF simulation
+			
 			simulator.sortSJF();
 			ticksAtStart = clock();
 			testData.sjfTest = simulator.simulate();
@@ -81,6 +87,9 @@ int main (int argc, char *argv [])
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			
 			//usleep(10000000);
+			
+			//MUF simulation
+			
 			simulator.sortMUF();
 			ticksAtStart = clock();
 			testData.mufTest = simulator.simulate();
@@ -96,6 +105,7 @@ int main (int argc, char *argv [])
 			continue;
 		}
 		
+		//parse input file for task sets
 		if (begin)
 		{
 			Task task;
@@ -121,6 +131,7 @@ int main (int argc, char *argv [])
 
   	in.close();
   	
+  	//write logging output
   	testResult->parseData();
   	testResult->writeData(testResultFile);
   	testResultFile.close();
