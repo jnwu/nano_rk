@@ -1,3 +1,10 @@
+/**
+* EECE 494 Programming Assignment #1
+* Task.h
+*
+* Stores task data
+*/
+
 #ifndef TASK_H
 #define TASK_H
 

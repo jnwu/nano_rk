@@ -1,3 +1,9 @@
+/**
+* EECE 494 Programming Assignment #1
+* Task.cpp
+*
+*/
+
 #include "task.h"
 #include <iostream>
 

@@ -57,6 +57,7 @@ int main (int argc, char *argv [])
 			continue;
 		}
 		
+		//run tests
 		if (line.find("end") != string::npos)
 		{
 			int ticksAtStart;
@@ -65,6 +66,7 @@ int main (int argc, char *argv [])
 			begin = false;
 			Scheduling schedule(taskSet);
 			
+			// Rate monotonic tests
 			schedule.sortRM();
 			
 			ticksAtStart = clock();
@@ -82,6 +84,8 @@ int main (int argc, char *argv [])
 			cout << "Schedulable using RM scheduling / WCRT test: " << (testData.rmWCRTTest?"Y":"N") << endl;
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			
+			
+			//shortest job first tests
 			schedule.sortSJF();
 			
 			ticksAtStart = clock();
@@ -90,6 +94,7 @@ int main (int argc, char *argv [])
 			cout << "Time Taken: " << (float)(clock() - ticksAtStart) / CLOCKS_PER_SEC << " seconds" << endl << endl;
 			//schedule.printTaskSet();
 			
+			//most utilization first tests
 			schedule.sortMUF();
 			
 			ticksAtStart = clock();
@@ -106,6 +111,7 @@ int main (int argc, char *argv [])
 			continue;
 		}
 		
+		//parse input task set
 		if (begin)
 		{
 			Task task;

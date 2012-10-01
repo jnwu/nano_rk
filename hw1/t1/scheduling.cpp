@@ -1,17 +1,32 @@
+/**
+* EECE 494 Programming Assignment #1
+* scheduling.cpp
+*
+*/
+
 #include "scheduling.h"
 
 using namespace std;
 
+/*
+* sorting function for shortest job first
+*/
 bool compare_SJF(Task &a, Task &b)
 {
 	return (a.mExecTime < b.mExecTime);
 }
 
+/*
+* sorting function for most utilization first
+*/
 bool compare_MUF(Task &a, Task &b)
 {
 	return (a.getUtilization() > b.getUtilization());
 }
 
+/*
+* sorting function for rate monotonic
+*/
 bool compare_RM(Task &a, Task &b)
 {
 	return (a.mPeriod < b.mPeriod);
