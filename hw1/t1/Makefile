@@ -10,7 +10,7 @@
 #*
 #******************************************************************************
 
-TARGET := testRunner
+TARGET := analyze
 SRCS := task.cpp scheduling.cpp testRunner.cpp testResult.cpp
 
 all: $(TARGET)
