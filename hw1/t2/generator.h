@@ -14,11 +14,11 @@ class generator {
 		double uniRandom(int lower, int upper);
 
 		vector< vector<double> > generateVectorSpace();
-		vector<double> generateUtilVector(vector< vector<double> > vs, double utilRate, int vectorSize);
-		vector<double> generatePeriod(int utilVecLength,int lower, int upper);
-		vector<double> generateExec (vector<double> utilRate, vector<double> p);
+		vector<double> generateUtilVector(vector< vector<double> >& vs, double utilRate, int vectorSize);
+		vector<double> generatePeriod(int utilVecLength, int lower, int upper);
+		vector<double> generateExec(vector<double>& utilRate, vector<double>& p);
 
-		void outputFile (vector<double> e, vector<double> p, const char* fileName);
+		void outputFile (vector<double>& e, vector<double>& p, const char* fileName);
 		
 };
 

@@ -34,7 +34,7 @@ vector< vector<double> > generator::generateVectorSpace() {
 }
 
 
-vector<double> generator::generateUtilVector(vector< vector<double> > vs, double utilRate, int vectorSize) {
+vector<double> generator::generateUtilVector(vector< vector<double> >& vs, double utilRate, int vectorSize) {
 	vector<double> r;
 	double sum = 0.0;
 	int n = ((double)rand()/RAND_MAX) * (vs.size());
@@ -46,6 +46,7 @@ vector<double> generator::generateUtilVector(vector< vector<double> > vs, double
 
 	for(int i=0 ; i<r.size() ; i++) 
 		r.at(i) = r.at(i) * (utilRate/sum);	// Scale utilization rate
+		
 	return r;
 }
 
@@ -59,7 +60,7 @@ double generator::uniRandom(int lower, int upper){
 	return e;
 }
 
-vector<double> generator::generatePeriod(int utilVecLength,int lower,int upper){
+vector<double> generator::generatePeriod(int utilVecLength, int lower, int upper){
 	vector<double> r;
 
 	double e;
@@ -72,7 +73,7 @@ vector<double> generator::generatePeriod(int utilVecLength,int lower,int upper){
 	return r;
 }
 
-vector<double> generator::generateExec (vector<double> utilRate, vector<double> p){
+vector<double> generator::generateExec (vector<double>& utilRate, vector<double>& p){
 	vector<double> e;
 	for (int i = 0; i<utilRate.size(); i++){
 		e.push_back(utilRate.at(i) * p.at(i));
@@ -81,7 +82,7 @@ vector<double> generator::generateExec (vector<double> utilRate, vector<double> 
 	return e;
 }
 
-void generator::outputFile (vector<double> e, vector<double> p, const char* fileName){
+void generator::outputFile (vector<double>& e, vector<double>& p, const char* fileName){
 	ofstream myfile;
   	myfile.open (fileName,ios_base::app);
         myfile << "<begin task set>\n";

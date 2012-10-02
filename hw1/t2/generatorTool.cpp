@@ -47,7 +47,7 @@ int main (){
 				u = g.generateUtilVector(vs, uRate, n);
 				p = g.generatePeriod(u.size(), 1, 6);
 				e = g.generateExec(u, p);
-				g.outputFile(e,p, fileName.c_str());
+				g.outputFile(e, p, fileName.c_str());
 			}
 		}
 	}
