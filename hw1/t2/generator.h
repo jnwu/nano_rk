@@ -1,3 +1,9 @@
+/*
+* EECE 494 Programming Assignment #1
+* generator.h
+*
+*/
+
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
