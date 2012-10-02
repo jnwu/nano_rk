@@ -10,7 +10,7 @@
 #*
 #******************************************************************************
 
-TARGET := testSimulator
+TARGET := simulate
 SRCS := task.cpp simulator.cpp testRunner.cpp testResult.cpp
 
 all: $(TARGET)
