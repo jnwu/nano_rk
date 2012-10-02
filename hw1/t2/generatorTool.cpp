@@ -1,5 +1,7 @@
-/**
-this is the main function for generating the fileinput
+/*
+* EECE 494 Programming Assignment #1
+* generatorTool.cpp
+*
 */
 
 #include <iostream>
@@ -13,11 +15,15 @@ this is the main function for generating the fileinput
 
 string getFileName(double uRate, int n, string s);
 
+/*
+* set output filename
+*/
 string getFileName(double uRate, int n, string s){
    stringstream ss;
    ss <<"+"<<uRate <<"+"<<n;
    return s.append(ss.str());
 }
+
 
 int main (){
 	vector< vector<double> > vs;
@@ -30,19 +36,23 @@ int main (){
 	int n;
 	srand(time(NULL));
 
+
 	vs = g.generateVectorSpace();
+
 	cout << "Generate Task Sets for T3.1" << endl;
-	// Rate
+	// Set Rate
 	for (int i = 1; i<=20; i++){
 		uRate = 0.05*i;
 
-		// Task Size
+		// Set Task Size
 		for (int j = 3; j<=6; j++){
 			n = pow(2,j);
-			fileName = getFileName(uRate, n, "inputFile1");
+			
+			// Filename format "inputFile1+uRate+n"
+			fileName = getFileName(uRate, n, "inputFile1");		
 
 			cout << "utilRate: " << uRate << "\tnTask: " << n << endl;
-			// Task Set
+			// Set Task Set Size
 			for (int k = 0; k<100000; k++){	
 				u = g.generateUtilVector(vs, uRate, n);
 				p = g.generatePeriod(u.size(), 1, 6);

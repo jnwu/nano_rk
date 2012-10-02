@@ -1,3 +1,10 @@
+/*
+* EECE 494 Programming Assignment #1
+* generator.cpp
+*
+*/
+
+
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
@@ -13,16 +20,20 @@ using namespace std;
 
 generator::generator(){}
 
-
+/*
+* generate the utilization vector space
+*/
 vector< vector<double> > generator::generateVectorSpace() {
 	vector<double>* r = NULL;
 	vector< vector<double> > vs;
 
+	// Set the vector space size to 100,000
 	for (int i = 0; i<SAMPLE_SIZE; i++){	
 		r = new vector<double>();
 		double u = 0.0;
 
-		for(int j=0; j<MAX_VECTOR_SIZE; j++) {
+		// Per vector, set max vector size to 64
+		for(int j=0; j<MAX_VECTOR_SIZE; j++) { 
 			u = ((double)rand()/RAND_MAX) * (1.00);
 			r->push_back(u);
 		}
@@ -33,23 +44,30 @@ vector< vector<double> > generator::generateVectorSpace() {
 	return vs;
 }
 
-
+/*
+* pseudo-randomly picks a vector in the vector space
+*/
 vector<double> generator::generateUtilVector(vector< vector<double> >& vs, double utilRate, int vectorSize) {
 	vector<double> r;
 	double sum = 0.0;
 	int n = ((double)rand()/RAND_MAX) * (vs.size());
 	
+	// Extract values from the selected vector
 	for(int i=0 ; i<vectorSize ; i++) {
 		r.push_back(vs.at(n).at(i));
 		sum += r.at(i);
 	}
 
+	// Scale utilization rate to the provided utilRate
 	for(int i=0 ; i<r.size() ; i++) 
-		r.at(i) = r.at(i) * (utilRate/sum);	// Scale utilization rate
+		r.at(i) = r.at(i) * (utilRate/sum);	
 		
 	return r;
 }
 
+/*
+* generate a uniform random number between lower and upper bounds
+*/ 
 double generator::uniRandom(int lower, int upper){
 	int x, y, n;
 	double e;
@@ -60,9 +78,11 @@ double generator::uniRandom(int lower, int upper){
 	return e;
 }
 
+/*
+* generate log-uniformly distributed period for the utilization vector
+*/
 vector<double> generator::generatePeriod(int utilVecLength, int lower, int upper){
 	vector<double> r;
-
 	double e;
 
 	for (int i = 0; i<utilVecLength; i++){
@@ -73,6 +93,9 @@ vector<double> generator::generatePeriod(int utilVecLength, int lower, int upper
 	return r;
 }
 
+/*
+* generate execution time for the utilization and period vectors
+*/
 vector<double> generator::generateExec (vector<double>& utilRate, vector<double>& p){
 	vector<double> e;
 	for (int i = 0; i<utilRate.size(); i++){
@@ -82,6 +105,9 @@ vector<double> generator::generateExec (vector<double>& utilRate, vector<double>
 	return e;
 }
 
+/*
+* output task sets
+*/ 
 void generator::outputFile (vector<double>& e, vector<double>& p, const char* fileName){
 	ofstream myfile;
   	myfile.open (fileName,ios_base::app);
