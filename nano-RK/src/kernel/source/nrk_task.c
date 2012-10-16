@@ -88,25 +88,27 @@ void nrk_add_to_readyQ (int8_t task_ID)
                     break;
 */
 
-		// Only idle task is queue, add task to head
+		// Put any new tasks in front of the idle task
 	    	if(NextNode->task_ID == 0)
 			break;
 
-		// Both tasks starting now, compare both task's 0 + relative_deadline
+		// Both tasks starting for the first time
+		// Compare both task's period only
 		if(nrk_task_TCB[NextNode->task_ID].next_wakeup == 0 && 
 		nrk_task_TCB[task_ID].next_wakeup == 0 && 
 		nrk_task_TCB[task_ID].period < nrk_task_TCB[NextNode->task_ID].period)
 		       break;
 		else
 		{
-			// Task in queue starting now, compare the queue tasks's period with the new task's release_time + relative_deadline
+			// Queue task starting for the first time, new task is starting on subsequent periods
+			// Compare queue tasks's period with the new task's ticks to the next period
 			if(nrk_task_TCB[NextNode->task_ID].next_wakeup == 0 && nrk_task_TCB[task_ID].next_wakeup != 0 && 
-			(nrk_task_TCB[task_ID].next_wakeup + nrk_task_TCB[task_ID].period) < nrk_task_TCB[NextNode->task_ID].period)
+			nrk_task_TCB[task_ID].next_wakeup < nrk_task_TCB[NextNode->task_ID].period)
 				break;
 
-			// Compare both task's release_time + relative_deadline
+			// Compare both task's ticks to the next period
 			if((nrk_task_TCB[task_ID].next_wakeup + nrk_task_TCB[task_ID].period) < 
-			(nrk_task_TCB[NextNode->task_ID].next_wakeup + nrk_task_TCB[NextNode->task_ID].period))
+			nrk_task_TCB[NextNode->task_ID].next_wakeup)
 				break;
 		}
 
