@@ -1,0 +1,237 @@
+   1               		.file	"adc_driver.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  12               		.text
+  13               	.Ltext0:
+  72               	.global	adc_init
+  74               	adc_init:
+  75               		.stabd	46,0,0
+   0:../../../src/drivers/platform/micaZ/source/adc_driver.c **** /******************************************************************************
+   1:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  Nano-RK, a real-time operating system for sensor networks.
+   2:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  Copyright (C) 2011 Technische Universität München (www.vmi.ei.tum.de)
+   3:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  All rights reserved.
+   4:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+   5:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  This is the Open Source Version of Nano-RK included as part of a Dual
+   6:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  Licensing Model. If you are unsure which license to use please refer to:
+   7:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  http://www.nanork.org/nano-RK/wiki/Licensing
+   8:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+   9:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  This program is free software: you can redistribute it and/or modify
+  10:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  it under the terms of the GNU General Public License as published by
+  11:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  the Free Software Foundation, version 2.0 of the License.
+  12:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+  13:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  This program is distributed in the hope that it will be useful,
+  14:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  15:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  16:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  GNU General Public License for more details.
+  17:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+  18:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  You should have received a copy of the GNU General Public License
+  19:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  20:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+  21:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+  22:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  ATmega128 analog to digital converter driver
+  23:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+  24:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  Contributing Authors (specific to this file):
+  25:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *  Author: Peter Diener
+  26:../../../src/drivers/platform/micaZ/source/adc_driver.c **** *
+  27:../../../src/drivers/platform/micaZ/source/adc_driver.c **** ***************************************************************************************/
+  28:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  29:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  30:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  31:../../../src/drivers/platform/micaZ/source/adc_driver.c **** #define F_CPU 7372800
+  32:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  33:../../../src/drivers/platform/micaZ/source/adc_driver.c **** #include "adc_driver.h"
+  34:../../../src/drivers/platform/micaZ/source/adc_driver.c **** #include <avr/io.h>
+  35:../../../src/drivers/platform/micaZ/source/adc_driver.c **** #include <util/delay.h>
+  36:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  37:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  38:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  39:../../../src/drivers/platform/micaZ/source/adc_driver.c **** void adc_init()
+  40:../../../src/drivers/platform/micaZ/source/adc_driver.c **** {
+  77               	.LM0:
+  78               	.LFBB1:
+  79 0000 DF93      		push r29
+  80 0002 CF93      		push r28
+  81 0004 00D0      		rcall .
+  82 0006 CDB7      		in r28,__SP_L__
+  83 0008 DEB7      		in r29,__SP_H__
+  84               	/* prologue: function */
+  85               	/* frame size = 2 */
+  41:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   volatile unsigned int dummy;
+  42:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  43:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADMUX = (0 << REFS1) | (1 << REFS0);      						// Vcc is reference
+  87               	.LM1:
+  88 000a 80E4      		ldi r24,lo8(64)
+  89 000c 87B9      		out 39-32,r24
+  44:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADCSRA = (1 << ADPS2) | (1 << ADPS1) | (0 << ADPS0);       // Prescaler = 64
+  91               	.LM2:
+  92 000e 86E0      		ldi r24,lo8(6)
+  93 0010 86B9      		out 38-32,r24
+  45:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADCSRA |= (1 << ADEN);                								// ADC on
+  95               	.LM3:
+  96 0012 379A      		sbi 38-32,7
+  46:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  47:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 	// One dummy read after init
+  48:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADCSRA |= (1<<ADSC);
+  98               	.LM4:
+  99 0014 369A      		sbi 38-32,6
+ 100               	.L2:
+  49:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   while (ADCSRA & (1<<ADSC));
+ 102               	.LM5:
+ 103 0016 3699      		sbic 38-32,6
+ 104 0018 00C0      		rjmp .L2
+  50:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   dummy = ADCW;
+ 106               	.LM6:
+ 107 001a 84B1      		in r24,36-32
+ 108 001c 95B1      		in r25,(36)+1-32
+ 109 001e 9A83      		std Y+2,r25
+ 110 0020 8983      		std Y+1,r24
+ 111               	/* epilogue start */
+  51:../../../src/drivers/platform/micaZ/source/adc_driver.c **** }
+ 113               	.LM7:
+ 114 0022 0F90      		pop __tmp_reg__
+ 115 0024 0F90      		pop __tmp_reg__
+ 116 0026 CF91      		pop r28
+ 117 0028 DF91      		pop r29
+ 118 002a 0895      		ret
+ 123               	.Lscope1:
+ 125               		.stabd	78,0,0
+ 127               	.global	adc_Powersave
+ 129               	adc_Powersave:
+ 130               		.stabd	46,0,0
+  52:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  53:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  54:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  55:../../../src/drivers/platform/micaZ/source/adc_driver.c **** // If ADC should be used after a powersave period, call init again before starting a conversion
+  56:../../../src/drivers/platform/micaZ/source/adc_driver.c **** void adc_Powersave()
+  57:../../../src/drivers/platform/micaZ/source/adc_driver.c **** {
+ 132               	.LM8:
+ 133               	.LFBB2:
+ 134               	/* prologue: function */
+ 135               	/* frame size = 0 */
+  58:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 	ADCSRA &= ~(1 << ADEN);
+ 137               	.LM9:
+ 138 002c 3798      		cbi 38-32,7
+ 139               	/* epilogue start */
+  59:../../../src/drivers/platform/micaZ/source/adc_driver.c **** }
+ 141               	.LM10:
+ 142 002e 0895      		ret
+ 144               	.Lscope2:
+ 146               		.stabd	78,0,0
+ 149               	.global	adc_GetChannel
+ 151               	adc_GetChannel:
+ 152               		.stabd	46,0,0
+  60:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  61:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  62:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  63:../../../src/drivers/platform/micaZ/source/adc_driver.c **** unsigned int adc_GetChannel(unsigned char ch)
+  64:../../../src/drivers/platform/micaZ/source/adc_driver.c **** {
+ 154               	.LM11:
+ 155               	.LFBB3:
+ 156               	/* prologue: function */
+ 157               	/* frame size = 0 */
+  65:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADMUX = (ADMUX & 0b11100000) | (ch & 0b00011111);	// Select channel
+ 159               	.LM12:
+ 160 0030 97B1      		in r25,39-32
+ 161 0032 8F71      		andi r24,lo8(31)
+ 162 0034 907E      		andi r25,lo8(-32)
+ 163 0036 892B      		or r24,r25
+ 164 0038 87B9      		out 39-32,r24
+  66:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADCSRA |= (1 << ADSC);										// Start a single conversion
+ 166               	.LM13:
+ 167 003a 369A      		sbi 38-32,6
+ 168               	.L8:
+  67:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   while (ADCSRA & (1 << ADSC));  							// wait until conversion result is available
+ 170               	.LM14:
+ 171 003c 3699      		sbic 38-32,6
+ 172 003e 00C0      		rjmp .L8
+  68:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   return ADCW;
+ 174               	.LM15:
+ 175 0040 24B1      		in r18,36-32
+ 176 0042 35B1      		in r19,(36)+1-32
+  69:../../../src/drivers/platform/micaZ/source/adc_driver.c **** }
+ 178               	.LM16:
+ 179 0044 C901      		movw r24,r18
+ 180               	/* epilogue start */
+ 181 0046 0895      		ret
+ 183               	.Lscope3:
+ 185               		.stabd	78,0,0
+ 187               	.global	adc_GetBatteryVoltage
+ 189               	adc_GetBatteryVoltage:
+ 190               		.stabd	46,0,0
+  70:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  71:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  72:../../../src/drivers/platform/micaZ/source/adc_driver.c **** float adc_GetBatteryVoltage()
+  73:../../../src/drivers/platform/micaZ/source/adc_driver.c **** {
+ 192               	.LM17:
+ 193               	.LFBB4:
+ 194               	/* prologue: function */
+ 195               	/* frame size = 0 */
+ 196               	.LBB4:
+ 197               	.LBB5:
+  66:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADMUX = (ADMUX & 0b11100000) | (ch & 0b00011111);	// Select channel
+ 199               	.LM18:
+ 200 0048 87B1      		in r24,39-32
+ 201 004a 807E      		andi r24,lo8(-32)
+ 202 004c 8E61      		ori r24,lo8(30)
+ 203 004e 87B9      		out 39-32,r24
+  67:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   ADCSRA |= (1 << ADSC);										// Start a single conversion
+ 205               	.LM19:
+ 206 0050 369A      		sbi 38-32,6
+ 207               	.L12:
+  68:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   while (ADCSRA & (1 << ADSC));  							// wait until conversion result is available
+ 209               	.LM20:
+ 210 0052 3699      		sbic 38-32,6
+ 211 0054 00C0      		rjmp .L12
+  69:../../../src/drivers/platform/micaZ/source/adc_driver.c ****   return ADCW;
+ 213               	.LM21:
+ 214 0056 64B1      		in r22,36-32
+ 215 0058 75B1      		in r23,(36)+1-32
+ 216 005a 80E0      		ldi r24,lo8(0)
+ 217 005c 90E0      		ldi r25,hi8(0)
+ 218 005e 0E94 0000 		call __floatunsisf
+ 219 0062 9B01      		movw r18,r22
+ 220 0064 AC01      		movw r20,r24
+ 221 0066 64EA      		ldi r22,lo8(0x449d70a4)
+ 222 0068 70E7      		ldi r23,hi8(0x449d70a4)
+ 223 006a 8DE9      		ldi r24,hlo8(0x449d70a4)
+ 224 006c 94E4      		ldi r25,hhi8(0x449d70a4)
+ 225 006e 0E94 0000 		call __divsf3
+ 226               	/* epilogue start */
+ 227               	.LBE5:
+ 228               	.LBE4:
+  74:../../../src/drivers/platform/micaZ/source/adc_driver.c **** // adc channel 30 is connected to the internal 1.23 V reference
+  75:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 	unsigned int adValue;
+  76:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  77:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 	adValue = adc_GetChannel(30);
+  78:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 
+  79:../../../src/drivers/platform/micaZ/source/adc_driver.c **** 	return (1.23 * 1024.0 / (float)adValue);
+  80:../../../src/drivers/platform/micaZ/source/adc_driver.c **** }
+ 230               	.LM22:
+ 231 0072 0895      		ret
+ 236               	.Lscope4:
+ 238               		.stabd	78,0,0
+ 240               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 adc_driver.c
+     /tmp/ccNAQ7G6.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccNAQ7G6.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccNAQ7G6.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccNAQ7G6.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccNAQ7G6.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccNAQ7G6.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccNAQ7G6.s:74     .text:00000000 adc_init
+     /tmp/ccNAQ7G6.s:129    .text:0000002c adc_Powersave
+     /tmp/ccNAQ7G6.s:151    .text:00000030 adc_GetChannel
+     /tmp/ccNAQ7G6.s:189    .text:00000048 adc_GetBatteryVoltage
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__floatunsisf
+__divsf3

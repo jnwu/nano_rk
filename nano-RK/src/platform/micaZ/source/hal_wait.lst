@@ -1,0 +1,117 @@
+   1               		.file	"hal_wait.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  12               		.text
+  13               	.Ltext0:
+ 118               	.global	halWait
+ 120               	halWait:
+ 121               		.stabd	46,0,0
+   0:../../../src/platform/micaZ/source/hal_wait.c **** /******************************************************************************
+   1:../../../src/platform/micaZ/source/hal_wait.c **** *  Nano-RK, a real-time operating system for sensor networks.
+   2:../../../src/platform/micaZ/source/hal_wait.c **** *  Copyright (C) 2007, Real-Time and Multimedia Lab, Carnegie Mellon University
+   3:../../../src/platform/micaZ/source/hal_wait.c **** *  All rights reserved.
+   4:../../../src/platform/micaZ/source/hal_wait.c **** *
+   5:../../../src/platform/micaZ/source/hal_wait.c **** *  This is the Open Source Version of Nano-RK included as part of a Dual
+   6:../../../src/platform/micaZ/source/hal_wait.c **** *  Licensing Model. If you are unsure which license to use please refer to:
+   7:../../../src/platform/micaZ/source/hal_wait.c **** *  http://www.nanork.org/nano-RK/wiki/Licensing
+   8:../../../src/platform/micaZ/source/hal_wait.c **** *
+   9:../../../src/platform/micaZ/source/hal_wait.c **** *  This program is free software: you can redistribute it and/or modify
+  10:../../../src/platform/micaZ/source/hal_wait.c **** *  it under the terms of the GNU General Public License as published by
+  11:../../../src/platform/micaZ/source/hal_wait.c **** *  the Free Software Foundation, version 2.0 of the License.
+  12:../../../src/platform/micaZ/source/hal_wait.c **** *
+  13:../../../src/platform/micaZ/source/hal_wait.c **** *  This program is distributed in the hope that it will be useful,
+  14:../../../src/platform/micaZ/source/hal_wait.c **** *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  15:../../../src/platform/micaZ/source/hal_wait.c **** *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  16:../../../src/platform/micaZ/source/hal_wait.c **** *  GNU General Public License for more details.
+  17:../../../src/platform/micaZ/source/hal_wait.c **** *
+  18:../../../src/platform/micaZ/source/hal_wait.c **** *  You should have received a copy of the GNU General Public License
+  19:../../../src/platform/micaZ/source/hal_wait.c **** *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  20:../../../src/platform/micaZ/source/hal_wait.c **** *
+  21:../../../src/platform/micaZ/source/hal_wait.c **** *  Contributing Authors (specific to this file):
+  22:../../../src/platform/micaZ/source/hal_wait.c **** *  Chipcon Development Team
+  23:../../../src/platform/micaZ/source/hal_wait.c **** *******************************************************************************/
+  24:../../../src/platform/micaZ/source/hal_wait.c **** 
+  25:../../../src/platform/micaZ/source/hal_wait.c **** #include <include.h>
+  26:../../../src/platform/micaZ/source/hal_wait.c **** 
+  27:../../../src/platform/micaZ/source/hal_wait.c **** 
+  28:../../../src/platform/micaZ/source/hal_wait.c **** //-------------------------------------------------------------------------------------------------
+  29:../../../src/platform/micaZ/source/hal_wait.c **** //	void halWait(uint16_t timeout)
+  30:../../../src/platform/micaZ/source/hal_wait.c **** //
+  31:../../../src/platform/micaZ/source/hal_wait.c **** //	DESCRIPTION:
+  32:../../../src/platform/micaZ/source/hal_wait.c **** //		Runs an idle loop for [timeout] microseconds.
+  33:../../../src/platform/micaZ/source/hal_wait.c **** //
+  34:../../../src/platform/micaZ/source/hal_wait.c **** //  ARGUMENTS:
+  35:../../../src/platform/micaZ/source/hal_wait.c **** //      uint16_t timeout
+  36:../../../src/platform/micaZ/source/hal_wait.c **** //          The timeout in microseconds
+  37:../../../src/platform/micaZ/source/hal_wait.c **** //-------------------------------------------------------------------------------------------------
+  38:../../../src/platform/micaZ/source/hal_wait.c **** void halWait(uint16_t timeout)
+  39:../../../src/platform/micaZ/source/hal_wait.c **** {
+ 123               	.LM0:
+ 124               	.LFBB1:
+ 125               	/* prologue: function */
+ 126               	/* frame size = 0 */
+ 127               	.L2:
+  40:../../../src/platform/micaZ/source/hal_wait.c **** 
+  41:../../../src/platform/micaZ/source/hal_wait.c ****     // This sequence uses exactly 8 clock cycle for each round
+  42:../../../src/platform/micaZ/source/hal_wait.c ****     do
+  43:../../../src/platform/micaZ/source/hal_wait.c ****     {
+  44:../../../src/platform/micaZ/source/hal_wait.c ****         NOP();
+ 129               	.LM1:
+ 130               	/* #APP */
+ 131               	 ;  45 "../../../src/platform/micaZ/source/hal_wait.c" 1
+ 132 0000 0000      		nop
+ 133               		
+ 134               	 ;  0 "" 2
+  45:../../../src/platform/micaZ/source/hal_wait.c ****         NOP();
+ 136               	.LM2:
+ 137               	 ;  46 "../../../src/platform/micaZ/source/hal_wait.c" 1
+ 138 0002 0000      		nop
+ 139               		
+ 140               	 ;  0 "" 2
+  46:../../../src/platform/micaZ/source/hal_wait.c ****         NOP();
+ 142               	.LM3:
+ 143               	 ;  47 "../../../src/platform/micaZ/source/hal_wait.c" 1
+ 144 0004 0000      		nop
+ 145               		
+ 146               	 ;  0 "" 2
+  47:../../../src/platform/micaZ/source/hal_wait.c ****         NOP();
+ 148               	.LM4:
+ 149               	 ;  48 "../../../src/platform/micaZ/source/hal_wait.c" 1
+ 150 0006 0000      		nop
+ 151               		
+ 152               	 ;  0 "" 2
+  48:../../../src/platform/micaZ/source/hal_wait.c ****     }
+  49:../../../src/platform/micaZ/source/hal_wait.c ****     while (--timeout);
+ 154               	.LM5:
+ 155               	/* #NOAPP */
+ 156 0008 0197      		sbiw r24,1
+ 157 000a 01F4      		brne .L2
+ 158               	/* epilogue start */
+  50:../../../src/platform/micaZ/source/hal_wait.c **** 
+  51:../../../src/platform/micaZ/source/hal_wait.c **** } // halWait
+ 160               	.LM6:
+ 161 000c 0895      		ret
+ 163               	.Lscope1:
+ 165               		.stabd	78,0,0
+ 166               		.comm _nrk_signal_list,4,1
+ 169               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 hal_wait.c
+     /tmp/ccAKEhSV.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccAKEhSV.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccAKEhSV.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccAKEhSV.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccAKEhSV.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccAKEhSV.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccAKEhSV.s:120    .text:00000000 halWait
+                            *COM*:00000004 _nrk_signal_list
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

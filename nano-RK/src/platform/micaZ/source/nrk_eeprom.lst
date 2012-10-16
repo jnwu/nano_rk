@@ -1,0 +1,442 @@
+   1               		.file	"nrk_eeprom.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  12               		.text
+  13               	.Ltext0:
+ 127               	.global	write_eeprom_current_image_checksum
+ 129               	write_eeprom_current_image_checksum:
+ 130               		.stabd	46,0,0
+   0:../../../src/platform/micaZ/source/nrk_eeprom.c **** #include <nrk_eeprom.h>
+   1:../../../src/platform/micaZ/source/nrk_eeprom.c **** #include <avr/eeprom.h>
+   2:../../../src/platform/micaZ/source/nrk_eeprom.c **** #include <nrk_error.h>
+   3:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+   4:../../../src/platform/micaZ/source/nrk_eeprom.c **** // Some optimizations by pdiener
+   5:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+   6:../../../src/platform/micaZ/source/nrk_eeprom.c **** uint8_t nrk_eeprom_read_byte( uint16_t addr )
+   7:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+   8:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return eeprom_read_byte((uint8_t*)addr);
+   9:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  10:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  11:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t nrk_eeprom_write_byte( uint16_t addr, uint8_t value )
+  12:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  13:../../../src/platform/micaZ/source/nrk_eeprom.c ****     eeprom_write_byte( (uint8_t*)addr, value );
+  14:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return 0;
+  15:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  16:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  17:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t read_eeprom_mac_address(uint32_t *mac_addr)
+  18:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  19:../../../src/platform/micaZ/source/nrk_eeprom.c ****     uint8_t checksum,ct;
+  20:../../../src/platform/micaZ/source/nrk_eeprom.c ****     uint8_t *buf;
+  21:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf=(uint8_t *)mac_addr;
+  22:../../../src/platform/micaZ/source/nrk_eeprom.c ****     checksum=buf[0]+buf[1]+buf[2]+buf[3];
+  23:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[3]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_0);
+  24:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[2]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_1);
+  25:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[1]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_2);
+  26:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[0]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_3);
+  27:../../../src/platform/micaZ/source/nrk_eeprom.c ****     checksum=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_CHKSUM);
+  28:../../../src/platform/micaZ/source/nrk_eeprom.c ****     ct=buf[0];
+  29:../../../src/platform/micaZ/source/nrk_eeprom.c ****     ct+=buf[1];
+  30:../../../src/platform/micaZ/source/nrk_eeprom.c ****     ct+=buf[2];
+  31:../../../src/platform/micaZ/source/nrk_eeprom.c ****     ct+=buf[3];
+  32:../../../src/platform/micaZ/source/nrk_eeprom.c ****     if(checksum==ct) return NRK_OK;
+  33:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  34:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_ERROR;
+  35:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  36:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  37:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t read_eeprom_channel(uint8_t *channel)
+  38:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  39:../../../src/platform/micaZ/source/nrk_eeprom.c ****     *channel=eeprom_read_byte ((uint8_t*)EE_CHANNEL);
+  40:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_OK;
+  41:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  42:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  43:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t write_eeprom_load_img_pages(uint8_t *load_pages)
+  44:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  45:../../../src/platform/micaZ/source/nrk_eeprom.c ****     eeprom_write_byte ((uint8_t*)EE_LOAD_IMG_PAGES, *load_pages);
+  46:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_OK;
+  47:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  48:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  49:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t read_eeprom_load_img_pages(uint8_t *load_pages)
+  50:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  51:../../../src/platform/micaZ/source/nrk_eeprom.c ****     *load_pages=eeprom_read_byte ((uint8_t*)EE_LOAD_IMG_PAGES);
+  52:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_OK;
+  53:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  54:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  55:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t read_eeprom_aes_key(uint8_t *aes_key)
+  56:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  57:../../../src/platform/micaZ/source/nrk_eeprom.c ****     uint8_t i;
+  58:../../../src/platform/micaZ/source/nrk_eeprom.c ****     for(i=0; i<16; i++ )
+  59:../../../src/platform/micaZ/source/nrk_eeprom.c ****         aes_key[i]=eeprom_read_byte ((uint8_t*)(EE_AES_KEY+i));
+  60:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_OK;
+  61:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  62:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  63:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t write_eeprom_aes_key(uint8_t *aes_key)
+  64:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  65:../../../src/platform/micaZ/source/nrk_eeprom.c ****     uint8_t i;
+  66:../../../src/platform/micaZ/source/nrk_eeprom.c ****     for(i=0; i<16; i++ )
+  67:../../../src/platform/micaZ/source/nrk_eeprom.c ****         eeprom_write_byte ((uint8_t*)(EE_AES_KEY+i),aes_key[i]);
+  68:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_OK;
+  69:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  70:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  71:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t read_eeprom_current_image_checksum(uint8_t *image_checksum)
+  72:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+  73:../../../src/platform/micaZ/source/nrk_eeprom.c ****     *image_checksum=eeprom_read_byte ((uint8_t*)EE_CURRENT_IMAGE_CHECKSUM);
+  74:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_OK;
+  75:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+  76:../../../src/platform/micaZ/source/nrk_eeprom.c **** 
+  77:../../../src/platform/micaZ/source/nrk_eeprom.c **** int8_t write_eeprom_current_image_checksum(uint8_t *image_checksum)
+  78:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 132               	.LM0:
+ 133               	.LFBB1:
+ 134               	/* prologue: function */
+ 135               	/* frame size = 0 */
+ 136 0000 FC01      		movw r30,r24
+  79:../../../src/platform/micaZ/source/nrk_eeprom.c ****     eeprom_write_byte ((uint8_t*)EE_CURRENT_IMAGE_CHECKSUM, *image_checksum);
+ 138               	.LM1:
+ 139 0002 87E0      		ldi r24,lo8(7)
+ 140 0004 90E0      		ldi r25,hi8(7)
+ 141 0006 6081      		ld r22,Z
+ 142 0008 0E94 0000 		call __eewr_byte_m128
+  80:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return NRK_OK;
+  81:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 144               	.LM2:
+ 145 000c 81E0      		ldi r24,lo8(1)
+ 146               	/* epilogue start */
+ 147 000e 0895      		ret
+ 149               	.Lscope1:
+ 151               		.stabd	78,0,0
+ 153               	.global	write_eeprom_aes_key
+ 155               	write_eeprom_aes_key:
+ 156               		.stabd	46,0,0
+  65:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 158               	.LM3:
+ 159               	.LFBB2:
+ 160 0010 0F93      		push r16
+ 161 0012 1F93      		push r17
+ 162 0014 CF93      		push r28
+ 163 0016 DF93      		push r29
+ 164               	/* prologue: function */
+ 165               	/* frame size = 0 */
+  65:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 167               	.LM4:
+ 168 0018 8C01      		movw r16,r24
+ 169 001a C8E0      		ldi r28,lo8(8)
+ 170 001c D0E0      		ldi r29,hi8(8)
+ 171               	.L4:
+  68:../../../src/platform/micaZ/source/nrk_eeprom.c ****         eeprom_write_byte ((uint8_t*)(EE_AES_KEY+i),aes_key[i]);
+ 173               	.LM5:
+ 174 001e CE01      		movw r24,r28
+ 175 0020 F801      		movw r30,r16
+ 176 0022 6191      		ld r22,Z+
+ 177 0024 8F01      		movw r16,r30
+ 178 0026 0E94 0000 		call __eewr_byte_m128
+ 179 002a 2196      		adiw r28,1
+  67:../../../src/platform/micaZ/source/nrk_eeprom.c ****     for(i=0; i<16; i++ )
+ 181               	.LM6:
+ 182 002c C831      		cpi r28,24
+ 183 002e D105      		cpc r29,__zero_reg__
+ 184 0030 01F4      		brne .L4
+  70:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 186               	.LM7:
+ 187 0032 81E0      		ldi r24,lo8(1)
+ 188               	/* epilogue start */
+ 189 0034 DF91      		pop r29
+ 190 0036 CF91      		pop r28
+ 191 0038 1F91      		pop r17
+ 192 003a 0F91      		pop r16
+ 193 003c 0895      		ret
+ 195               	.Lscope2:
+ 197               		.stabd	78,0,0
+ 200               	.global	write_eeprom_load_img_pages
+ 202               	write_eeprom_load_img_pages:
+ 203               		.stabd	46,0,0
+  45:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 205               	.LM8:
+ 206               	.LFBB3:
+ 207               	/* prologue: function */
+ 208               	/* frame size = 0 */
+ 209 003e FC01      		movw r30,r24
+  46:../../../src/platform/micaZ/source/nrk_eeprom.c ****     eeprom_write_byte ((uint8_t*)EE_LOAD_IMG_PAGES, *load_pages);
+ 211               	.LM9:
+ 212 0040 86E0      		ldi r24,lo8(6)
+ 213 0042 90E0      		ldi r25,hi8(6)
+ 214 0044 6081      		ld r22,Z
+ 215 0046 0E94 0000 		call __eewr_byte_m128
+  48:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 217               	.LM10:
+ 218 004a 81E0      		ldi r24,lo8(1)
+ 219               	/* epilogue start */
+ 220 004c 0895      		ret
+ 222               	.Lscope3:
+ 224               		.stabd	78,0,0
+ 228               	.global	nrk_eeprom_write_byte
+ 230               	nrk_eeprom_write_byte:
+ 231               		.stabd	46,0,0
+  13:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 233               	.LM11:
+ 234               	.LFBB4:
+ 235               	/* prologue: function */
+ 236               	/* frame size = 0 */
+  14:../../../src/platform/micaZ/source/nrk_eeprom.c ****     eeprom_write_byte( (uint8_t*)addr, value );
+ 238               	.LM12:
+ 239 004e 0E94 0000 		call __eewr_byte_m128
+  16:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 241               	.LM13:
+ 242 0052 80E0      		ldi r24,lo8(0)
+ 243               	/* epilogue start */
+ 244 0054 0895      		ret
+ 246               	.Lscope4:
+ 248               		.stabd	78,0,0
+ 251               	.global	read_eeprom_current_image_checksum
+ 253               	read_eeprom_current_image_checksum:
+ 254               		.stabd	46,0,0
+  73:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 256               	.LM14:
+ 257               	.LFBB5:
+ 258 0056 0F93      		push r16
+ 259 0058 1F93      		push r17
+ 260               	/* prologue: function */
+ 261               	/* frame size = 0 */
+ 262 005a 8C01      		movw r16,r24
+  74:../../../src/platform/micaZ/source/nrk_eeprom.c ****     *image_checksum=eeprom_read_byte ((uint8_t*)EE_CURRENT_IMAGE_CHECKSUM);
+ 264               	.LM15:
+ 265 005c 87E0      		ldi r24,lo8(7)
+ 266 005e 90E0      		ldi r25,hi8(7)
+ 267 0060 0E94 0000 		call __eerd_byte_m128
+ 268 0064 F801      		movw r30,r16
+ 269 0066 8083      		st Z,r24
+  76:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 271               	.LM16:
+ 272 0068 81E0      		ldi r24,lo8(1)
+ 273               	/* epilogue start */
+ 274 006a 1F91      		pop r17
+ 275 006c 0F91      		pop r16
+ 276 006e 0895      		ret
+ 278               	.Lscope5:
+ 280               		.stabd	78,0,0
+ 282               	.global	read_eeprom_aes_key
+ 284               	read_eeprom_aes_key:
+ 285               		.stabd	46,0,0
+  57:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 287               	.LM17:
+ 288               	.LFBB6:
+ 289 0070 0F93      		push r16
+ 290 0072 1F93      		push r17
+ 291 0074 CF93      		push r28
+ 292 0076 DF93      		push r29
+ 293               	/* prologue: function */
+ 294               	/* frame size = 0 */
+  57:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 296               	.LM18:
+ 297 0078 8C01      		movw r16,r24
+ 298 007a C8E0      		ldi r28,lo8(8)
+ 299 007c D0E0      		ldi r29,hi8(8)
+ 300               	.L14:
+  60:../../../src/platform/micaZ/source/nrk_eeprom.c ****         aes_key[i]=eeprom_read_byte ((uint8_t*)(EE_AES_KEY+i));
+ 302               	.LM19:
+ 303 007e CE01      		movw r24,r28
+ 304 0080 0E94 0000 		call __eerd_byte_m128
+ 305 0084 F801      		movw r30,r16
+ 306 0086 8193      		st Z+,r24
+ 307 0088 8F01      		movw r16,r30
+ 308 008a 2196      		adiw r28,1
+  59:../../../src/platform/micaZ/source/nrk_eeprom.c ****     for(i=0; i<16; i++ )
+ 310               	.LM20:
+ 311 008c C831      		cpi r28,24
+ 312 008e D105      		cpc r29,__zero_reg__
+ 313 0090 01F4      		brne .L14
+  62:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 315               	.LM21:
+ 316 0092 81E0      		ldi r24,lo8(1)
+ 317               	/* epilogue start */
+ 318 0094 DF91      		pop r29
+ 319 0096 CF91      		pop r28
+ 320 0098 1F91      		pop r17
+ 321 009a 0F91      		pop r16
+ 322 009c 0895      		ret
+ 324               	.Lscope6:
+ 326               		.stabd	78,0,0
+ 329               	.global	read_eeprom_load_img_pages
+ 331               	read_eeprom_load_img_pages:
+ 332               		.stabd	46,0,0
+  51:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 334               	.LM22:
+ 335               	.LFBB7:
+ 336 009e 0F93      		push r16
+ 337 00a0 1F93      		push r17
+ 338               	/* prologue: function */
+ 339               	/* frame size = 0 */
+ 340 00a2 8C01      		movw r16,r24
+  52:../../../src/platform/micaZ/source/nrk_eeprom.c ****     *load_pages=eeprom_read_byte ((uint8_t*)EE_LOAD_IMG_PAGES);
+ 342               	.LM23:
+ 343 00a4 86E0      		ldi r24,lo8(6)
+ 344 00a6 90E0      		ldi r25,hi8(6)
+ 345 00a8 0E94 0000 		call __eerd_byte_m128
+ 346 00ac F801      		movw r30,r16
+ 347 00ae 8083      		st Z,r24
+  54:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 349               	.LM24:
+ 350 00b0 81E0      		ldi r24,lo8(1)
+ 351               	/* epilogue start */
+ 352 00b2 1F91      		pop r17
+ 353 00b4 0F91      		pop r16
+ 354 00b6 0895      		ret
+ 356               	.Lscope7:
+ 358               		.stabd	78,0,0
+ 361               	.global	read_eeprom_channel
+ 363               	read_eeprom_channel:
+ 364               		.stabd	46,0,0
+  39:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 366               	.LM25:
+ 367               	.LFBB8:
+ 368 00b8 0F93      		push r16
+ 369 00ba 1F93      		push r17
+ 370               	/* prologue: function */
+ 371               	/* frame size = 0 */
+ 372 00bc 8C01      		movw r16,r24
+  40:../../../src/platform/micaZ/source/nrk_eeprom.c ****     *channel=eeprom_read_byte ((uint8_t*)EE_CHANNEL);
+ 374               	.LM26:
+ 375 00be 85E0      		ldi r24,lo8(5)
+ 376 00c0 90E0      		ldi r25,hi8(5)
+ 377 00c2 0E94 0000 		call __eerd_byte_m128
+ 378 00c6 F801      		movw r30,r16
+ 379 00c8 8083      		st Z,r24
+  42:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 381               	.LM27:
+ 382 00ca 81E0      		ldi r24,lo8(1)
+ 383               	/* epilogue start */
+ 384 00cc 1F91      		pop r17
+ 385 00ce 0F91      		pop r16
+ 386 00d0 0895      		ret
+ 388               	.Lscope8:
+ 390               		.stabd	78,0,0
+ 392               	.global	read_eeprom_mac_address
+ 394               	read_eeprom_mac_address:
+ 395               		.stabd	46,0,0
+  19:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 397               	.LM28:
+ 398               	.LFBB9:
+ 399 00d2 FF92      		push r15
+ 400 00d4 0F93      		push r16
+ 401 00d6 1F93      		push r17
+ 402               	/* prologue: function */
+ 403               	/* frame size = 0 */
+  22:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf=(uint8_t *)mac_addr;
+ 405               	.LM29:
+ 406 00d8 8C01      		movw r16,r24
+  24:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[3]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_0);
+ 408               	.LM30:
+ 409 00da 80E0      		ldi r24,lo8(0)
+ 410 00dc 90E0      		ldi r25,hi8(0)
+ 411 00de 0E94 0000 		call __eerd_byte_m128
+ 412 00e2 F801      		movw r30,r16
+ 413 00e4 8383      		std Z+3,r24
+  25:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[2]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_1);
+ 415               	.LM31:
+ 416 00e6 81E0      		ldi r24,lo8(1)
+ 417 00e8 90E0      		ldi r25,hi8(1)
+ 418 00ea 0E94 0000 		call __eerd_byte_m128
+ 419 00ee F801      		movw r30,r16
+ 420 00f0 8283      		std Z+2,r24
+  26:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[1]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_2);
+ 422               	.LM32:
+ 423 00f2 82E0      		ldi r24,lo8(2)
+ 424 00f4 90E0      		ldi r25,hi8(2)
+ 425 00f6 0E94 0000 		call __eerd_byte_m128
+ 426 00fa F801      		movw r30,r16
+ 427 00fc 8183      		std Z+1,r24
+  27:../../../src/platform/micaZ/source/nrk_eeprom.c ****     buf[0]=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_3);
+ 429               	.LM33:
+ 430 00fe 83E0      		ldi r24,lo8(3)
+ 431 0100 90E0      		ldi r25,hi8(3)
+ 432 0102 0E94 0000 		call __eerd_byte_m128
+ 433 0106 F82E      		mov r15,r24
+ 434 0108 F801      		movw r30,r16
+ 435 010a 8083      		st Z,r24
+  28:../../../src/platform/micaZ/source/nrk_eeprom.c ****     checksum=eeprom_read_byte ((uint8_t*)EE_MAC_ADDR_CHKSUM);
+ 437               	.LM34:
+ 438 010c 84E0      		ldi r24,lo8(4)
+ 439 010e 90E0      		ldi r25,hi8(4)
+ 440 0110 0E94 0000 		call __eerd_byte_m128
+  30:../../../src/platform/micaZ/source/nrk_eeprom.c ****     ct+=buf[1];
+ 442               	.LM35:
+ 443 0114 F801      		movw r30,r16
+ 444 0116 9181      		ldd r25,Z+1
+ 445 0118 2281      		ldd r18,Z+2
+ 446 011a 920F      		add r25,r18
+  31:../../../src/platform/micaZ/source/nrk_eeprom.c ****     ct+=buf[2];
+ 448               	.LM36:
+ 449 011c 9F0D      		add r25,r15
+  33:../../../src/platform/micaZ/source/nrk_eeprom.c ****     if(checksum==ct) return NRK_OK;
+ 451               	.LM37:
+ 452 011e 2381      		ldd r18,Z+3
+ 453 0120 920F      		add r25,r18
+ 454 0122 8917      		cp r24,r25
+ 455 0124 01F0      		breq .L22
+ 456 0126 8FEF      		ldi r24,lo8(-1)
+ 457 0128 00C0      		rjmp .L23
+ 458               	.L22:
+ 459 012a 81E0      		ldi r24,lo8(1)
+ 460               	.L23:
+ 461               	/* epilogue start */
+  36:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 463               	.LM38:
+ 464 012c 1F91      		pop r17
+ 465 012e 0F91      		pop r16
+ 466 0130 FF90      		pop r15
+ 467 0132 0895      		ret
+ 469               	.Lscope9:
+ 471               		.stabd	78,0,0
+ 474               	.global	nrk_eeprom_read_byte
+ 476               	nrk_eeprom_read_byte:
+ 477               		.stabd	46,0,0
+   8:../../../src/platform/micaZ/source/nrk_eeprom.c **** {
+ 479               	.LM39:
+ 480               	.LFBB10:
+ 481               	/* prologue: function */
+ 482               	/* frame size = 0 */
+   9:../../../src/platform/micaZ/source/nrk_eeprom.c ****     return eeprom_read_byte((uint8_t*)addr);
+ 484               	.LM40:
+ 485 0134 0E94 0000 		call __eerd_byte_m128
+ 486               	/* epilogue start */
+  10:../../../src/platform/micaZ/source/nrk_eeprom.c **** }
+ 488               	.LM41:
+ 489 0138 0895      		ret
+ 491               	.Lscope10:
+ 493               		.stabd	78,0,0
+ 494               		.comm _nrk_signal_list,4,1
+ 495               		.comm error_task,1,1
+ 496               		.comm error_num,1,1
+ 501               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 nrk_eeprom.c
+     /tmp/cckRkawk.s:2      *ABS*:0000003f __SREG__
+     /tmp/cckRkawk.s:3      *ABS*:0000003e __SP_H__
+     /tmp/cckRkawk.s:4      *ABS*:0000003d __SP_L__
+     /tmp/cckRkawk.s:5      *ABS*:00000034 __CCP__
+     /tmp/cckRkawk.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/cckRkawk.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/cckRkawk.s:129    .text:00000000 write_eeprom_current_image_checksum
+     /tmp/cckRkawk.s:155    .text:00000010 write_eeprom_aes_key
+     /tmp/cckRkawk.s:202    .text:0000003e write_eeprom_load_img_pages
+     /tmp/cckRkawk.s:230    .text:0000004e nrk_eeprom_write_byte
+     /tmp/cckRkawk.s:253    .text:00000056 read_eeprom_current_image_checksum
+     /tmp/cckRkawk.s:284    .text:00000070 read_eeprom_aes_key
+     /tmp/cckRkawk.s:331    .text:0000009e read_eeprom_load_img_pages
+     /tmp/cckRkawk.s:363    .text:000000b8 read_eeprom_channel
+     /tmp/cckRkawk.s:394    .text:000000d2 read_eeprom_mac_address
+     /tmp/cckRkawk.s:476    .text:00000134 nrk_eeprom_read_byte
+                            *COM*:00000004 _nrk_signal_list
+                            *COM*:00000001 error_task
+                            *COM*:00000001 error_num
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__eewr_byte_m128
+__eerd_byte_m128
