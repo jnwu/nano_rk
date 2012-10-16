@@ -75,9 +75,9 @@ void nrk_add_to_readyQ (int8_t task_ID)
 
     if (_head_node != NULL)
     {
-
         while (NextNode != NULL)
         {
+/*
             if (nrk_task_TCB[NextNode->task_ID].elevated_prio_flag)
                 if (nrk_task_TCB[NextNode->task_ID].task_prio_ceil <
                         nrk_task_TCB[task_ID].task_prio)
@@ -86,21 +86,34 @@ void nrk_add_to_readyQ (int8_t task_ID)
                 if (nrk_task_TCB[NextNode->task_ID].task_prio <
                         nrk_task_TCB[task_ID].task_prio_ceil)
                     break;
-            if (nrk_task_TCB[NextNode->task_ID].task_prio <
-                    nrk_task_TCB[task_ID].task_prio)
-                break;
+*/
 
-            NextNode = NextNode->Next;
+		// Only idle task is queue, add task to head
+	    	if(NextNode->task_ID == 0)
+			break;
+
+		// Both tasks starting now, compare both task's 0 + relative_deadline
+		if(nrk_task_TCB[NextNode->task_ID].next_wakeup == 0 && 
+		nrk_task_TCB[task_ID].next_wakeup == 0 && 
+		nrk_task_TCB[task_ID].period < nrk_task_TCB[NextNode->task_ID].period)
+		       break;
+		else
+		{
+			// Task in queue starting now, compare the queue tasks's period with the new task's release_time + relative_deadline
+			if(nrk_task_TCB[NextNode->task_ID].next_wakeup == 0 && nrk_task_TCB[task_ID].next_wakeup != 0 && 
+			(nrk_task_TCB[task_ID].next_wakeup + nrk_task_TCB[task_ID].period) < nrk_task_TCB[NextNode->task_ID].period)
+				break;
+
+			// Compare both task's release_time + relative_deadline
+			if((nrk_task_TCB[task_ID].next_wakeup + nrk_task_TCB[task_ID].period) < 
+			(nrk_task_TCB[NextNode->task_ID].next_wakeup + nrk_task_TCB[NextNode->task_ID].period))
+				break;
+		}
+
+            	NextNode = NextNode->Next;
         }
-
-
-        //      while ((NextNode != NULL) && ((nrk_task_TCB[NextNode->task_ID].task_prio >= nrk_task_TCB[task_ID].task_prio)|| ) {
-        //              NextNode = NextNode->Next;}
-        // Stop if nextNode is freenode or next node less prio or (equal and elevated
-        // Issues - 1 comes, becomes 2', 1 more comes (2' 1) then 2 comes where should it be placed ?
-        // 2' 2  1 or 2 2' 1 in ready q , what happens after 2'->1, what if 2'->2
-
     }
+
 
     CurNode->task_ID = task_ID;
     _free_node = _free_node->Next;
