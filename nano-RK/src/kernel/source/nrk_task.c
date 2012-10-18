@@ -99,6 +99,10 @@ void nrk_add_to_readyQ (int8_t task_ID)
 		nrk_task_TCB[task_ID].period < nrk_task_TCB[NextNode->task_ID].period)
 			break;
 		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
+                nrk_task_TCB[task_ID].next_wakeup == 0 &&
+                nrk_task_TCB[task_ID].next_wakeup < nrk_task_TCB[NextNode->task_ID].next_wakeup)
+			break;
+		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
 		nrk_task_TCB[task_ID].next_wakeup != 0 &&
 		nrk_task_TCB[task_ID].next_wakeup < nrk_task_TCB[NextNode->task_ID].next_wakeup)
 			break;
