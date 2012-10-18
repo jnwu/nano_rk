@@ -2,541 +2,401 @@
    2               	__SREG__ = 0x3f
    3               	__SP_H__ = 0x3e
    4               	__SP_L__ = 0x3d
-   5               	__CCP__  = 0x34
+   5               	__CCP__ = 0x34
    6               	__tmp_reg__ = 0
    7               	__zero_reg__ = 1
-   8               		.global __do_copy_data
-   9               		.global __do_clear_bss
-  12               		.text
-  13               	.Ltext0:
+  10               		.text
+  11               	.Ltext0:
   72               	.global	i2c_init
   74               	i2c_init:
   75               		.stabd	46,0,0
-   0:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** /******************************************************************************
-   1:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Nano-RK, a real-time operating system for sensor networks.
-   2:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Copyright (C) 2011 Technische Universität München (www.vmi.ei.tum.de)
-   3:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  All rights reserved.
-   4:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
-   5:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  This is the Open Source Version of Nano-RK included as part of a Dual
-   6:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Licensing Model. If you are unsure which license to use please refer to:
-   7:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  http://www.nanork.org/nano-RK/wiki/Licensing
-   8:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
-   9:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  This program is free software: you can redistribute it and/or modify
-  10:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  it under the terms of the GNU General Public License as published by
-  11:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  the Free Software Foundation, version 2.0 of the License.
-  12:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
-  13:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  This program is distributed in the hope that it will be useful,
-  14:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  15:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  16:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  GNU General Public License for more details.
-  17:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
-  18:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  You should have received a copy of the GNU General Public License
-  19:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  20:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+   1:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** /******************************************************************************
+   2:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Nano-RK, a real-time operating system for sensor networks.
+   3:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Copyright (C) 2011 Technische Universität München (www.vmi.ei.tum.de)
+   4:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  All rights reserved.
+   5:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+   6:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  This is the Open Source Version of Nano-RK included as part of a Dual
+   7:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Licensing Model. If you are unsure which license to use please refer to:
+   8:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  http://www.nanork.org/nano-RK/wiki/Licensing
+   9:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+  10:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  This program is free software: you can redistribute it and/or modify
+  11:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  it under the terms of the GNU General Public License as published by
+  12:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  the Free Software Foundation, version 2.0 of the License.
+  13:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+  14:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  This program is distributed in the hope that it will be useful,
+  15:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  16:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  17:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  GNU General Public License for more details.
+  18:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+  19:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  You should have received a copy of the GNU General Public License
+  20:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
   21:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
-  22:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  I²C driver for ATmega128 as a Master
-  23:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
-  24:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Contributing Authors (specific to this file):
-  25:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Author: Peter Diener
-  26:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
-  27:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** ***************************************************************************************/
-  28:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  22:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+  23:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  I²C driver for ATmega128 as a Master
+  24:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+  25:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Contributing Authors (specific to this file):
+  26:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *  Author: Peter Diener
+  27:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** *
+  28:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** ***************************************************************************************/
   29:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   30:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  31:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** #include <avr/io.h>
-  32:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** #include <util/twi.h>
-  33:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** #include "i2c_driver.h"
-  34:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  31:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  32:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** #include <avr/io.h>
+  33:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** #include <util/twi.h>
+  34:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** #include "i2c_driver.h"
   35:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   36:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  37:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // inits to ~300 kHz bus frequency
-  38:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_init()
-  39:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+  37:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  38:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // inits to ~300 kHz bus frequency
+  39:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_init()
+  40:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
   77               	.LM0:
   78               	.LFBB1:
   79               	/* prologue: function */
   80               	/* frame size = 0 */
-  40:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	// Set up clock prescaler
-  41:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWSR |= (0 << TWPS1) | (0 << TWPS0);	// Prescaler = 1
-  82               	.LM1:
-  83 0000 E1E7      		ldi r30,lo8(113)
-  84 0002 F0E0      		ldi r31,hi8(113)
-  85 0004 8081      		ld r24,Z
-  86 0006 8083      		st Z,r24
-  42:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	// Set up clock divider
-  43:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWBR = 1;
-  88               	.LM2:
-  89 0008 81E0      		ldi r24,lo8(1)
-  90 000a 8093 7000 		sts 112,r24
-  44:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	// Set up module
-  45:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR = (1 << TWEN);	// I2C on, no interrupts
-  92               	.LM3:
-  93 000e 84E0      		ldi r24,lo8(4)
-  94 0010 8093 7400 		sts 116,r24
-  95               	/* epilogue start */
-  46:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
-  97               	.LM4:
-  98 0014 0895      		ret
- 100               	.Lscope1:
- 102               		.stabd	78,0,0
- 104               	.global	i2c_waitForInterruptFlag
- 106               	i2c_waitForInterruptFlag:
- 107               		.stabd	46,0,0
-  47:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  81               	/* stack size = 0 */
+  82               	.L__stack_usage = 0
+  41:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	// Set up clock prescaler
+  42:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWSR |= (0 << TWPS1) | (0 << TWPS0);	// Prescaler = 1
+  84               	.LM1:
+  85 0000 E1E7      		ldi r30,lo8(113)
+  86 0002 F0E0      		ldi r31,hi8(113)
+  87 0004 8081      		ld r24,Z
+  88 0006 8083      		st Z,r24
+  43:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	// Set up clock divider
+  44:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWBR = 1;
+  90               	.LM2:
+  91 0008 81E0      		ldi r24,lo8(1)
+  92 000a 8093 7000 		sts 112,r24
+  45:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	// Set up module
+  46:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR = (1 << TWEN);	// I2C on, no interrupts
+  94               	.LM3:
+  95 000e 84E0      		ldi r24,lo8(4)
+  96 0010 8093 7400 		sts 116,r24
+  97               	/* epilogue start */
+  47:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+  99               	.LM4:
+ 100 0014 0895      		ret
+ 102               	.Lscope1:
+ 104               		.stabd	78,0,0
+ 106               	.global	i2c_waitForInterruptFlag
+ 108               	i2c_waitForInterruptFlag:
+ 109               		.stabd	46,0,0
   48:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   49:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  50:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_waitForInterruptFlag()
-  51:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 109               	.LM5:
- 110               	.LFBB2:
- 111               	/* prologue: function */
- 112               	/* frame size = 0 */
- 113               	.L4:
-  52:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 115               	.LM6:
- 116 0016 8091 7400 		lds r24,116
- 117 001a 87FF      		sbrs r24,7
- 118 001c 00C0      		rjmp .L4
- 119               	/* epilogue start */
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 121               	.LM7:
- 122 001e 0895      		ret
- 124               	.Lscope2:
- 126               		.stabd	78,0,0
- 128               	.global	i2c_actionStart
- 130               	i2c_actionStart:
- 131               		.stabd	46,0,0
-  54:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  50:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  51:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_waitForInterruptFlag()
+  52:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 111               	.LM5:
+ 112               	.LFBB2:
+ 113               	/* prologue: function */
+ 114               	/* frame size = 0 */
+ 115               	/* stack size = 0 */
+ 116               	.L__stack_usage = 0
+ 117               	.L3:
+  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
+ 119               	.LM6:
+ 120 0016 8091 7400 		lds r24,116
+ 121 001a 87FF      		sbrs r24,7
+ 122 001c 00C0      		rjmp .L3
+ 123               	/* epilogue start */
+  54:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 125               	.LM7:
+ 126 001e 0895      		ret
+ 128               	.Lscope2:
+ 130               		.stabd	78,0,0
+ 132               	.global	i2c_actionStart
+ 134               	i2c_actionStart:
+ 135               		.stabd	46,0,0
   55:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   56:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  57:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_actionStart()
-  58:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 133               	.LM8:
- 134               	.LFBB3:
- 135               	/* prologue: function */
- 136               	/* frame size = 0 */
-  59:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 138               	.LM9:
- 139 0020 E4E7      		ldi r30,lo8(116)
- 140 0022 F0E0      		ldi r31,hi8(116)
- 141 0024 8081      		ld r24,Z
- 142 0026 8068      		ori r24,lo8(-128)
- 143 0028 8083      		st Z,r24
- 144               	/* epilogue start */
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 146               	.LM10:
- 147 002a 0895      		ret
- 149               	.Lscope3:
- 151               		.stabd	78,0,0
- 153               	.global	i2c_start
- 155               	i2c_start:
- 156               		.stabd	46,0,0
-  61:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  57:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  58:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_actionStart()
+  59:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 137               	.LM8:
+ 138               	.LFBB3:
+ 139               	/* prologue: function */
+ 140               	/* frame size = 0 */
+ 141               	/* stack size = 0 */
+ 142               	.L__stack_usage = 0
+  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
+ 144               	.LM9:
+ 145 0020 E4E7      		ldi r30,lo8(116)
+ 146 0022 F0E0      		ldi r31,hi8(116)
+ 147 0024 8081      		ld r24,Z
+ 148 0026 8068      		ori r24,lo8(-128)
+ 149 0028 8083      		st Z,r24
+ 150               	/* epilogue start */
+  61:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 152               	.LM10:
+ 153 002a 0895      		ret
+ 155               	.Lscope3:
+ 157               		.stabd	78,0,0
+ 159               	.global	i2c_start
+ 161               	i2c_start:
+ 162               		.stabd	46,0,0
   62:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   63:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  64:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_start()
-  65:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 158               	.LM11:
- 159               	.LFBB4:
- 160               	/* prologue: function */
- 161               	/* frame size = 0 */
-  66:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWSTA);			// Set start condition flag
- 163               	.LM12:
- 164 002c 8091 7400 		lds r24,116
- 165 0030 8062      		ori r24,lo8(32)
- 166 0032 8093 7400 		sts 116,r24
- 167               	.LBB40:
- 168               	.LBB41:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 170               	.LM13:
- 171 0036 8091 7400 		lds r24,116
- 172 003a 8068      		ori r24,lo8(-128)
- 173 003c 8093 7400 		sts 116,r24
- 174               	.L10:
- 175               	.LBE41:
- 176               	.LBE40:
- 177               	.LBB42:
- 178               	.LBB43:
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 180               	.LM14:
- 181 0040 8091 7400 		lds r24,116
- 182 0044 87FF      		sbrs r24,7
- 183 0046 00C0      		rjmp .L10
- 184               	.LBE43:
- 185               	.LBE42:
-  67:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();				// Send START
-  68:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_waitForInterruptFlag();	// Wait until START is sent
-  69:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR &= ~(1 << TWSTA);			// Clear start condition flag
- 187               	.LM15:
- 188 0048 8091 7400 		lds r24,116
- 189 004c 8F7D      		andi r24,lo8(-33)
- 190 004e 8093 7400 		sts 116,r24
- 191               	/* epilogue start */
-  70:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 193               	.LM16:
- 194 0052 0895      		ret
- 196               	.Lscope4:
- 198               		.stabd	78,0,0
- 200               	.global	i2c_stop
- 202               	i2c_stop:
- 203               		.stabd	46,0,0
-  71:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  64:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  65:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_start()
+  66:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 164               	.LM11:
+ 165               	.LFBB4:
+ 166 002c CF93      		push r28
+ 167 002e DF93      		push r29
+ 168               	/* prologue: function */
+ 169               	/* frame size = 0 */
+ 170               	/* stack size = 2 */
+ 171               	.L__stack_usage = 2
+  67:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWSTA);			// Set start condition flag
+ 173               	.LM12:
+ 174 0030 C4E7      		ldi r28,lo8(116)
+ 175 0032 D0E0      		ldi r29,hi8(116)
+ 176 0034 8881      		ld r24,Y
+ 177 0036 8062      		ori r24,lo8(32)
+ 178 0038 8883      		st Y,r24
+  68:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();				// Send START
+ 180               	.LM13:
+ 181 003a 0E94 0000 		call i2c_actionStart
+  69:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_waitForInterruptFlag();	// Wait until START is sent
+ 183               	.LM14:
+ 184 003e 0E94 0000 		call i2c_waitForInterruptFlag
+  70:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR &= ~(1 << TWSTA);			// Clear start condition flag
+ 186               	.LM15:
+ 187 0042 8881      		ld r24,Y
+ 188 0044 8F7D      		andi r24,lo8(-33)
+ 189 0046 8883      		st Y,r24
+ 190               	/* epilogue start */
+  71:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 192               	.LM16:
+ 193 0048 DF91      		pop r29
+ 194 004a CF91      		pop r28
+ 195 004c 0895      		ret
+ 197               	.Lscope4:
+ 199               		.stabd	78,0,0
+ 201               	.global	i2c_stop
+ 203               	i2c_stop:
+ 204               		.stabd	46,0,0
   72:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   73:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  74:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_stop()
-  75:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 205               	.LM17:
- 206               	.LFBB5:
- 207               	/* prologue: function */
- 208               	/* frame size = 0 */
-  76:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWSTO);			// Set stop condition flag - this will be cleared automatically
- 210               	.LM18:
- 211 0054 8091 7400 		lds r24,116
- 212 0058 8061      		ori r24,lo8(16)
- 213 005a 8093 7400 		sts 116,r24
- 214               	.LBB44:
- 215               	.LBB45:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 217               	.LM19:
- 218 005e 8091 7400 		lds r24,116
- 219 0062 8068      		ori r24,lo8(-128)
- 220 0064 8093 7400 		sts 116,r24
- 221               	.L14:
- 222               	.LBE45:
- 223               	.LBE44:
-  77:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();				// Send STOP
-  78:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (TWCR & (1 << TWSTO));	// Wait until STOP is sent
- 225               	.LM20:
- 226 0068 8091 7400 		lds r24,116
- 227 006c 84FD      		sbrc r24,4
- 228 006e 00C0      		rjmp .L14
- 229               	/* epilogue start */
-  79:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 231               	.LM21:
- 232 0070 0895      		ret
- 234               	.Lscope5:
- 236               		.stabd	78,0,0
- 239               	.global	i2c_send
- 241               	i2c_send:
- 242               		.stabd	46,0,0
-  80:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  74:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  75:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_stop()
+  76:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 206               	.LM17:
+ 207               	.LFBB5:
+ 208               	/* prologue: function */
+ 209               	/* frame size = 0 */
+ 210               	/* stack size = 0 */
+ 211               	.L__stack_usage = 0
+  77:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWSTO);			// Set stop condition flag - this will be cleared automatically
+ 213               	.LM18:
+ 214 004e 8091 7400 		lds r24,116
+ 215 0052 8061      		ori r24,lo8(16)
+ 216 0054 8093 7400 		sts 116,r24
+  78:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();				// Send STOP
+ 218               	.LM19:
+ 219 0058 0E94 0000 		call i2c_actionStart
+ 220               	.L8:
+  79:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (TWCR & (1 << TWSTO));	// Wait until STOP is sent
+ 222               	.LM20:
+ 223 005c 8091 7400 		lds r24,116
+ 224 0060 84FD      		sbrc r24,4
+ 225 0062 00C0      		rjmp .L8
+ 226               	/* epilogue start */
+  80:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 228               	.LM21:
+ 229 0064 0895      		ret
+ 231               	.Lscope5:
+ 233               		.stabd	78,0,0
+ 236               	.global	i2c_send
+ 238               	i2c_send:
+ 239               		.stabd	46,0,0
   81:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   82:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  83:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // Returns 0 if ACK has been received, else 1
-  84:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** unsigned char i2c_send(unsigned char data)
-  85:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 244               	.LM22:
- 245               	.LFBB6:
- 246               	/* prologue: function */
- 247               	/* frame size = 0 */
-  86:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWDR = data;
- 249               	.LM23:
- 250 0072 8093 7300 		sts 115,r24
- 251               	.LBB46:
- 252               	.LBB47:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 254               	.LM24:
- 255 0076 8091 7400 		lds r24,116
- 256 007a 8068      		ori r24,lo8(-128)
- 257 007c 8093 7400 		sts 116,r24
- 258               	.L18:
- 259               	.LBE47:
- 260               	.LBE46:
- 261               	.LBB48:
- 262               	.LBB49:
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 264               	.LM25:
- 265 0080 8091 7400 		lds r24,116
- 266 0084 87FF      		sbrs r24,7
- 267 0086 00C0      		rjmp .L18
- 268               	.LBE49:
- 269               	.LBE48:
-  87:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();
-  88:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_waitForInterruptFlag();
-  89:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	if ((TWSR & 0xF8) == TW_MT_DATA_ACK) return 0;			// Data byte ACK
- 271               	.LM26:
- 272 0088 8091 7100 		lds r24,113
- 273 008c 887F      		andi r24,lo8(-8)
- 274 008e 8832      		cpi r24,lo8(40)
- 275 0090 01F4      		brne .L19
- 276 0092 90E0      		ldi r25,lo8(0)
- 277 0094 00C0      		rjmp .L20
- 278               	.L19:
-  90:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else if ((TWSR & 0xF8) == TW_MT_SLA_ACK) return 0;	// Address byte ACK
- 280               	.LM27:
- 281 0096 8091 7100 		lds r24,113
- 282 009a 90E0      		ldi r25,lo8(0)
- 283 009c 887F      		andi r24,lo8(-8)
- 284 009e 8831      		cpi r24,lo8(24)
- 285 00a0 01F0      		breq .L20
- 286 00a2 91E0      		ldi r25,lo8(1)
- 287               	.L20:
-  91:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else return 1;
-  92:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 289               	.LM28:
- 290 00a4 892F      		mov r24,r25
- 291               	/* epilogue start */
- 292 00a6 0895      		ret
- 294               	.Lscope6:
- 296               		.stabd	78,0,0
- 299               	.global	i2c_receive
- 301               	i2c_receive:
- 302               		.stabd	46,0,0
-  93:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  83:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  84:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // Returns 0 if ACK has been received, else 1
+  85:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** unsigned char i2c_send(unsigned char data)
+  86:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 241               	.LM22:
+ 242               	.LFBB6:
+ 243               	/* prologue: function */
+ 244               	/* frame size = 0 */
+ 245               	/* stack size = 0 */
+ 246               	.L__stack_usage = 0
+  87:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWDR = data;
+ 248               	.LM23:
+ 249 0066 8093 7300 		sts 115,r24
+  88:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();
+ 251               	.LM24:
+ 252 006a 0E94 0000 		call i2c_actionStart
+  89:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_waitForInterruptFlag();
+ 254               	.LM25:
+ 255 006e 0E94 0000 		call i2c_waitForInterruptFlag
+  90:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	if ((TWSR & 0xF8) == TW_MT_DATA_ACK) return 0;			// Data byte ACK
+ 257               	.LM26:
+ 258 0072 8091 7100 		lds r24,113
+ 259 0076 887F      		andi r24,lo8(-8)
+ 260 0078 8832      		cpi r24,lo8(40)
+ 261 007a 01F0      		breq .L13
+  91:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else if ((TWSR & 0xF8) == TW_MT_SLA_ACK) return 0;	// Address byte ACK
+ 263               	.LM27:
+ 264 007c 9091 7100 		lds r25,113
+ 265 0080 987F      		andi r25,lo8(-8)
+  90:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	if ((TWSR & 0xF8) == TW_MT_DATA_ACK) return 0;			// Data byte ACK
+ 267               	.LM28:
+ 268 0082 81E0      		ldi r24,lo8(1)
+ 269 0084 9831      		cpi r25,lo8(24)
+ 270 0086 01F4      		brne .L11
+ 271 0088 80E0      		ldi r24,lo8(0)
+ 272 008a 0895      		ret
+ 273               	.L13:
+ 274 008c 80E0      		ldi r24,lo8(0)
+ 275               	.L11:
+  92:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else return 1;
+  93:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 277               	.LM29:
+ 278 008e 0895      		ret
+ 280               	.Lscope6:
+ 282               		.stabd	78,0,0
+ 285               	.global	i2c_receive
+ 287               	i2c_receive:
+ 288               		.stabd	46,0,0
   94:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
   95:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
-  96:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // if ack == 0, no-ACK will be sent
-  97:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** unsigned char i2c_receive(unsigned int ack)
-  98:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 304               	.LM29:
- 305               	.LFBB7:
- 306               	/* prologue: function */
- 307               	/* frame size = 0 */
-  99:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	if (ack) TWCR |= (1 << TWEA);	// ACK
- 309               	.LM30:
- 310 00a8 892B      		or r24,r25
- 311 00aa 01F0      		breq .L25
- 312 00ac 8091 7400 		lds r24,116
- 313 00b0 8064      		ori r24,lo8(64)
- 314 00b2 00C0      		rjmp .L30
- 315               	.L25:
- 100:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else 		TWCR &= ~(1 << TWEA);	// no ACK
- 317               	.LM31:
- 318 00b4 8091 7400 		lds r24,116
- 319 00b8 8F7B      		andi r24,lo8(-65)
- 320               	.L30:
- 321 00ba 8093 7400 		sts 116,r24
- 322               	.LBB50:
- 323               	.LBB51:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 325               	.LM32:
- 326 00be 8091 7400 		lds r24,116
- 327 00c2 8068      		ori r24,lo8(-128)
- 328 00c4 8093 7400 		sts 116,r24
- 329               	.L27:
- 330               	.LBE51:
- 331               	.LBE50:
- 332               	.LBB52:
- 333               	.LBB53:
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 335               	.LM33:
- 336 00c8 8091 7400 		lds r24,116
- 337 00cc 87FF      		sbrs r24,7
- 338 00ce 00C0      		rjmp .L27
- 339               	.LBE53:
- 340               	.LBE52:
- 101:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();					// Start receiving
- 102:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_waitForInterruptFlag();		// Wait until byte is received
- 103:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	return TWDR;
- 342               	.LM34:
- 343 00d0 8091 7300 		lds r24,115
- 344               	/* epilogue start */
- 104:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 346               	.LM35:
- 347 00d4 0895      		ret
- 349               	.Lscope7:
- 351               		.stabd	78,0,0
- 354               	.global	i2c_controlByte_RX
- 356               	i2c_controlByte_RX:
- 357               		.stabd	46,0,0
- 105:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  96:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+  97:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // if ack == 0, no-ACK will be sent
+  98:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** unsigned char i2c_receive(unsigned int ack)
+  99:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 290               	.LM30:
+ 291               	.LFBB7:
+ 292               	/* prologue: function */
+ 293               	/* frame size = 0 */
+ 294               	/* stack size = 0 */
+ 295               	.L__stack_usage = 0
+ 100:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	if (ack) TWCR |= (1 << TWEA);	// ACK
+ 297               	.LM31:
+ 298 0090 0097      		sbiw r24,0
+ 299 0092 01F0      		breq .L15
+ 301               	.LM32:
+ 302 0094 8091 7400 		lds r24,116
+ 303 0098 8064      		ori r24,lo8(64)
+ 304 009a 00C0      		rjmp .L17
+ 305               	.L15:
+ 101:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else 		TWCR &= ~(1 << TWEA);	// no ACK
+ 307               	.LM33:
+ 308 009c 8091 7400 		lds r24,116
+ 309 00a0 8F7B      		andi r24,lo8(-65)
+ 310               	.L17:
+ 311 00a2 8093 7400 		sts 116,r24
+ 102:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_actionStart();					// Start receiving
+ 313               	.LM34:
+ 314 00a6 0E94 0000 		call i2c_actionStart
+ 103:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_waitForInterruptFlag();		// Wait until byte is received
+ 316               	.LM35:
+ 317 00aa 0E94 0000 		call i2c_waitForInterruptFlag
+ 104:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	return TWDR;
+ 319               	.LM36:
+ 320 00ae 8091 7300 		lds r24,115
+ 321               	/* epilogue start */
+ 105:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 323               	.LM37:
+ 324 00b2 0895      		ret
+ 326               	.Lscope7:
+ 328               		.stabd	78,0,0
+ 331               	.global	i2c_controlByte_RX
+ 333               	i2c_controlByte_RX:
+ 334               		.stabd	46,0,0
  106:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
  107:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
- 108:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // This initiates an rx transfer with START + SLA + R
- 109:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_controlByte_RX(unsigned char address)
- 110:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 359               	.LM36:
- 360               	.LFBB8:
- 361               	/* prologue: function */
- 362               	/* frame size = 0 */
- 363 00d6 982F      		mov r25,r24
- 364               	.LBB54:
- 365               	.LBB55:
-  67:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWSTA);			// Set start condition flag
- 367               	.LM37:
- 368 00d8 8091 7400 		lds r24,116
- 369 00dc 8062      		ori r24,lo8(32)
- 370 00de 8093 7400 		sts 116,r24
- 371               	.LBB56:
- 372               	.LBB57:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 374               	.LM38:
- 375 00e2 8091 7400 		lds r24,116
- 376 00e6 8068      		ori r24,lo8(-128)
- 377 00e8 8093 7400 		sts 116,r24
- 378               	.L32:
- 379               	.LBE57:
- 380               	.LBE56:
- 381               	.LBB58:
- 382               	.LBB59:
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 384               	.LM39:
- 385 00ec 8091 7400 		lds r24,116
- 386 00f0 87FF      		sbrs r24,7
- 387 00f2 00C0      		rjmp .L32
- 388               	.LBE59:
- 389               	.LBE58:
-  70:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR &= ~(1 << TWSTA);			// Clear start condition flag
- 391               	.LM40:
- 392 00f4 8091 7400 		lds r24,116
- 393 00f8 8F7D      		andi r24,lo8(-33)
- 394 00fa 8093 7400 		sts 116,r24
- 395               	.LBE55:
- 396               	.LBE54:
- 111:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_start();
- 112:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_send((address << 1) | 0x01);
- 398               	.LM41:
- 399 00fe 990F      		lsl r25
- 400 0100 9160      		ori r25,lo8(1)
- 401               	.LBB60:
- 402               	.LBB61:
-  87:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWDR = data;
- 404               	.LM42:
- 405 0102 9093 7300 		sts 115,r25
- 406               	.LBB62:
- 407               	.LBB63:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 409               	.LM43:
- 410 0106 8091 7400 		lds r24,116
- 411 010a 8068      		ori r24,lo8(-128)
- 412 010c 8093 7400 		sts 116,r24
- 413               	.L33:
- 414               	.LBE63:
- 415               	.LBE62:
- 416               	.LBB64:
- 417               	.LBB65:
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 419               	.LM44:
- 420 0110 8091 7400 		lds r24,116
- 421 0114 87FF      		sbrs r24,7
- 422 0116 00C0      		rjmp .L33
- 423               	.LBE65:
- 424               	.LBE64:
-  90:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	if ((TWSR & 0xF8) == TW_MT_DATA_ACK) return 0;			// Data byte ACK
- 426               	.LM45:
- 427 0118 8091 7100 		lds r24,113
- 428 011c 887F      		andi r24,lo8(-8)
- 429 011e 8832      		cpi r24,lo8(40)
- 430 0120 01F0      		breq .L35
-  91:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else if ((TWSR & 0xF8) == TW_MT_SLA_ACK) return 0;	// Address byte ACK
- 432               	.LM46:
- 433 0122 8091 7100 		lds r24,113
- 434               	.L35:
- 435 0126 0895      		ret
- 436               	.LBE61:
- 437               	.LBE60:
- 439               	.Lscope8:
- 441               		.stabd	78,0,0
- 444               	.global	i2c_controlByte_TX
- 446               	i2c_controlByte_TX:
- 447               		.stabd	46,0,0
- 113:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
- 114:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+ 108:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+ 109:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // This initiates an rx transfer with START + SLA + R
+ 110:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_controlByte_RX(unsigned char address)
+ 111:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 336               	.LM38:
+ 337               	.LFBB8:
+ 338 00b4 DF93      		push r29
+ 339 00b6 CF93      		push r28
+ 340 00b8 0F92      		push __tmp_reg__
+ 341 00ba CDB7      		in r28,__SP_L__
+ 342 00bc DEB7      		in r29,__SP_H__
+ 343               	/* prologue: function */
+ 344               	/* frame size = 1 */
+ 345               	/* stack size = 3 */
+ 346               	.L__stack_usage = 3
+ 112:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_start();
+ 348               	.LM39:
+ 349 00be 8983      		std Y+1,r24
+ 350 00c0 0E94 0000 		call i2c_start
+ 113:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_send((address << 1) | 0x01);
+ 352               	.LM40:
+ 353 00c4 8981      		ldd r24,Y+1
+ 354 00c6 880F      		lsl r24
+ 355 00c8 8160      		ori r24,lo8(1)
+ 356 00ca 0E94 0000 		call i2c_send
+ 357               	/* epilogue start */
+ 114:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 359               	.LM41:
+ 360 00ce 0F90      		pop __tmp_reg__
+ 361 00d0 CF91      		pop r28
+ 362 00d2 DF91      		pop r29
+ 363 00d4 0895      		ret
+ 365               	.Lscope8:
+ 367               		.stabd	78,0,0
+ 370               	.global	i2c_controlByte_TX
+ 372               	i2c_controlByte_TX:
+ 373               		.stabd	46,0,0
  115:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
  116:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
- 117:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // This initiates an tx transfer with START + SLA
- 118:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_controlByte_TX(unsigned char address)
- 119:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
- 449               	.LM47:
- 450               	.LFBB9:
- 451               	/* prologue: function */
- 452               	/* frame size = 0 */
- 453 0128 982F      		mov r25,r24
- 454               	.LBB66:
- 455               	.LBB67:
-  67:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWSTA);			// Set start condition flag
- 457               	.LM48:
- 458 012a 8091 7400 		lds r24,116
- 459 012e 8062      		ori r24,lo8(32)
- 460 0130 8093 7400 		sts 116,r24
- 461               	.LBB68:
- 462               	.LBB69:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 464               	.LM49:
- 465 0134 8091 7400 		lds r24,116
- 466 0138 8068      		ori r24,lo8(-128)
- 467 013a 8093 7400 		sts 116,r24
- 468               	.L39:
- 469               	.LBE69:
- 470               	.LBE68:
- 471               	.LBB70:
- 472               	.LBB71:
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 474               	.LM50:
- 475 013e 8091 7400 		lds r24,116
- 476 0142 87FF      		sbrs r24,7
- 477 0144 00C0      		rjmp .L39
- 478               	.LBE71:
- 479               	.LBE70:
-  70:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR &= ~(1 << TWSTA);			// Clear start condition flag
- 481               	.LM51:
- 482 0146 8091 7400 		lds r24,116
- 483 014a 8F7D      		andi r24,lo8(-33)
- 484 014c 8093 7400 		sts 116,r24
- 485               	.LBE67:
- 486               	.LBE66:
- 120:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_start();
- 121:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_send(address << 1);
- 488               	.LM52:
- 489 0150 990F      		lsl r25
- 490               	.LBB72:
- 491               	.LBB73:
-  87:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWDR = data;
- 493               	.LM53:
- 494 0152 9093 7300 		sts 115,r25
- 495               	.LBB74:
- 496               	.LBB75:
-  60:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	TWCR |= (1 << TWINT);		// clearing the interrupt flag will start the next action
- 498               	.LM54:
- 499 0156 8091 7400 		lds r24,116
- 500 015a 8068      		ori r24,lo8(-128)
- 501 015c 8093 7400 		sts 116,r24
- 502               	.L40:
- 503               	.LBE75:
- 504               	.LBE74:
- 505               	.LBB76:
- 506               	.LBB77:
-  53:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	while (! (TWCR & (1 << TWINT)));
- 508               	.LM55:
- 509 0160 8091 7400 		lds r24,116
- 510 0164 87FF      		sbrs r24,7
- 511 0166 00C0      		rjmp .L40
- 512               	.LBE77:
- 513               	.LBE76:
-  90:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	if ((TWSR & 0xF8) == TW_MT_DATA_ACK) return 0;			// Data byte ACK
- 515               	.LM56:
- 516 0168 8091 7100 		lds r24,113
- 517 016c 887F      		andi r24,lo8(-8)
- 518 016e 8832      		cpi r24,lo8(40)
- 519 0170 01F0      		breq .L42
-  91:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	else if ((TWSR & 0xF8) == TW_MT_SLA_ACK) return 0;	// Address byte ACK
- 521               	.LM57:
- 522 0172 8091 7100 		lds r24,113
- 523               	.L42:
- 524 0176 0895      		ret
- 525               	.LBE73:
- 526               	.LBE72:
- 528               	.Lscope9:
- 530               		.stabd	78,0,0
- 532               	.Letext0:
+ 117:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 
+ 118:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** // This initiates an tx transfer with START + SLA
+ 119:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** void i2c_controlByte_TX(unsigned char address)
+ 120:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** {
+ 375               	.LM42:
+ 376               	.LFBB9:
+ 377 00d6 DF93      		push r29
+ 378 00d8 CF93      		push r28
+ 379 00da 0F92      		push __tmp_reg__
+ 380 00dc CDB7      		in r28,__SP_L__
+ 381 00de DEB7      		in r29,__SP_H__
+ 382               	/* prologue: function */
+ 383               	/* frame size = 1 */
+ 384               	/* stack size = 3 */
+ 385               	.L__stack_usage = 3
+ 121:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_start();
+ 387               	.LM43:
+ 388 00e0 8983      		std Y+1,r24
+ 389 00e2 0E94 0000 		call i2c_start
+ 122:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** 	i2c_send(address << 1);
+ 391               	.LM44:
+ 392 00e6 8981      		ldd r24,Y+1
+ 393 00e8 880F      		lsl r24
+ 394 00ea 0E94 0000 		call i2c_send
+ 395               	/* epilogue start */
+ 123:../../../src/drivers/platform/micaZ/source/i2c_driver.c **** }
+ 397               	.LM45:
+ 398 00ee 0F90      		pop __tmp_reg__
+ 399 00f0 CF91      		pop r28
+ 400 00f2 DF91      		pop r29
+ 401 00f4 0895      		ret
+ 403               	.Lscope9:
+ 405               		.stabd	78,0,0
+ 407               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 i2c_driver.c
-     /tmp/cc6ygecj.s:2      *ABS*:0000003f __SREG__
-     /tmp/cc6ygecj.s:3      *ABS*:0000003e __SP_H__
-     /tmp/cc6ygecj.s:4      *ABS*:0000003d __SP_L__
-     /tmp/cc6ygecj.s:5      *ABS*:00000034 __CCP__
-     /tmp/cc6ygecj.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/cc6ygecj.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/cc6ygecj.s:74     .text:00000000 i2c_init
-     /tmp/cc6ygecj.s:106    .text:00000016 i2c_waitForInterruptFlag
-     /tmp/cc6ygecj.s:130    .text:00000020 i2c_actionStart
-     /tmp/cc6ygecj.s:155    .text:0000002c i2c_start
-     /tmp/cc6ygecj.s:202    .text:00000054 i2c_stop
-     /tmp/cc6ygecj.s:241    .text:00000072 i2c_send
-     /tmp/cc6ygecj.s:301    .text:000000a8 i2c_receive
-     /tmp/cc6ygecj.s:356    .text:000000d6 i2c_controlByte_RX
-     /tmp/cc6ygecj.s:446    .text:00000128 i2c_controlByte_TX
+     /tmp/ccJvxXiL.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccJvxXiL.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccJvxXiL.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccJvxXiL.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccJvxXiL.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccJvxXiL.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccJvxXiL.s:74     .text:00000000 i2c_init
+     /tmp/ccJvxXiL.s:108    .text:00000016 i2c_waitForInterruptFlag
+     /tmp/ccJvxXiL.s:134    .text:00000020 i2c_actionStart
+     /tmp/ccJvxXiL.s:161    .text:0000002c i2c_start
+     /tmp/ccJvxXiL.s:203    .text:0000004e i2c_stop
+     /tmp/ccJvxXiL.s:238    .text:00000066 i2c_send
+     /tmp/ccJvxXiL.s:287    .text:00000090 i2c_receive
+     /tmp/ccJvxXiL.s:333    .text:000000b4 i2c_controlByte_RX
+     /tmp/ccJvxXiL.s:372    .text:000000d6 i2c_controlByte_TX
 
-UNDEFINED SYMBOLS
-__do_copy_data
-__do_clear_bss
+NO UNDEFINED SYMBOLS

@@ -2,1791 +2,1982 @@
    2               	__SREG__ = 0x3f
    3               	__SP_H__ = 0x3e
    4               	__SP_L__ = 0x3d
-   5               	__CCP__  = 0x34
+   5               	__CCP__ = 0x34
    6               	__tmp_reg__ = 0
    7               	__zero_reg__ = 1
-   8               		.global __do_copy_data
-   9               		.global __do_clear_bss
-  12               		.text
-  13               	.Ltext0:
- 120               	.global	nrk_uart_rx_signal_get
- 122               	nrk_uart_rx_signal_get:
+  10               		.text
+  11               	.Ltext0:
+ 120               	.global	getc0
+ 122               	getc0:
  123               		.stabd	46,0,0
-   0:../../../src/platform/micaZ/source/ulib.c **** /******************************************************************************
-   1:../../../src/platform/micaZ/source/ulib.c **** *  Nano-RK, a real-time operating system for sensor networks.
-   2:../../../src/platform/micaZ/source/ulib.c **** *  Copyright (C) 2007, Real-Time and Multimedia Lab, Carnegie Mellon University
-   3:../../../src/platform/micaZ/source/ulib.c **** *  All rights reserved.
-   4:../../../src/platform/micaZ/source/ulib.c **** *
-   5:../../../src/platform/micaZ/source/ulib.c **** *  This is the Open Source Version of Nano-RK included as part of a Dual
-   6:../../../src/platform/micaZ/source/ulib.c **** *  Licensing Model. If you are unsure which license to use please refer to:
-   7:../../../src/platform/micaZ/source/ulib.c **** *  http://www.nanork.org/nano-RK/wiki/Licensing
-   8:../../../src/platform/micaZ/source/ulib.c **** *
-   9:../../../src/platform/micaZ/source/ulib.c **** *  This program is free software: you can redistribute it and/or modify
-  10:../../../src/platform/micaZ/source/ulib.c **** *  it under the terms of the GNU General Public License as published by
-  11:../../../src/platform/micaZ/source/ulib.c **** *  the Free Software Foundation, version 2.0 of the License.
-  12:../../../src/platform/micaZ/source/ulib.c **** *
-  13:../../../src/platform/micaZ/source/ulib.c **** *  This program is distributed in the hope that it will be useful,
-  14:../../../src/platform/micaZ/source/ulib.c **** *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  15:../../../src/platform/micaZ/source/ulib.c **** *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  16:../../../src/platform/micaZ/source/ulib.c **** *  GNU General Public License for more details.
-  17:../../../src/platform/micaZ/source/ulib.c **** *
-  18:../../../src/platform/micaZ/source/ulib.c **** *  You should have received a copy of the GNU General Public License
-  19:../../../src/platform/micaZ/source/ulib.c **** *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  20:../../../src/platform/micaZ/source/ulib.c **** *
-  21:../../../src/platform/micaZ/source/ulib.c **** *  Contributing Authors (specific to this file):
-  22:../../../src/platform/micaZ/source/ulib.c **** *  Anthony Rowe
-  23:../../../src/platform/micaZ/source/ulib.c **** *  Nuno Pereira
-  24:../../../src/platform/micaZ/source/ulib.c **** *  Chipcon Development Team
-  25:../../../src/platform/micaZ/source/ulib.c **** *  Peter Diener
-  26:../../../src/platform/micaZ/source/ulib.c **** *******************************************************************************/
-  27:../../../src/platform/micaZ/source/ulib.c **** 
+   1:../../../src/platform/micaZ/source/ulib.c **** /******************************************************************************
+   2:../../../src/platform/micaZ/source/ulib.c **** *  Nano-RK, a real-time operating system for sensor networks.
+   3:../../../src/platform/micaZ/source/ulib.c **** *  Copyright (C) 2007, Real-Time and Multimedia Lab, Carnegie Mellon University
+   4:../../../src/platform/micaZ/source/ulib.c **** *  All rights reserved.
+   5:../../../src/platform/micaZ/source/ulib.c **** *
+   6:../../../src/platform/micaZ/source/ulib.c **** *  This is the Open Source Version of Nano-RK included as part of a Dual
+   7:../../../src/platform/micaZ/source/ulib.c **** *  Licensing Model. If you are unsure which license to use please refer to:
+   8:../../../src/platform/micaZ/source/ulib.c **** *  http://www.nanork.org/nano-RK/wiki/Licensing
+   9:../../../src/platform/micaZ/source/ulib.c **** *
+  10:../../../src/platform/micaZ/source/ulib.c **** *  This program is free software: you can redistribute it and/or modify
+  11:../../../src/platform/micaZ/source/ulib.c **** *  it under the terms of the GNU General Public License as published by
+  12:../../../src/platform/micaZ/source/ulib.c **** *  the Free Software Foundation, version 2.0 of the License.
+  13:../../../src/platform/micaZ/source/ulib.c **** *
+  14:../../../src/platform/micaZ/source/ulib.c **** *  This program is distributed in the hope that it will be useful,
+  15:../../../src/platform/micaZ/source/ulib.c **** *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  16:../../../src/platform/micaZ/source/ulib.c **** *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  17:../../../src/platform/micaZ/source/ulib.c **** *  GNU General Public License for more details.
+  18:../../../src/platform/micaZ/source/ulib.c **** *
+  19:../../../src/platform/micaZ/source/ulib.c **** *  You should have received a copy of the GNU General Public License
+  20:../../../src/platform/micaZ/source/ulib.c **** *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  21:../../../src/platform/micaZ/source/ulib.c **** *
+  22:../../../src/platform/micaZ/source/ulib.c **** *  Contributing Authors (specific to this file):
+  23:../../../src/platform/micaZ/source/ulib.c **** *  Anthony Rowe
+  24:../../../src/platform/micaZ/source/ulib.c **** *  Nuno Pereira
+  25:../../../src/platform/micaZ/source/ulib.c **** *  Chipcon Development Team
+  26:../../../src/platform/micaZ/source/ulib.c **** *  Peter Diener
+  27:../../../src/platform/micaZ/source/ulib.c **** *******************************************************************************/
   28:../../../src/platform/micaZ/source/ulib.c **** 
-  29:../../../src/platform/micaZ/source/ulib.c **** #include <include.h>
-  30:../../../src/platform/micaZ/source/ulib.c **** #include <ulib.h>
-  31:../../../src/platform/micaZ/source/ulib.c **** #include <stdio.h>
-  32:../../../src/platform/micaZ/source/ulib.c **** #include <hal.h>
-  33:../../../src/platform/micaZ/source/ulib.c **** #include <hal_micaZ.h>
-  34:../../../src/platform/micaZ/source/ulib.c **** #include <avr/interrupt.h>
-  35:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_pin_define.h>
-  36:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_error.h>
-  37:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_events.h>
-  38:../../../src/platform/micaZ/source/ulib.c **** 
-  39:../../../src/platform/micaZ/source/ulib.c **** #ifdef NANORK
-  40:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_cfg.h>
-  41:../../../src/platform/micaZ/source/ulib.c **** #endif
-  42:../../../src/platform/micaZ/source/ulib.c **** 
-  43:../../../src/platform/micaZ/source/ulib.c **** #ifdef NRK_UART_BUF
-  44:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_events.h>
-  45:../../../src/platform/micaZ/source/ulib.c **** 
-  46:../../../src/platform/micaZ/source/ulib.c **** #ifndef MAX_RX_UART_BUF
-  47:../../../src/platform/micaZ/source/ulib.c **** #define MAX_RX_UART_BUF    16
-  48:../../../src/platform/micaZ/source/ulib.c **** #endif
-  49:../../../src/platform/micaZ/source/ulib.c **** 
+  29:../../../src/platform/micaZ/source/ulib.c **** 
+  30:../../../src/platform/micaZ/source/ulib.c **** #include <include.h>
+  31:../../../src/platform/micaZ/source/ulib.c **** #include <ulib.h>
+  32:../../../src/platform/micaZ/source/ulib.c **** #include <stdio.h>
+  33:../../../src/platform/micaZ/source/ulib.c **** #include <hal.h>
+  34:../../../src/platform/micaZ/source/ulib.c **** #include <hal_micaZ.h>
+  35:../../../src/platform/micaZ/source/ulib.c **** #include <avr/interrupt.h>
+  36:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_pin_define.h>
+  37:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_error.h>
+  38:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_events.h>
+  39:../../../src/platform/micaZ/source/ulib.c **** 
+  40:../../../src/platform/micaZ/source/ulib.c **** #ifdef NANORK
+  41:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_cfg.h>
+  42:../../../src/platform/micaZ/source/ulib.c **** #endif
+  43:../../../src/platform/micaZ/source/ulib.c **** 
+  44:../../../src/platform/micaZ/source/ulib.c **** #ifdef NRK_UART_BUF
+  45:../../../src/platform/micaZ/source/ulib.c **** #include <nrk_events.h>
+  46:../../../src/platform/micaZ/source/ulib.c **** 
+  47:../../../src/platform/micaZ/source/ulib.c **** #ifndef MAX_RX_UART_BUF
+  48:../../../src/platform/micaZ/source/ulib.c **** #define MAX_RX_UART_BUF    16
+  49:../../../src/platform/micaZ/source/ulib.c **** #endif
   50:../../../src/platform/micaZ/source/ulib.c **** 
-  51:../../../src/platform/micaZ/source/ulib.c **** uint8_t uart_rx_buf_start,uart_rx_buf_end;
-  52:../../../src/platform/micaZ/source/ulib.c **** char uart_rx_buf[MAX_RX_UART_BUF];
-  53:../../../src/platform/micaZ/source/ulib.c **** nrk_sig_t uart_rx_signal;
-  54:../../../src/platform/micaZ/source/ulib.c **** 
-  55:../../../src/platform/micaZ/source/ulib.c **** SIGNAL(USART0_RX_vect)
-  56:../../../src/platform/micaZ/source/ulib.c **** {
-  57:../../../src/platform/micaZ/source/ulib.c ****     char c;
-  58:../../../src/platform/micaZ/source/ulib.c ****     //uint8_t sig;
-  59:../../../src/platform/micaZ/source/ulib.c ****     DISABLE_UART0_RX_INT();
-  60:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_RECEIVE(c);
-  61:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf[uart_rx_buf_end]=c;
-  62:../../../src/platform/micaZ/source/ulib.c ****     //if(uart_rx_buf_end==uart_rx_buf_start) sig=1; else sig=0;
-  63:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf_end++;
-  64:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_buf_end==MAX_RX_UART_BUF) uart_rx_buf_end=0;
-  65:../../../src/platform/micaZ/source/ulib.c ****     nrk_event_signal(uart_rx_signal);
-  66:../../../src/platform/micaZ/source/ulib.c ****     CLEAR_UART0_RX_INT();
-  67:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART0_RX_INT();
-  68:../../../src/platform/micaZ/source/ulib.c **** }
-  69:../../../src/platform/micaZ/source/ulib.c **** 
-  70:../../../src/platform/micaZ/source/ulib.c **** char getc0()
-  71:../../../src/platform/micaZ/source/ulib.c **** {
-  72:../../../src/platform/micaZ/source/ulib.c ****     char tmp;
-  73:../../../src/platform/micaZ/source/ulib.c **** 
-  74:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_buf_start!=uart_rx_buf_end)
-  75:../../../src/platform/micaZ/source/ulib.c ****     {
-  76:../../../src/platform/micaZ/source/ulib.c ****         tmp=uart_rx_buf[uart_rx_buf_start];
-  77:../../../src/platform/micaZ/source/ulib.c ****         uart_rx_buf_start++;
-  78:../../../src/platform/micaZ/source/ulib.c ****         if(uart_rx_buf_start==MAX_RX_UART_BUF) uart_rx_buf_start=0;
-  79:../../../src/platform/micaZ/source/ulib.c ****         return(tmp);
-  80:../../../src/platform/micaZ/source/ulib.c ****     }
-  81:../../../src/platform/micaZ/source/ulib.c **** // if buffer empty, then we have to block for it
-  82:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_RECEIVE(tmp);
-  83:../../../src/platform/micaZ/source/ulib.c ****     return tmp;
-  84:../../../src/platform/micaZ/source/ulib.c **** }
-  85:../../../src/platform/micaZ/source/ulib.c **** 
-  86:../../../src/platform/micaZ/source/ulib.c **** uint8_t nrk_uart_data_ready(uint8_t uart_num)
-  87:../../../src/platform/micaZ/source/ulib.c **** {
-  88:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==0)
-  89:../../../src/platform/micaZ/source/ulib.c ****     {
-  90:../../../src/platform/micaZ/source/ulib.c ****         if(uart_rx_buf_start!=uart_rx_buf_end) return 1;
-  91:../../../src/platform/micaZ/source/ulib.c ****     }
-  92:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==1)
-  93:../../../src/platform/micaZ/source/ulib.c ****     {
-  94:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR1A & BM(RXC1) ) return 1;
-  95:../../../src/platform/micaZ/source/ulib.c ****     }
-  96:../../../src/platform/micaZ/source/ulib.c ****     return 0;
-  97:../../../src/platform/micaZ/source/ulib.c **** }
-  98:../../../src/platform/micaZ/source/ulib.c **** 
-  99:../../../src/platform/micaZ/source/ulib.c **** nrk_sig_t nrk_uart_rx_signal_get()
- 100:../../../src/platform/micaZ/source/ulib.c **** {
- 101:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_signal==NRK_ERROR) nrk_error_add(NRK_SIGNAL_CREATE_ERROR);
- 102:../../../src/platform/micaZ/source/ulib.c ****     return uart_rx_signal;
- 103:../../../src/platform/micaZ/source/ulib.c **** }
- 104:../../../src/platform/micaZ/source/ulib.c **** 
- 105:../../../src/platform/micaZ/source/ulib.c **** #else
- 106:../../../src/platform/micaZ/source/ulib.c **** 
- 107:../../../src/platform/micaZ/source/ulib.c **** nrk_sig_t nrk_uart_rx_signal_get()
- 108:../../../src/platform/micaZ/source/ulib.c **** {
+  51:../../../src/platform/micaZ/source/ulib.c **** 
+  52:../../../src/platform/micaZ/source/ulib.c **** uint8_t uart_rx_buf_start,uart_rx_buf_end;
+  53:../../../src/platform/micaZ/source/ulib.c **** char uart_rx_buf[MAX_RX_UART_BUF];
+  54:../../../src/platform/micaZ/source/ulib.c **** nrk_sig_t uart_rx_signal;
+  55:../../../src/platform/micaZ/source/ulib.c **** 
+  56:../../../src/platform/micaZ/source/ulib.c **** SIGNAL(USART0_RX_vect)
+  57:../../../src/platform/micaZ/source/ulib.c **** {
+  58:../../../src/platform/micaZ/source/ulib.c ****     char c;
+  59:../../../src/platform/micaZ/source/ulib.c ****     //uint8_t sig;
+  60:../../../src/platform/micaZ/source/ulib.c ****     DISABLE_UART0_RX_INT();
+  61:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_RECEIVE(c);
+  62:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf[uart_rx_buf_end]=c;
+  63:../../../src/platform/micaZ/source/ulib.c ****     //if(uart_rx_buf_end==uart_rx_buf_start) sig=1; else sig=0;
+  64:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf_end++;
+  65:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_buf_end==MAX_RX_UART_BUF) uart_rx_buf_end=0;
+  66:../../../src/platform/micaZ/source/ulib.c ****     nrk_event_signal(uart_rx_signal);
+  67:../../../src/platform/micaZ/source/ulib.c ****     CLEAR_UART0_RX_INT();
+  68:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART0_RX_INT();
+  69:../../../src/platform/micaZ/source/ulib.c **** }
+  70:../../../src/platform/micaZ/source/ulib.c **** 
+  71:../../../src/platform/micaZ/source/ulib.c **** char getc0()
+  72:../../../src/platform/micaZ/source/ulib.c **** {
+  73:../../../src/platform/micaZ/source/ulib.c ****     char tmp;
+  74:../../../src/platform/micaZ/source/ulib.c **** 
+  75:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_buf_start!=uart_rx_buf_end)
+  76:../../../src/platform/micaZ/source/ulib.c ****     {
+  77:../../../src/platform/micaZ/source/ulib.c ****         tmp=uart_rx_buf[uart_rx_buf_start];
+  78:../../../src/platform/micaZ/source/ulib.c ****         uart_rx_buf_start++;
+  79:../../../src/platform/micaZ/source/ulib.c ****         if(uart_rx_buf_start==MAX_RX_UART_BUF) uart_rx_buf_start=0;
+  80:../../../src/platform/micaZ/source/ulib.c ****         return(tmp);
+  81:../../../src/platform/micaZ/source/ulib.c ****     }
+  82:../../../src/platform/micaZ/source/ulib.c **** // if buffer empty, then we have to block for it
+  83:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_RECEIVE(tmp);
+  84:../../../src/platform/micaZ/source/ulib.c ****     return tmp;
+  85:../../../src/platform/micaZ/source/ulib.c **** }
+  86:../../../src/platform/micaZ/source/ulib.c **** 
+  87:../../../src/platform/micaZ/source/ulib.c **** uint8_t nrk_uart_data_ready(uint8_t uart_num)
+  88:../../../src/platform/micaZ/source/ulib.c **** {
+  89:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==0)
+  90:../../../src/platform/micaZ/source/ulib.c ****     {
+  91:../../../src/platform/micaZ/source/ulib.c ****         if(uart_rx_buf_start!=uart_rx_buf_end) return 1;
+  92:../../../src/platform/micaZ/source/ulib.c ****     }
+  93:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==1)
+  94:../../../src/platform/micaZ/source/ulib.c ****     {
+  95:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR1A & BM(RXC1) ) return 1;
+  96:../../../src/platform/micaZ/source/ulib.c ****     }
+  97:../../../src/platform/micaZ/source/ulib.c ****     return 0;
+  98:../../../src/platform/micaZ/source/ulib.c **** }
+  99:../../../src/platform/micaZ/source/ulib.c **** 
+ 100:../../../src/platform/micaZ/source/ulib.c **** nrk_sig_t nrk_uart_rx_signal_get()
+ 101:../../../src/platform/micaZ/source/ulib.c **** {
+ 102:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_signal==NRK_ERROR) nrk_error_add(NRK_SIGNAL_CREATE_ERROR);
+ 103:../../../src/platform/micaZ/source/ulib.c ****     return uart_rx_signal;
+ 104:../../../src/platform/micaZ/source/ulib.c **** }
+ 105:../../../src/platform/micaZ/source/ulib.c **** 
+ 106:../../../src/platform/micaZ/source/ulib.c **** #else
+ 107:../../../src/platform/micaZ/source/ulib.c **** 
+ 108:../../../src/platform/micaZ/source/ulib.c **** nrk_sig_t nrk_uart_rx_signal_get()
+ 109:../../../src/platform/micaZ/source/ulib.c **** {
+ 110:../../../src/platform/micaZ/source/ulib.c ****     return NRK_ERROR;
+ 111:../../../src/platform/micaZ/source/ulib.c **** }
+ 112:../../../src/platform/micaZ/source/ulib.c **** 
+ 113:../../../src/platform/micaZ/source/ulib.c **** 
+ 114:../../../src/platform/micaZ/source/ulib.c **** uint8_t nrk_uart_data_ready(uint8_t uart_num)
+ 115:../../../src/platform/micaZ/source/ulib.c **** {
+ 116:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==0)
+ 117:../../../src/platform/micaZ/source/ulib.c ****     {
+ 118:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR0A & BM(RXC0) ) return 1;
+ 119:../../../src/platform/micaZ/source/ulib.c ****     }
+ 120:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==1)
+ 121:../../../src/platform/micaZ/source/ulib.c ****     {
+ 122:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR1A & BM(RXC1) ) return 1;
+ 123:../../../src/platform/micaZ/source/ulib.c ****     }
+ 124:../../../src/platform/micaZ/source/ulib.c ****     return 0;
+ 125:../../../src/platform/micaZ/source/ulib.c **** }
+ 126:../../../src/platform/micaZ/source/ulib.c **** 
+ 127:../../../src/platform/micaZ/source/ulib.c **** char getc0(void)
+ 128:../../../src/platform/micaZ/source/ulib.c **** {
  125               	.LM0:
  126               	.LFBB1:
  127               	/* prologue: function */
  128               	/* frame size = 0 */
- 109:../../../src/platform/micaZ/source/ulib.c ****     return NRK_ERROR;
- 110:../../../src/platform/micaZ/source/ulib.c **** }
- 130               	.LM1:
- 131 0000 8FEF      		ldi r24,lo8(-1)
- 132               	/* epilogue start */
- 133 0002 0895      		ret
- 135               	.Lscope1:
- 137               		.stabd	78,0,0
- 140               	.global	nrk_uart_data_ready
- 142               	nrk_uart_data_ready:
- 143               		.stabd	46,0,0
- 111:../../../src/platform/micaZ/source/ulib.c **** 
- 112:../../../src/platform/micaZ/source/ulib.c **** 
- 113:../../../src/platform/micaZ/source/ulib.c **** uint8_t nrk_uart_data_ready(uint8_t uart_num)
- 114:../../../src/platform/micaZ/source/ulib.c **** {
- 145               	.LM2:
- 146               	.LFBB2:
- 147               	/* prologue: function */
- 148               	/* frame size = 0 */
- 115:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==0)
- 150               	.LM3:
- 151 0004 8823      		tst r24
- 152 0006 01F4      		brne .L4
- 116:../../../src/platform/micaZ/source/ulib.c ****     {
- 117:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR0A & BM(RXC0) ) return 1;
- 154               	.LM4:
- 155 0008 8BB1      		in r24,43-32
- 156 000a 881F      		rol r24
- 157 000c 8827      		clr r24
- 158 000e 881F      		rol r24
- 159 0010 0895      		ret
- 160               	.L4:
- 118:../../../src/platform/micaZ/source/ulib.c ****     }
- 119:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==1)
- 162               	.LM5:
- 163 0012 8130      		cpi r24,lo8(1)
- 164 0014 01F0      		breq .L7
- 165 0016 80E0      		ldi r24,lo8(0)
- 166 0018 0895      		ret
- 167               	.L7:
- 120:../../../src/platform/micaZ/source/ulib.c ****     {
- 121:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR1A & BM(RXC1) ) return 1;
- 169               	.LM6:
- 170 001a 8091 9B00 		lds r24,155
- 171 001e 881F      		rol r24
- 172 0020 8827      		clr r24
- 173 0022 881F      		rol r24
- 122:../../../src/platform/micaZ/source/ulib.c ****     }
- 123:../../../src/platform/micaZ/source/ulib.c ****     return 0;
- 124:../../../src/platform/micaZ/source/ulib.c **** }
+ 129               	/* stack size = 0 */
+ 130               	.L__stack_usage = 0
+ 131               	.L2:
+ 129:../../../src/platform/micaZ/source/ulib.c ****     unsigned char tmp;
+ 130:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_RECEIVE(tmp);
+ 133               	.LM1:
+ 134 0000 5F9B      		sbis 43-32,7
+ 135 0002 00C0      		rjmp .L2
+ 137               	.LM2:
+ 138 0004 5F98      		cbi 43-32,7
+ 139 0006 8CB1      		in r24,44-32
+ 140               	/* epilogue start */
+ 131:../../../src/platform/micaZ/source/ulib.c ****     return tmp;
+ 132:../../../src/platform/micaZ/source/ulib.c **** }
+ 142               	.LM3:
+ 143 0008 0895      		ret
+ 148               	.Lscope1:
+ 150               		.stabd	78,0,0
+ 153               	.global	putc0
+ 155               	putc0:
+ 156               		.stabd	46,0,0
+ 133:../../../src/platform/micaZ/source/ulib.c **** 
+ 134:../../../src/platform/micaZ/source/ulib.c **** #endif
+ 135:../../../src/platform/micaZ/source/ulib.c **** 
+ 136:../../../src/platform/micaZ/source/ulib.c **** void nrk_kprintf( const char *addr)
+ 137:../../../src/platform/micaZ/source/ulib.c **** {
+ 138:../../../src/platform/micaZ/source/ulib.c ****     char c;
+ 139:../../../src/platform/micaZ/source/ulib.c ****     while((c=pgm_read_byte(addr++)))
+ 140:../../../src/platform/micaZ/source/ulib.c ****         putchar(c);
+ 141:../../../src/platform/micaZ/source/ulib.c **** }
+ 142:../../../src/platform/micaZ/source/ulib.c **** 
+ 143:../../../src/platform/micaZ/source/ulib.c **** 
+ 144:../../../src/platform/micaZ/source/ulib.c **** void nrk_setup_ports()
+ 145:../../../src/platform/micaZ/source/ulib.c **** {
+ 146:../../../src/platform/micaZ/source/ulib.c ****     PORT_INIT();
+ 147:../../../src/platform/micaZ/source/ulib.c ****     SPI_INIT();
+ 148:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: switch off all LEDs
+ 149:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(0);
+ 150:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(1);
+ 151:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(2);
+ 152:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(3);
+ 153:../../../src/platform/micaZ/source/ulib.c **** }
+ 154:../../../src/platform/micaZ/source/ulib.c **** 
+ 155:../../../src/platform/micaZ/source/ulib.c **** 
+ 156:../../../src/platform/micaZ/source/ulib.c **** 
+ 157:../../../src/platform/micaZ/source/ulib.c **** 
+ 158:../../../src/platform/micaZ/source/ulib.c **** //---------------------------------------------------------------------------------------------
+ 159:../../../src/platform/micaZ/source/ulib.c **** // GPIO related definitions
+ 160:../../../src/platform/micaZ/source/ulib.c **** 
+ 161:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
+ 162:../../../src/platform/micaZ/source/ulib.c **** // Define nrk pins mappings to hardware pins and ports
+ 163:../../../src/platform/micaZ/source/ulib.c **** 
+ 164:../../../src/platform/micaZ/source/ulib.c **** 
+ 165:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
+ 166:../../../src/platform/micaZ/source/ulib.c **** // Port A
+ 167:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( LED_0, LED_0, NRK_PORTA )
+ 168:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( LED_1, LED_1, NRK_PORTA )
+ 169:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( LED_2, LED_2, NRK_PORTA )
+ 170:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( VREG_EN, VREG_EN, NRK_PORTA )
+ 171:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( RESET_N, RESET_N, NRK_PORTA )
+ 172:../../../src/platform/micaZ/source/ulib.c **** 
+ 173:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
+ 174:../../../src/platform/micaZ/source/ulib.c **** // Port B
+ 175:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( CSN, CSN, NRK_PORTB )
+ 176:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( SCK, SCK, NRK_PORTB )
+ 177:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( MOSI, MOSI, NRK_PORTB )
+ 178:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( MISO, MISO, NRK_PORTB )
+ 179:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( FIFO, FIFO, NRK_PORTB )
+ 180:../../../src/platform/micaZ/source/ulib.c **** 
+ 181:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
+ 182:../../../src/platform/micaZ/source/ulib.c **** // Port D
+ 183:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_RXD, UART1_RXD, NRK_PORTD )
+ 184:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_TXD, UART1_TXD, NRK_PORTD )
+ 185:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( SFD, SFD, NRK_PORTD )
+ 186:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_RTS, UART1_RTS, NRK_PORTD )
+ 187:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( CCA, CCA, NRK_PORTD )
+ 188:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_CTS, UART1_CTS, NRK_PORTD )
+ 189:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
+ 190:../../../src/platform/micaZ/source/ulib.c **** // Port E
+ 191:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART0_RXD, UART0_RXD, NRK_PORTE )
+ 192:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART0_TXD, UART0_TXD, NRK_PORTE )
+ 193:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( FIFOP, FIFOP, NRK_PORTE )
+ 194:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
+ 195:../../../src/platform/micaZ/source/ulib.c **** // Port F
+ 196:../../../src/platform/micaZ/source/ulib.c **** // ADC inputs
+ 197:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_0, ADC_INPUT_0, NRK_PORTF )
+ 198:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_1, ADC_INPUT_1, NRK_PORTF )
+ 199:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_2, ADC_INPUT_2, NRK_PORTF )
+ 200:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_3, ADC_INPUT_3, NRK_PORTF )
+ 201:../../../src/platform/micaZ/source/ulib.c **** 
+ 202:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_6, 6, NRK_PORTF )
+ 203:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_7, 7, NRK_PORTF )
+ 204:../../../src/platform/micaZ/source/ulib.c **** 
+ 205:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( DEBUG_0, DEBUG_0, NRK_PORTC )
+ 206:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( DEBUG_1, DEBUG_1, NRK_PORTC )
+ 207:../../../src/platform/micaZ/source/ulib.c **** 
+ 208:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( DEBUG_2 )
+ 209:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( DEBUG_3 )
+ 210:../../../src/platform/micaZ/source/ulib.c **** 
+ 211:../../../src/platform/micaZ/source/ulib.c **** // pins that do not exist in this platform
+ 212:../../../src/platform/micaZ/source/ulib.c **** //NRK_INVALID_PIN( DEBUG_0 )
+ 213:../../../src/platform/micaZ/source/ulib.c **** //NRK_INVALID_PIN( DEBUG_1 )
+ 214:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( LED_3 )
+ 215:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( BLED )
+ 216:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( SPI_SS )
+ 217:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( GPIO26 )
+ 218:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( GPIO28 )
+ 219:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( GPIO34 )
+ 220:../../../src/platform/micaZ/source/ulib.c **** 
+ 221:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
+ 222:../../../src/platform/micaZ/source/ulib.c **** // GPIO handling functions
+ 223:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_set(uint8_t pin)
+ 224:../../../src/platform/micaZ/source/ulib.c **** {
+ 225:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability optimization
+ 226:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
+ 227:../../../src/platform/micaZ/source/ulib.c **** 
+ 228:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 229:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 230:../../../src/platform/micaZ/source/ulib.c ****     {
+ 231:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA |= bitvalue;
+ 232:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 233:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB |= bitvalue;
+ 234:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 235:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC |= bitvalue;
+ 236:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 237:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD |= bitvalue;
+ 238:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 239:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE |= bitvalue;
+ 240:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 241:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF |= bitvalue;
+ 242:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 243:../../../src/platform/micaZ/source/ulib.c ****         default:
+ 244:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 245:../../../src/platform/micaZ/source/ulib.c ****     }
+ 246:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 247:../../../src/platform/micaZ/source/ulib.c **** }
+ 248:../../../src/platform/micaZ/source/ulib.c **** 
+ 249:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_clr(uint8_t pin)
+ 250:../../../src/platform/micaZ/source/ulib.c **** {
+ 251:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability optimization
+ 252:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = ~BM((pin & 0xF8) >> 3);
+ 253:../../../src/platform/micaZ/source/ulib.c **** 
+ 254:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 255:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 256:../../../src/platform/micaZ/source/ulib.c ****     {
+ 257:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA &= bitvalue;
+ 258:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 259:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB &= bitvalue;
+ 260:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 261:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC &= bitvalue;
+ 262:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 263:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD &= bitvalue;
+ 264:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 265:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE &= bitvalue;
+ 266:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 267:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF &= bitvalue;
+ 268:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 269:../../../src/platform/micaZ/source/ulib.c ****         default:
+ 270:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 271:../../../src/platform/micaZ/source/ulib.c ****     }
+ 272:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 273:../../../src/platform/micaZ/source/ulib.c **** }
+ 274:../../../src/platform/micaZ/source/ulib.c **** 
+ 275:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_get(uint8_t pin)
+ 276:../../../src/platform/micaZ/source/ulib.c **** {
+ 277:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 278:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 279:../../../src/platform/micaZ/source/ulib.c ****     {
+ 280:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA:
+ 281:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINA & BM((pin & 0xF8) >> 3));
+ 282:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB:
+ 283:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINB & BM((pin & 0xF8) >> 3));
+ 284:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC:
+ 285:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINC & BM((pin & 0xF8) >> 3));
+ 286:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD:
+ 287:../../../src/platform/micaZ/source/ulib.c ****             return !!(PIND & BM((pin & 0xF8) >> 3));
+ 288:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE:
+ 289:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINE & BM((pin & 0xF8) >> 3));
+ 290:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF:
+ 291:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINF & BM((pin & 0xF8) >> 3));
+ 292:../../../src/platform/micaZ/source/ulib.c ****         default:
+ 293:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 294:../../../src/platform/micaZ/source/ulib.c ****     }
+ 295:../../../src/platform/micaZ/source/ulib.c ****     return -1;
+ 296:../../../src/platform/micaZ/source/ulib.c **** }
+ 297:../../../src/platform/micaZ/source/ulib.c **** 
+ 298:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_pullups(uint8_t enable)
+ 299:../../../src/platform/micaZ/source/ulib.c **** {
+ 300:../../../src/platform/micaZ/source/ulib.c ****     if(enable) SFIOR &= ~BM(PUD);
+ 301:../../../src/platform/micaZ/source/ulib.c ****     else SFIOR |= BM(PUD);
+ 302:../../../src/platform/micaZ/source/ulib.c ****     return NRK_OK;
+ 303:../../../src/platform/micaZ/source/ulib.c **** }
+ 304:../../../src/platform/micaZ/source/ulib.c **** 
+ 305:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_toggle(uint8_t pin)
+ 306:../../../src/platform/micaZ/source/ulib.c **** {
+ 307:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability and execution time optimization
+ 308:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
+ 309:../../../src/platform/micaZ/source/ulib.c **** 
+ 310:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 311:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 312:../../../src/platform/micaZ/source/ulib.c ****     {
+ 313:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA ^= bitvalue;
+ 314:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 315:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB ^= bitvalue;
+ 316:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 317:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC ^= bitvalue;
+ 318:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 319:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD ^= bitvalue;
+ 320:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 321:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE ^= bitvalue;
+ 322:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 323:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF ^= bitvalue;
+ 324:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 325:../../../src/platform/micaZ/source/ulib.c ****         default:
+ 326:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 327:../../../src/platform/micaZ/source/ulib.c ****     }
+ 328:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 329:../../../src/platform/micaZ/source/ulib.c **** }
+ 330:../../../src/platform/micaZ/source/ulib.c **** 
+ 331:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_direction(uint8_t pin, uint8_t pin_direction)
+ 332:../../../src/platform/micaZ/source/ulib.c **** {
+ 333:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability and program space optimization
+ 334:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
+ 335:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue_inv = ~BM((pin & 0xF8) >> 3);
+ 336:../../../src/platform/micaZ/source/ulib.c **** 
+ 337:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 338:../../../src/platform/micaZ/source/ulib.c ****     if (pin_direction == NRK_PIN_INPUT)
+ 339:../../../src/platform/micaZ/source/ulib.c ****     {
+ 340:../../../src/platform/micaZ/source/ulib.c ****         switch (pin & 0x07)
+ 341:../../../src/platform/micaZ/source/ulib.c ****         {
+ 342:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA:
+ 343:../../../src/platform/micaZ/source/ulib.c ****             DDRA &= bitvalue_inv;
+ 344:../../../src/platform/micaZ/source/ulib.c ****             PORTA |= bitvalue;
+ 345:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 346:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB:
+ 347:../../../src/platform/micaZ/source/ulib.c ****             DDRB &= bitvalue_inv;
+ 348:../../../src/platform/micaZ/source/ulib.c ****             PORTB |= bitvalue;
+ 349:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 350:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC:
+ 351:../../../src/platform/micaZ/source/ulib.c ****             DDRC &= bitvalue_inv;
+ 352:../../../src/platform/micaZ/source/ulib.c ****             PORTC |= bitvalue;
+ 353:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 354:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD:
+ 355:../../../src/platform/micaZ/source/ulib.c ****             DDRD &= bitvalue_inv;
+ 356:../../../src/platform/micaZ/source/ulib.c ****             PORTD |= bitvalue;
+ 357:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 358:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE:
+ 359:../../../src/platform/micaZ/source/ulib.c ****             DDRE &= bitvalue_inv;
+ 360:../../../src/platform/micaZ/source/ulib.c ****             PORTE |= bitvalue;
+ 361:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 362:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF:
+ 363:../../../src/platform/micaZ/source/ulib.c ****             DDRF &= bitvalue_inv;
+ 364:../../../src/platform/micaZ/source/ulib.c ****             PORTF |= bitvalue;
+ 365:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 366:../../../src/platform/micaZ/source/ulib.c ****         default:
+ 367:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 368:../../../src/platform/micaZ/source/ulib.c ****         }
+ 369:../../../src/platform/micaZ/source/ulib.c ****     }
+ 370:../../../src/platform/micaZ/source/ulib.c ****     else
+ 371:../../../src/platform/micaZ/source/ulib.c ****     {
+ 372:../../../src/platform/micaZ/source/ulib.c ****         switch (pin & 0x07)
+ 373:../../../src/platform/micaZ/source/ulib.c ****         {
+ 374:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA:
+ 375:../../../src/platform/micaZ/source/ulib.c ****             DDRA |= bitvalue;
+ 376:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 377:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB:
+ 378:../../../src/platform/micaZ/source/ulib.c ****             DDRB |= bitvalue;
+ 379:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 380:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC:
+ 381:../../../src/platform/micaZ/source/ulib.c ****             DDRC |= bitvalue;
+ 382:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 383:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD:
+ 384:../../../src/platform/micaZ/source/ulib.c ****             DDRD |= bitvalue;
+ 385:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 386:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE:
+ 387:../../../src/platform/micaZ/source/ulib.c ****             DDRE |= bitvalue;
+ 388:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 389:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF:
+ 390:../../../src/platform/micaZ/source/ulib.c ****             DDRF |= bitvalue;
+ 391:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 392:../../../src/platform/micaZ/source/ulib.c ****         default:
+ 393:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 394:../../../src/platform/micaZ/source/ulib.c ****         }
+ 395:../../../src/platform/micaZ/source/ulib.c ****     }
+ 396:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 397:../../../src/platform/micaZ/source/ulib.c **** }
+ 398:../../../src/platform/micaZ/source/ulib.c **** 
+ 399:../../../src/platform/micaZ/source/ulib.c **** 
+ 400:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_get_button(uint8_t b)
+ 401:../../../src/platform/micaZ/source/ulib.c **** {
+ 402:../../../src/platform/micaZ/source/ulib.c ****     return NRK_ERROR;
+ 403:../../../src/platform/micaZ/source/ulib.c **** }
+ 404:../../../src/platform/micaZ/source/ulib.c **** 
+ 405:../../../src/platform/micaZ/source/ulib.c **** 
+ 406:../../../src/platform/micaZ/source/ulib.c **** 
+ 407:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_led_toggle( int led )
+ 408:../../../src/platform/micaZ/source/ulib.c **** {
+ 409:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Execution time optimization
+ 410:../../../src/platform/micaZ/source/ulib.c **** 
+ 411:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_toggle(NRK_LED_0);
+ 412:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_toggle(NRK_LED_1);
+ 413:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_toggle(NRK_LED_2);
+ 414:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
+ 415:../../../src/platform/micaZ/source/ulib.c **** 
+ 416:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 417:../../../src/platform/micaZ/source/ulib.c **** }
+ 418:../../../src/platform/micaZ/source/ulib.c **** 
+ 419:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_led_clr( int led )
+ 420:../../../src/platform/micaZ/source/ulib.c **** {
+ 421:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Execution time optimization
+ 422:../../../src/platform/micaZ/source/ulib.c **** 
+ 423:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_set(NRK_LED_0);
+ 424:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_set(NRK_LED_1);
+ 425:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_set(NRK_LED_2);
+ 426:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
+ 427:../../../src/platform/micaZ/source/ulib.c **** 
+ 428:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 429:../../../src/platform/micaZ/source/ulib.c **** }
+ 430:../../../src/platform/micaZ/source/ulib.c **** 
+ 431:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_led_set( int led )
+ 432:../../../src/platform/micaZ/source/ulib.c **** {
+ 433:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Execution time optimization
+ 434:../../../src/platform/micaZ/source/ulib.c **** 
+ 435:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_clr(NRK_LED_0);
+ 436:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_clr(NRK_LED_1);
+ 437:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_clr(NRK_LED_2);
+ 438:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
+ 439:../../../src/platform/micaZ/source/ulib.c **** 
+ 440:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 441:../../../src/platform/micaZ/source/ulib.c **** }
+ 442:../../../src/platform/micaZ/source/ulib.c **** /*
+ 443:../../../src/platform/micaZ/source/ulib.c **** void IO_SET_E(uint8_t pin)
+ 444:../../../src/platform/micaZ/source/ulib.c **** {
+ 445:../../../src/platform/micaZ/source/ulib.c **** PORTE |= BM(pin);
+ 446:../../../src/platform/micaZ/source/ulib.c **** }
+ 447:../../../src/platform/micaZ/source/ulib.c **** 
+ 448:../../../src/platform/micaZ/source/ulib.c **** void IO_CLR_E(uint8_t pin)
+ 449:../../../src/platform/micaZ/source/ulib.c **** {
+ 450:../../../src/platform/micaZ/source/ulib.c **** PORTE &= ~BM(pin);
+ 451:../../../src/platform/micaZ/source/ulib.c **** }
+ 452:../../../src/platform/micaZ/source/ulib.c **** 
+ 453:../../../src/platform/micaZ/source/ulib.c **** void IO_SET_F(uint8_t pin)
+ 454:../../../src/platform/micaZ/source/ulib.c **** {
+ 455:../../../src/platform/micaZ/source/ulib.c **** PORTF |= BM(pin);
+ 456:../../../src/platform/micaZ/source/ulib.c **** }
+ 457:../../../src/platform/micaZ/source/ulib.c **** 
+ 458:../../../src/platform/micaZ/source/ulib.c **** void IO_CLR_F(uint8_t pin)
+ 459:../../../src/platform/micaZ/source/ulib.c **** {
+ 460:../../../src/platform/micaZ/source/ulib.c **** PORTF &= ~BM(pin);
+ 461:../../../src/platform/micaZ/source/ulib.c **** }
+ 462:../../../src/platform/micaZ/source/ulib.c **** */
+ 463:../../../src/platform/micaZ/source/ulib.c **** 
+ 464:../../../src/platform/micaZ/source/ulib.c **** void putc0(char x)
+ 465:../../../src/platform/micaZ/source/ulib.c **** {
+ 158               	.LM4:
+ 159               	.LFBB2:
+ 160               	/* prologue: function */
+ 161               	/* frame size = 0 */
+ 162               	/* stack size = 0 */
+ 163               	.L__stack_usage = 0
+ 164               	.L5:
+ 466:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_SEND(x);
+ 166               	.LM5:
+ 167 000a 5D9B      		sbis 43-32,5
+ 168 000c 00C0      		rjmp .L5
+ 170               	.LM6:
+ 171 000e 5D98      		cbi 43-32,5
+ 172 0010 8CB9      		out 44-32,r24
+ 173               	/* epilogue start */
+ 467:../../../src/platform/micaZ/source/ulib.c **** }
  175               	.LM7:
- 176 0024 0895      		ret
+ 176 0012 0895      		ret
  178               	.Lscope2:
  180               		.stabd	78,0,0
- 182               	.global	getc0
- 184               	getc0:
+ 182               	.global	nrk_uart_rx_signal_get
+ 184               	nrk_uart_rx_signal_get:
  185               		.stabd	46,0,0
- 125:../../../src/platform/micaZ/source/ulib.c **** 
- 126:../../../src/platform/micaZ/source/ulib.c **** char getc0(void)
- 127:../../../src/platform/micaZ/source/ulib.c **** {
+ 109:../../../src/platform/micaZ/source/ulib.c **** {
  187               	.LM8:
  188               	.LFBB3:
  189               	/* prologue: function */
  190               	/* frame size = 0 */
- 191               	.L11:
- 128:../../../src/platform/micaZ/source/ulib.c ****     unsigned char tmp;
- 129:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_RECEIVE(tmp);
- 193               	.LM9:
- 194 0026 5F9B      		sbis 43-32,7
- 195 0028 00C0      		rjmp .L11
- 196 002a 5F98      		cbi 43-32,7
- 197 002c 8CB1      		in r24,44-32
- 198               	/* epilogue start */
- 130:../../../src/platform/micaZ/source/ulib.c ****     return tmp;
- 131:../../../src/platform/micaZ/source/ulib.c **** }
- 200               	.LM10:
- 201 002e 0895      		ret
- 206               	.Lscope3:
- 208               		.stabd	78,0,0
- 211               	.global	nrk_gpio_set
- 213               	nrk_gpio_set:
- 214               		.stabd	46,0,0
- 132:../../../src/platform/micaZ/source/ulib.c **** 
- 133:../../../src/platform/micaZ/source/ulib.c **** #endif
- 134:../../../src/platform/micaZ/source/ulib.c **** 
- 135:../../../src/platform/micaZ/source/ulib.c **** void nrk_kprintf( const char *addr)
- 136:../../../src/platform/micaZ/source/ulib.c **** {
- 137:../../../src/platform/micaZ/source/ulib.c ****     char c;
- 138:../../../src/platform/micaZ/source/ulib.c ****     while((c=pgm_read_byte(addr++)))
- 139:../../../src/platform/micaZ/source/ulib.c ****         putchar(c);
- 140:../../../src/platform/micaZ/source/ulib.c **** }
- 141:../../../src/platform/micaZ/source/ulib.c **** 
- 142:../../../src/platform/micaZ/source/ulib.c **** 
- 143:../../../src/platform/micaZ/source/ulib.c **** void nrk_setup_ports()
- 144:../../../src/platform/micaZ/source/ulib.c **** {
- 145:../../../src/platform/micaZ/source/ulib.c ****     PORT_INIT();
- 146:../../../src/platform/micaZ/source/ulib.c ****     SPI_INIT();
- 147:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: switch off all LEDs
- 148:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(0);
- 149:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(1);
- 150:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(2);
- 151:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(3);
- 152:../../../src/platform/micaZ/source/ulib.c **** }
- 153:../../../src/platform/micaZ/source/ulib.c **** 
- 154:../../../src/platform/micaZ/source/ulib.c **** 
- 155:../../../src/platform/micaZ/source/ulib.c **** 
- 156:../../../src/platform/micaZ/source/ulib.c **** 
- 157:../../../src/platform/micaZ/source/ulib.c **** //---------------------------------------------------------------------------------------------
- 158:../../../src/platform/micaZ/source/ulib.c **** // GPIO related definitions
- 159:../../../src/platform/micaZ/source/ulib.c **** 
- 160:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
- 161:../../../src/platform/micaZ/source/ulib.c **** // Define nrk pins mappings to hardware pins and ports
- 162:../../../src/platform/micaZ/source/ulib.c **** 
- 163:../../../src/platform/micaZ/source/ulib.c **** 
- 164:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
- 165:../../../src/platform/micaZ/source/ulib.c **** // Port A
- 166:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( LED_0, LED_0, NRK_PORTA )
- 167:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( LED_1, LED_1, NRK_PORTA )
- 168:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( LED_2, LED_2, NRK_PORTA )
- 169:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( VREG_EN, VREG_EN, NRK_PORTA )
- 170:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( RESET_N, RESET_N, NRK_PORTA )
- 171:../../../src/platform/micaZ/source/ulib.c **** 
- 172:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
- 173:../../../src/platform/micaZ/source/ulib.c **** // Port B
- 174:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( CSN, CSN, NRK_PORTB )
- 175:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( SCK, SCK, NRK_PORTB )
- 176:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( MOSI, MOSI, NRK_PORTB )
- 177:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( MISO, MISO, NRK_PORTB )
- 178:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( FIFO, FIFO, NRK_PORTB )
- 179:../../../src/platform/micaZ/source/ulib.c **** 
- 180:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
- 181:../../../src/platform/micaZ/source/ulib.c **** // Port D
- 182:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_RXD, UART1_RXD, NRK_PORTD )
- 183:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_TXD, UART1_TXD, NRK_PORTD )
- 184:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( SFD, SFD, NRK_PORTD )
- 185:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_RTS, UART1_RTS, NRK_PORTD )
- 186:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( CCA, CCA, NRK_PORTD )
- 187:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART1_CTS, UART1_CTS, NRK_PORTD )
- 188:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
- 189:../../../src/platform/micaZ/source/ulib.c **** // Port E
- 190:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART0_RXD, UART0_RXD, NRK_PORTE )
- 191:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( UART0_TXD, UART0_TXD, NRK_PORTE )
- 192:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( FIFOP, FIFOP, NRK_PORTE )
- 193:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
- 194:../../../src/platform/micaZ/source/ulib.c **** // Port F
- 195:../../../src/platform/micaZ/source/ulib.c **** // ADC inputs
- 196:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_0, ADC_INPUT_0, NRK_PORTF )
- 197:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_1, ADC_INPUT_1, NRK_PORTF )
- 198:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_2, ADC_INPUT_2, NRK_PORTF )
- 199:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_3, ADC_INPUT_3, NRK_PORTF )
- 200:../../../src/platform/micaZ/source/ulib.c **** 
- 201:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_6, 6, NRK_PORTF )
- 202:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( ADC_INPUT_7, 7, NRK_PORTF )
- 203:../../../src/platform/micaZ/source/ulib.c **** 
- 204:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( DEBUG_0, DEBUG_0, NRK_PORTC )
- 205:../../../src/platform/micaZ/source/ulib.c **** NRK_PIN( DEBUG_1, DEBUG_1, NRK_PORTC )
- 206:../../../src/platform/micaZ/source/ulib.c **** 
- 207:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( DEBUG_2 )
- 208:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( DEBUG_3 )
- 209:../../../src/platform/micaZ/source/ulib.c **** 
- 210:../../../src/platform/micaZ/source/ulib.c **** // pins that do not exist in this platform
- 211:../../../src/platform/micaZ/source/ulib.c **** //NRK_INVALID_PIN( DEBUG_0 )
- 212:../../../src/platform/micaZ/source/ulib.c **** //NRK_INVALID_PIN( DEBUG_1 )
- 213:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( LED_3 )
- 214:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( BLED )
- 215:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( SPI_SS )
- 216:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( GPIO26 )
- 217:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( GPIO28 )
- 218:../../../src/platform/micaZ/source/ulib.c **** NRK_INVALID_PIN( GPIO34 )
- 219:../../../src/platform/micaZ/source/ulib.c **** 
- 220:../../../src/platform/micaZ/source/ulib.c **** //-------------------------------
- 221:../../../src/platform/micaZ/source/ulib.c **** // GPIO handling functions
- 222:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_set(uint8_t pin)
- 223:../../../src/platform/micaZ/source/ulib.c **** {
+ 191               	/* stack size = 0 */
+ 192               	.L__stack_usage = 0
+ 111:../../../src/platform/micaZ/source/ulib.c **** }
+ 194               	.LM9:
+ 195 0014 8FEF      		ldi r24,lo8(-1)
+ 196               	/* epilogue start */
+ 197 0016 0895      		ret
+ 199               	.Lscope3:
+ 201               		.stabd	78,0,0
+ 204               	.global	nrk_uart_data_ready
+ 206               	nrk_uart_data_ready:
+ 207               		.stabd	46,0,0
+ 115:../../../src/platform/micaZ/source/ulib.c **** {
+ 209               	.LM10:
+ 210               	.LFBB4:
+ 211               	/* prologue: function */
+ 212               	/* frame size = 0 */
+ 213               	/* stack size = 0 */
+ 214               	.L__stack_usage = 0
+ 116:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==0)
  216               	.LM11:
- 217               	.LFBB4:
- 218               	/* prologue: function */
- 219               	/* frame size = 0 */
- 220 0030 382F      		mov r19,r24
- 224:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability optimization
- 225:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
- 226:../../../src/platform/micaZ/source/ulib.c **** 
- 227:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
- 222               	.LM12:
- 223 0032 8F3F      		cpi r24,lo8(-1)
- 224 0034 01F4      		brne .+2
- 225 0036 00C0      		rjmp .L15
+ 217 0018 8823      		tst r24
+ 218 001a 01F4      		brne .L9
+ 118:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR0A & BM(RXC0) ) return 1;
+ 220               	.LM12:
+ 221 001c 8BB1      		in r24,43-32
+ 222 001e 00C0      		rjmp .L12
+ 223               	.L9:
+ 120:../../../src/platform/micaZ/source/ulib.c ****     if(uart_num==1)
+ 225               	.LM13:
+ 226 0020 8130      		cpi r24,lo8(1)
+ 227 0022 01F4      		brne .L11
+ 122:../../../src/platform/micaZ/source/ulib.c ****         if( UCSR1A & BM(RXC1) ) return 1;
+ 229               	.LM14:
+ 230 0024 8091 9B00 		lds r24,155
+ 231               	.L12:
+ 114:../../../src/platform/micaZ/source/ulib.c **** uint8_t nrk_uart_data_ready(uint8_t uart_num)
+ 233               	.LM15:
+ 234 0028 881F      		rol r24
+ 235 002a 8827      		clr r24
+ 236 002c 881F      		rol r24
+ 237 002e 0895      		ret
+ 238               	.L11:
+ 124:../../../src/platform/micaZ/source/ulib.c ****     return 0;
+ 240               	.LM16:
+ 241 0030 80E0      		ldi r24,lo8(0)
+ 125:../../../src/platform/micaZ/source/ulib.c **** }
+ 243               	.LM17:
+ 244 0032 0895      		ret
+ 246               	.Lscope4:
+ 248               		.stabd	78,0,0
+ 251               	.global	nrk_kprintf
+ 253               	nrk_kprintf:
+ 254               		.stabd	46,0,0
+ 137:../../../src/platform/micaZ/source/ulib.c **** {
+ 256               	.LM18:
+ 257               	.LFBB5:
+ 258 0034 CF93      		push r28
+ 259 0036 DF93      		push r29
+ 260               	/* prologue: function */
+ 261               	/* frame size = 0 */
+ 262               	/* stack size = 2 */
+ 263               	.L__stack_usage = 2
+ 264 0038 EC01      		movw r28,r24
+ 139:../../../src/platform/micaZ/source/ulib.c ****     while((c=pgm_read_byte(addr++)))
+ 266               	.LM19:
+ 267 003a 00C0      		rjmp .L14
+ 268               	.L15:
+ 140:../../../src/platform/micaZ/source/ulib.c ****         putchar(c);
+ 270               	.LM20:
+ 271 003c 6091 0000 		lds r22,__iob+2
+ 272 0040 7091 0000 		lds r23,__iob+2+1
+ 273 0044 90E0      		ldi r25,lo8(0)
+ 274 0046 0E94 0000 		call fputc
+ 275               	.L14:
+ 140:../../../src/platform/micaZ/source/ulib.c ****         putchar(c);
+ 277               	.LM21:
+ 278 004a FE01      		movw r30,r28
+ 279               	.LBB2:
+ 139:../../../src/platform/micaZ/source/ulib.c ****     while((c=pgm_read_byte(addr++)))
+ 281               	.LM22:
+ 282 004c 2196      		adiw r28,1
+ 283               	/* #APP */
+ 284               	 ;  139 "../../../src/platform/micaZ/source/ulib.c" 1
+ 285 004e 8491      		lpm r24, Z
+ 286               		
+ 287               	 ;  0 "" 2
+ 288               	/* #NOAPP */
+ 289               	.LBE2:
+ 290 0050 8823      		tst r24
+ 291 0052 01F4      		brne .L15
+ 292               	/* epilogue start */
+ 141:../../../src/platform/micaZ/source/ulib.c **** }
+ 294               	.LM23:
+ 295 0054 DF91      		pop r29
+ 296 0056 CF91      		pop r28
+ 297 0058 0895      		ret
+ 302               	.Lscope5:
+ 304               		.stabd	78,0,0
+ 307               	.global	nrk_gpio_set
+ 309               	nrk_gpio_set:
+ 310               		.stabd	46,0,0
+ 224:../../../src/platform/micaZ/source/ulib.c **** {
+ 312               	.LM24:
+ 313               	.LFBB6:
+ 314               	/* prologue: function */
+ 315               	/* frame size = 0 */
+ 316               	/* stack size = 0 */
+ 317               	.L__stack_usage = 0
+ 228:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 319               	.LM25:
+ 320 005a 8F3F      		cpi r24,lo8(-1)
+ 321 005c 01F4      		brne .+2
+ 322 005e 00C0      		rjmp .L25
  226:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
- 227               	.LM13:
- 228 0038 282F      		mov r18,r24
- 229 003a 2695      		lsr r18
- 230 003c 2695      		lsr r18
- 231 003e 2695      		lsr r18
- 232 0040 81E0      		ldi r24,lo8(1)
- 233 0042 90E0      		ldi r25,hi8(1)
- 234 0044 00C0      		rjmp 2f
- 235 0046 880F      	1:	lsl r24
- 236 0048 991F      		rol r25
- 237 004a 2A95      	2:	dec r18
- 238 004c 02F4      		brpl 1b
- 239 004e 982F      		mov r25,r24
- 228:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
- 241               	.LM14:
- 242 0050 232F      		mov r18,r19
- 243 0052 30E0      		ldi r19,lo8(0)
- 244 0054 2770      		andi r18,lo8(7)
- 245 0056 3070      		andi r19,hi8(7)
- 246 0058 2230      		cpi r18,2
- 247 005a 3105      		cpc r19,__zero_reg__
- 248 005c 01F0      		breq .L18
- 249 005e 2330      		cpi r18,3
- 250 0060 3105      		cpc r19,__zero_reg__
- 251 0062 04F4      		brge .L22
- 252 0064 2115      		cp r18,__zero_reg__
- 253 0066 3105      		cpc r19,__zero_reg__
- 254 0068 01F0      		breq .L16
- 255 006a 2130      		cpi r18,1
- 256 006c 3105      		cpc r19,__zero_reg__
- 257 006e 01F4      		brne .L15
- 258 0070 00C0      		rjmp .L26
- 259               	.L22:
- 260 0072 2430      		cpi r18,4
- 261 0074 3105      		cpc r19,__zero_reg__
- 262 0076 01F0      		breq .L20
- 263 0078 2430      		cpi r18,4
- 264 007a 3105      		cpc r19,__zero_reg__
- 265 007c 04F0      		brlt .L19
- 266 007e 2530      		cpi r18,5
- 267 0080 3105      		cpc r19,__zero_reg__
- 268 0082 01F4      		brne .L15
- 269 0084 00C0      		rjmp .L27
- 270               	.L16:
- 229:../../../src/platform/micaZ/source/ulib.c ****     {
- 230:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA |= bitvalue;
- 272               	.LM15:
- 273 0086 8BB3      		in r24,59-32
- 274 0088 982B      		or r25,r24
- 275 008a 9BBB      		out 59-32,r25
- 276 008c 00C0      		rjmp .L25
- 277               	.L26:
- 231:../../../src/platform/micaZ/source/ulib.c ****             break;
- 232:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB |= bitvalue;
- 279               	.LM16:
- 280 008e 88B3      		in r24,56-32
- 281 0090 982B      		or r25,r24
- 282 0092 98BB      		out 56-32,r25
- 283 0094 00C0      		rjmp .L25
- 284               	.L18:
- 233:../../../src/platform/micaZ/source/ulib.c ****             break;
- 234:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC |= bitvalue;
- 286               	.LM17:
- 287 0096 85B3      		in r24,53-32
- 288 0098 982B      		or r25,r24
- 289 009a 95BB      		out 53-32,r25
- 290 009c 00C0      		rjmp .L25
- 291               	.L19:
- 235:../../../src/platform/micaZ/source/ulib.c ****             break;
- 236:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD |= bitvalue;
- 293               	.LM18:
- 294 009e 82B3      		in r24,50-32
- 295 00a0 982B      		or r25,r24
- 296 00a2 92BB      		out 50-32,r25
- 297 00a4 00C0      		rjmp .L25
- 298               	.L20:
- 237:../../../src/platform/micaZ/source/ulib.c ****             break;
- 238:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE |= bitvalue;
- 300               	.LM19:
- 301 00a6 83B1      		in r24,35-32
- 302 00a8 982B      		or r25,r24
- 303 00aa 93B9      		out 35-32,r25
- 304 00ac 00C0      		rjmp .L25
- 305               	.L27:
- 239:../../../src/platform/micaZ/source/ulib.c ****             break;
- 240:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF |= bitvalue;
- 307               	.LM20:
- 308 00ae 8091 6200 		lds r24,98
- 309 00b2 982B      		or r25,r24
- 310 00b4 9093 6200 		sts 98,r25
- 311               	.L25:
- 312 00b8 81E0      		ldi r24,lo8(1)
- 313 00ba 0895      		ret
- 314               	.L15:
- 241:../../../src/platform/micaZ/source/ulib.c ****             break;
- 316               	.LM21:
- 317 00bc 8FEF      		ldi r24,lo8(-1)
- 242:../../../src/platform/micaZ/source/ulib.c ****         default:
- 243:../../../src/platform/micaZ/source/ulib.c ****             return -1;
- 244:../../../src/platform/micaZ/source/ulib.c ****     }
- 245:../../../src/platform/micaZ/source/ulib.c ****     return 1;
- 246:../../../src/platform/micaZ/source/ulib.c **** }
- 319               	.LM22:
- 320 00be 0895      		ret
- 325               	.Lscope4:
- 327               		.stabd	78,0,0
- 330               	.global	nrk_gpio_clr
- 332               	nrk_gpio_clr:
- 333               		.stabd	46,0,0
- 247:../../../src/platform/micaZ/source/ulib.c **** 
- 248:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_clr(uint8_t pin)
- 249:../../../src/platform/micaZ/source/ulib.c **** {
- 335               	.LM23:
- 336               	.LFBB5:
- 337               	/* prologue: function */
- 338               	/* frame size = 0 */
- 339 00c0 382F      		mov r19,r24
- 250:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability optimization
- 251:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = ~BM((pin & 0xF8) >> 3);
- 252:../../../src/platform/micaZ/source/ulib.c **** 
- 253:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
- 341               	.LM24:
- 342 00c2 8F3F      		cpi r24,lo8(-1)
- 343 00c4 01F4      		brne .+2
- 344 00c6 00C0      		rjmp .L29
+ 324               	.LM26:
+ 325 0060 982F      		mov r25,r24
+ 326 0062 9695      		lsr r25
+ 327 0064 9695      		lsr r25
+ 328 0066 9695      		lsr r25
+ 329 0068 21E0      		ldi r18,lo8(1)
+ 330 006a 30E0      		ldi r19,hi8(1)
+ 331 006c 00C0      		rjmp 2f
+ 332 006e 220F      	1:	lsl r18
+ 333 0070 331F      		rol r19
+ 334 0072 9A95      	2:	dec r25
+ 335 0074 02F4      		brpl 1b
+ 229:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 337               	.LM27:
+ 338 0076 90E0      		ldi r25,lo8(0)
+ 339 0078 8770      		andi r24,lo8(7)
+ 340 007a 9070      		andi r25,hi8(7)
+ 341 007c 8230      		cpi r24,2
+ 342 007e 9105      		cpc r25,__zero_reg__
+ 343 0080 01F0      		breq .L20
+ 344 0082 8330      		cpi r24,3
+ 345 0084 9105      		cpc r25,__zero_reg__
+ 346 0086 04F4      		brge .L24
+ 347 0088 0097      		sbiw r24,0
+ 348 008a 01F0      		breq .L18
+ 349 008c 8130      		cpi r24,1
+ 350 008e 9105      		cpc r25,__zero_reg__
+ 351 0090 01F4      		brne .L26
+ 352 0092 00C0      		rjmp .L29
+ 353               	.L24:
+ 354 0094 8430      		cpi r24,4
+ 355 0096 9105      		cpc r25,__zero_reg__
+ 356 0098 01F0      		breq .L22
+ 357 009a 8430      		cpi r24,4
+ 358 009c 9105      		cpc r25,__zero_reg__
+ 359 009e 04F0      		brlt .L21
+ 360 00a0 8530      		cpi r24,5
+ 361 00a2 9105      		cpc r25,__zero_reg__
+ 362 00a4 01F4      		brne .L26
+ 363 00a6 00C0      		rjmp .L30
+ 364               	.L18:
+ 231:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA |= bitvalue;
+ 366               	.LM28:
+ 367 00a8 8BB3      		in r24,59-32
+ 368 00aa 822B      		or r24,r18
+ 369 00ac 8BBB      		out 59-32,r24
+ 370 00ae 00C0      		rjmp .L28
+ 371               	.L29:
+ 233:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB |= bitvalue;
+ 373               	.LM29:
+ 374 00b0 88B3      		in r24,56-32
+ 375 00b2 822B      		or r24,r18
+ 376 00b4 88BB      		out 56-32,r24
+ 377 00b6 00C0      		rjmp .L28
+ 378               	.L20:
+ 235:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC |= bitvalue;
+ 380               	.LM30:
+ 381 00b8 85B3      		in r24,53-32
+ 382 00ba 822B      		or r24,r18
+ 383 00bc 85BB      		out 53-32,r24
+ 384               	.L28:
+ 246:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 386               	.LM31:
+ 387 00be 81E0      		ldi r24,lo8(1)
+ 236:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 389               	.LM32:
+ 390 00c0 0895      		ret
+ 391               	.L21:
+ 237:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD |= bitvalue;
+ 393               	.LM33:
+ 394 00c2 82B3      		in r24,50-32
+ 395 00c4 822B      		or r24,r18
+ 396 00c6 82BB      		out 50-32,r24
+ 397 00c8 00C0      		rjmp .L28
+ 398               	.L22:
+ 239:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE |= bitvalue;
+ 400               	.LM34:
+ 401 00ca 83B1      		in r24,35-32
+ 402 00cc 822B      		or r24,r18
+ 403 00ce 83B9      		out 35-32,r24
+ 404 00d0 00C0      		rjmp .L28
+ 405               	.L30:
+ 241:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF |= bitvalue;
+ 407               	.LM35:
+ 408 00d2 8091 6200 		lds r24,98
+ 409 00d6 822B      		or r24,r18
+ 410 00d8 8093 6200 		sts 98,r24
+ 411 00dc 00C0      		rjmp .L28
+ 412               	.L25:
+ 228:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 414               	.LM36:
+ 415 00de 8FEF      		ldi r24,lo8(-1)
+ 416 00e0 0895      		ret
+ 417               	.L26:
+ 244:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 419               	.LM37:
+ 420 00e2 8FEF      		ldi r24,lo8(-1)
+ 247:../../../src/platform/micaZ/source/ulib.c **** }
+ 422               	.LM38:
+ 423 00e4 0895      		ret
+ 428               	.Lscope6:
+ 430               		.stabd	78,0,0
+ 433               	.global	nrk_gpio_clr
+ 435               	nrk_gpio_clr:
+ 436               		.stabd	46,0,0
+ 250:../../../src/platform/micaZ/source/ulib.c **** {
+ 438               	.LM39:
+ 439               	.LFBB7:
+ 440               	/* prologue: function */
+ 441               	/* frame size = 0 */
+ 442               	/* stack size = 0 */
+ 443               	.L__stack_usage = 0
+ 254:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 445               	.LM40:
+ 446 00e6 8F3F      		cpi r24,lo8(-1)
+ 447 00e8 01F4      		brne .+2
+ 448 00ea 00C0      		rjmp .L40
  252:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = ~BM((pin & 0xF8) >> 3);
- 346               	.LM25:
- 347 00c8 282F      		mov r18,r24
- 348 00ca 2695      		lsr r18
- 349 00cc 2695      		lsr r18
- 350 00ce 2695      		lsr r18
- 351 00d0 81E0      		ldi r24,lo8(1)
- 352 00d2 90E0      		ldi r25,hi8(1)
- 353 00d4 00C0      		rjmp 2f
- 354 00d6 880F      	1:	lsl r24
- 355 00d8 991F      		rol r25
- 356 00da 2A95      	2:	dec r18
- 357 00dc 02F4      		brpl 1b
- 358 00de 982F      		mov r25,r24
- 359 00e0 9095      		com r25
- 254:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
- 361               	.LM26:
- 362 00e2 232F      		mov r18,r19
- 363 00e4 30E0      		ldi r19,lo8(0)
- 364 00e6 2770      		andi r18,lo8(7)
- 365 00e8 3070      		andi r19,hi8(7)
- 366 00ea 2230      		cpi r18,2
- 367 00ec 3105      		cpc r19,__zero_reg__
- 368 00ee 01F0      		breq .L32
- 369 00f0 2330      		cpi r18,3
- 370 00f2 3105      		cpc r19,__zero_reg__
- 371 00f4 04F4      		brge .L36
- 372 00f6 2115      		cp r18,__zero_reg__
- 373 00f8 3105      		cpc r19,__zero_reg__
- 374 00fa 01F0      		breq .L30
- 375 00fc 2130      		cpi r18,1
- 376 00fe 3105      		cpc r19,__zero_reg__
- 377 0100 01F4      		brne .L29
- 378 0102 00C0      		rjmp .L40
- 379               	.L36:
- 380 0104 2430      		cpi r18,4
- 381 0106 3105      		cpc r19,__zero_reg__
- 382 0108 01F0      		breq .L34
- 383 010a 2430      		cpi r18,4
- 384 010c 3105      		cpc r19,__zero_reg__
- 385 010e 04F0      		brlt .L33
- 386 0110 2530      		cpi r18,5
- 387 0112 3105      		cpc r19,__zero_reg__
- 388 0114 01F4      		brne .L29
- 389 0116 00C0      		rjmp .L41
- 390               	.L30:
- 255:../../../src/platform/micaZ/source/ulib.c ****     {
- 256:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA &= bitvalue;
- 392               	.LM27:
- 393 0118 8BB3      		in r24,59-32
- 394 011a 9823      		and r25,r24
- 395 011c 9BBB      		out 59-32,r25
- 396 011e 00C0      		rjmp .L39
- 397               	.L40:
- 257:../../../src/platform/micaZ/source/ulib.c ****             break;
- 258:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB &= bitvalue;
- 399               	.LM28:
- 400 0120 88B3      		in r24,56-32
- 401 0122 9823      		and r25,r24
- 402 0124 98BB      		out 56-32,r25
- 403 0126 00C0      		rjmp .L39
- 404               	.L32:
- 259:../../../src/platform/micaZ/source/ulib.c ****             break;
- 260:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC &= bitvalue;
- 406               	.LM29:
- 407 0128 85B3      		in r24,53-32
- 408 012a 9823      		and r25,r24
- 409 012c 95BB      		out 53-32,r25
- 410 012e 00C0      		rjmp .L39
- 411               	.L33:
- 261:../../../src/platform/micaZ/source/ulib.c ****             break;
- 262:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD &= bitvalue;
- 413               	.LM30:
- 414 0130 82B3      		in r24,50-32
- 415 0132 9823      		and r25,r24
- 416 0134 92BB      		out 50-32,r25
- 417 0136 00C0      		rjmp .L39
- 418               	.L34:
- 263:../../../src/platform/micaZ/source/ulib.c ****             break;
- 264:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE &= bitvalue;
- 420               	.LM31:
- 421 0138 83B1      		in r24,35-32
- 422 013a 9823      		and r25,r24
- 423 013c 93B9      		out 35-32,r25
- 424 013e 00C0      		rjmp .L39
- 425               	.L41:
- 265:../../../src/platform/micaZ/source/ulib.c ****             break;
- 266:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF &= bitvalue;
- 427               	.LM32:
- 428 0140 8091 6200 		lds r24,98
- 429 0144 9823      		and r25,r24
- 430 0146 9093 6200 		sts 98,r25
- 431               	.L39:
- 432 014a 81E0      		ldi r24,lo8(1)
- 433 014c 0895      		ret
- 434               	.L29:
- 267:../../../src/platform/micaZ/source/ulib.c ****             break;
- 436               	.LM33:
- 437 014e 8FEF      		ldi r24,lo8(-1)
- 268:../../../src/platform/micaZ/source/ulib.c ****         default:
- 269:../../../src/platform/micaZ/source/ulib.c ****             return -1;
- 270:../../../src/platform/micaZ/source/ulib.c ****     }
- 271:../../../src/platform/micaZ/source/ulib.c ****     return 1;
- 272:../../../src/platform/micaZ/source/ulib.c **** }
- 439               	.LM34:
- 440 0150 0895      		ret
- 445               	.Lscope5:
- 447               		.stabd	78,0,0
- 450               	.global	nrk_gpio_get
- 452               	nrk_gpio_get:
- 453               		.stabd	46,0,0
- 273:../../../src/platform/micaZ/source/ulib.c **** 
- 274:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_get(uint8_t pin)
- 275:../../../src/platform/micaZ/source/ulib.c **** {
- 455               	.LM35:
- 456               	.LFBB6:
- 457               	/* prologue: function */
- 458               	/* frame size = 0 */
- 459 0152 282F      		mov r18,r24
- 276:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
- 461               	.LM36:
- 462 0154 8F3F      		cpi r24,lo8(-1)
- 463 0156 01F0      		breq .L43
- 277:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
- 465               	.LM37:
- 466 0158 90E0      		ldi r25,lo8(0)
- 467 015a 8770      		andi r24,lo8(7)
- 468 015c 9070      		andi r25,hi8(7)
- 469 015e 8230      		cpi r24,2
- 470 0160 9105      		cpc r25,__zero_reg__
- 471 0162 01F0      		breq .L46
- 472 0164 8330      		cpi r24,3
- 473 0166 9105      		cpc r25,__zero_reg__
- 474 0168 04F4      		brge .L50
- 475 016a 0097      		sbiw r24,0
- 476 016c 01F0      		breq .L44
- 477 016e 0197      		sbiw r24,1
- 478 0170 01F4      		brne .L43
- 479 0172 00C0      		rjmp .L54
- 480               	.L50:
- 481 0174 8430      		cpi r24,4
- 482 0176 9105      		cpc r25,__zero_reg__
- 483 0178 01F0      		breq .L48
- 484 017a 8430      		cpi r24,4
- 485 017c 9105      		cpc r25,__zero_reg__
- 486 017e 04F0      		brlt .L47
- 487 0180 0597      		sbiw r24,5
- 488 0182 01F4      		brne .L43
- 489 0184 00C0      		rjmp .L55
- 490               	.L44:
- 278:../../../src/platform/micaZ/source/ulib.c ****     {
- 279:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA:
- 280:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINA & BM((pin & 0xF8) >> 3));
- 492               	.LM38:
- 493 0186 89B3      		in r24,57-32
- 494 0188 00C0      		rjmp .L53
- 495               	.L54:
- 281:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB:
- 282:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINB & BM((pin & 0xF8) >> 3));
- 497               	.LM39:
- 498 018a 86B3      		in r24,54-32
- 499 018c 00C0      		rjmp .L53
- 500               	.L46:
- 283:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC:
- 284:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINC & BM((pin & 0xF8) >> 3));
- 502               	.LM40:
- 503 018e 83B3      		in r24,51-32
- 504 0190 00C0      		rjmp .L53
- 505               	.L47:
- 285:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD:
- 286:../../../src/platform/micaZ/source/ulib.c ****             return !!(PIND & BM((pin & 0xF8) >> 3));
- 507               	.LM41:
- 508 0192 80B3      		in r24,48-32
- 509 0194 00C0      		rjmp .L53
- 510               	.L48:
- 287:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE:
- 288:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINE & BM((pin & 0xF8) >> 3));
- 512               	.LM42:
- 513 0196 81B1      		in r24,33-32
- 514 0198 00C0      		rjmp .L53
- 515               	.L55:
- 289:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF:
- 290:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINF & BM((pin & 0xF8) >> 3));
- 517               	.LM43:
- 518 019a 80B1      		in r24,32-32
- 519               	.L53:
- 520 019c 90E0      		ldi r25,lo8(0)
- 521 019e 2695      		lsr r18
- 522 01a0 2695      		lsr r18
- 523 01a2 2695      		lsr r18
- 524 01a4 00C0      		rjmp 2f
- 525 01a6 9595      	1:	asr r25
- 526 01a8 8795      		ror r24
- 527 01aa 2A95      	2:	dec r18
- 528 01ac 02F4      		brpl 1b
- 529 01ae 8170      		andi r24,lo8(1)
- 530 01b0 0895      		ret
- 531               	.L43:
- 532 01b2 8FEF      		ldi r24,lo8(-1)
- 291:../../../src/platform/micaZ/source/ulib.c ****         default:
- 292:../../../src/platform/micaZ/source/ulib.c ****             return -1;
- 293:../../../src/platform/micaZ/source/ulib.c ****     }
- 294:../../../src/platform/micaZ/source/ulib.c ****     return -1;
- 295:../../../src/platform/micaZ/source/ulib.c **** }
- 534               	.LM44:
- 535 01b4 0895      		ret
- 537               	.Lscope6:
- 539               		.stabd	78,0,0
- 542               	.global	nrk_gpio_pullups
- 544               	nrk_gpio_pullups:
- 545               		.stabd	46,0,0
- 296:../../../src/platform/micaZ/source/ulib.c **** 
- 297:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_pullups(uint8_t enable)
- 298:../../../src/platform/micaZ/source/ulib.c **** {
- 547               	.LM45:
- 548               	.LFBB7:
- 549               	/* prologue: function */
- 550               	/* frame size = 0 */
- 299:../../../src/platform/micaZ/source/ulib.c ****     if(enable) SFIOR &= ~BM(PUD);
- 552               	.LM46:
- 553 01b6 8823      		tst r24
- 554 01b8 01F0      		breq .L57
- 555 01ba 80B5      		in r24,64-32
- 556 01bc 8B7F      		andi r24,lo8(-5)
- 557 01be 00C0      		rjmp .L60
- 558               	.L57:
- 300:../../../src/platform/micaZ/source/ulib.c ****     else SFIOR |= BM(PUD);
- 560               	.LM47:
- 561 01c0 80B5      		in r24,64-32
- 562 01c2 8460      		ori r24,lo8(4)
- 563               	.L60:
- 564 01c4 80BD      		out 64-32,r24
- 301:../../../src/platform/micaZ/source/ulib.c ****     return NRK_OK;
- 302:../../../src/platform/micaZ/source/ulib.c **** }
- 566               	.LM48:
- 567 01c6 81E0      		ldi r24,lo8(1)
- 568               	/* epilogue start */
- 569 01c8 0895      		ret
- 571               	.Lscope7:
- 573               		.stabd	78,0,0
- 576               	.global	nrk_gpio_toggle
- 578               	nrk_gpio_toggle:
- 579               		.stabd	46,0,0
- 303:../../../src/platform/micaZ/source/ulib.c **** 
- 304:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_toggle(uint8_t pin)
- 305:../../../src/platform/micaZ/source/ulib.c **** {
- 581               	.LM49:
- 582               	.LFBB8:
- 583               	/* prologue: function */
- 584               	/* frame size = 0 */
- 585 01ca 382F      		mov r19,r24
- 306:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability and execution time optimization
- 307:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
- 308:../../../src/platform/micaZ/source/ulib.c **** 
- 309:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
- 587               	.LM50:
- 588 01cc 8F3F      		cpi r24,lo8(-1)
- 589 01ce 01F4      		brne .+2
- 590 01d0 00C0      		rjmp .L62
+ 450               	.LM41:
+ 451 00ec 982F      		mov r25,r24
+ 452 00ee 9695      		lsr r25
+ 453 00f0 9695      		lsr r25
+ 454 00f2 9695      		lsr r25
+ 455 00f4 21E0      		ldi r18,lo8(1)
+ 456 00f6 30E0      		ldi r19,hi8(1)
+ 457 00f8 00C0      		rjmp 2f
+ 458 00fa 220F      	1:	lsl r18
+ 459 00fc 331F      		rol r19
+ 460 00fe 9A95      	2:	dec r25
+ 461 0100 02F4      		brpl 1b
+ 462 0102 2095      		com r18
+ 255:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 464               	.LM42:
+ 465 0104 90E0      		ldi r25,lo8(0)
+ 466 0106 8770      		andi r24,lo8(7)
+ 467 0108 9070      		andi r25,hi8(7)
+ 468 010a 8230      		cpi r24,2
+ 469 010c 9105      		cpc r25,__zero_reg__
+ 470 010e 01F0      		breq .L35
+ 471 0110 8330      		cpi r24,3
+ 472 0112 9105      		cpc r25,__zero_reg__
+ 473 0114 04F4      		brge .L39
+ 474 0116 0097      		sbiw r24,0
+ 475 0118 01F0      		breq .L33
+ 476 011a 8130      		cpi r24,1
+ 477 011c 9105      		cpc r25,__zero_reg__
+ 478 011e 01F4      		brne .L41
+ 479 0120 00C0      		rjmp .L44
+ 480               	.L39:
+ 481 0122 8430      		cpi r24,4
+ 482 0124 9105      		cpc r25,__zero_reg__
+ 483 0126 01F0      		breq .L37
+ 484 0128 8430      		cpi r24,4
+ 485 012a 9105      		cpc r25,__zero_reg__
+ 486 012c 04F0      		brlt .L36
+ 487 012e 8530      		cpi r24,5
+ 488 0130 9105      		cpc r25,__zero_reg__
+ 489 0132 01F4      		brne .L41
+ 490 0134 00C0      		rjmp .L45
+ 491               	.L33:
+ 257:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA &= bitvalue;
+ 493               	.LM43:
+ 494 0136 8BB3      		in r24,59-32
+ 495 0138 8223      		and r24,r18
+ 496 013a 8BBB      		out 59-32,r24
+ 497 013c 00C0      		rjmp .L43
+ 498               	.L44:
+ 259:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB &= bitvalue;
+ 500               	.LM44:
+ 501 013e 88B3      		in r24,56-32
+ 502 0140 8223      		and r24,r18
+ 503 0142 88BB      		out 56-32,r24
+ 504 0144 00C0      		rjmp .L43
+ 505               	.L35:
+ 261:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC &= bitvalue;
+ 507               	.LM45:
+ 508 0146 85B3      		in r24,53-32
+ 509 0148 8223      		and r24,r18
+ 510 014a 85BB      		out 53-32,r24
+ 511               	.L43:
+ 272:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 513               	.LM46:
+ 514 014c 81E0      		ldi r24,lo8(1)
+ 262:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 516               	.LM47:
+ 517 014e 0895      		ret
+ 518               	.L36:
+ 263:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD &= bitvalue;
+ 520               	.LM48:
+ 521 0150 82B3      		in r24,50-32
+ 522 0152 8223      		and r24,r18
+ 523 0154 82BB      		out 50-32,r24
+ 524 0156 00C0      		rjmp .L43
+ 525               	.L37:
+ 265:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE &= bitvalue;
+ 527               	.LM49:
+ 528 0158 83B1      		in r24,35-32
+ 529 015a 8223      		and r24,r18
+ 530 015c 83B9      		out 35-32,r24
+ 531 015e 00C0      		rjmp .L43
+ 532               	.L45:
+ 267:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF &= bitvalue;
+ 534               	.LM50:
+ 535 0160 8091 6200 		lds r24,98
+ 536 0164 8223      		and r24,r18
+ 537 0166 8093 6200 		sts 98,r24
+ 538 016a 00C0      		rjmp .L43
+ 539               	.L40:
+ 254:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 541               	.LM51:
+ 542 016c 8FEF      		ldi r24,lo8(-1)
+ 543 016e 0895      		ret
+ 544               	.L41:
+ 270:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 546               	.LM52:
+ 547 0170 8FEF      		ldi r24,lo8(-1)
+ 273:../../../src/platform/micaZ/source/ulib.c **** }
+ 549               	.LM53:
+ 550 0172 0895      		ret
+ 555               	.Lscope7:
+ 557               		.stabd	78,0,0
+ 560               	.global	nrk_gpio_get
+ 562               	nrk_gpio_get:
+ 563               		.stabd	46,0,0
+ 276:../../../src/platform/micaZ/source/ulib.c **** {
+ 565               	.LM54:
+ 566               	.LFBB8:
+ 567               	/* prologue: function */
+ 568               	/* frame size = 0 */
+ 569               	/* stack size = 0 */
+ 570               	.L__stack_usage = 0
+ 277:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 572               	.LM55:
+ 573 0174 8F3F      		cpi r24,lo8(-1)
+ 574 0176 01F0      		breq .L56
+ 278:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 576               	.LM56:
+ 577 0178 282F      		mov r18,r24
+ 578 017a 30E0      		ldi r19,lo8(0)
+ 579 017c 2770      		andi r18,lo8(7)
+ 580 017e 3070      		andi r19,hi8(7)
+ 581 0180 2230      		cpi r18,2
+ 582 0182 3105      		cpc r19,__zero_reg__
+ 583 0184 01F0      		breq .L50
+ 584 0186 2330      		cpi r18,3
+ 585 0188 3105      		cpc r19,__zero_reg__
+ 586 018a 04F4      		brge .L54
+ 587 018c 2115      		cp r18,__zero_reg__
+ 588 018e 3105      		cpc r19,__zero_reg__
+ 589 0190 01F0      		breq .L48
+ 590 0192 2130      		cpi r18,1
+ 591 0194 3105      		cpc r19,__zero_reg__
+ 592 0196 01F4      		brne .L56
+ 593 0198 00C0      		rjmp .L58
+ 594               	.L54:
+ 595 019a 2430      		cpi r18,4
+ 596 019c 3105      		cpc r19,__zero_reg__
+ 597 019e 01F0      		breq .L52
+ 598 01a0 2430      		cpi r18,4
+ 599 01a2 3105      		cpc r19,__zero_reg__
+ 600 01a4 04F0      		brlt .L51
+ 601 01a6 2530      		cpi r18,5
+ 602 01a8 3105      		cpc r19,__zero_reg__
+ 603 01aa 01F4      		brne .L56
+ 604 01ac 00C0      		rjmp .L59
+ 605               	.L48:
+ 281:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINA & BM((pin & 0xF8) >> 3));
+ 607               	.LM57:
+ 608 01ae 29B3      		in r18,57-32
+ 609 01b0 00C0      		rjmp .L57
+ 610               	.L58:
+ 283:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINB & BM((pin & 0xF8) >> 3));
+ 612               	.LM58:
+ 613 01b2 26B3      		in r18,54-32
+ 614 01b4 00C0      		rjmp .L57
+ 615               	.L50:
+ 285:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINC & BM((pin & 0xF8) >> 3));
+ 617               	.LM59:
+ 618 01b6 23B3      		in r18,51-32
+ 619 01b8 00C0      		rjmp .L57
+ 620               	.L51:
+ 287:../../../src/platform/micaZ/source/ulib.c ****             return !!(PIND & BM((pin & 0xF8) >> 3));
+ 622               	.LM60:
+ 623 01ba 20B3      		in r18,48-32
+ 624 01bc 00C0      		rjmp .L57
+ 625               	.L52:
+ 289:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINE & BM((pin & 0xF8) >> 3));
+ 627               	.LM61:
+ 628 01be 21B1      		in r18,33-32
+ 629 01c0 00C0      		rjmp .L57
+ 630               	.L59:
+ 291:../../../src/platform/micaZ/source/ulib.c ****             return !!(PINF & BM((pin & 0xF8) >> 3));
+ 632               	.LM62:
+ 633 01c2 20B1      		in r18,32-32
+ 634               	.L57:
+ 635 01c4 30E0      		ldi r19,lo8(0)
+ 636 01c6 8695      		lsr r24
+ 637 01c8 8695      		lsr r24
+ 638 01ca 8695      		lsr r24
+ 639 01cc 00C0      		rjmp 2f
+ 640 01ce 3595      	1:	asr r19
+ 641 01d0 2795      		ror r18
+ 642 01d2 8A95      	2:	dec r24
+ 643 01d4 02F4      		brpl 1b
+ 644 01d6 2170      		andi r18,lo8(1)
+ 645 01d8 00C0      		rjmp .L47
+ 646               	.L56:
+ 293:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 648               	.LM63:
+ 649 01da 2FEF      		ldi r18,lo8(-1)
+ 650               	.L47:
+ 296:../../../src/platform/micaZ/source/ulib.c **** }
+ 652               	.LM64:
+ 653 01dc 822F      		mov r24,r18
+ 654               	/* epilogue start */
+ 655 01de 0895      		ret
+ 657               	.Lscope8:
+ 659               		.stabd	78,0,0
+ 662               	.global	nrk_gpio_pullups
+ 664               	nrk_gpio_pullups:
+ 665               		.stabd	46,0,0
+ 299:../../../src/platform/micaZ/source/ulib.c **** {
+ 667               	.LM65:
+ 668               	.LFBB9:
+ 669               	/* prologue: function */
+ 670               	/* frame size = 0 */
+ 671               	/* stack size = 0 */
+ 672               	.L__stack_usage = 0
+ 300:../../../src/platform/micaZ/source/ulib.c ****     if(enable) SFIOR &= ~BM(PUD);
+ 674               	.LM66:
+ 675 01e0 8823      		tst r24
+ 676 01e2 01F0      		breq .L61
+ 300:../../../src/platform/micaZ/source/ulib.c ****     if(enable) SFIOR &= ~BM(PUD);
+ 678               	.LM67:
+ 679 01e4 80B5      		in r24,64-32
+ 680 01e6 8B7F      		andi r24,lo8(-5)
+ 681 01e8 00C0      		rjmp .L63
+ 682               	.L61:
+ 301:../../../src/platform/micaZ/source/ulib.c ****     else SFIOR |= BM(PUD);
+ 684               	.LM68:
+ 685 01ea 80B5      		in r24,64-32
+ 686 01ec 8460      		ori r24,lo8(4)
+ 687               	.L63:
+ 688 01ee 80BD      		out 64-32,r24
+ 303:../../../src/platform/micaZ/source/ulib.c **** }
+ 690               	.LM69:
+ 691 01f0 81E0      		ldi r24,lo8(1)
+ 692               	/* epilogue start */
+ 693 01f2 0895      		ret
+ 695               	.Lscope9:
+ 697               		.stabd	78,0,0
+ 700               	.global	nrk_gpio_toggle
+ 702               	nrk_gpio_toggle:
+ 703               		.stabd	46,0,0
+ 306:../../../src/platform/micaZ/source/ulib.c **** {
+ 705               	.LM70:
+ 706               	.LFBB10:
+ 707               	/* prologue: function */
+ 708               	/* frame size = 0 */
+ 709               	/* stack size = 0 */
+ 710               	.L__stack_usage = 0
+ 310:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 712               	.LM71:
+ 713 01f4 8F3F      		cpi r24,lo8(-1)
+ 714 01f6 01F4      		brne .+2
+ 715 01f8 00C0      		rjmp .L73
  308:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
- 592               	.LM51:
- 593 01d2 282F      		mov r18,r24
- 594 01d4 2695      		lsr r18
- 595 01d6 2695      		lsr r18
- 596 01d8 2695      		lsr r18
- 597 01da 81E0      		ldi r24,lo8(1)
- 598 01dc 90E0      		ldi r25,hi8(1)
- 599 01de 00C0      		rjmp 2f
- 600 01e0 880F      	1:	lsl r24
- 601 01e2 991F      		rol r25
- 602 01e4 2A95      	2:	dec r18
- 603 01e6 02F4      		brpl 1b
- 604 01e8 982F      		mov r25,r24
- 310:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
- 606               	.LM52:
- 607 01ea 232F      		mov r18,r19
- 608 01ec 30E0      		ldi r19,lo8(0)
- 609 01ee 2770      		andi r18,lo8(7)
- 610 01f0 3070      		andi r19,hi8(7)
- 611 01f2 2230      		cpi r18,2
- 612 01f4 3105      		cpc r19,__zero_reg__
- 613 01f6 01F0      		breq .L65
- 614 01f8 2330      		cpi r18,3
- 615 01fa 3105      		cpc r19,__zero_reg__
- 616 01fc 04F4      		brge .L69
- 617 01fe 2115      		cp r18,__zero_reg__
- 618 0200 3105      		cpc r19,__zero_reg__
- 619 0202 01F0      		breq .L63
- 620 0204 2130      		cpi r18,1
- 621 0206 3105      		cpc r19,__zero_reg__
- 622 0208 01F4      		brne .L62
- 623 020a 00C0      		rjmp .L73
- 624               	.L69:
- 625 020c 2430      		cpi r18,4
- 626 020e 3105      		cpc r19,__zero_reg__
- 627 0210 01F0      		breq .L67
- 628 0212 2430      		cpi r18,4
- 629 0214 3105      		cpc r19,__zero_reg__
- 630 0216 04F0      		brlt .L66
- 631 0218 2530      		cpi r18,5
- 632 021a 3105      		cpc r19,__zero_reg__
- 633 021c 01F4      		brne .L62
- 634 021e 00C0      		rjmp .L74
- 635               	.L63:
- 311:../../../src/platform/micaZ/source/ulib.c ****     {
- 312:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA ^= bitvalue;
- 637               	.LM53:
- 638 0220 8BB3      		in r24,59-32
- 639 0222 9827      		eor r25,r24
- 640 0224 9BBB      		out 59-32,r25
- 641 0226 00C0      		rjmp .L72
- 642               	.L73:
- 313:../../../src/platform/micaZ/source/ulib.c ****             break;
- 314:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB ^= bitvalue;
- 644               	.LM54:
- 645 0228 88B3      		in r24,56-32
- 646 022a 9827      		eor r25,r24
- 647 022c 98BB      		out 56-32,r25
- 648 022e 00C0      		rjmp .L72
- 649               	.L65:
- 315:../../../src/platform/micaZ/source/ulib.c ****             break;
- 316:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC ^= bitvalue;
- 651               	.LM55:
- 652 0230 85B3      		in r24,53-32
- 653 0232 9827      		eor r25,r24
- 654 0234 95BB      		out 53-32,r25
- 655 0236 00C0      		rjmp .L72
- 656               	.L66:
- 317:../../../src/platform/micaZ/source/ulib.c ****             break;
- 318:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD ^= bitvalue;
- 658               	.LM56:
- 659 0238 82B3      		in r24,50-32
- 660 023a 9827      		eor r25,r24
- 661 023c 92BB      		out 50-32,r25
- 662 023e 00C0      		rjmp .L72
- 663               	.L67:
- 319:../../../src/platform/micaZ/source/ulib.c ****             break;
- 320:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE ^= bitvalue;
- 665               	.LM57:
- 666 0240 83B1      		in r24,35-32
- 667 0242 9827      		eor r25,r24
- 668 0244 93B9      		out 35-32,r25
- 669 0246 00C0      		rjmp .L72
- 670               	.L74:
- 321:../../../src/platform/micaZ/source/ulib.c ****             break;
- 322:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF ^= bitvalue;
- 672               	.LM58:
- 673 0248 8091 6200 		lds r24,98
- 674 024c 9827      		eor r25,r24
- 675 024e 9093 6200 		sts 98,r25
- 676               	.L72:
- 677 0252 81E0      		ldi r24,lo8(1)
- 678 0254 0895      		ret
- 679               	.L62:
- 323:../../../src/platform/micaZ/source/ulib.c ****             break;
- 681               	.LM59:
- 682 0256 8FEF      		ldi r24,lo8(-1)
- 324:../../../src/platform/micaZ/source/ulib.c ****         default:
- 325:../../../src/platform/micaZ/source/ulib.c ****             return -1;
- 326:../../../src/platform/micaZ/source/ulib.c ****     }
- 327:../../../src/platform/micaZ/source/ulib.c ****     return 1;
- 328:../../../src/platform/micaZ/source/ulib.c **** }
- 684               	.LM60:
- 685 0258 0895      		ret
- 690               	.Lscope8:
- 692               		.stabd	78,0,0
- 696               	.global	nrk_gpio_direction
- 698               	nrk_gpio_direction:
- 699               		.stabd	46,0,0
- 329:../../../src/platform/micaZ/source/ulib.c **** 
- 330:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_gpio_direction(uint8_t pin, uint8_t pin_direction)
- 331:../../../src/platform/micaZ/source/ulib.c **** {
- 701               	.LM61:
- 702               	.LFBB9:
- 703               	/* prologue: function */
- 704               	/* frame size = 0 */
- 705 025a 982F      		mov r25,r24
- 332:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Readability and program space optimization
- 333:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
- 334:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue_inv = ~BM((pin & 0xF8) >> 3);
- 335:../../../src/platform/micaZ/source/ulib.c **** 
- 336:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
- 707               	.LM62:
- 708 025c 8F3F      		cpi r24,lo8(-1)
- 709 025e 01F4      		brne .+2
- 710 0260 00C0      		rjmp .L76
+ 717               	.LM72:
+ 718 01fa 982F      		mov r25,r24
+ 719 01fc 9695      		lsr r25
+ 720 01fe 9695      		lsr r25
+ 721 0200 9695      		lsr r25
+ 722 0202 21E0      		ldi r18,lo8(1)
+ 723 0204 30E0      		ldi r19,hi8(1)
+ 724 0206 00C0      		rjmp 2f
+ 725 0208 220F      	1:	lsl r18
+ 726 020a 331F      		rol r19
+ 727 020c 9A95      	2:	dec r25
+ 728 020e 02F4      		brpl 1b
+ 311:../../../src/platform/micaZ/source/ulib.c ****     switch (pin & 0x07)
+ 730               	.LM73:
+ 731 0210 90E0      		ldi r25,lo8(0)
+ 732 0212 8770      		andi r24,lo8(7)
+ 733 0214 9070      		andi r25,hi8(7)
+ 734 0216 8230      		cpi r24,2
+ 735 0218 9105      		cpc r25,__zero_reg__
+ 736 021a 01F0      		breq .L68
+ 737 021c 8330      		cpi r24,3
+ 738 021e 9105      		cpc r25,__zero_reg__
+ 739 0220 04F4      		brge .L72
+ 740 0222 0097      		sbiw r24,0
+ 741 0224 01F0      		breq .L66
+ 742 0226 8130      		cpi r24,1
+ 743 0228 9105      		cpc r25,__zero_reg__
+ 744 022a 01F4      		brne .L74
+ 745 022c 00C0      		rjmp .L77
+ 746               	.L72:
+ 747 022e 8430      		cpi r24,4
+ 748 0230 9105      		cpc r25,__zero_reg__
+ 749 0232 01F0      		breq .L70
+ 750 0234 8430      		cpi r24,4
+ 751 0236 9105      		cpc r25,__zero_reg__
+ 752 0238 04F0      		brlt .L69
+ 753 023a 8530      		cpi r24,5
+ 754 023c 9105      		cpc r25,__zero_reg__
+ 755 023e 01F4      		brne .L74
+ 756 0240 00C0      		rjmp .L78
+ 757               	.L66:
+ 313:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA: PORTA ^= bitvalue;
+ 759               	.LM74:
+ 760 0242 8BB3      		in r24,59-32
+ 761 0244 8227      		eor r24,r18
+ 762 0246 8BBB      		out 59-32,r24
+ 763 0248 00C0      		rjmp .L76
+ 764               	.L77:
+ 315:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB: PORTB ^= bitvalue;
+ 766               	.LM75:
+ 767 024a 88B3      		in r24,56-32
+ 768 024c 8227      		eor r24,r18
+ 769 024e 88BB      		out 56-32,r24
+ 770 0250 00C0      		rjmp .L76
+ 771               	.L68:
+ 317:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC: PORTC ^= bitvalue;
+ 773               	.LM76:
+ 774 0252 85B3      		in r24,53-32
+ 775 0254 8227      		eor r24,r18
+ 776 0256 85BB      		out 53-32,r24
+ 777               	.L76:
+ 328:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 779               	.LM77:
+ 780 0258 81E0      		ldi r24,lo8(1)
+ 318:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 782               	.LM78:
+ 783 025a 0895      		ret
+ 784               	.L69:
+ 319:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD: PORTD ^= bitvalue;
+ 786               	.LM79:
+ 787 025c 82B3      		in r24,50-32
+ 788 025e 8227      		eor r24,r18
+ 789 0260 82BB      		out 50-32,r24
+ 790 0262 00C0      		rjmp .L76
+ 791               	.L70:
+ 321:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE: PORTE ^= bitvalue;
+ 793               	.LM80:
+ 794 0264 83B1      		in r24,35-32
+ 795 0266 8227      		eor r24,r18
+ 796 0268 83B9      		out 35-32,r24
+ 797 026a 00C0      		rjmp .L76
+ 798               	.L78:
+ 323:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF: PORTF ^= bitvalue;
+ 800               	.LM81:
+ 801 026c 8091 6200 		lds r24,98
+ 802 0270 8227      		eor r24,r18
+ 803 0272 8093 6200 		sts 98,r24
+ 804 0276 00C0      		rjmp .L76
+ 805               	.L73:
+ 310:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 807               	.LM82:
+ 808 0278 8FEF      		ldi r24,lo8(-1)
+ 809 027a 0895      		ret
+ 810               	.L74:
+ 326:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 812               	.LM83:
+ 813 027c 8FEF      		ldi r24,lo8(-1)
+ 329:../../../src/platform/micaZ/source/ulib.c **** }
+ 815               	.LM84:
+ 816 027e 0895      		ret
+ 821               	.Lscope10:
+ 823               		.stabd	78,0,0
+ 827               	.global	nrk_gpio_direction
+ 829               	nrk_gpio_direction:
+ 830               		.stabd	46,0,0
+ 332:../../../src/platform/micaZ/source/ulib.c **** {
+ 832               	.LM85:
+ 833               	.LFBB11:
+ 834               	/* prologue: function */
+ 835               	/* frame size = 0 */
+ 836               	/* stack size = 0 */
+ 837               	.L__stack_usage = 0
+ 337:../../../src/platform/micaZ/source/ulib.c ****     if (pin == NRK_INVALID_PIN_VAL) return -1;
+ 839               	.LM86:
+ 840 0280 8F3F      		cpi r24,lo8(-1)
+ 841 0282 01F4      		brne .+2
+ 842 0284 00C0      		rjmp .L97
  334:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue = BM((pin & 0xF8) >> 3);
- 712               	.LM63:
- 713 0262 8695      		lsr r24
- 714 0264 8695      		lsr r24
- 715 0266 8695      		lsr r24
- 716 0268 21E0      		ldi r18,lo8(1)
- 717 026a 30E0      		ldi r19,hi8(1)
- 718 026c 00C0      		rjmp 2f
- 719 026e 220F      	1:	lsl r18
- 720 0270 331F      		rol r19
- 721 0272 8A95      	2:	dec r24
- 722 0274 02F4      		brpl 1b
- 723 0276 422F      		mov r20,r18
- 724 0278 892F      		mov r24,r25
- 725 027a 90E0      		ldi r25,lo8(0)
- 337:../../../src/platform/micaZ/source/ulib.c ****     if (pin_direction == NRK_PIN_INPUT)
- 727               	.LM64:
- 728 027c 6623      		tst r22
- 729 027e 01F0      		breq .+2
- 730 0280 00C0      		rjmp .L77
+ 844               	.LM87:
+ 845 0286 982F      		mov r25,r24
+ 846 0288 9695      		lsr r25
+ 847 028a 9695      		lsr r25
+ 848 028c 9695      		lsr r25
+ 849 028e 21E0      		ldi r18,lo8(1)
+ 850 0290 30E0      		ldi r19,hi8(1)
+ 851 0292 00C0      		rjmp 2f
+ 852 0294 220F      	1:	lsl r18
+ 853 0296 331F      		rol r19
+ 854 0298 9A95      	2:	dec r25
+ 855 029a 02F4      		brpl 1b
+ 856 029c 90E0      		ldi r25,lo8(0)
+ 338:../../../src/platform/micaZ/source/ulib.c ****     if (pin_direction == NRK_PIN_INPUT)
+ 858               	.LM88:
+ 859 029e 6623      		tst r22
+ 860 02a0 01F0      		breq .+2
+ 861 02a2 00C0      		rjmp .L81
  335:../../../src/platform/micaZ/source/ulib.c ****     uint8_t bitvalue_inv = ~BM((pin & 0xF8) >> 3);
- 732               	.LM65:
- 733 0282 2095      		com r18
- 338:../../../src/platform/micaZ/source/ulib.c ****     {
- 339:../../../src/platform/micaZ/source/ulib.c ****         switch (pin & 0x07)
- 735               	.LM66:
- 736 0284 8770      		andi r24,lo8(7)
- 737 0286 9070      		andi r25,hi8(7)
- 738 0288 8230      		cpi r24,2
- 739 028a 9105      		cpc r25,__zero_reg__
- 740 028c 01F0      		breq .L80
- 741 028e 8330      		cpi r24,3
- 742 0290 9105      		cpc r25,__zero_reg__
- 743 0292 04F4      		brge .L84
- 744 0294 0097      		sbiw r24,0
- 745 0296 01F0      		breq .L78
- 746 0298 0197      		sbiw r24,1
- 747 029a 01F0      		breq .+2
- 748 029c 00C0      		rjmp .L76
- 749 029e 00C0      		rjmp .L95
- 750               	.L84:
- 751 02a0 8430      		cpi r24,4
- 752 02a2 9105      		cpc r25,__zero_reg__
- 753 02a4 01F0      		breq .L82
- 754 02a6 8430      		cpi r24,4
- 755 02a8 9105      		cpc r25,__zero_reg__
- 756 02aa 04F0      		brlt .L81
- 757 02ac 0597      		sbiw r24,5
- 758 02ae 01F0      		breq .+2
- 759 02b0 00C0      		rjmp .L76
- 760 02b2 00C0      		rjmp .L96
- 761               	.L78:
- 340:../../../src/platform/micaZ/source/ulib.c ****         {
- 341:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA:
- 342:../../../src/platform/micaZ/source/ulib.c ****             DDRA &= bitvalue_inv;
- 763               	.LM67:
- 764 02b4 8AB3      		in r24,58-32
- 765 02b6 2823      		and r18,r24
- 766 02b8 2ABB      		out 58-32,r18
- 343:../../../src/platform/micaZ/source/ulib.c ****             PORTA |= bitvalue;
- 768               	.LM68:
- 769 02ba 8BB3      		in r24,59-32
- 770 02bc 482B      		or r20,r24
- 771 02be 4BBB      		out 59-32,r20
- 772 02c0 00C0      		rjmp .L94
- 773               	.L95:
- 344:../../../src/platform/micaZ/source/ulib.c ****             break;
- 345:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB:
- 346:../../../src/platform/micaZ/source/ulib.c ****             DDRB &= bitvalue_inv;
- 775               	.LM69:
- 776 02c2 87B3      		in r24,55-32
- 777 02c4 2823      		and r18,r24
- 778 02c6 27BB      		out 55-32,r18
- 347:../../../src/platform/micaZ/source/ulib.c ****             PORTB |= bitvalue;
- 780               	.LM70:
- 781 02c8 88B3      		in r24,56-32
- 782 02ca 482B      		or r20,r24
- 783 02cc 48BB      		out 56-32,r20
- 784 02ce 00C0      		rjmp .L94
- 785               	.L80:
- 348:../../../src/platform/micaZ/source/ulib.c ****             break;
- 349:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC:
- 350:../../../src/platform/micaZ/source/ulib.c ****             DDRC &= bitvalue_inv;
- 787               	.LM71:
- 788 02d0 84B3      		in r24,52-32
- 789 02d2 2823      		and r18,r24
- 790 02d4 24BB      		out 52-32,r18
- 351:../../../src/platform/micaZ/source/ulib.c ****             PORTC |= bitvalue;
- 792               	.LM72:
- 793 02d6 85B3      		in r24,53-32
- 794 02d8 482B      		or r20,r24
- 795 02da 45BB      		out 53-32,r20
- 796 02dc 00C0      		rjmp .L94
- 797               	.L81:
- 352:../../../src/platform/micaZ/source/ulib.c ****             break;
- 353:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD:
- 354:../../../src/platform/micaZ/source/ulib.c ****             DDRD &= bitvalue_inv;
- 799               	.LM73:
- 800 02de 81B3      		in r24,49-32
- 801 02e0 2823      		and r18,r24
- 802 02e2 21BB      		out 49-32,r18
- 355:../../../src/platform/micaZ/source/ulib.c ****             PORTD |= bitvalue;
- 804               	.LM74:
- 805 02e4 82B3      		in r24,50-32
- 806 02e6 482B      		or r20,r24
- 807 02e8 42BB      		out 50-32,r20
- 808 02ea 00C0      		rjmp .L94
- 809               	.L82:
- 356:../../../src/platform/micaZ/source/ulib.c ****             break;
- 357:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE:
- 358:../../../src/platform/micaZ/source/ulib.c ****             DDRE &= bitvalue_inv;
- 811               	.LM75:
- 812 02ec 82B1      		in r24,34-32
- 813 02ee 2823      		and r18,r24
- 814 02f0 22B9      		out 34-32,r18
- 359:../../../src/platform/micaZ/source/ulib.c ****             PORTE |= bitvalue;
- 816               	.LM76:
- 817 02f2 83B1      		in r24,35-32
- 818 02f4 482B      		or r20,r24
- 819 02f6 43B9      		out 35-32,r20
- 820 02f8 00C0      		rjmp .L94
- 821               	.L96:
- 360:../../../src/platform/micaZ/source/ulib.c ****             break;
- 361:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF:
- 362:../../../src/platform/micaZ/source/ulib.c ****             DDRF &= bitvalue_inv;
- 823               	.LM77:
- 824 02fa 8091 6100 		lds r24,97
- 825 02fe 2823      		and r18,r24
- 826 0300 2093 6100 		sts 97,r18
- 363:../../../src/platform/micaZ/source/ulib.c ****             PORTF |= bitvalue;
- 828               	.LM78:
- 829 0304 8091 6200 		lds r24,98
- 830 0308 482B      		or r20,r24
- 831 030a 4093 6200 		sts 98,r20
- 832 030e 00C0      		rjmp .L94
- 833               	.L77:
- 364:../../../src/platform/micaZ/source/ulib.c ****             break;
- 365:../../../src/platform/micaZ/source/ulib.c ****         default:
- 366:../../../src/platform/micaZ/source/ulib.c ****             return -1;
- 367:../../../src/platform/micaZ/source/ulib.c ****         }
- 368:../../../src/platform/micaZ/source/ulib.c ****     }
- 369:../../../src/platform/micaZ/source/ulib.c ****     else
- 370:../../../src/platform/micaZ/source/ulib.c ****     {
- 371:../../../src/platform/micaZ/source/ulib.c ****         switch (pin & 0x07)
- 835               	.LM79:
- 836 0310 8770      		andi r24,lo8(7)
- 837 0312 9070      		andi r25,hi8(7)
- 838 0314 8230      		cpi r24,2
- 839 0316 9105      		cpc r25,__zero_reg__
- 840 0318 01F0      		breq .L88
- 841 031a 8330      		cpi r24,3
- 842 031c 9105      		cpc r25,__zero_reg__
- 843 031e 04F4      		brge .L92
- 844 0320 0097      		sbiw r24,0
- 845 0322 01F0      		breq .L86
- 846 0324 0197      		sbiw r24,1
- 847 0326 01F4      		brne .L76
- 848 0328 00C0      		rjmp .L97
- 849               	.L92:
- 850 032a 8430      		cpi r24,4
- 851 032c 9105      		cpc r25,__zero_reg__
- 852 032e 01F0      		breq .L90
- 853 0330 8430      		cpi r24,4
- 854 0332 9105      		cpc r25,__zero_reg__
- 855 0334 04F0      		brlt .L89
- 856 0336 0597      		sbiw r24,5
- 857 0338 01F4      		brne .L76
- 858 033a 00C0      		rjmp .L98
- 859               	.L86:
- 372:../../../src/platform/micaZ/source/ulib.c ****         {
- 373:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTA:
- 374:../../../src/platform/micaZ/source/ulib.c ****             DDRA |= bitvalue;
- 861               	.LM80:
- 862 033c 8AB3      		in r24,58-32
- 863 033e 482B      		or r20,r24
- 864 0340 4ABB      		out 58-32,r20
- 865 0342 00C0      		rjmp .L94
- 866               	.L97:
- 375:../../../src/platform/micaZ/source/ulib.c ****             break;
- 376:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTB:
- 377:../../../src/platform/micaZ/source/ulib.c ****             DDRB |= bitvalue;
- 868               	.LM81:
- 869 0344 87B3      		in r24,55-32
- 870 0346 482B      		or r20,r24
- 871 0348 47BB      		out 55-32,r20
- 872 034a 00C0      		rjmp .L94
- 873               	.L88:
- 378:../../../src/platform/micaZ/source/ulib.c ****             break;
- 379:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTC:
- 380:../../../src/platform/micaZ/source/ulib.c ****             DDRC |= bitvalue;
- 875               	.LM82:
- 876 034c 84B3      		in r24,52-32
- 877 034e 482B      		or r20,r24
- 878 0350 44BB      		out 52-32,r20
- 879 0352 00C0      		rjmp .L94
- 880               	.L89:
- 381:../../../src/platform/micaZ/source/ulib.c ****             break;
- 382:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTD:
- 383:../../../src/platform/micaZ/source/ulib.c ****             DDRD |= bitvalue;
- 882               	.LM83:
- 883 0354 81B3      		in r24,49-32
- 884 0356 482B      		or r20,r24
- 885 0358 41BB      		out 49-32,r20
- 886 035a 00C0      		rjmp .L94
- 887               	.L90:
- 384:../../../src/platform/micaZ/source/ulib.c ****             break;
- 385:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTE:
- 386:../../../src/platform/micaZ/source/ulib.c ****             DDRE |= bitvalue;
- 889               	.LM84:
- 890 035c 82B1      		in r24,34-32
- 891 035e 482B      		or r20,r24
- 892 0360 42B9      		out 34-32,r20
- 893 0362 00C0      		rjmp .L94
- 894               	.L98:
- 387:../../../src/platform/micaZ/source/ulib.c ****             break;
- 388:../../../src/platform/micaZ/source/ulib.c ****         case NRK_PORTF:
- 389:../../../src/platform/micaZ/source/ulib.c ****             DDRF |= bitvalue;
- 896               	.LM85:
- 897 0364 8091 6100 		lds r24,97
- 898 0368 482B      		or r20,r24
- 899 036a 4093 6100 		sts 97,r20
- 900               	.L94:
- 901 036e 81E0      		ldi r24,lo8(1)
- 902 0370 0895      		ret
- 903               	.L76:
- 390:../../../src/platform/micaZ/source/ulib.c ****             break;
- 905               	.LM86:
- 906 0372 8FEF      		ldi r24,lo8(-1)
- 391:../../../src/platform/micaZ/source/ulib.c ****         default:
- 392:../../../src/platform/micaZ/source/ulib.c ****             return -1;
- 393:../../../src/platform/micaZ/source/ulib.c ****         }
- 394:../../../src/platform/micaZ/source/ulib.c ****     }
- 395:../../../src/platform/micaZ/source/ulib.c ****     return 1;
- 396:../../../src/platform/micaZ/source/ulib.c **** }
- 908               	.LM87:
- 909 0374 0895      		ret
- 915               	.Lscope9:
- 917               		.stabd	78,0,0
- 920               	.global	nrk_get_button
- 922               	nrk_get_button:
- 923               		.stabd	46,0,0
- 397:../../../src/platform/micaZ/source/ulib.c **** 
- 398:../../../src/platform/micaZ/source/ulib.c **** 
- 399:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_get_button(uint8_t b)
- 400:../../../src/platform/micaZ/source/ulib.c **** {
- 925               	.LM88:
- 926               	.LFBB10:
- 927               	/* prologue: function */
- 928               	/* frame size = 0 */
- 401:../../../src/platform/micaZ/source/ulib.c ****     return NRK_ERROR;
- 402:../../../src/platform/micaZ/source/ulib.c **** }
- 930               	.LM89:
- 931 0376 8FEF      		ldi r24,lo8(-1)
- 932               	/* epilogue start */
- 933 0378 0895      		ret
- 935               	.Lscope10:
- 937               		.stabd	78,0,0
- 940               	.global	nrk_led_toggle
- 942               	nrk_led_toggle:
- 943               		.stabd	46,0,0
- 403:../../../src/platform/micaZ/source/ulib.c **** 
- 404:../../../src/platform/micaZ/source/ulib.c **** 
- 405:../../../src/platform/micaZ/source/ulib.c **** 
- 406:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_led_toggle( int led )
- 407:../../../src/platform/micaZ/source/ulib.c **** {
- 945               	.LM90:
- 946               	.LFBB11:
- 947               	/* prologue: function */
- 948               	/* frame size = 0 */
- 408:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Execution time optimization
- 409:../../../src/platform/micaZ/source/ulib.c **** 
- 410:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_toggle(NRK_LED_0);
- 950               	.LM91:
- 951 037a 0097      		sbiw r24,0
- 952 037c 01F4      		brne .L102
- 953 037e 80E0      		ldi r24,lo8(0)
- 954 0380 00C0      		rjmp .L107
- 955               	.L102:
- 411:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_toggle(NRK_LED_1);
- 957               	.LM92:
- 958 0382 8130      		cpi r24,1
- 959 0384 9105      		cpc r25,__zero_reg__
- 960 0386 01F4      		brne .L104
- 961 0388 88E0      		ldi r24,lo8(8)
- 962               	.L107:
- 963 038a 0E94 0000 		call nrk_gpio_toggle
- 964 038e 81E0      		ldi r24,lo8(1)
- 965 0390 0895      		ret
- 966               	.L104:
- 412:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_toggle(NRK_LED_2);
- 968               	.LM93:
- 969 0392 0297      		sbiw r24,2
- 970 0394 01F0      		breq .L105
- 971 0396 8FEF      		ldi r24,lo8(-1)
- 972 0398 0895      		ret
- 973               	.L105:
- 974 039a 80E1      		ldi r24,lo8(16)
- 975 039c 0E94 0000 		call nrk_gpio_toggle
- 976 03a0 81E0      		ldi r24,lo8(1)
- 413:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
- 414:../../../src/platform/micaZ/source/ulib.c **** 
- 415:../../../src/platform/micaZ/source/ulib.c ****     return 1;
- 416:../../../src/platform/micaZ/source/ulib.c **** }
- 978               	.LM94:
- 979 03a2 0895      		ret
- 981               	.Lscope11:
- 983               		.stabd	78,0,0
- 986               	.global	nrk_led_clr
- 988               	nrk_led_clr:
- 989               		.stabd	46,0,0
- 417:../../../src/platform/micaZ/source/ulib.c **** 
- 418:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_led_clr( int led )
- 419:../../../src/platform/micaZ/source/ulib.c **** {
- 991               	.LM95:
- 992               	.LFBB12:
- 993               	/* prologue: function */
- 994               	/* frame size = 0 */
- 420:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Execution time optimization
- 421:../../../src/platform/micaZ/source/ulib.c **** 
- 422:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_set(NRK_LED_0);
- 996               	.LM96:
- 997 03a4 0097      		sbiw r24,0
- 998 03a6 01F4      		brne .L109
- 999 03a8 80E0      		ldi r24,lo8(0)
- 1000 03aa 00C0      		rjmp .L114
- 1001               	.L109:
- 423:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_set(NRK_LED_1);
- 1003               	.LM97:
- 1004 03ac 8130      		cpi r24,1
- 1005 03ae 9105      		cpc r25,__zero_reg__
- 1006 03b0 01F4      		brne .L111
- 1007 03b2 88E0      		ldi r24,lo8(8)
- 1008               	.L114:
- 1009 03b4 0E94 0000 		call nrk_gpio_set
- 1010 03b8 81E0      		ldi r24,lo8(1)
- 1011 03ba 0895      		ret
- 1012               	.L111:
- 424:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_set(NRK_LED_2);
- 1014               	.LM98:
- 1015 03bc 0297      		sbiw r24,2
- 1016 03be 01F0      		breq .L112
- 1017 03c0 8FEF      		ldi r24,lo8(-1)
- 1018 03c2 0895      		ret
- 1019               	.L112:
- 1020 03c4 80E1      		ldi r24,lo8(16)
- 1021 03c6 0E94 0000 		call nrk_gpio_set
- 1022 03ca 81E0      		ldi r24,lo8(1)
- 425:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
- 426:../../../src/platform/micaZ/source/ulib.c **** 
- 427:../../../src/platform/micaZ/source/ulib.c ****     return 1;
- 428:../../../src/platform/micaZ/source/ulib.c **** }
- 1024               	.LM99:
- 1025 03cc 0895      		ret
- 1027               	.Lscope12:
- 1029               		.stabd	78,0,0
- 1031               	.global	nrk_setup_ports
- 1033               	nrk_setup_ports:
- 1034               		.stabd	46,0,0
+ 863               	.LM89:
+ 864 02a4 322F      		mov r19,r18
+ 865 02a6 3095      		com r19
+ 340:../../../src/platform/micaZ/source/ulib.c ****         switch (pin & 0x07)
+ 867               	.LM90:
+ 868 02a8 8770      		andi r24,lo8(7)
+ 869 02aa 9070      		andi r25,hi8(7)
+ 870 02ac 8230      		cpi r24,2
+ 871 02ae 9105      		cpc r25,__zero_reg__
+ 872 02b0 01F0      		breq .L84
+ 873 02b2 8330      		cpi r24,3
+ 874 02b4 9105      		cpc r25,__zero_reg__
+ 875 02b6 04F4      		brge .L88
+ 876 02b8 0097      		sbiw r24,0
+ 877 02ba 01F0      		breq .L82
+ 878 02bc 8130      		cpi r24,1
+ 879 02be 9105      		cpc r25,__zero_reg__
+ 880 02c0 01F0      		breq .+2
+ 881 02c2 00C0      		rjmp .L97
+ 882 02c4 00C0      		rjmp .L100
+ 883               	.L88:
+ 884 02c6 8430      		cpi r24,4
+ 885 02c8 9105      		cpc r25,__zero_reg__
+ 886 02ca 01F0      		breq .L86
+ 887 02cc 8430      		cpi r24,4
+ 888 02ce 9105      		cpc r25,__zero_reg__
+ 889 02d0 04F0      		brlt .L85
+ 890 02d2 8530      		cpi r24,5
+ 891 02d4 9105      		cpc r25,__zero_reg__
+ 892 02d6 01F0      		breq .+2
+ 893 02d8 00C0      		rjmp .L97
+ 894 02da 00C0      		rjmp .L101
+ 895               	.L82:
+ 343:../../../src/platform/micaZ/source/ulib.c ****             DDRA &= bitvalue_inv;
+ 897               	.LM91:
+ 898 02dc 8AB3      		in r24,58-32
+ 899 02de 8323      		and r24,r19
+ 900 02e0 8ABB      		out 58-32,r24
+ 344:../../../src/platform/micaZ/source/ulib.c ****             PORTA |= bitvalue;
+ 902               	.LM92:
+ 903 02e2 8BB3      		in r24,59-32
+ 904 02e4 822B      		or r24,r18
+ 905 02e6 8BBB      		out 59-32,r24
+ 906 02e8 00C0      		rjmp .L99
+ 907               	.L100:
+ 347:../../../src/platform/micaZ/source/ulib.c ****             DDRB &= bitvalue_inv;
+ 909               	.LM93:
+ 910 02ea 87B3      		in r24,55-32
+ 911 02ec 8323      		and r24,r19
+ 912 02ee 87BB      		out 55-32,r24
+ 348:../../../src/platform/micaZ/source/ulib.c ****             PORTB |= bitvalue;
+ 914               	.LM94:
+ 915 02f0 88B3      		in r24,56-32
+ 916 02f2 822B      		or r24,r18
+ 917 02f4 88BB      		out 56-32,r24
+ 918 02f6 00C0      		rjmp .L99
+ 919               	.L84:
+ 351:../../../src/platform/micaZ/source/ulib.c ****             DDRC &= bitvalue_inv;
+ 921               	.LM95:
+ 922 02f8 84B3      		in r24,52-32
+ 923 02fa 8323      		and r24,r19
+ 924 02fc 84BB      		out 52-32,r24
+ 352:../../../src/platform/micaZ/source/ulib.c ****             PORTC |= bitvalue;
+ 926               	.LM96:
+ 927 02fe 85B3      		in r24,53-32
+ 928 0300 822B      		or r24,r18
+ 929 0302 85BB      		out 53-32,r24
+ 930 0304 00C0      		rjmp .L99
+ 931               	.L85:
+ 355:../../../src/platform/micaZ/source/ulib.c ****             DDRD &= bitvalue_inv;
+ 933               	.LM97:
+ 934 0306 81B3      		in r24,49-32
+ 935 0308 8323      		and r24,r19
+ 936 030a 81BB      		out 49-32,r24
+ 356:../../../src/platform/micaZ/source/ulib.c ****             PORTD |= bitvalue;
+ 938               	.LM98:
+ 939 030c 82B3      		in r24,50-32
+ 940 030e 822B      		or r24,r18
+ 941 0310 82BB      		out 50-32,r24
+ 942 0312 00C0      		rjmp .L99
+ 943               	.L86:
+ 359:../../../src/platform/micaZ/source/ulib.c ****             DDRE &= bitvalue_inv;
+ 945               	.LM99:
+ 946 0314 82B1      		in r24,34-32
+ 947 0316 8323      		and r24,r19
+ 948 0318 82B9      		out 34-32,r24
+ 360:../../../src/platform/micaZ/source/ulib.c ****             PORTE |= bitvalue;
+ 950               	.LM100:
+ 951 031a 83B1      		in r24,35-32
+ 952 031c 822B      		or r24,r18
+ 953 031e 83B9      		out 35-32,r24
+ 954 0320 00C0      		rjmp .L99
+ 955               	.L101:
+ 363:../../../src/platform/micaZ/source/ulib.c ****             DDRF &= bitvalue_inv;
+ 957               	.LM101:
+ 958 0322 8091 6100 		lds r24,97
+ 959 0326 8323      		and r24,r19
+ 960 0328 8093 6100 		sts 97,r24
+ 364:../../../src/platform/micaZ/source/ulib.c ****             PORTF |= bitvalue;
+ 962               	.LM102:
+ 963 032c 8091 6200 		lds r24,98
+ 964 0330 822B      		or r24,r18
+ 965 0332 8093 6200 		sts 98,r24
+ 966 0336 00C0      		rjmp .L99
+ 967               	.L81:
+ 372:../../../src/platform/micaZ/source/ulib.c ****         switch (pin & 0x07)
+ 969               	.LM103:
+ 970 0338 8770      		andi r24,lo8(7)
+ 971 033a 9070      		andi r25,hi8(7)
+ 972 033c 8230      		cpi r24,2
+ 973 033e 9105      		cpc r25,__zero_reg__
+ 974 0340 01F0      		breq .L91
+ 975 0342 8330      		cpi r24,3
+ 976 0344 9105      		cpc r25,__zero_reg__
+ 977 0346 04F4      		brge .L95
+ 978 0348 0097      		sbiw r24,0
+ 979 034a 01F0      		breq .L89
+ 980 034c 8130      		cpi r24,1
+ 981 034e 9105      		cpc r25,__zero_reg__
+ 982 0350 01F4      		brne .L98
+ 983 0352 00C0      		rjmp .L102
+ 984               	.L95:
+ 985 0354 8430      		cpi r24,4
+ 986 0356 9105      		cpc r25,__zero_reg__
+ 987 0358 01F0      		breq .L93
+ 988 035a 8430      		cpi r24,4
+ 989 035c 9105      		cpc r25,__zero_reg__
+ 990 035e 04F0      		brlt .L92
+ 991 0360 8530      		cpi r24,5
+ 992 0362 9105      		cpc r25,__zero_reg__
+ 993 0364 01F4      		brne .L98
+ 994 0366 00C0      		rjmp .L103
+ 995               	.L89:
+ 375:../../../src/platform/micaZ/source/ulib.c ****             DDRA |= bitvalue;
+ 997               	.LM104:
+ 998 0368 8AB3      		in r24,58-32
+ 999 036a 822B      		or r24,r18
+ 1000 036c 8ABB      		out 58-32,r24
+ 1001 036e 00C0      		rjmp .L99
+ 1002               	.L102:
+ 378:../../../src/platform/micaZ/source/ulib.c ****             DDRB |= bitvalue;
+ 1004               	.LM105:
+ 1005 0370 87B3      		in r24,55-32
+ 1006 0372 822B      		or r24,r18
+ 1007 0374 87BB      		out 55-32,r24
+ 1008 0376 00C0      		rjmp .L99
+ 1009               	.L91:
+ 381:../../../src/platform/micaZ/source/ulib.c ****             DDRC |= bitvalue;
+ 1011               	.LM106:
+ 1012 0378 84B3      		in r24,52-32
+ 1013 037a 822B      		or r24,r18
+ 1014 037c 84BB      		out 52-32,r24
+ 1015 037e 00C0      		rjmp .L99
+ 1016               	.L92:
+ 384:../../../src/platform/micaZ/source/ulib.c ****             DDRD |= bitvalue;
+ 1018               	.LM107:
+ 1019 0380 81B3      		in r24,49-32
+ 1020 0382 822B      		or r24,r18
+ 1021 0384 81BB      		out 49-32,r24
+ 1022 0386 00C0      		rjmp .L99
+ 1023               	.L93:
+ 387:../../../src/platform/micaZ/source/ulib.c ****             DDRE |= bitvalue;
+ 1025               	.LM108:
+ 1026 0388 82B1      		in r24,34-32
+ 1027 038a 822B      		or r24,r18
+ 1028 038c 82B9      		out 34-32,r24
+ 1029 038e 00C0      		rjmp .L99
+ 1030               	.L103:
+ 390:../../../src/platform/micaZ/source/ulib.c ****             DDRF |= bitvalue;
+ 1032               	.LM109:
+ 1033 0390 8091 6100 		lds r24,97
+ 1034 0394 822B      		or r24,r18
+ 1035 0396 8093 6100 		sts 97,r24
+ 1036               	.L99:
+ 396:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 1038               	.LM110:
+ 1039 039a 81E0      		ldi r24,lo8(1)
+ 391:../../../src/platform/micaZ/source/ulib.c ****             break;
+ 1041               	.LM111:
+ 1042 039c 0895      		ret
+ 1043               	.L97:
+ 367:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 1045               	.LM112:
+ 1046 039e 8FEF      		ldi r24,lo8(-1)
+ 1047 03a0 0895      		ret
+ 1048               	.L98:
+ 393:../../../src/platform/micaZ/source/ulib.c ****             return -1;
+ 1050               	.LM113:
+ 1051 03a2 8FEF      		ldi r24,lo8(-1)
+ 397:../../../src/platform/micaZ/source/ulib.c **** }
+ 1053               	.LM114:
+ 1054 03a4 0895      		ret
+ 1060               	.Lscope11:
+ 1062               		.stabd	78,0,0
+ 1065               	.global	nrk_get_button
+ 1067               	nrk_get_button:
+ 1068               		.stabd	46,0,0
+ 401:../../../src/platform/micaZ/source/ulib.c **** {
+ 1070               	.LM115:
+ 1071               	.LFBB12:
+ 1072               	/* prologue: function */
+ 1073               	/* frame size = 0 */
+ 1074               	/* stack size = 0 */
+ 1075               	.L__stack_usage = 0
+ 403:../../../src/platform/micaZ/source/ulib.c **** }
+ 1077               	.LM116:
+ 1078 03a6 8FEF      		ldi r24,lo8(-1)
+ 1079               	/* epilogue start */
+ 1080 03a8 0895      		ret
+ 1082               	.Lscope12:
+ 1084               		.stabd	78,0,0
+ 1087               	.global	nrk_led_toggle
+ 1089               	nrk_led_toggle:
+ 1090               		.stabd	46,0,0
+ 408:../../../src/platform/micaZ/source/ulib.c **** {
+ 1092               	.LM117:
+ 1093               	.LFBB13:
+ 1094               	/* prologue: function */
+ 1095               	/* frame size = 0 */
+ 1096               	/* stack size = 0 */
+ 1097               	.L__stack_usage = 0
+ 411:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_toggle(NRK_LED_0);
+ 1099               	.LM118:
+ 1100 03aa 0097      		sbiw r24,0
+ 1101 03ac 01F4      		brne .L106
+ 411:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_toggle(NRK_LED_0);
+ 1103               	.LM119:
+ 1104 03ae 80E0      		ldi r24,lo8(0)
+ 1105 03b0 00C0      		rjmp .L110
+ 1106               	.L106:
+ 412:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_toggle(NRK_LED_1);
+ 1108               	.LM120:
+ 1109 03b2 8130      		cpi r24,1
+ 1110 03b4 9105      		cpc r25,__zero_reg__
+ 1111 03b6 01F4      		brne .L108
+ 412:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_toggle(NRK_LED_1);
+ 1113               	.LM121:
+ 1114 03b8 88E0      		ldi r24,lo8(8)
+ 1115 03ba 00C0      		rjmp .L110
+ 1116               	.L108:
+ 413:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_toggle(NRK_LED_2);
+ 1118               	.LM122:
+ 1119 03bc 8230      		cpi r24,2
+ 1120 03be 9105      		cpc r25,__zero_reg__
+ 1121 03c0 01F4      		brne .L109
+ 413:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_toggle(NRK_LED_2);
+ 1123               	.LM123:
+ 1124 03c2 80E1      		ldi r24,lo8(16)
+ 1125               	.L110:
+ 1126 03c4 0E94 0000 		call nrk_gpio_toggle
+ 416:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 1128               	.LM124:
+ 1129 03c8 81E0      		ldi r24,lo8(1)
+ 1130 03ca 0895      		ret
+ 1131               	.L109:
+ 414:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
+ 1133               	.LM125:
+ 1134 03cc 8FEF      		ldi r24,lo8(-1)
+ 417:../../../src/platform/micaZ/source/ulib.c **** }
+ 1136               	.LM126:
+ 1137 03ce 0895      		ret
+ 1139               	.Lscope13:
+ 1141               		.stabd	78,0,0
+ 1144               	.global	nrk_led_clr
+ 1146               	nrk_led_clr:
+ 1147               		.stabd	46,0,0
+ 420:../../../src/platform/micaZ/source/ulib.c **** {
+ 1149               	.LM127:
+ 1150               	.LFBB14:
+ 1151               	/* prologue: function */
+ 1152               	/* frame size = 0 */
+ 1153               	/* stack size = 0 */
+ 1154               	.L__stack_usage = 0
+ 423:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_set(NRK_LED_0);
+ 1156               	.LM128:
+ 1157 03d0 0097      		sbiw r24,0
+ 1158 03d2 01F4      		brne .L112
+ 423:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_set(NRK_LED_0);
+ 1160               	.LM129:
+ 1161 03d4 80E0      		ldi r24,lo8(0)
+ 1162 03d6 00C0      		rjmp .L116
+ 1163               	.L112:
+ 424:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_set(NRK_LED_1);
+ 1165               	.LM130:
+ 1166 03d8 8130      		cpi r24,1
+ 1167 03da 9105      		cpc r25,__zero_reg__
+ 1168 03dc 01F4      		brne .L114
+ 424:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_set(NRK_LED_1);
+ 1170               	.LM131:
+ 1171 03de 88E0      		ldi r24,lo8(8)
+ 1172 03e0 00C0      		rjmp .L116
+ 1173               	.L114:
+ 425:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_set(NRK_LED_2);
+ 1175               	.LM132:
+ 1176 03e2 8230      		cpi r24,2
+ 1177 03e4 9105      		cpc r25,__zero_reg__
+ 1178 03e6 01F4      		brne .L115
+ 425:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_set(NRK_LED_2);
+ 1180               	.LM133:
+ 1181 03e8 80E1      		ldi r24,lo8(16)
+ 1182               	.L116:
+ 1183 03ea 0E94 0000 		call nrk_gpio_set
+ 428:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 1185               	.LM134:
+ 1186 03ee 81E0      		ldi r24,lo8(1)
+ 1187 03f0 0895      		ret
+ 1188               	.L115:
+ 426:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
+ 1190               	.LM135:
+ 1191 03f2 8FEF      		ldi r24,lo8(-1)
+ 429:../../../src/platform/micaZ/source/ulib.c **** }
+ 1193               	.LM136:
+ 1194 03f4 0895      		ret
+ 1196               	.Lscope14:
+ 1198               		.stabd	78,0,0
+ 1200               	.global	nrk_setup_ports
+ 1202               	nrk_setup_ports:
+ 1203               		.stabd	46,0,0
  145:../../../src/platform/micaZ/source/ulib.c **** {
- 1036               	.LM100:
- 1037               	.LFBB13:
- 1038               	/* prologue: function */
- 1039               	/* frame size = 0 */
+ 1205               	.LM137:
+ 1206               	.LFBB15:
+ 1207               	/* prologue: function */
+ 1208               	/* frame size = 0 */
+ 1209               	/* stack size = 0 */
+ 1210               	.L__stack_usage = 0
  146:../../../src/platform/micaZ/source/ulib.c ****     PORT_INIT();
- 1041               	.LM101:
- 1042 03ce 80B5      		in r24,64-32
- 1043 03d0 8460      		ori r24,lo8(4)
- 1044 03d2 80BD      		out 64-32,r24
- 1045 03d4 87E0      		ldi r24,lo8(7)
- 1046 03d6 87BB      		out 55-32,r24
- 1047 03d8 88BB      		out 56-32,r24
- 1048 03da 8FEF      		ldi r24,lo8(-1)
- 1049 03dc 84BB      		out 52-32,r24
- 1050 03de 15BA      		out 53-32,__zero_reg__
- 1051 03e0 82E0      		ldi r24,lo8(2)
- 1052 03e2 82B9      		out 34-32,r24
- 1053 03e4 87E6      		ldi r24,lo8(103)
- 1054 03e6 8ABB      		out 58-32,r24
- 1055 03e8 80E4      		ldi r24,lo8(64)
- 1056 03ea 8BBB      		out 59-32,r24
+ 1212               	.LM138:
+ 1213 03f6 80B5      		in r24,64-32
+ 1214 03f8 8460      		ori r24,lo8(4)
+ 1215 03fa 80BD      		out 64-32,r24
+ 1216 03fc 87E0      		ldi r24,lo8(7)
+ 1217 03fe 87BB      		out 55-32,r24
+ 1218 0400 88BB      		out 56-32,r24
+ 1219 0402 8FEF      		ldi r24,lo8(-1)
+ 1220 0404 84BB      		out 52-32,r24
+ 1221 0406 15BA      		out 53-32,__zero_reg__
+ 1222 0408 82E0      		ldi r24,lo8(2)
+ 1223 040a 82B9      		out 34-32,r24
+ 1224 040c 87E6      		ldi r24,lo8(103)
+ 1225 040e 8ABB      		out 58-32,r24
+ 1226 0410 80E4      		ldi r24,lo8(64)
+ 1227 0412 8BBB      		out 59-32,r24
  147:../../../src/platform/micaZ/source/ulib.c ****     SPI_INIT();
- 1058               	.LM102:
- 1059 03ec 80E5      		ldi r24,lo8(80)
- 1060 03ee 8DB9      		out 45-32,r24
- 1061 03f0 81E0      		ldi r24,lo8(1)
- 1062 03f2 8EB9      		out 46-32,r24
+ 1229               	.LM139:
+ 1230 0414 80E5      		ldi r24,lo8(80)
+ 1231 0416 8DB9      		out 45-32,r24
+ 1232 0418 81E0      		ldi r24,lo8(1)
+ 1233 041a 8EB9      		out 46-32,r24
  149:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(0);
- 1064               	.LM103:
- 1065 03f4 80E0      		ldi r24,lo8(0)
- 1066 03f6 90E0      		ldi r25,hi8(0)
- 1067 03f8 0E94 0000 		call nrk_led_clr
+ 1235               	.LM140:
+ 1236 041c 80E0      		ldi r24,lo8(0)
+ 1237 041e 90E0      		ldi r25,hi8(0)
+ 1238 0420 0E94 0000 		call nrk_led_clr
  150:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(1);
- 1069               	.LM104:
- 1070 03fc 81E0      		ldi r24,lo8(1)
- 1071 03fe 90E0      		ldi r25,hi8(1)
- 1072 0400 0E94 0000 		call nrk_led_clr
+ 1240               	.LM141:
+ 1241 0424 81E0      		ldi r24,lo8(1)
+ 1242 0426 90E0      		ldi r25,hi8(1)
+ 1243 0428 0E94 0000 		call nrk_led_clr
  151:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(2);
- 1074               	.LM105:
- 1075 0404 82E0      		ldi r24,lo8(2)
- 1076 0406 90E0      		ldi r25,hi8(2)
- 1077 0408 0E94 0000 		call nrk_led_clr
+ 1245               	.LM142:
+ 1246 042c 82E0      		ldi r24,lo8(2)
+ 1247 042e 90E0      		ldi r25,hi8(2)
+ 1248 0430 0E94 0000 		call nrk_led_clr
  152:../../../src/platform/micaZ/source/ulib.c ****     nrk_led_clr(3);
- 1079               	.LM106:
- 1080 040c 83E0      		ldi r24,lo8(3)
- 1081 040e 90E0      		ldi r25,hi8(3)
- 1082 0410 0E94 0000 		call nrk_led_clr
- 1083               	/* epilogue start */
+ 1250               	.LM143:
+ 1251 0434 83E0      		ldi r24,lo8(3)
+ 1252 0436 90E0      		ldi r25,hi8(3)
+ 1253 0438 0E94 0000 		call nrk_led_clr
+ 1254               	/* epilogue start */
  153:../../../src/platform/micaZ/source/ulib.c **** }
- 1085               	.LM107:
- 1086 0414 0895      		ret
- 1088               	.Lscope13:
- 1090               		.stabd	78,0,0
- 1093               	.global	nrk_led_set
- 1095               	nrk_led_set:
- 1096               		.stabd	46,0,0
- 429:../../../src/platform/micaZ/source/ulib.c **** 
- 430:../../../src/platform/micaZ/source/ulib.c **** int8_t nrk_led_set( int led )
- 431:../../../src/platform/micaZ/source/ulib.c **** {
- 1098               	.LM108:
- 1099               	.LFBB14:
- 1100               	/* prologue: function */
- 1101               	/* frame size = 0 */
- 432:../../../src/platform/micaZ/source/ulib.c ****     // pdiener: Execution time optimization
- 433:../../../src/platform/micaZ/source/ulib.c **** 
- 434:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_clr(NRK_LED_0);
- 1103               	.LM109:
- 1104 0416 0097      		sbiw r24,0
- 1105 0418 01F4      		brne .L118
- 1106 041a 80E0      		ldi r24,lo8(0)
- 1107 041c 00C0      		rjmp .L123
- 1108               	.L118:
- 435:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_clr(NRK_LED_1);
- 1110               	.LM110:
- 1111 041e 8130      		cpi r24,1
- 1112 0420 9105      		cpc r25,__zero_reg__
- 1113 0422 01F4      		brne .L120
- 1114 0424 88E0      		ldi r24,lo8(8)
- 1115               	.L123:
- 1116 0426 0E94 0000 		call nrk_gpio_clr
- 1117 042a 81E0      		ldi r24,lo8(1)
- 1118 042c 0895      		ret
- 1119               	.L120:
- 436:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_clr(NRK_LED_2);
- 1121               	.LM111:
- 1122 042e 0297      		sbiw r24,2
- 1123 0430 01F0      		breq .L121
- 1124 0432 8FEF      		ldi r24,lo8(-1)
- 1125 0434 0895      		ret
- 1126               	.L121:
- 1127 0436 80E1      		ldi r24,lo8(16)
- 1128 0438 0E94 0000 		call nrk_gpio_clr
- 1129 043c 81E0      		ldi r24,lo8(1)
- 437:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
- 438:../../../src/platform/micaZ/source/ulib.c **** 
- 439:../../../src/platform/micaZ/source/ulib.c ****     return 1;
- 440:../../../src/platform/micaZ/source/ulib.c **** }
- 1131               	.LM112:
- 1132 043e 0895      		ret
- 1134               	.Lscope14:
- 1136               		.stabd	78,0,0
- 1139               	.global	putc0
- 1141               	putc0:
- 1142               		.stabd	46,0,0
- 441:../../../src/platform/micaZ/source/ulib.c **** /*
- 442:../../../src/platform/micaZ/source/ulib.c **** void IO_SET_E(uint8_t pin)
- 443:../../../src/platform/micaZ/source/ulib.c **** {
- 444:../../../src/platform/micaZ/source/ulib.c **** PORTE |= BM(pin);
- 445:../../../src/platform/micaZ/source/ulib.c **** }
- 446:../../../src/platform/micaZ/source/ulib.c **** 
- 447:../../../src/platform/micaZ/source/ulib.c **** void IO_CLR_E(uint8_t pin)
- 448:../../../src/platform/micaZ/source/ulib.c **** {
- 449:../../../src/platform/micaZ/source/ulib.c **** PORTE &= ~BM(pin);
- 450:../../../src/platform/micaZ/source/ulib.c **** }
- 451:../../../src/platform/micaZ/source/ulib.c **** 
- 452:../../../src/platform/micaZ/source/ulib.c **** void IO_SET_F(uint8_t pin)
- 453:../../../src/platform/micaZ/source/ulib.c **** {
- 454:../../../src/platform/micaZ/source/ulib.c **** PORTF |= BM(pin);
- 455:../../../src/platform/micaZ/source/ulib.c **** }
- 456:../../../src/platform/micaZ/source/ulib.c **** 
- 457:../../../src/platform/micaZ/source/ulib.c **** void IO_CLR_F(uint8_t pin)
- 458:../../../src/platform/micaZ/source/ulib.c **** {
- 459:../../../src/platform/micaZ/source/ulib.c **** PORTF &= ~BM(pin);
- 460:../../../src/platform/micaZ/source/ulib.c **** }
- 461:../../../src/platform/micaZ/source/ulib.c **** */
- 462:../../../src/platform/micaZ/source/ulib.c **** 
- 463:../../../src/platform/micaZ/source/ulib.c **** void putc0(char x)
- 464:../../../src/platform/micaZ/source/ulib.c **** {
- 1144               	.LM113:
- 1145               	.LFBB15:
- 1146               	/* prologue: function */
- 1147               	/* frame size = 0 */
- 1148               	.L125:
- 465:../../../src/platform/micaZ/source/ulib.c ****     UART0_WAIT_AND_SEND(x);
- 1150               	.LM114:
- 1151 0440 5D9B      		sbis 43-32,5
- 1152 0442 00C0      		rjmp .L125
- 1153 0444 5D98      		cbi 43-32,5
- 1154 0446 8CB9      		out 44-32,r24
- 1155               	/* epilogue start */
- 466:../../../src/platform/micaZ/source/ulib.c **** }
- 1157               	.LM115:
- 1158 0448 0895      		ret
- 1160               	.Lscope15:
- 1162               		.stabd	78,0,0
- 1165               	.global	putc1
- 1167               	putc1:
- 1168               		.stabd	46,0,0
- 467:../../../src/platform/micaZ/source/ulib.c **** 
- 468:../../../src/platform/micaZ/source/ulib.c **** void putc1(char x)
- 469:../../../src/platform/micaZ/source/ulib.c **** {
- 1170               	.LM116:
- 1171               	.LFBB16:
- 1172               	/* prologue: function */
- 1173               	/* frame size = 0 */
- 1174 044a 982F      		mov r25,r24
- 1175               	.L129:
- 470:../../../src/platform/micaZ/source/ulib.c ****     UART1_WAIT_AND_SEND(x);
- 1177               	.LM117:
- 1178 044c 8091 9B00 		lds r24,155
- 1179 0450 85FF      		sbrs r24,5
- 1180 0452 00C0      		rjmp .L129
- 1181 0454 8091 9B00 		lds r24,155
- 1182 0458 8F7D      		andi r24,lo8(-33)
- 1183 045a 8093 9B00 		sts 155,r24
- 1184 045e 9093 9C00 		sts 156,r25
- 1185               	/* epilogue start */
- 471:../../../src/platform/micaZ/source/ulib.c **** }
- 1187               	.LM118:
- 1188 0462 0895      		ret
- 1190               	.Lscope16:
- 1192               		.stabd	78,0,0
- 1194               	.global	setup_uart0
- 1196               	setup_uart0:
- 1197               		.stabd	46,0,0
- 472:../../../src/platform/micaZ/source/ulib.c **** 
- 473:../../../src/platform/micaZ/source/ulib.c **** /* print uart string */
- 474:../../../src/platform/micaZ/source/ulib.c **** /*
- 475:../../../src/platform/micaZ/source/ulib.c **** void printus1(char *x)
- 476:../../../src/platform/micaZ/source/ulib.c **** {
- 477:../../../src/platform/micaZ/source/ulib.c ****      int i=0;
- 478:../../../src/platform/micaZ/source/ulib.c ****      while(x[i]!='\0'){
- 479:../../../src/platform/micaZ/source/ulib.c ****      UART1_WAIT_AND_SEND(x[i]);
- 480:../../../src/platform/micaZ/source/ulib.c ****      i++;
- 481:../../../src/platform/micaZ/source/ulib.c ****      }
- 482:../../../src/platform/micaZ/source/ulib.c **** }
- 483:../../../src/platform/micaZ/source/ulib.c **** 
- 484:../../../src/platform/micaZ/source/ulib.c **** void printus0(char *x)
- 485:../../../src/platform/micaZ/source/ulib.c **** {
- 486:../../../src/platform/micaZ/source/ulib.c ****      int i=0;
- 487:../../../src/platform/micaZ/source/ulib.c ****      while(x[i]!='\0'){
- 488:../../../src/platform/micaZ/source/ulib.c ****      UART0_WAIT_AND_SEND(x[i]);
- 489:../../../src/platform/micaZ/source/ulib.c ****      i++;
- 490:../../../src/platform/micaZ/source/ulib.c ****      }
- 491:../../../src/platform/micaZ/source/ulib.c **** }
- 492:../../../src/platform/micaZ/source/ulib.c **** */
- 493:../../../src/platform/micaZ/source/ulib.c **** void setup_uart0(uint16_t baudrate)
- 494:../../../src/platform/micaZ/source/ulib.c **** {
- 1199               	.LM119:
- 1200               	.LFBB17:
- 1201               	/* prologue: function */
- 1202               	/* frame size = 0 */
- 495:../../../src/platform/micaZ/source/ulib.c **** //INIT_UART1( UART_BAUDRATE_115K2, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_B
- 496:../../../src/platform/micaZ/source/ulib.c ****     INIT_UART0( baudrate, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_BIT));
- 1204               	.LM120:
- 1205 0464 9093 9000 		sts 144,r25
- 1206 0468 89B9      		out 41-32,r24
- 1207 046a 86E0      		ldi r24,lo8(6)
- 1208 046c 8093 9500 		sts 149,r24
- 1209 0470 5298      		cbi 42-32,2
- 1210 0472 599A      		sbi 43-32,1
- 497:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART0();
- 1212               	.LM121:
- 1213 0474 8AB1      		in r24,42-32
- 1214 0476 8861      		ori r24,lo8(24)
- 1215 0478 8AB9      		out 42-32,r24
- 1216               	/* epilogue start */
- 498:../../../src/platform/micaZ/source/ulib.c **** }
- 1218               	.LM122:
- 1219 047a 0895      		ret
- 1221               	.Lscope17:
- 1223               		.stabd	78,0,0
- 1225               	.global	setup_uart1
- 1227               	setup_uart1:
- 1228               		.stabd	46,0,0
- 499:../../../src/platform/micaZ/source/ulib.c **** 
- 500:../../../src/platform/micaZ/source/ulib.c **** 
- 501:../../../src/platform/micaZ/source/ulib.c **** /**
- 502:../../../src/platform/micaZ/source/ulib.c ****  * nrk_setup_uart()
- 503:../../../src/platform/micaZ/source/ulib.c ****  *
- 504:../../../src/platform/micaZ/source/ulib.c ****  * Sets a default uart for a given platform and
- 505:../../../src/platform/micaZ/source/ulib.c ****  * direct stdin and stdout to that port.
- 506:../../../src/platform/micaZ/source/ulib.c ****  *
- 507:../../../src/platform/micaZ/source/ulib.c ****  * More advanced UART usage will require manually
- 508:../../../src/platform/micaZ/source/ulib.c ****  * setting parameters.
- 509:../../../src/platform/micaZ/source/ulib.c ****  */
- 510:../../../src/platform/micaZ/source/ulib.c **** void nrk_setup_uart(uint16_t baudrate)
- 511:../../../src/platform/micaZ/source/ulib.c **** {
- 512:../../../src/platform/micaZ/source/ulib.c **** 
- 513:../../../src/platform/micaZ/source/ulib.c ****     //setup_uart1(baudrate);
- 514:../../../src/platform/micaZ/source/ulib.c ****     setup_uart0(baudrate);
- 515:../../../src/platform/micaZ/source/ulib.c **** 
- 516:../../../src/platform/micaZ/source/ulib.c ****     stdout = fdevopen( putc0, getc0);
- 517:../../../src/platform/micaZ/source/ulib.c ****     stdin = fdevopen( putc0, getc0);
- 518:../../../src/platform/micaZ/source/ulib.c **** 
- 519:../../../src/platform/micaZ/source/ulib.c **** #ifdef NRK_UART_BUF
- 520:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_signal=nrk_signal_create();
- 521:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_signal==NRK_ERROR) nrk_error_add(NRK_SIGNAL_CREATE_ERROR);
- 522:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf_start=0;
- 523:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf_end=0;
- 524:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART0_RX_INT();
- 525:../../../src/platform/micaZ/source/ulib.c **** #endif
- 526:../../../src/platform/micaZ/source/ulib.c **** 
- 527:../../../src/platform/micaZ/source/ulib.c **** 
- 528:../../../src/platform/micaZ/source/ulib.c **** 
- 529:../../../src/platform/micaZ/source/ulib.c **** }
- 530:../../../src/platform/micaZ/source/ulib.c **** 
- 531:../../../src/platform/micaZ/source/ulib.c **** void setup_uart1(uint16_t baudrate)
- 532:../../../src/platform/micaZ/source/ulib.c **** {
- 1230               	.LM123:
- 1231               	.LFBB18:
- 1232               	/* prologue: function */
- 1233               	/* frame size = 0 */
- 533:../../../src/platform/micaZ/source/ulib.c **** //INIT_UART1( UART_BAUDRATE_115K2, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_B
- 534:../../../src/platform/micaZ/source/ulib.c ****     INIT_UART1( baudrate, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_BIT));
- 1235               	.LM124:
- 1236 047c 9093 9800 		sts 152,r25
- 1237 0480 8093 9900 		sts 153,r24
- 1238 0484 86E0      		ldi r24,lo8(6)
- 1239 0486 8093 9D00 		sts 157,r24
- 1240 048a EAE9      		ldi r30,lo8(154)
- 1241 048c F0E0      		ldi r31,hi8(154)
- 1242 048e 8081      		ld r24,Z
- 1243 0490 8B7F      		andi r24,lo8(-5)
- 1244 0492 8083      		st Z,r24
- 1245 0494 ABE9      		ldi r26,lo8(155)
- 1246 0496 B0E0      		ldi r27,hi8(155)
- 1247 0498 8C91      		ld r24,X
- 1248 049a 8260      		ori r24,lo8(2)
- 1249 049c 8C93      		st X,r24
- 535:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART1();
- 1251               	.LM125:
- 1252 049e 8081      		ld r24,Z
- 1253 04a0 8861      		ori r24,lo8(24)
- 1254 04a2 8083      		st Z,r24
- 1255               	/* epilogue start */
- 536:../../../src/platform/micaZ/source/ulib.c **** }
- 1257               	.LM126:
- 1258 04a4 0895      		ret
- 1260               	.Lscope18:
- 1262               		.stabd	78,0,0
- 1264               	.global	getc1
- 1266               	getc1:
+ 1256               	.LM144:
+ 1257 043c 0895      		ret
+ 1259               	.Lscope15:
+ 1261               		.stabd	78,0,0
+ 1264               	.global	nrk_led_set
+ 1266               	nrk_led_set:
  1267               		.stabd	46,0,0
- 537:../../../src/platform/micaZ/source/ulib.c **** 
- 538:../../../src/platform/micaZ/source/ulib.c **** 
- 539:../../../src/platform/micaZ/source/ulib.c **** 
- 540:../../../src/platform/micaZ/source/ulib.c **** char getc1(void)
- 541:../../../src/platform/micaZ/source/ulib.c **** {
- 1269               	.LM127:
- 1270               	.LFBB19:
+ 432:../../../src/platform/micaZ/source/ulib.c **** {
+ 1269               	.LM145:
+ 1270               	.LFBB16:
  1271               	/* prologue: function */
  1272               	/* frame size = 0 */
- 1273               	.L137:
- 542:../../../src/platform/micaZ/source/ulib.c ****     unsigned char tmp;
- 543:../../../src/platform/micaZ/source/ulib.c ****     UART1_WAIT_AND_RECEIVE(tmp);
- 1275               	.LM128:
- 1276 04a6 8091 9B00 		lds r24,155
- 1277 04aa 87FF      		sbrs r24,7
- 1278 04ac 00C0      		rjmp .L137
- 1279 04ae 8091 9B00 		lds r24,155
- 1280 04b2 8F77      		andi r24,lo8(127)
- 1281 04b4 8093 9B00 		sts 155,r24
- 1282 04b8 8091 9C00 		lds r24,156
- 1283               	/* epilogue start */
- 544:../../../src/platform/micaZ/source/ulib.c ****     return tmp;
- 545:../../../src/platform/micaZ/source/ulib.c **** }
- 1285               	.LM129:
- 1286 04bc 0895      		ret
- 1291               	.Lscope19:
- 1293               		.stabd	78,0,0
- 1295               	.global	nrk_setup_uart
- 1297               	nrk_setup_uart:
- 1298               		.stabd	46,0,0
- 512:../../../src/platform/micaZ/source/ulib.c **** {
- 1300               	.LM130:
- 1301               	.LFBB20:
- 1302 04be EF92      		push r14
- 1303 04c0 FF92      		push r15
- 1304 04c2 0F93      		push r16
- 1305 04c4 1F93      		push r17
- 1306               	/* prologue: function */
- 1307               	/* frame size = 0 */
- 1308               	.LBB4:
- 1309               	.LBB5:
+ 1273               	/* stack size = 0 */
+ 1274               	.L__stack_usage = 0
+ 435:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_clr(NRK_LED_0);
+ 1276               	.LM146:
+ 1277 043e 0097      		sbiw r24,0
+ 1278 0440 01F4      		brne .L119
+ 435:../../../src/platform/micaZ/source/ulib.c ****     if(led==0)      nrk_gpio_clr(NRK_LED_0);
+ 1280               	.LM147:
+ 1281 0442 80E0      		ldi r24,lo8(0)
+ 1282 0444 00C0      		rjmp .L123
+ 1283               	.L119:
+ 436:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_clr(NRK_LED_1);
+ 1285               	.LM148:
+ 1286 0446 8130      		cpi r24,1
+ 1287 0448 9105      		cpc r25,__zero_reg__
+ 1288 044a 01F4      		brne .L121
+ 436:../../../src/platform/micaZ/source/ulib.c ****     else if(led==1) nrk_gpio_clr(NRK_LED_1);
+ 1290               	.LM149:
+ 1291 044c 88E0      		ldi r24,lo8(8)
+ 1292 044e 00C0      		rjmp .L123
+ 1293               	.L121:
+ 437:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_clr(NRK_LED_2);
+ 1295               	.LM150:
+ 1296 0450 8230      		cpi r24,2
+ 1297 0452 9105      		cpc r25,__zero_reg__
+ 1298 0454 01F4      		brne .L122
+ 437:../../../src/platform/micaZ/source/ulib.c ****     else if(led==2) nrk_gpio_clr(NRK_LED_2);
+ 1300               	.LM151:
+ 1301 0456 80E1      		ldi r24,lo8(16)
+ 1302               	.L123:
+ 1303 0458 0E94 0000 		call nrk_gpio_clr
+ 440:../../../src/platform/micaZ/source/ulib.c ****     return 1;
+ 1305               	.LM152:
+ 1306 045c 81E0      		ldi r24,lo8(1)
+ 1307 045e 0895      		ret
+ 1308               	.L122:
+ 438:../../../src/platform/micaZ/source/ulib.c ****     else            return -1;
+ 1310               	.LM153:
+ 1311 0460 8FEF      		ldi r24,lo8(-1)
+ 441:../../../src/platform/micaZ/source/ulib.c **** }
+ 1313               	.LM154:
+ 1314 0462 0895      		ret
+ 1316               	.Lscope16:
+ 1318               		.stabd	78,0,0
+ 1321               	.global	putc1
+ 1323               	putc1:
+ 1324               		.stabd	46,0,0
+ 468:../../../src/platform/micaZ/source/ulib.c **** 
+ 469:../../../src/platform/micaZ/source/ulib.c **** void putc1(char x)
+ 470:../../../src/platform/micaZ/source/ulib.c **** {
+ 1326               	.LM155:
+ 1327               	.LFBB17:
+ 1328               	/* prologue: function */
+ 1329               	/* frame size = 0 */
+ 1330               	/* stack size = 0 */
+ 1331               	.L__stack_usage = 0
+ 1332               	.L125:
+ 471:../../../src/platform/micaZ/source/ulib.c ****     UART1_WAIT_AND_SEND(x);
+ 1334               	.LM156:
+ 1335 0464 9091 9B00 		lds r25,155
+ 1336 0468 95FF      		sbrs r25,5
+ 1337 046a 00C0      		rjmp .L125
+ 1339               	.LM157:
+ 1340 046c 9091 9B00 		lds r25,155
+ 1341 0470 9F7D      		andi r25,lo8(-33)
+ 1342 0472 9093 9B00 		sts 155,r25
+ 1343 0476 8093 9C00 		sts 156,r24
+ 1344               	/* epilogue start */
+ 472:../../../src/platform/micaZ/source/ulib.c **** }
+ 1346               	.LM158:
+ 1347 047a 0895      		ret
+ 1349               	.Lscope17:
+ 1351               		.stabd	78,0,0
+ 1353               	.global	setup_uart0
+ 1355               	setup_uart0:
+ 1356               		.stabd	46,0,0
+ 473:../../../src/platform/micaZ/source/ulib.c **** 
+ 474:../../../src/platform/micaZ/source/ulib.c **** /* print uart string */
+ 475:../../../src/platform/micaZ/source/ulib.c **** /*
+ 476:../../../src/platform/micaZ/source/ulib.c **** void printus1(char *x)
+ 477:../../../src/platform/micaZ/source/ulib.c **** {
+ 478:../../../src/platform/micaZ/source/ulib.c ****      int i=0;
+ 479:../../../src/platform/micaZ/source/ulib.c ****      while(x[i]!='\0'){
+ 480:../../../src/platform/micaZ/source/ulib.c ****      UART1_WAIT_AND_SEND(x[i]);
+ 481:../../../src/platform/micaZ/source/ulib.c ****      i++;
+ 482:../../../src/platform/micaZ/source/ulib.c ****      }
+ 483:../../../src/platform/micaZ/source/ulib.c **** }
+ 484:../../../src/platform/micaZ/source/ulib.c **** 
+ 485:../../../src/platform/micaZ/source/ulib.c **** void printus0(char *x)
+ 486:../../../src/platform/micaZ/source/ulib.c **** {
+ 487:../../../src/platform/micaZ/source/ulib.c ****      int i=0;
+ 488:../../../src/platform/micaZ/source/ulib.c ****      while(x[i]!='\0'){
+ 489:../../../src/platform/micaZ/source/ulib.c ****      UART0_WAIT_AND_SEND(x[i]);
+ 490:../../../src/platform/micaZ/source/ulib.c ****      i++;
+ 491:../../../src/platform/micaZ/source/ulib.c ****      }
+ 492:../../../src/platform/micaZ/source/ulib.c **** }
+ 493:../../../src/platform/micaZ/source/ulib.c **** */
+ 494:../../../src/platform/micaZ/source/ulib.c **** void setup_uart0(uint16_t baudrate)
+ 495:../../../src/platform/micaZ/source/ulib.c **** {
+ 1358               	.LM159:
+ 1359               	.LFBB18:
+ 1360               	/* prologue: function */
+ 1361               	/* frame size = 0 */
+ 1362               	/* stack size = 0 */
+ 1363               	.L__stack_usage = 0
+ 496:../../../src/platform/micaZ/source/ulib.c **** //INIT_UART1( UART_BAUDRATE_115K2, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_B
  497:../../../src/platform/micaZ/source/ulib.c ****     INIT_UART0( baudrate, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_BIT));
- 1311               	.LM131:
- 1312 04c6 9093 9000 		sts 144,r25
- 1313 04ca 89B9      		out 41-32,r24
- 1314 04cc 86E0      		ldi r24,lo8(6)
- 1315 04ce 8093 9500 		sts 149,r24
- 1316 04d2 5298      		cbi 42-32,2
- 1317 04d4 599A      		sbi 43-32,1
+ 1365               	.LM160:
+ 1366 047c 9093 9000 		sts 144,r25
+ 1367 0480 89B9      		out 41-32,r24
+ 1368 0482 86E0      		ldi r24,lo8(6)
+ 1369 0484 8093 9500 		sts 149,r24
+ 1370 0488 5298      		cbi 42-32,2
+ 1371 048a 599A      		sbi 43-32,1
  498:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART0();
- 1319               	.LM132:
- 1320 04d6 8AB1      		in r24,42-32
- 1321 04d8 8861      		ori r24,lo8(24)
- 1322 04da 8AB9      		out 42-32,r24
- 1323               	.LBE5:
- 1324               	.LBE4:
+ 1373               	.LM161:
+ 1374 048c 8AB1      		in r24,42-32
+ 1375 048e 8861      		ori r24,lo8(24)
+ 1376 0490 8AB9      		out 42-32,r24
+ 1377               	/* epilogue start */
+ 499:../../../src/platform/micaZ/source/ulib.c **** }
+ 1379               	.LM162:
+ 1380 0492 0895      		ret
+ 1382               	.Lscope18:
+ 1384               		.stabd	78,0,0
+ 1387               	.global	nrk_setup_uart
+ 1389               	nrk_setup_uart:
+ 1390               		.stabd	46,0,0
+ 500:../../../src/platform/micaZ/source/ulib.c **** 
+ 501:../../../src/platform/micaZ/source/ulib.c **** 
+ 502:../../../src/platform/micaZ/source/ulib.c **** /**
+ 503:../../../src/platform/micaZ/source/ulib.c ****  * nrk_setup_uart()
+ 504:../../../src/platform/micaZ/source/ulib.c ****  *
+ 505:../../../src/platform/micaZ/source/ulib.c ****  * Sets a default uart for a given platform and
+ 506:../../../src/platform/micaZ/source/ulib.c ****  * direct stdin and stdout to that port.
+ 507:../../../src/platform/micaZ/source/ulib.c ****  *
+ 508:../../../src/platform/micaZ/source/ulib.c ****  * More advanced UART usage will require manually
+ 509:../../../src/platform/micaZ/source/ulib.c ****  * setting parameters.
+ 510:../../../src/platform/micaZ/source/ulib.c ****  */
+ 511:../../../src/platform/micaZ/source/ulib.c **** void nrk_setup_uart(uint16_t baudrate)
+ 512:../../../src/platform/micaZ/source/ulib.c **** {
+ 1392               	.LM163:
+ 1393               	.LFBB19:
+ 1394 0494 0F93      		push r16
+ 1395 0496 1F93      		push r17
+ 1396 0498 CF93      		push r28
+ 1397 049a DF93      		push r29
+ 1398               	/* prologue: function */
+ 1399               	/* frame size = 0 */
+ 1400               	/* stack size = 4 */
+ 1401               	.L__stack_usage = 4
+ 513:../../../src/platform/micaZ/source/ulib.c **** 
+ 514:../../../src/platform/micaZ/source/ulib.c ****     //setup_uart1(baudrate);
+ 515:../../../src/platform/micaZ/source/ulib.c ****     setup_uart0(baudrate);
+ 1403               	.LM164:
+ 1404 049c 0E94 0000 		call setup_uart0
+ 516:../../../src/platform/micaZ/source/ulib.c **** 
  517:../../../src/platform/micaZ/source/ulib.c ****     stdout = fdevopen( putc0, getc0);
- 1326               	.LM133:
- 1327 04dc 00E0      		ldi r16,lo8(gs(putc0))
- 1328 04de 10E0      		ldi r17,hi8(gs(putc0))
- 1329 04e0 80E0      		ldi r24,lo8(gs(getc0))
- 1330 04e2 E82E      		mov r14,r24
- 1331 04e4 80E0      		ldi r24,hi8(gs(getc0))
- 1332 04e6 F82E      		mov r15,r24
- 1333 04e8 C801      		movw r24,r16
- 1334 04ea B701      		movw r22,r14
- 1335 04ec 0E94 0000 		call fdevopen
- 1336 04f0 9093 0000 		sts (__iob+2)+1,r25
- 1337 04f4 8093 0000 		sts __iob+2,r24
+ 1406               	.LM165:
+ 1407 04a0 C0E0      		ldi r28,lo8(gs(putc0))
+ 1408 04a2 D0E0      		ldi r29,hi8(gs(putc0))
+ 1409 04a4 00E0      		ldi r16,lo8(gs(getc0))
+ 1410 04a6 10E0      		ldi r17,hi8(gs(getc0))
+ 1411 04a8 CE01      		movw r24,r28
+ 1412 04aa B801      		movw r22,r16
+ 1413 04ac 0E94 0000 		call fdevopen
+ 1414 04b0 9093 0000 		sts __iob+2+1,r25
+ 1415 04b4 8093 0000 		sts __iob+2,r24
  518:../../../src/platform/micaZ/source/ulib.c ****     stdin = fdevopen( putc0, getc0);
- 1339               	.LM134:
- 1340 04f8 C801      		movw r24,r16
- 1341 04fa B701      		movw r22,r14
- 1342 04fc 0E94 0000 		call fdevopen
- 1343 0500 9093 0000 		sts (__iob)+1,r25
- 1344 0504 8093 0000 		sts __iob,r24
- 1345               	/* epilogue start */
+ 1417               	.LM166:
+ 1418 04b8 CE01      		movw r24,r28
+ 1419 04ba B801      		movw r22,r16
+ 1420 04bc 0E94 0000 		call fdevopen
+ 1421 04c0 9093 0000 		sts __iob+1,r25
+ 1422 04c4 8093 0000 		sts __iob,r24
+ 1423               	/* epilogue start */
+ 519:../../../src/platform/micaZ/source/ulib.c **** 
+ 520:../../../src/platform/micaZ/source/ulib.c **** #ifdef NRK_UART_BUF
+ 521:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_signal=nrk_signal_create();
+ 522:../../../src/platform/micaZ/source/ulib.c ****     if(uart_rx_signal==NRK_ERROR) nrk_error_add(NRK_SIGNAL_CREATE_ERROR);
+ 523:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf_start=0;
+ 524:../../../src/platform/micaZ/source/ulib.c ****     uart_rx_buf_end=0;
+ 525:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART0_RX_INT();
+ 526:../../../src/platform/micaZ/source/ulib.c **** #endif
+ 527:../../../src/platform/micaZ/source/ulib.c **** 
+ 528:../../../src/platform/micaZ/source/ulib.c **** 
+ 529:../../../src/platform/micaZ/source/ulib.c **** 
  530:../../../src/platform/micaZ/source/ulib.c **** }
- 1347               	.LM135:
- 1348 0508 1F91      		pop r17
- 1349 050a 0F91      		pop r16
- 1350 050c FF90      		pop r15
- 1351 050e EF90      		pop r14
- 1352 0510 0895      		ret
- 1354               	.Lscope20:
- 1356               		.stabd	78,0,0
- 1359               	.global	nrk_kprintf
- 1361               	nrk_kprintf:
- 1362               		.stabd	46,0,0
- 137:../../../src/platform/micaZ/source/ulib.c **** {
- 1364               	.LM136:
- 1365               	.LFBB21:
- 1366 0512 CF93      		push r28
- 1367 0514 DF93      		push r29
- 1368               	/* prologue: function */
- 1369               	/* frame size = 0 */
- 1370 0516 EC01      		movw r28,r24
- 1371 0518 00C0      		rjmp .L143
- 1372               	.L144:
- 140:../../../src/platform/micaZ/source/ulib.c ****         putchar(c);
- 1374               	.LM137:
- 1375 051a 6091 0000 		lds r22,__iob+2
- 1376 051e 7091 0000 		lds r23,(__iob+2)+1
- 1377 0522 90E0      		ldi r25,lo8(0)
- 1378 0524 0E94 0000 		call fputc
- 1379               	.L143:
- 1380 0528 FE01      		movw r30,r28
- 1381               	.LBB6:
- 139:../../../src/platform/micaZ/source/ulib.c ****     while((c=pgm_read_byte(addr++)))
- 1383               	.LM138:
- 1384 052a 2196      		adiw r28,1
- 1385               	/* #APP */
- 1386               	 ;  139 "../../../src/platform/micaZ/source/ulib.c" 1
- 1387 052c 8491      		lpm r24, Z
- 1388               		
- 1389               	 ;  0 "" 2
- 1390               	/* #NOAPP */
- 1391               	.LBE6:
- 1392 052e 8823      		tst r24
- 1393 0530 01F4      		brne .L144
- 1394               	/* epilogue start */
- 141:../../../src/platform/micaZ/source/ulib.c **** }
- 1396               	.LM139:
- 1397 0532 DF91      		pop r29
- 1398 0534 CF91      		pop r28
- 1399 0536 0895      		ret
- 1405               	.Lscope21:
- 1407               		.stabd	78,0,0
- 1408               	.global	NRK_LED_0
- 1409               		.data
- 1412               	NRK_LED_0:
- 1413 0000 00        		.skip 1,0
- 1414               	.global	NRK_LED_1
- 1417               	NRK_LED_1:
- 1418 0001 08        		.byte	8
- 1419               	.global	NRK_LED_2
- 1422               	NRK_LED_2:
- 1423 0002 10        		.byte	16
- 1424               	.global	NRK_VREG_EN
- 1427               	NRK_VREG_EN:
- 1428 0003 28        		.byte	40
- 1429               	.global	NRK_RESET_N
- 1432               	NRK_RESET_N:
- 1433 0004 30        		.byte	48
- 1434               	.global	NRK_CSN
- 1437               	NRK_CSN:
- 1438 0005 01        		.byte	1
- 1439               	.global	NRK_SCK
- 1442               	NRK_SCK:
- 1443 0006 09        		.byte	9
- 1444               	.global	NRK_MOSI
- 1447               	NRK_MOSI:
- 1448 0007 11        		.byte	17
- 1449               	.global	NRK_MISO
- 1452               	NRK_MISO:
- 1453 0008 19        		.byte	25
- 1454               	.global	NRK_FIFO
- 1457               	NRK_FIFO:
- 1458 0009 39        		.byte	57
- 1459               	.global	NRK_UART1_RXD
- 1462               	NRK_UART1_RXD:
- 1463 000a 13        		.byte	19
- 1464               	.global	NRK_UART1_TXD
- 1467               	NRK_UART1_TXD:
- 1468 000b 1B        		.byte	27
- 1469               	.global	NRK_SFD
- 1472               	NRK_SFD:
- 1473 000c 23        		.byte	35
- 1474               	.global	NRK_UART1_RTS
- 1477               	NRK_UART1_RTS:
- 1478 000d 2B        		.byte	43
- 1479               	.global	NRK_CCA
- 1482               	NRK_CCA:
- 1483 000e 33        		.byte	51
- 1484               	.global	NRK_UART1_CTS
- 1487               	NRK_UART1_CTS:
- 1488 000f 3B        		.byte	59
- 1489               	.global	NRK_UART0_RXD
- 1492               	NRK_UART0_RXD:
- 1493 0010 04        		.byte	4
- 1494               	.global	NRK_UART0_TXD
- 1497               	NRK_UART0_TXD:
- 1498 0011 0C        		.byte	12
- 1499               	.global	NRK_FIFOP
- 1502               	NRK_FIFOP:
- 1503 0012 34        		.byte	52
- 1504               	.global	NRK_ADC_INPUT_0
- 1507               	NRK_ADC_INPUT_0:
- 1508 0013 05        		.byte	5
- 1509               	.global	NRK_ADC_INPUT_1
- 1512               	NRK_ADC_INPUT_1:
- 1513 0014 0D        		.byte	13
- 1514               	.global	NRK_ADC_INPUT_2
- 1517               	NRK_ADC_INPUT_2:
- 1518 0015 15        		.byte	21
- 1519               	.global	NRK_ADC_INPUT_3
- 1522               	NRK_ADC_INPUT_3:
- 1523 0016 1D        		.byte	29
- 1524               	.global	NRK_ADC_INPUT_6
- 1527               	NRK_ADC_INPUT_6:
- 1528 0017 35        		.byte	53
- 1529               	.global	NRK_ADC_INPUT_7
- 1532               	NRK_ADC_INPUT_7:
- 1533 0018 3D        		.byte	61
- 1534               	.global	NRK_DEBUG_0
- 1537               	NRK_DEBUG_0:
- 1538 0019 0A        		.byte	10
- 1539               	.global	NRK_DEBUG_1
- 1542               	NRK_DEBUG_1:
- 1543 001a 12        		.byte	18
- 1544               	.global	NRK_DEBUG_2
- 1547               	NRK_DEBUG_2:
- 1548 001b FF        		.byte	-1
- 1549               	.global	NRK_DEBUG_3
- 1552               	NRK_DEBUG_3:
- 1553 001c FF        		.byte	-1
- 1554               	.global	NRK_LED_3
- 1557               	NRK_LED_3:
- 1558 001d FF        		.byte	-1
- 1559               	.global	NRK_BLED
- 1562               	NRK_BLED:
- 1563 001e FF        		.byte	-1
- 1564               	.global	NRK_SPI_SS
- 1567               	NRK_SPI_SS:
- 1568 001f FF        		.byte	-1
- 1569               	.global	NRK_GPIO26
- 1572               	NRK_GPIO26:
- 1573 0020 FF        		.byte	-1
- 1574               	.global	NRK_GPIO28
- 1577               	NRK_GPIO28:
- 1578 0021 FF        		.byte	-1
- 1579               	.global	NRK_GPIO34
- 1582               	NRK_GPIO34:
- 1583 0022 FF        		.byte	-1
- 1584               		.comm _nrk_signal_list,4,1
- 1585               		.comm error_task,1,1
- 1586               		.comm error_num,1,1
- 1625               		.text
- 1627               	.Letext0:
+ 1425               	.LM167:
+ 1426 04c8 DF91      		pop r29
+ 1427 04ca CF91      		pop r28
+ 1428 04cc 1F91      		pop r17
+ 1429 04ce 0F91      		pop r16
+ 1430 04d0 0895      		ret
+ 1432               	.Lscope19:
+ 1434               		.stabd	78,0,0
+ 1436               	.global	setup_uart1
+ 1438               	setup_uart1:
+ 1439               		.stabd	46,0,0
+ 531:../../../src/platform/micaZ/source/ulib.c **** 
+ 532:../../../src/platform/micaZ/source/ulib.c **** void setup_uart1(uint16_t baudrate)
+ 533:../../../src/platform/micaZ/source/ulib.c **** {
+ 1441               	.LM168:
+ 1442               	.LFBB20:
+ 1443               	/* prologue: function */
+ 1444               	/* frame size = 0 */
+ 1445               	/* stack size = 0 */
+ 1446               	.L__stack_usage = 0
+ 534:../../../src/platform/micaZ/source/ulib.c **** //INIT_UART1( UART_BAUDRATE_115K2, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_B
+ 535:../../../src/platform/micaZ/source/ulib.c ****     INIT_UART1( baudrate, (UART_OPT_NO_PARITY|UART_OPT_8_BITS_PER_CHAR|UART_OPT_ONE_STOP_BIT));
+ 1448               	.LM169:
+ 1449 04d2 9093 9800 		sts 152,r25
+ 1450 04d6 8093 9900 		sts 153,r24
+ 1451 04da 86E0      		ldi r24,lo8(6)
+ 1452 04dc 8093 9D00 		sts 157,r24
+ 1453 04e0 EAE9      		ldi r30,lo8(154)
+ 1454 04e2 F0E0      		ldi r31,hi8(154)
+ 1455 04e4 8081      		ld r24,Z
+ 1456 04e6 8B7F      		andi r24,lo8(-5)
+ 1457 04e8 8083      		st Z,r24
+ 1458 04ea ABE9      		ldi r26,lo8(155)
+ 1459 04ec B0E0      		ldi r27,hi8(155)
+ 1460 04ee 8C91      		ld r24,X
+ 1461 04f0 8260      		ori r24,lo8(2)
+ 1462 04f2 8C93      		st X,r24
+ 536:../../../src/platform/micaZ/source/ulib.c ****     ENABLE_UART1();
+ 1464               	.LM170:
+ 1465 04f4 8081      		ld r24,Z
+ 1466 04f6 8861      		ori r24,lo8(24)
+ 1467 04f8 8083      		st Z,r24
+ 1468               	/* epilogue start */
+ 537:../../../src/platform/micaZ/source/ulib.c **** }
+ 1470               	.LM171:
+ 1471 04fa 0895      		ret
+ 1473               	.Lscope20:
+ 1475               		.stabd	78,0,0
+ 1477               	.global	getc1
+ 1479               	getc1:
+ 1480               		.stabd	46,0,0
+ 538:../../../src/platform/micaZ/source/ulib.c **** 
+ 539:../../../src/platform/micaZ/source/ulib.c **** 
+ 540:../../../src/platform/micaZ/source/ulib.c **** 
+ 541:../../../src/platform/micaZ/source/ulib.c **** char getc1(void)
+ 542:../../../src/platform/micaZ/source/ulib.c **** {
+ 1482               	.LM172:
+ 1483               	.LFBB21:
+ 1484               	/* prologue: function */
+ 1485               	/* frame size = 0 */
+ 1486               	/* stack size = 0 */
+ 1487               	.L__stack_usage = 0
+ 1488               	.L131:
+ 543:../../../src/platform/micaZ/source/ulib.c ****     unsigned char tmp;
+ 544:../../../src/platform/micaZ/source/ulib.c ****     UART1_WAIT_AND_RECEIVE(tmp);
+ 1490               	.LM173:
+ 1491 04fc 8091 9B00 		lds r24,155
+ 1492 0500 87FF      		sbrs r24,7
+ 1493 0502 00C0      		rjmp .L131
+ 1495               	.LM174:
+ 1496 0504 8091 9B00 		lds r24,155
+ 1497 0508 8F77      		andi r24,lo8(127)
+ 1498 050a 8093 9B00 		sts 155,r24
+ 1499 050e 8091 9C00 		lds r24,156
+ 1500               	/* epilogue start */
+ 545:../../../src/platform/micaZ/source/ulib.c ****     return tmp;
+ 546:../../../src/platform/micaZ/source/ulib.c **** }
+ 1502               	.LM175:
+ 1503 0512 0895      		ret
+ 1508               	.Lscope21:
+ 1510               		.stabd	78,0,0
+ 1511               	.global	NRK_LED_0
+ 1512               		.data
+ 1515               	NRK_LED_0:
+ 1516 0000 00        		.skip 1,0
+ 1517               	.global	NRK_LED_1
+ 1520               	NRK_LED_1:
+ 1521 0001 08        		.byte	8
+ 1522               	.global	NRK_LED_2
+ 1525               	NRK_LED_2:
+ 1526 0002 10        		.byte	16
+ 1527               	.global	NRK_VREG_EN
+ 1530               	NRK_VREG_EN:
+ 1531 0003 28        		.byte	40
+ 1532               	.global	NRK_RESET_N
+ 1535               	NRK_RESET_N:
+ 1536 0004 30        		.byte	48
+ 1537               	.global	NRK_CSN
+ 1540               	NRK_CSN:
+ 1541 0005 01        		.byte	1
+ 1542               	.global	NRK_SCK
+ 1545               	NRK_SCK:
+ 1546 0006 09        		.byte	9
+ 1547               	.global	NRK_MOSI
+ 1550               	NRK_MOSI:
+ 1551 0007 11        		.byte	17
+ 1552               	.global	NRK_MISO
+ 1555               	NRK_MISO:
+ 1556 0008 19        		.byte	25
+ 1557               	.global	NRK_FIFO
+ 1560               	NRK_FIFO:
+ 1561 0009 39        		.byte	57
+ 1562               	.global	NRK_UART1_RXD
+ 1565               	NRK_UART1_RXD:
+ 1566 000a 13        		.byte	19
+ 1567               	.global	NRK_UART1_TXD
+ 1570               	NRK_UART1_TXD:
+ 1571 000b 1B        		.byte	27
+ 1572               	.global	NRK_SFD
+ 1575               	NRK_SFD:
+ 1576 000c 23        		.byte	35
+ 1577               	.global	NRK_UART1_RTS
+ 1580               	NRK_UART1_RTS:
+ 1581 000d 2B        		.byte	43
+ 1582               	.global	NRK_CCA
+ 1585               	NRK_CCA:
+ 1586 000e 33        		.byte	51
+ 1587               	.global	NRK_UART1_CTS
+ 1590               	NRK_UART1_CTS:
+ 1591 000f 3B        		.byte	59
+ 1592               	.global	NRK_UART0_RXD
+ 1595               	NRK_UART0_RXD:
+ 1596 0010 04        		.byte	4
+ 1597               	.global	NRK_UART0_TXD
+ 1600               	NRK_UART0_TXD:
+ 1601 0011 0C        		.byte	12
+ 1602               	.global	NRK_FIFOP
+ 1605               	NRK_FIFOP:
+ 1606 0012 34        		.byte	52
+ 1607               	.global	NRK_ADC_INPUT_0
+ 1610               	NRK_ADC_INPUT_0:
+ 1611 0013 05        		.byte	5
+ 1612               	.global	NRK_ADC_INPUT_1
+ 1615               	NRK_ADC_INPUT_1:
+ 1616 0014 0D        		.byte	13
+ 1617               	.global	NRK_ADC_INPUT_2
+ 1620               	NRK_ADC_INPUT_2:
+ 1621 0015 15        		.byte	21
+ 1622               	.global	NRK_ADC_INPUT_3
+ 1625               	NRK_ADC_INPUT_3:
+ 1626 0016 1D        		.byte	29
+ 1627               	.global	NRK_ADC_INPUT_6
+ 1630               	NRK_ADC_INPUT_6:
+ 1631 0017 35        		.byte	53
+ 1632               	.global	NRK_ADC_INPUT_7
+ 1635               	NRK_ADC_INPUT_7:
+ 1636 0018 3D        		.byte	61
+ 1637               	.global	NRK_DEBUG_0
+ 1640               	NRK_DEBUG_0:
+ 1641 0019 0A        		.byte	10
+ 1642               	.global	NRK_DEBUG_1
+ 1645               	NRK_DEBUG_1:
+ 1646 001a 12        		.byte	18
+ 1647               	.global	NRK_DEBUG_2
+ 1650               	NRK_DEBUG_2:
+ 1651 001b FF        		.byte	-1
+ 1652               	.global	NRK_DEBUG_3
+ 1655               	NRK_DEBUG_3:
+ 1656 001c FF        		.byte	-1
+ 1657               	.global	NRK_LED_3
+ 1660               	NRK_LED_3:
+ 1661 001d FF        		.byte	-1
+ 1662               	.global	NRK_BLED
+ 1665               	NRK_BLED:
+ 1666 001e FF        		.byte	-1
+ 1667               	.global	NRK_SPI_SS
+ 1670               	NRK_SPI_SS:
+ 1671 001f FF        		.byte	-1
+ 1672               	.global	NRK_GPIO26
+ 1675               	NRK_GPIO26:
+ 1676 0020 FF        		.byte	-1
+ 1677               	.global	NRK_GPIO28
+ 1680               	NRK_GPIO28:
+ 1681 0021 FF        		.byte	-1
+ 1682               	.global	NRK_GPIO34
+ 1685               	NRK_GPIO34:
+ 1686 0022 FF        		.byte	-1
+ 1687               		.comm _nrk_signal_list,4,1
+ 1688               		.comm error_task,1,1
+ 1689               		.comm error_num,1,1
+ 1728               		.text
+ 1730               	.Letext0:
+ 1731               	.global __do_copy_data
+ 1732               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 ulib.c
-     /tmp/ccH5tsS3.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccH5tsS3.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccH5tsS3.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccH5tsS3.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccH5tsS3.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccH5tsS3.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccH5tsS3.s:122    .text:00000000 nrk_uart_rx_signal_get
-     /tmp/ccH5tsS3.s:142    .text:00000004 nrk_uart_data_ready
-     /tmp/ccH5tsS3.s:184    .text:00000026 getc0
-     /tmp/ccH5tsS3.s:213    .text:00000030 nrk_gpio_set
-     /tmp/ccH5tsS3.s:332    .text:000000c0 nrk_gpio_clr
-     /tmp/ccH5tsS3.s:452    .text:00000152 nrk_gpio_get
-     /tmp/ccH5tsS3.s:544    .text:000001b6 nrk_gpio_pullups
-     /tmp/ccH5tsS3.s:578    .text:000001ca nrk_gpio_toggle
-     /tmp/ccH5tsS3.s:698    .text:0000025a nrk_gpio_direction
-     /tmp/ccH5tsS3.s:922    .text:00000376 nrk_get_button
-     /tmp/ccH5tsS3.s:942    .text:0000037a nrk_led_toggle
-     /tmp/ccH5tsS3.s:988    .text:000003a4 nrk_led_clr
-     /tmp/ccH5tsS3.s:1033   .text:000003ce nrk_setup_ports
-     /tmp/ccH5tsS3.s:1095   .text:00000416 nrk_led_set
-     /tmp/ccH5tsS3.s:1141   .text:00000440 putc0
-     /tmp/ccH5tsS3.s:1167   .text:0000044a putc1
-     /tmp/ccH5tsS3.s:1196   .text:00000464 setup_uart0
-     /tmp/ccH5tsS3.s:1227   .text:0000047c setup_uart1
-     /tmp/ccH5tsS3.s:1266   .text:000004a6 getc1
-     /tmp/ccH5tsS3.s:1297   .text:000004be nrk_setup_uart
-     /tmp/ccH5tsS3.s:1361   .text:00000512 nrk_kprintf
-     /tmp/ccH5tsS3.s:1412   .data:00000000 NRK_LED_0
-     /tmp/ccH5tsS3.s:1417   .data:00000001 NRK_LED_1
-     /tmp/ccH5tsS3.s:1422   .data:00000002 NRK_LED_2
-     /tmp/ccH5tsS3.s:1427   .data:00000003 NRK_VREG_EN
-     /tmp/ccH5tsS3.s:1432   .data:00000004 NRK_RESET_N
-     /tmp/ccH5tsS3.s:1437   .data:00000005 NRK_CSN
-     /tmp/ccH5tsS3.s:1442   .data:00000006 NRK_SCK
-     /tmp/ccH5tsS3.s:1447   .data:00000007 NRK_MOSI
-     /tmp/ccH5tsS3.s:1452   .data:00000008 NRK_MISO
-     /tmp/ccH5tsS3.s:1457   .data:00000009 NRK_FIFO
-     /tmp/ccH5tsS3.s:1462   .data:0000000a NRK_UART1_RXD
-     /tmp/ccH5tsS3.s:1467   .data:0000000b NRK_UART1_TXD
-     /tmp/ccH5tsS3.s:1472   .data:0000000c NRK_SFD
-     /tmp/ccH5tsS3.s:1477   .data:0000000d NRK_UART1_RTS
-     /tmp/ccH5tsS3.s:1482   .data:0000000e NRK_CCA
-     /tmp/ccH5tsS3.s:1487   .data:0000000f NRK_UART1_CTS
-     /tmp/ccH5tsS3.s:1492   .data:00000010 NRK_UART0_RXD
-     /tmp/ccH5tsS3.s:1497   .data:00000011 NRK_UART0_TXD
-     /tmp/ccH5tsS3.s:1502   .data:00000012 NRK_FIFOP
-     /tmp/ccH5tsS3.s:1507   .data:00000013 NRK_ADC_INPUT_0
-     /tmp/ccH5tsS3.s:1512   .data:00000014 NRK_ADC_INPUT_1
-     /tmp/ccH5tsS3.s:1517   .data:00000015 NRK_ADC_INPUT_2
-     /tmp/ccH5tsS3.s:1522   .data:00000016 NRK_ADC_INPUT_3
-     /tmp/ccH5tsS3.s:1527   .data:00000017 NRK_ADC_INPUT_6
-     /tmp/ccH5tsS3.s:1532   .data:00000018 NRK_ADC_INPUT_7
-     /tmp/ccH5tsS3.s:1537   .data:00000019 NRK_DEBUG_0
-     /tmp/ccH5tsS3.s:1542   .data:0000001a NRK_DEBUG_1
-     /tmp/ccH5tsS3.s:1547   .data:0000001b NRK_DEBUG_2
-     /tmp/ccH5tsS3.s:1552   .data:0000001c NRK_DEBUG_3
-     /tmp/ccH5tsS3.s:1557   .data:0000001d NRK_LED_3
-     /tmp/ccH5tsS3.s:1562   .data:0000001e NRK_BLED
-     /tmp/ccH5tsS3.s:1567   .data:0000001f NRK_SPI_SS
-     /tmp/ccH5tsS3.s:1572   .data:00000020 NRK_GPIO26
-     /tmp/ccH5tsS3.s:1577   .data:00000021 NRK_GPIO28
-     /tmp/ccH5tsS3.s:1582   .data:00000022 NRK_GPIO34
+     /tmp/cc8RtsMj.s:2      *ABS*:0000003f __SREG__
+     /tmp/cc8RtsMj.s:3      *ABS*:0000003e __SP_H__
+     /tmp/cc8RtsMj.s:4      *ABS*:0000003d __SP_L__
+     /tmp/cc8RtsMj.s:5      *ABS*:00000034 __CCP__
+     /tmp/cc8RtsMj.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/cc8RtsMj.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/cc8RtsMj.s:122    .text:00000000 getc0
+     /tmp/cc8RtsMj.s:155    .text:0000000a putc0
+     /tmp/cc8RtsMj.s:184    .text:00000014 nrk_uart_rx_signal_get
+     /tmp/cc8RtsMj.s:206    .text:00000018 nrk_uart_data_ready
+     /tmp/cc8RtsMj.s:253    .text:00000034 nrk_kprintf
+     /tmp/cc8RtsMj.s:309    .text:0000005a nrk_gpio_set
+     /tmp/cc8RtsMj.s:435    .text:000000e6 nrk_gpio_clr
+     /tmp/cc8RtsMj.s:562    .text:00000174 nrk_gpio_get
+     /tmp/cc8RtsMj.s:664    .text:000001e0 nrk_gpio_pullups
+     /tmp/cc8RtsMj.s:702    .text:000001f4 nrk_gpio_toggle
+     /tmp/cc8RtsMj.s:829    .text:00000280 nrk_gpio_direction
+     /tmp/cc8RtsMj.s:1067   .text:000003a6 nrk_get_button
+     /tmp/cc8RtsMj.s:1089   .text:000003aa nrk_led_toggle
+     /tmp/cc8RtsMj.s:1146   .text:000003d0 nrk_led_clr
+     /tmp/cc8RtsMj.s:1202   .text:000003f6 nrk_setup_ports
+     /tmp/cc8RtsMj.s:1266   .text:0000043e nrk_led_set
+     /tmp/cc8RtsMj.s:1323   .text:00000464 putc1
+     /tmp/cc8RtsMj.s:1355   .text:0000047c setup_uart0
+     /tmp/cc8RtsMj.s:1389   .text:00000494 nrk_setup_uart
+     /tmp/cc8RtsMj.s:1438   .text:000004d2 setup_uart1
+     /tmp/cc8RtsMj.s:1479   .text:000004fc getc1
+     /tmp/cc8RtsMj.s:1515   .data:00000000 NRK_LED_0
+     /tmp/cc8RtsMj.s:1520   .data:00000001 NRK_LED_1
+     /tmp/cc8RtsMj.s:1525   .data:00000002 NRK_LED_2
+     /tmp/cc8RtsMj.s:1530   .data:00000003 NRK_VREG_EN
+     /tmp/cc8RtsMj.s:1535   .data:00000004 NRK_RESET_N
+     /tmp/cc8RtsMj.s:1540   .data:00000005 NRK_CSN
+     /tmp/cc8RtsMj.s:1545   .data:00000006 NRK_SCK
+     /tmp/cc8RtsMj.s:1550   .data:00000007 NRK_MOSI
+     /tmp/cc8RtsMj.s:1555   .data:00000008 NRK_MISO
+     /tmp/cc8RtsMj.s:1560   .data:00000009 NRK_FIFO
+     /tmp/cc8RtsMj.s:1565   .data:0000000a NRK_UART1_RXD
+     /tmp/cc8RtsMj.s:1570   .data:0000000b NRK_UART1_TXD
+     /tmp/cc8RtsMj.s:1575   .data:0000000c NRK_SFD
+     /tmp/cc8RtsMj.s:1580   .data:0000000d NRK_UART1_RTS
+     /tmp/cc8RtsMj.s:1585   .data:0000000e NRK_CCA
+     /tmp/cc8RtsMj.s:1590   .data:0000000f NRK_UART1_CTS
+     /tmp/cc8RtsMj.s:1595   .data:00000010 NRK_UART0_RXD
+     /tmp/cc8RtsMj.s:1600   .data:00000011 NRK_UART0_TXD
+     /tmp/cc8RtsMj.s:1605   .data:00000012 NRK_FIFOP
+     /tmp/cc8RtsMj.s:1610   .data:00000013 NRK_ADC_INPUT_0
+     /tmp/cc8RtsMj.s:1615   .data:00000014 NRK_ADC_INPUT_1
+     /tmp/cc8RtsMj.s:1620   .data:00000015 NRK_ADC_INPUT_2
+     /tmp/cc8RtsMj.s:1625   .data:00000016 NRK_ADC_INPUT_3
+     /tmp/cc8RtsMj.s:1630   .data:00000017 NRK_ADC_INPUT_6
+     /tmp/cc8RtsMj.s:1635   .data:00000018 NRK_ADC_INPUT_7
+     /tmp/cc8RtsMj.s:1640   .data:00000019 NRK_DEBUG_0
+     /tmp/cc8RtsMj.s:1645   .data:0000001a NRK_DEBUG_1
+     /tmp/cc8RtsMj.s:1650   .data:0000001b NRK_DEBUG_2
+     /tmp/cc8RtsMj.s:1655   .data:0000001c NRK_DEBUG_3
+     /tmp/cc8RtsMj.s:1660   .data:0000001d NRK_LED_3
+     /tmp/cc8RtsMj.s:1665   .data:0000001e NRK_BLED
+     /tmp/cc8RtsMj.s:1670   .data:0000001f NRK_SPI_SS
+     /tmp/cc8RtsMj.s:1675   .data:00000020 NRK_GPIO26
+     /tmp/cc8RtsMj.s:1680   .data:00000021 NRK_GPIO28
+     /tmp/cc8RtsMj.s:1685   .data:00000022 NRK_GPIO34
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000001 error_task
                             *COM*:00000001 error_num
 
 UNDEFINED SYMBOLS
-__do_copy_data
-__do_clear_bss
-fdevopen
 __iob
 fputc
+fdevopen
+__do_copy_data
+__do_clear_bss
