@@ -836,25 +836,25 @@
  855               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccq01L0I.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccq01L0I.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccq01L0I.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccq01L0I.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccq01L0I.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccq01L0I.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccq01L0I.s:144    .text:00000000 Task3
-     /tmp/ccq01L0I.s:170    .text:0000000e Task2
-     /tmp/ccq01L0I.s:200    .text:0000001c Task1
-     /tmp/ccq01L0I.s:296    .text:0000009c Task4
-     /tmp/ccq01L0I.s:326    .text:000000aa nrk_create_taskset
+     /tmp/cckvTb5k.s:2      *ABS*:0000003f __SREG__
+     /tmp/cckvTb5k.s:3      *ABS*:0000003e __SP_H__
+     /tmp/cckvTb5k.s:4      *ABS*:0000003d __SP_L__
+     /tmp/cckvTb5k.s:5      *ABS*:00000034 __CCP__
+     /tmp/cckvTb5k.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/cckvTb5k.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/cckvTb5k.s:144    .text:00000000 Task3
+     /tmp/cckvTb5k.s:170    .text:0000000e Task2
+     /tmp/cckvTb5k.s:200    .text:0000001c Task1
+     /tmp/cckvTb5k.s:296    .text:0000009c Task4
+     /tmp/cckvTb5k.s:326    .text:000000aa nrk_create_taskset
                             *COM*:00000023 TaskOne
                             *COM*:00000080 Stack1
                             *COM*:00000023 TaskTwo
                             *COM*:00000080 Stack2
                             *COM*:00000023 TaskThree
                             *COM*:00000080 Stack3
-     /tmp/ccq01L0I.s:593    .text:000002b6 main
-     /tmp/ccq01L0I.s:668    .text:00000304 kill_stack
+     /tmp/cckvTb5k.s:593    .text:000002b6 main
+     /tmp/cckvTb5k.s:668    .text:00000304 kill_stack
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000002 nrk_kernel_stk_ptr

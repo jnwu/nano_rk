@@ -359,7 +359,7 @@ Disassembly of section .data:
 
 008002db <__malloc_heap_end>:
   8002db:	00 00       	nop
-  8002dd:	00 59       	Address 0x008002dd is out of bounds.
+  8002dd:	00 c3       	Address 0x008002dd is out of bounds.
 .word	0xffff	; ????
 
 Disassembly of section .text:
@@ -8931,7 +8931,7 @@ Disassembly of section .text:
     45b4:	f9 80       	ldd	r15, Y+1	; 0x01
     45b6:	e1 14       	cp	r14, r1
     45b8:	f1 04       	cpc	r15, r1
-    45ba:	19 f0       	breq	.+6      	; 0x45c2 <nrk_add_to_readyQ+0xb0>
+    45ba:	61 f0       	breq	.+24     	; 0x45d4 <nrk_add_to_readyQ+0xc2>
     45bc:	e0 16       	cp	r14, r16
     45be:	f1 06       	cpc	r15, r17
     45c0:	48 f0       	brcs	.+18     	; 0x45d4 <nrk_add_to_readyQ+0xc2>
@@ -40619,13 +40619,13 @@ Disassembly of section .stab:
     a038:	00 00       	nop
     a03a:	00 00       	nop
     a03c:	44 00       	.word	0x0044	; ????
-    a03e:	66 00       	.word	0x0066	; ????
+    a03e:	6a 00       	.word	0x006a	; ????
     a040:	aa 00       	.word	0x00aa	; ????
     a042:	00 00       	nop
     a044:	00 00       	nop
     a046:	00 00       	nop
     a048:	44 00       	.word	0x0044	; ????
-    a04a:	6a 00       	.word	0x006a	; ????
+    a04a:	6e 00       	.word	0x006e	; ????
     a04c:	b0 00       	.word	0x00b0	; ????
     a04e:	00 00       	nop
     a050:	00 00       	nop
@@ -40643,115 +40643,115 @@ Disassembly of section .stab:
     a068:	00 00       	nop
     a06a:	00 00       	nop
     a06c:	44 00       	.word	0x0044	; ????
-    a06e:	6f 00       	.word	0x006f	; ????
+    a06e:	73 00       	.word	0x0073	; ????
     a070:	c2 00       	.word	0x00c2	; ????
     a072:	00 00       	nop
     a074:	00 00       	nop
     a076:	00 00       	nop
     a078:	44 00       	.word	0x0044	; ????
-    a07a:	70 00       	.word	0x0070	; ????
+    a07a:	74 00       	.word	0x0074	; ????
     a07c:	c4 00       	.word	0x00c4	; ????
     a07e:	00 00       	nop
     a080:	00 00       	nop
     a082:	00 00       	nop
     a084:	44 00       	.word	0x0044	; ????
-    a086:	72 00       	.word	0x0072	; ????
+    a086:	76 00       	.word	0x0076	; ????
     a088:	d0 00       	.word	0x00d0	; ????
     a08a:	00 00       	nop
     a08c:	00 00       	nop
     a08e:	00 00       	nop
     a090:	44 00       	.word	0x0044	; ????
-    a092:	75 00       	.word	0x0075	; ????
+    a092:	79 00       	.word	0x0079	; ????
     a094:	d6 00       	.word	0x00d6	; ????
     a096:	00 00       	nop
     a098:	00 00       	nop
     a09a:	00 00       	nop
     a09c:	44 00       	.word	0x0044	; ????
-    a09e:	77 00       	.word	0x0077	; ????
+    a09e:	7b 00       	.word	0x007b	; ????
     a0a0:	da 00       	.word	0x00da	; ????
     a0a2:	00 00       	nop
     a0a4:	00 00       	nop
     a0a6:	00 00       	nop
     a0a8:	44 00       	.word	0x0044	; ????
-    a0aa:	78 00       	.word	0x0078	; ????
+    a0aa:	7c 00       	.word	0x007c	; ????
     a0ac:	de 00       	.word	0x00de	; ????
     a0ae:	00 00       	nop
     a0b0:	00 00       	nop
     a0b2:	00 00       	nop
     a0b4:	44 00       	.word	0x0044	; ????
-    a0b6:	79 00       	.word	0x0079	; ????
+    a0b6:	7d 00       	.word	0x007d	; ????
     a0b8:	e2 00       	.word	0x00e2	; ????
     a0ba:	00 00       	nop
     a0bc:	00 00       	nop
     a0be:	00 00       	nop
     a0c0:	44 00       	.word	0x0044	; ????
-    a0c2:	7d 00       	.word	0x007d	; ????
+    a0c2:	81 00       	.word	0x0081	; ????
     a0c4:	ec 00       	.word	0x00ec	; ????
     a0c6:	00 00       	nop
     a0c8:	00 00       	nop
     a0ca:	00 00       	nop
     a0cc:	44 00       	.word	0x0044	; ????
-    a0ce:	7e 00       	.word	0x007e	; ????
+    a0ce:	82 00       	.word	0x0082	; ????
     a0d0:	f0 00       	.word	0x00f0	; ????
     a0d2:	00 00       	nop
     a0d4:	00 00       	nop
     a0d6:	00 00       	nop
     a0d8:	44 00       	.word	0x0044	; ????
-    a0da:	7f 00       	.word	0x007f	; ????
+    a0da:	83 00       	.word	0x0083	; ????
     a0dc:	f4 00       	.word	0x00f4	; ????
     a0de:	00 00       	nop
     a0e0:	00 00       	nop
     a0e2:	00 00       	nop
     a0e4:	44 00       	.word	0x0044	; ????
-    a0e6:	81 00       	.word	0x0081	; ????
+    a0e6:	85 00       	.word	0x0085	; ????
     a0e8:	f8 00       	.word	0x00f8	; ????
     a0ea:	00 00       	nop
     a0ec:	00 00       	nop
     a0ee:	00 00       	nop
     a0f0:	44 00       	.word	0x0044	; ????
-    a0f2:	86 00       	.word	0x0086	; ????
+    a0f2:	8a 00       	.word	0x008a	; ????
     a0f4:	0a 01       	movw	r0, r20
     a0f6:	00 00       	nop
     a0f8:	00 00       	nop
     a0fa:	00 00       	nop
     a0fc:	44 00       	.word	0x0044	; ????
-    a0fe:	8a 00       	.word	0x008a	; ????
+    a0fe:	8e 00       	.word	0x008e	; ????
     a100:	10 01       	movw	r2, r0
     a102:	00 00       	nop
     a104:	00 00       	nop
     a106:	00 00       	nop
     a108:	44 00       	.word	0x0044	; ????
-    a10a:	8b 00       	.word	0x008b	; ????
+    a10a:	8f 00       	.word	0x008f	; ????
     a10c:	14 01       	movw	r2, r8
     a10e:	00 00       	nop
     a110:	00 00       	nop
     a112:	00 00       	nop
     a114:	44 00       	.word	0x0044	; ????
-    a116:	8c 00       	.word	0x008c	; ????
+    a116:	90 00       	.word	0x0090	; ????
     a118:	18 01       	movw	r2, r16
     a11a:	00 00       	nop
     a11c:	00 00       	nop
     a11e:	00 00       	nop
     a120:	44 00       	.word	0x0044	; ????
-    a122:	92 00       	.word	0x0092	; ????
+    a122:	96 00       	.word	0x0096	; ????
     a124:	26 01       	movw	r4, r12
     a126:	00 00       	nop
     a128:	00 00       	nop
     a12a:	00 00       	nop
     a12c:	44 00       	.word	0x0044	; ????
-    a12e:	93 00       	.word	0x0093	; ????
+    a12e:	97 00       	.word	0x0097	; ????
     a130:	2a 01       	movw	r4, r20
     a132:	00 00       	nop
     a134:	00 00       	nop
     a136:	00 00       	nop
     a138:	44 00       	.word	0x0044	; ????
-    a13a:	94 00       	.word	0x0094	; ????
+    a13a:	98 00       	.word	0x0098	; ????
     a13c:	2e 01       	movw	r4, r28
     a13e:	00 00       	nop
     a140:	00 00       	nop
     a142:	00 00       	nop
     a144:	44 00       	.word	0x0044	; ????
-    a146:	99 00       	.word	0x0099	; ????
+    a146:	9d 00       	.word	0x009d	; ????
     a148:	36 01       	movw	r6, r12
     a14a:	00 00       	nop
     a14c:	00 00       	nop
@@ -40769,13 +40769,13 @@ Disassembly of section .stab:
     a164:	88 37       	cpi	r24, 0x78	; 120
     a166:	00 00       	nop
     a168:	24 00       	.word	0x0024	; ????
-    a16a:	9c 00       	.word	0x009c	; ????
+    a16a:	a0 00       	.word	0x00a0	; ????
     a16c:	56 46       	sbci	r21, 0x66	; 102
     a16e:	00 00       	nop
     a170:	79 37       	cpi	r23, 0x79	; 121
     a172:	00 00       	nop
     a174:	40 00       	.word	0x0040	; ????
-    a176:	9c 00       	.word	0x009c	; ????
+    a176:	a0 00       	.word	0x00a0	; ????
     a178:	18 00       	.word	0x0018	; ????
     a17a:	00 00       	nop
     a17c:	00 00       	nop
@@ -40787,115 +40787,115 @@ Disassembly of section .stab:
     a188:	00 00       	nop
     a18a:	00 00       	nop
     a18c:	44 00       	.word	0x0044	; ????
-    a18e:	9d 00       	.word	0x009d	; ????
+    a18e:	a1 00       	.word	0x00a1	; ????
     a190:	00 00       	nop
     a192:	00 00       	nop
     a194:	00 00       	nop
     a196:	00 00       	nop
     a198:	44 00       	.word	0x0044	; ????
-    a19a:	bc 00       	.word	0x00bc	; ????
+    a19a:	c0 00       	.word	0x00c0	; ????
     a19c:	04 00       	.word	0x0004	; ????
     a19e:	00 00       	nop
     a1a0:	00 00       	nop
     a1a2:	00 00       	nop
     a1a4:	44 00       	.word	0x0044	; ????
-    a1a6:	c1 00       	.word	0x00c1	; ????
+    a1a6:	c5 00       	.word	0x00c5	; ????
     a1a8:	12 00       	.word	0x0012	; ????
     a1aa:	00 00       	nop
     a1ac:	00 00       	nop
     a1ae:	00 00       	nop
     a1b0:	44 00       	.word	0x0044	; ????
-    a1b2:	c4 00       	.word	0x00c4	; ????
+    a1b2:	c8 00       	.word	0x00c8	; ????
     a1b4:	22 00       	.word	0x0022	; ????
     a1b6:	00 00       	nop
     a1b8:	00 00       	nop
     a1ba:	00 00       	nop
     a1bc:	44 00       	.word	0x0044	; ????
-    a1be:	c5 00       	.word	0x00c5	; ????
+    a1be:	c9 00       	.word	0x00c9	; ????
     a1c0:	2e 00       	.word	0x002e	; ????
     a1c2:	00 00       	nop
     a1c4:	00 00       	nop
     a1c6:	00 00       	nop
     a1c8:	44 00       	.word	0x0044	; ????
-    a1ca:	ca 00       	.word	0x00ca	; ????
+    a1ca:	ce 00       	.word	0x00ce	; ????
     a1cc:	38 00       	.word	0x0038	; ????
     a1ce:	00 00       	nop
     a1d0:	00 00       	nop
     a1d2:	00 00       	nop
     a1d4:	44 00       	.word	0x0044	; ????
-    a1d6:	c9 00       	.word	0x00c9	; ????
+    a1d6:	cd 00       	.word	0x00cd	; ????
     a1d8:	3e 00       	.word	0x003e	; ????
     a1da:	00 00       	nop
     a1dc:	00 00       	nop
     a1de:	00 00       	nop
     a1e0:	44 00       	.word	0x0044	; ????
-    a1e2:	c9 00       	.word	0x00c9	; ????
+    a1e2:	cd 00       	.word	0x00cd	; ????
     a1e4:	42 00       	.word	0x0042	; ????
     a1e6:	00 00       	nop
     a1e8:	00 00       	nop
     a1ea:	00 00       	nop
     a1ec:	44 00       	.word	0x0044	; ????
-    a1ee:	cf 00       	.word	0x00cf	; ????
+    a1ee:	d3 00       	.word	0x00d3	; ????
     a1f0:	4c 00       	.word	0x004c	; ????
     a1f2:	00 00       	nop
     a1f4:	00 00       	nop
     a1f6:	00 00       	nop
     a1f8:	44 00       	.word	0x0044	; ????
-    a1fa:	d0 00       	.word	0x00d0	; ????
+    a1fa:	d4 00       	.word	0x00d4	; ????
     a1fc:	58 00       	.word	0x0058	; ????
     a1fe:	00 00       	nop
     a200:	00 00       	nop
     a202:	00 00       	nop
     a204:	44 00       	.word	0x0044	; ????
-    a206:	d1 00       	.word	0x00d1	; ????
+    a206:	d5 00       	.word	0x00d5	; ????
     a208:	60 00       	.word	0x0060	; ????
     a20a:	00 00       	nop
     a20c:	00 00       	nop
     a20e:	00 00       	nop
     a210:	44 00       	.word	0x0044	; ????
-    a212:	d8 00       	.word	0x00d8	; ????
+    a212:	dc 00       	.word	0x00dc	; ????
     a214:	68 00       	.word	0x0068	; ????
     a216:	00 00       	nop
     a218:	00 00       	nop
     a21a:	00 00       	nop
     a21c:	44 00       	.word	0x0044	; ????
-    a21e:	da 00       	.word	0x00da	; ????
+    a21e:	de 00       	.word	0x00de	; ????
     a220:	74 00       	.word	0x0074	; ????
     a222:	00 00       	nop
     a224:	00 00       	nop
     a226:	00 00       	nop
     a228:	44 00       	.word	0x0044	; ????
-    a22a:	db 00       	.word	0x00db	; ????
+    a22a:	df 00       	.word	0x00df	; ????
     a22c:	7c 00       	.word	0x007c	; ????
     a22e:	00 00       	nop
     a230:	00 00       	nop
     a232:	00 00       	nop
     a234:	44 00       	.word	0x0044	; ????
-    a236:	df 00       	.word	0x00df	; ????
+    a236:	e3 00       	.word	0x00e3	; ????
     a238:	82 00       	.word	0x0082	; ????
     a23a:	00 00       	nop
     a23c:	00 00       	nop
     a23e:	00 00       	nop
     a240:	44 00       	.word	0x0044	; ????
-    a242:	e0 00       	.word	0x00e0	; ????
+    a242:	e4 00       	.word	0x00e4	; ????
     a244:	86 00       	.word	0x0086	; ????
     a246:	00 00       	nop
     a248:	00 00       	nop
     a24a:	00 00       	nop
     a24c:	44 00       	.word	0x0044	; ????
-    a24e:	e1 00       	.word	0x00e1	; ????
+    a24e:	e5 00       	.word	0x00e5	; ????
     a250:	8e 00       	.word	0x008e	; ????
     a252:	00 00       	nop
     a254:	00 00       	nop
     a256:	00 00       	nop
     a258:	44 00       	.word	0x0044	; ????
-    a25a:	e3 00       	.word	0x00e3	; ????
+    a25a:	e7 00       	.word	0x00e7	; ????
     a25c:	96 00       	.word	0x0096	; ????
     a25e:	00 00       	nop
     a260:	00 00       	nop
     a262:	00 00       	nop
     a264:	44 00       	.word	0x0044	; ????
-    a266:	e4 00       	.word	0x00e4	; ????
+    a266:	e8 00       	.word	0x00e8	; ????
     a268:	9a 00       	.word	0x009a	; ????
     a26a:	00 00       	nop
     a26c:	00 00       	nop
@@ -40913,13 +40913,13 @@ Disassembly of section .stab:
     a284:	a4 37       	cpi	r26, 0x74	; 116
     a286:	00 00       	nop
     a288:	24 00       	.word	0x0024	; ????
-    a28a:	ea 00       	.word	0x00ea	; ????
+    a28a:	ee 00       	.word	0x00ee	; ????
     a28c:	f6 46       	sbci	r31, 0x66	; 102
     a28e:	00 00       	nop
     a290:	bf 37       	cpi	r27, 0x7F	; 127
     a292:	00 00       	nop
     a294:	40 00       	.word	0x0040	; ????
-    a296:	ea 00       	.word	0x00ea	; ????
+    a296:	ee 00       	.word	0x00ee	; ????
     a298:	1c 00       	.word	0x001c	; ????
     a29a:	00 00       	nop
     a29c:	00 00       	nop
@@ -40931,85 +40931,85 @@ Disassembly of section .stab:
     a2a8:	00 00       	nop
     a2aa:	00 00       	nop
     a2ac:	44 00       	.word	0x0044	; ????
-    a2ae:	eb 00       	.word	0x00eb	; ????
+    a2ae:	ef 00       	.word	0x00ef	; ????
     a2b0:	00 00       	nop
     a2b2:	00 00       	nop
     a2b4:	00 00       	nop
     a2b6:	00 00       	nop
     a2b8:	44 00       	.word	0x0044	; ????
-    a2ba:	ef 00       	.word	0x00ef	; ????
+    a2ba:	f3 00       	.word	0x00f3	; ????
     a2bc:	0e 00       	.word	0x000e	; ????
     a2be:	00 00       	nop
     a2c0:	00 00       	nop
     a2c2:	00 00       	nop
     a2c4:	44 00       	.word	0x0044	; ????
-    a2c6:	f3 00       	.word	0x00f3	; ????
+    a2c6:	f7 00       	.word	0x00f7	; ????
     a2c8:	20 00       	.word	0x0020	; ????
     a2ca:	00 00       	nop
     a2cc:	00 00       	nop
     a2ce:	00 00       	nop
     a2d0:	44 00       	.word	0x0044	; ????
-    a2d2:	f5 00       	.word	0x00f5	; ????
+    a2d2:	f9 00       	.word	0x00f9	; ????
     a2d4:	26 00       	.word	0x0026	; ????
     a2d6:	00 00       	nop
     a2d8:	00 00       	nop
     a2da:	00 00       	nop
     a2dc:	44 00       	.word	0x0044	; ????
-    a2de:	f6 00       	.word	0x00f6	; ????
+    a2de:	fa 00       	.word	0x00fa	; ????
     a2e0:	3c 00       	.word	0x003c	; ????
     a2e2:	00 00       	nop
     a2e4:	00 00       	nop
     a2e6:	00 00       	nop
     a2e8:	44 00       	.word	0x0044	; ????
-    a2ea:	fb 00       	.word	0x00fb	; ????
+    a2ea:	ff 00       	.word	0x00ff	; ????
     a2ec:	40 00       	.word	0x0040	; ????
     a2ee:	00 00       	nop
     a2f0:	00 00       	nop
     a2f2:	00 00       	nop
     a2f4:	44 00       	.word	0x0044	; ????
-    a2f6:	ff 00       	.word	0x00ff	; ????
+    a2f6:	03 01       	movw	r0, r6
     a2f8:	62 00       	.word	0x0062	; ????
     a2fa:	00 00       	nop
     a2fc:	00 00       	nop
     a2fe:	00 00       	nop
     a300:	44 00       	.word	0x0044	; ????
-    a302:	11 01       	movw	r2, r2
+    a302:	15 01       	movw	r2, r10
     a304:	66 00       	.word	0x0066	; ????
     a306:	00 00       	nop
     a308:	00 00       	nop
     a30a:	00 00       	nop
     a30c:	44 00       	.word	0x0044	; ????
-    a30e:	13 01       	movw	r2, r6
+    a30e:	17 01       	movw	r2, r14
     a310:	8a 00       	.word	0x008a	; ????
     a312:	00 00       	nop
     a314:	00 00       	nop
     a316:	00 00       	nop
     a318:	44 00       	.word	0x0044	; ????
-    a31a:	14 01       	movw	r2, r8
+    a31a:	18 01       	movw	r2, r16
     a31c:	8e 00       	.word	0x008e	; ????
     a31e:	00 00       	nop
     a320:	00 00       	nop
     a322:	00 00       	nop
     a324:	44 00       	.word	0x0044	; ????
-    a326:	fc 00       	.word	0x00fc	; ????
+    a326:	00 01       	movw	r0, r0
     a328:	96 00       	.word	0x0096	; ????
     a32a:	00 00       	nop
     a32c:	00 00       	nop
     a32e:	00 00       	nop
     a330:	44 00       	.word	0x0044	; ????
-    a332:	17 01       	movw	r2, r14
+    a332:	1b 01       	movw	r2, r22
     a334:	9a 00       	.word	0x009a	; ????
     a336:	00 00       	nop
     a338:	00 00       	nop
     a33a:	00 00       	nop
     a33c:	44 00       	.word	0x0044	; ????
-    a33e:	18 01       	movw	r2, r16
+    a33e:	1c 01       	movw	r2, r24
     a340:	9c 00       	.word	0x009c	; ????
     a342:	00 00       	nop
     a344:	d5 37       	cpi	r29, 0x75	; 117
     a346:	00 00       	nop
     a348:	40 00       	.word	0x0040	; ????
-    a34a:	ed 00       	.word	0x00ed	; ????
+    a34a:	f1 00       	.word	0x00f1	; ????
     a34c:	16 00       	.word	0x0016	; ????
     a34e:	00 00       	nop
     a350:	00 00       	nop
@@ -41039,13 +41039,13 @@ Disassembly of section .stab:
     a380:	eb 37       	cpi	r30, 0x7B	; 123
     a382:	00 00       	nop
     a384:	24 00       	.word	0x0024	; ????
-    a386:	9e 01       	movw	r18, r28
+    a386:	a2 01       	movw	r20, r4
     a388:	a0 47       	sbci	r26, 0x70	; 112
     a38a:	00 00       	nop
     a38c:	06 38       	cpi	r16, 0x86	; 134
     a38e:	00 00       	nop
     a390:	a0 00       	.word	0x00a0	; ????
-    a392:	9e 01       	movw	r18, r28
+    a392:	a2 01       	movw	r20, r4
     a394:	01 00       	.word	0x0001	; ????
     a396:	00 00       	nop
     a398:	00 00       	nop
@@ -41057,73 +41057,73 @@ Disassembly of section .stab:
     a3a4:	00 00       	nop
     a3a6:	00 00       	nop
     a3a8:	44 00       	.word	0x0044	; ????
-    a3aa:	9f 01       	movw	r18, r30
+    a3aa:	a3 01       	movw	r20, r6
     a3ac:	00 00       	nop
     a3ae:	00 00       	nop
     a3b0:	00 00       	nop
     a3b2:	00 00       	nop
     a3b4:	44 00       	.word	0x0044	; ????
-    a3b6:	a2 01       	movw	r20, r4
+    a3b6:	a6 01       	movw	r20, r12
     a3b8:	26 00       	.word	0x0026	; ????
     a3ba:	00 00       	nop
     a3bc:	00 00       	nop
     a3be:	00 00       	nop
     a3c0:	44 00       	.word	0x0044	; ????
-    a3c2:	a3 01       	movw	r20, r6
+    a3c2:	a7 01       	movw	r20, r14
     a3c4:	2a 00       	.word	0x002a	; ????
     a3c6:	00 00       	nop
     a3c8:	00 00       	nop
     a3ca:	00 00       	nop
     a3cc:	44 00       	.word	0x0044	; ????
-    a3ce:	a4 01       	movw	r20, r8
+    a3ce:	a8 01       	movw	r20, r16
     a3d0:	30 00       	.word	0x0030	; ????
     a3d2:	00 00       	nop
     a3d4:	00 00       	nop
     a3d6:	00 00       	nop
     a3d8:	44 00       	.word	0x0044	; ????
-    a3da:	a5 01       	movw	r20, r10
+    a3da:	a9 01       	movw	r20, r18
     a3dc:	3a 00       	.word	0x003a	; ????
     a3de:	00 00       	nop
     a3e0:	00 00       	nop
     a3e2:	00 00       	nop
     a3e4:	44 00       	.word	0x0044	; ????
-    a3e6:	a7 01       	movw	r20, r14
+    a3e6:	ab 01       	movw	r20, r22
     a3e8:	40 00       	.word	0x0040	; ????
     a3ea:	00 00       	nop
     a3ec:	00 00       	nop
     a3ee:	00 00       	nop
     a3f0:	44 00       	.word	0x0044	; ????
-    a3f2:	b1 01       	movw	r22, r2
+    a3f2:	b5 01       	movw	r22, r10
     a3f4:	50 00       	.word	0x0050	; ????
     a3f6:	00 00       	nop
     a3f8:	00 00       	nop
     a3fa:	00 00       	nop
     a3fc:	44 00       	.word	0x0044	; ????
-    a3fe:	b3 01       	movw	r22, r6
+    a3fe:	b7 01       	movw	r22, r14
     a400:	54 00       	.word	0x0054	; ????
     a402:	00 00       	nop
     a404:	00 00       	nop
     a406:	00 00       	nop
     a408:	44 00       	.word	0x0044	; ????
-    a40a:	a6 01       	movw	r20, r12
+    a40a:	aa 01       	movw	r20, r20
     a40c:	58 00       	.word	0x0058	; ????
     a40e:	00 00       	nop
     a410:	00 00       	nop
     a412:	00 00       	nop
     a414:	44 00       	.word	0x0044	; ????
-    a416:	b4 01       	movw	r22, r8
+    a416:	b8 01       	movw	r22, r16
     a418:	5a 00       	.word	0x005a	; ????
     a41a:	00 00       	nop
     a41c:	0f 38       	cpi	r16, 0x8F	; 143
     a41e:	00 00       	nop
     a420:	40 00       	.word	0x0040	; ????
-    a422:	a0 01       	movw	r20, r0
+    a422:	a4 01       	movw	r20, r8
     a424:	11 00       	.word	0x0011	; ????
     a426:	00 00       	nop
     a428:	1c 38       	cpi	r17, 0x8C	; 140
     a42a:	00 00       	nop
     a42c:	40 00       	.word	0x0040	; ????
-    a42e:	a1 01       	movw	r20, r2
+    a42e:	a5 01       	movw	r20, r10
     a430:	12 00       	.word	0x0012	; ????
     a432:	00 00       	nop
     a434:	00 00       	nop
@@ -41153,7 +41153,7 @@ Disassembly of section .stab:
     a464:	26 38       	cpi	r18, 0x86	; 134
     a466:	00 00       	nop
     a468:	24 00       	.word	0x0024	; ????
-    a46a:	f9 01       	movw	r30, r18
+    a46a:	fd 01       	movw	r30, r26
     a46c:	0e 48       	sbci	r16, 0x8E	; 142
     a46e:	00 00       	nop
     a470:	00 00       	nop
@@ -41165,25 +41165,25 @@ Disassembly of section .stab:
     a47c:	00 00       	nop
     a47e:	00 00       	nop
     a480:	44 00       	.word	0x0044	; ????
-    a482:	fa 01       	movw	r30, r20
+    a482:	fe 01       	movw	r30, r28
     a484:	00 00       	nop
     a486:	00 00       	nop
     a488:	00 00       	nop
     a48a:	00 00       	nop
     a48c:	44 00       	.word	0x0044	; ????
-    a48e:	ff 01       	movw	r30, r30
+    a48e:	03 02       	muls	r16, r19
     a490:	00 00       	nop
     a492:	00 00       	nop
     a494:	00 00       	nop
     a496:	00 00       	nop
     a498:	44 00       	.word	0x0044	; ????
-    a49a:	01 02       	muls	r16, r17
+    a49a:	05 02       	muls	r16, r21
     a49c:	04 00       	.word	0x0004	; ????
     a49e:	00 00       	nop
     a4a0:	00 00       	nop
     a4a2:	00 00       	nop
     a4a4:	44 00       	.word	0x0044	; ????
-    a4a6:	04 02       	muls	r16, r20
+    a4a6:	08 02       	muls	r16, r24
     a4a8:	12 00       	.word	0x0012	; ????
     a4aa:	00 00       	nop
     a4ac:	00 00       	nop
@@ -41201,13 +41201,13 @@ Disassembly of section .stab:
     a4c4:	46 38       	cpi	r20, 0x86	; 134
     a4c6:	00 00       	nop
     a4c8:	24 00       	.word	0x0024	; ????
-    a4ca:	d7 01       	movw	r26, r14
+    a4ca:	db 01       	movw	r26, r22
     a4cc:	22 48       	sbci	r18, 0x82	; 130
     a4ce:	00 00       	nop
     a4d0:	06 38       	cpi	r16, 0x86	; 134
     a4d2:	00 00       	nop
     a4d4:	a0 00       	.word	0x00a0	; ????
-    a4d6:	d7 01       	movw	r26, r14
+    a4d6:	db 01       	movw	r26, r22
     a4d8:	01 00       	.word	0x0001	; ????
     a4da:	00 00       	nop
     a4dc:	00 00       	nop
@@ -41219,97 +41219,97 @@ Disassembly of section .stab:
     a4e8:	00 00       	nop
     a4ea:	00 00       	nop
     a4ec:	44 00       	.word	0x0044	; ????
-    a4ee:	d8 01       	movw	r26, r16
+    a4ee:	dc 01       	movw	r26, r24
     a4f0:	00 00       	nop
     a4f2:	00 00       	nop
     a4f4:	00 00       	nop
     a4f6:	00 00       	nop
     a4f8:	44 00       	.word	0x0044	; ????
-    a4fa:	dc 01       	movw	r26, r24
+    a4fa:	e0 01       	movw	r28, r0
     a4fc:	2a 00       	.word	0x002a	; ????
     a4fe:	00 00       	nop
     a500:	00 00       	nop
     a502:	00 00       	nop
     a504:	44 00       	.word	0x0044	; ????
-    a506:	de 01       	movw	r26, r28
+    a506:	e2 01       	movw	r28, r4
     a508:	2e 00       	.word	0x002e	; ????
     a50a:	00 00       	nop
     a50c:	00 00       	nop
     a50e:	00 00       	nop
     a510:	44 00       	.word	0x0044	; ????
-    a512:	df 01       	movw	r26, r30
+    a512:	e3 01       	movw	r28, r6
     a514:	32 00       	.word	0x0032	; ????
     a516:	00 00       	nop
     a518:	00 00       	nop
     a51a:	00 00       	nop
     a51c:	44 00       	.word	0x0044	; ????
-    a51e:	e0 01       	movw	r28, r0
+    a51e:	e4 01       	movw	r28, r8
     a520:	3e 00       	.word	0x003e	; ????
     a522:	00 00       	nop
     a524:	00 00       	nop
     a526:	00 00       	nop
     a528:	44 00       	.word	0x0044	; ????
-    a52a:	e1 01       	movw	r28, r2
+    a52a:	e5 01       	movw	r28, r10
     a52c:	46 00       	.word	0x0046	; ????
     a52e:	00 00       	nop
     a530:	00 00       	nop
     a532:	00 00       	nop
     a534:	44 00       	.word	0x0044	; ????
-    a536:	e5 01       	movw	r28, r10
+    a536:	e9 01       	movw	r28, r18
     a538:	4c 00       	.word	0x004c	; ????
     a53a:	00 00       	nop
     a53c:	00 00       	nop
     a53e:	00 00       	nop
     a540:	44 00       	.word	0x0044	; ????
-    a542:	e7 01       	movw	r28, r14
+    a542:	eb 01       	movw	r28, r22
     a544:	54 00       	.word	0x0054	; ????
     a546:	00 00       	nop
     a548:	00 00       	nop
     a54a:	00 00       	nop
     a54c:	44 00       	.word	0x0044	; ????
-    a54e:	e9 01       	movw	r28, r18
+    a54e:	ed 01       	movw	r28, r26
     a550:	6a 00       	.word	0x006a	; ????
     a552:	00 00       	nop
     a554:	00 00       	nop
     a556:	00 00       	nop
     a558:	44 00       	.word	0x0044	; ????
-    a55a:	eb 01       	movw	r28, r22
+    a55a:	ef 01       	movw	r28, r30
     a55c:	70 00       	.word	0x0070	; ????
     a55e:	00 00       	nop
     a560:	00 00       	nop
     a562:	00 00       	nop
     a564:	44 00       	.word	0x0044	; ????
-    a566:	ed 01       	movw	r28, r26
+    a566:	f1 01       	movw	r30, r2
     a568:	82 00       	.word	0x0082	; ????
     a56a:	00 00       	nop
     a56c:	00 00       	nop
     a56e:	00 00       	nop
     a570:	44 00       	.word	0x0044	; ????
-    a572:	ee 01       	movw	r28, r28
+    a572:	f2 01       	movw	r30, r4
     a574:	86 00       	.word	0x0086	; ????
     a576:	00 00       	nop
     a578:	00 00       	nop
     a57a:	00 00       	nop
     a57c:	44 00       	.word	0x0044	; ????
-    a57e:	ef 01       	movw	r28, r30
+    a57e:	f3 01       	movw	r30, r6
     a580:	8a 00       	.word	0x008a	; ????
     a582:	00 00       	nop
     a584:	00 00       	nop
     a586:	00 00       	nop
     a588:	44 00       	.word	0x0044	; ????
-    a58a:	f2 01       	movw	r30, r4
+    a58a:	f6 01       	movw	r30, r12
     a58c:	8e 00       	.word	0x008e	; ????
     a58e:	00 00       	nop
     a590:	00 00       	nop
     a592:	00 00       	nop
     a594:	44 00       	.word	0x0044	; ????
-    a596:	f4 01       	movw	r30, r8
+    a596:	f8 01       	movw	r30, r16
     a598:	92 00       	.word	0x0092	; ????
     a59a:	00 00       	nop
     a59c:	00 00       	nop
     a59e:	00 00       	nop
     a5a0:	44 00       	.word	0x0044	; ????
-    a5a2:	f6 01       	movw	r30, r12
+    a5a2:	fa 01       	movw	r30, r20
     a5a4:	96 00       	.word	0x0096	; ????
     a5a6:	00 00       	nop
     a5a8:	00 00       	nop
@@ -41327,7 +41327,7 @@ Disassembly of section .stab:
     a5c0:	56 38       	cpi	r21, 0x86	; 134
     a5c2:	00 00       	nop
     a5c4:	24 00       	.word	0x0024	; ????
-    a5c6:	c0 01       	movw	r24, r0
+    a5c6:	c4 01       	movw	r24, r8
     a5c8:	d2 48       	sbci	r29, 0x82	; 130
     a5ca:	00 00       	nop
     a5cc:	00 00       	nop
@@ -41339,79 +41339,79 @@ Disassembly of section .stab:
     a5d8:	00 00       	nop
     a5da:	00 00       	nop
     a5dc:	44 00       	.word	0x0044	; ????
-    a5de:	c1 01       	movw	r24, r2
+    a5de:	c5 01       	movw	r24, r10
     a5e0:	00 00       	nop
     a5e2:	00 00       	nop
     a5e4:	00 00       	nop
     a5e6:	00 00       	nop
     a5e8:	44 00       	.word	0x0044	; ????
-    a5ea:	c3 01       	movw	r24, r6
+    a5ea:	c7 01       	movw	r24, r14
     a5ec:	02 00       	.word	0x0002	; ????
     a5ee:	00 00       	nop
     a5f0:	00 00       	nop
     a5f2:	00 00       	nop
     a5f4:	44 00       	.word	0x0044	; ????
-    a5f6:	c4 01       	movw	r24, r8
+    a5f6:	c8 01       	movw	r24, r16
     a5f8:	06 00       	.word	0x0006	; ????
     a5fa:	00 00       	nop
     a5fc:	00 00       	nop
     a5fe:	00 00       	nop
     a600:	44 00       	.word	0x0044	; ????
-    a602:	c5 01       	movw	r24, r10
+    a602:	c9 01       	movw	r24, r18
     a604:	12 00       	.word	0x0012	; ????
     a606:	00 00       	nop
     a608:	00 00       	nop
     a60a:	00 00       	nop
     a60c:	44 00       	.word	0x0044	; ????
-    a60e:	c6 01       	movw	r24, r12
+    a60e:	ca 01       	movw	r24, r20
     a610:	14 00       	.word	0x0014	; ????
     a612:	00 00       	nop
     a614:	00 00       	nop
     a616:	00 00       	nop
     a618:	44 00       	.word	0x0044	; ????
-    a61a:	c8 01       	movw	r24, r16
+    a61a:	cc 01       	movw	r24, r24
     a61c:	1a 00       	.word	0x001a	; ????
     a61e:	00 00       	nop
     a620:	00 00       	nop
     a622:	00 00       	nop
     a624:	44 00       	.word	0x0044	; ????
-    a626:	c9 01       	movw	r24, r18
+    a626:	cd 01       	movw	r24, r26
     a628:	1e 00       	.word	0x001e	; ????
     a62a:	00 00       	nop
     a62c:	00 00       	nop
     a62e:	00 00       	nop
     a630:	44 00       	.word	0x0044	; ????
-    a632:	cb 01       	movw	r24, r22
+    a632:	cf 01       	movw	r24, r30
     a634:	34 00       	.word	0x0034	; ????
     a636:	00 00       	nop
     a638:	00 00       	nop
     a63a:	00 00       	nop
     a63c:	44 00       	.word	0x0044	; ????
-    a63e:	cc 01       	movw	r24, r24
+    a63e:	d0 01       	movw	r26, r0
     a640:	38 00       	.word	0x0038	; ????
     a642:	00 00       	nop
     a644:	00 00       	nop
     a646:	00 00       	nop
     a648:	44 00       	.word	0x0044	; ????
-    a64a:	cd 01       	movw	r24, r26
+    a64a:	d1 01       	movw	r26, r2
     a64c:	3c 00       	.word	0x003c	; ????
     a64e:	00 00       	nop
     a650:	00 00       	nop
     a652:	00 00       	nop
     a654:	44 00       	.word	0x0044	; ????
-    a656:	d0 01       	movw	r26, r0
+    a656:	d4 01       	movw	r26, r8
     a658:	40 00       	.word	0x0040	; ????
     a65a:	00 00       	nop
     a65c:	00 00       	nop
     a65e:	00 00       	nop
     a660:	44 00       	.word	0x0044	; ????
-    a662:	d2 01       	movw	r26, r4
+    a662:	d6 01       	movw	r26, r12
     a664:	44 00       	.word	0x0044	; ????
     a666:	00 00       	nop
     a668:	00 00       	nop
     a66a:	00 00       	nop
     a66c:	44 00       	.word	0x0044	; ????
-    a66e:	d4 01       	movw	r26, r8
+    a66e:	d8 01       	movw	r26, r16
     a670:	48 00       	.word	0x0048	; ????
     a672:	00 00       	nop
     a674:	00 00       	nop
@@ -41429,13 +41429,13 @@ Disassembly of section .stab:
     a68c:	6f 38       	cpi	r22, 0x8F	; 143
     a68e:	00 00       	nop
     a690:	24 00       	.word	0x0024	; ????
-    a692:	87 01       	movw	r16, r14
+    a692:	8b 01       	movw	r16, r22
     a694:	20 49       	sbci	r18, 0x90	; 144
     a696:	00 00       	nop
     a698:	8b 38       	cpi	r24, 0x8B	; 139
     a69a:	00 00       	nop
     a69c:	40 00       	.word	0x0040	; ????
-    a69e:	87 01       	movw	r16, r14
+    a69e:	8b 01       	movw	r16, r22
     a6a0:	1c 00       	.word	0x001c	; ????
     a6a2:	00 00       	nop
     a6a4:	00 00       	nop
@@ -41447,79 +41447,79 @@ Disassembly of section .stab:
     a6b0:	00 00       	nop
     a6b2:	00 00       	nop
     a6b4:	44 00       	.word	0x0044	; ????
-    a6b6:	88 01       	movw	r16, r16
+    a6b6:	8c 01       	movw	r16, r24
     a6b8:	00 00       	nop
     a6ba:	00 00       	nop
     a6bc:	00 00       	nop
     a6be:	00 00       	nop
     a6c0:	44 00       	.word	0x0044	; ????
-    a6c2:	8a 01       	movw	r16, r20
+    a6c2:	8e 01       	movw	r16, r28
     a6c4:	08 00       	.word	0x0008	; ????
     a6c6:	00 00       	nop
     a6c8:	00 00       	nop
     a6ca:	00 00       	nop
     a6cc:	44 00       	.word	0x0044	; ????
-    a6ce:	8b 01       	movw	r16, r22
+    a6ce:	8f 01       	movw	r16, r30
     a6d0:	0c 00       	.word	0x000c	; ????
     a6d2:	00 00       	nop
     a6d4:	00 00       	nop
     a6d6:	00 00       	nop
     a6d8:	44 00       	.word	0x0044	; ????
-    a6da:	8c 01       	movw	r16, r24
+    a6da:	90 01       	movw	r18, r0
     a6dc:	18 00       	.word	0x0018	; ????
     a6de:	00 00       	nop
     a6e0:	00 00       	nop
     a6e2:	00 00       	nop
     a6e4:	44 00       	.word	0x0044	; ????
-    a6e6:	8e 01       	movw	r16, r28
+    a6e6:	92 01       	movw	r18, r4
     a6e8:	1c 00       	.word	0x001c	; ????
     a6ea:	00 00       	nop
     a6ec:	00 00       	nop
     a6ee:	00 00       	nop
     a6f0:	44 00       	.word	0x0044	; ????
-    a6f2:	90 01       	movw	r18, r0
+    a6f2:	94 01       	movw	r18, r8
     a6f4:	22 00       	.word	0x0022	; ????
     a6f6:	00 00       	nop
     a6f8:	00 00       	nop
     a6fa:	00 00       	nop
     a6fc:	44 00       	.word	0x0044	; ????
-    a6fe:	91 01       	movw	r18, r2
+    a6fe:	95 01       	movw	r18, r10
     a700:	26 00       	.word	0x0026	; ????
     a702:	00 00       	nop
     a704:	00 00       	nop
     a706:	00 00       	nop
     a708:	44 00       	.word	0x0044	; ????
-    a70a:	93 01       	movw	r18, r6
+    a70a:	97 01       	movw	r18, r14
     a70c:	3c 00       	.word	0x003c	; ????
     a70e:	00 00       	nop
     a710:	00 00       	nop
     a712:	00 00       	nop
     a714:	44 00       	.word	0x0044	; ????
-    a716:	94 01       	movw	r18, r8
+    a716:	98 01       	movw	r18, r16
     a718:	40 00       	.word	0x0040	; ????
     a71a:	00 00       	nop
     a71c:	00 00       	nop
     a71e:	00 00       	nop
     a720:	44 00       	.word	0x0044	; ????
-    a722:	95 01       	movw	r18, r10
+    a722:	99 01       	movw	r18, r18
     a724:	44 00       	.word	0x0044	; ????
     a726:	00 00       	nop
     a728:	00 00       	nop
     a72a:	00 00       	nop
     a72c:	44 00       	.word	0x0044	; ????
-    a72e:	98 01       	movw	r18, r16
+    a72e:	9c 01       	movw	r18, r24
     a730:	48 00       	.word	0x0048	; ????
     a732:	00 00       	nop
     a734:	00 00       	nop
     a736:	00 00       	nop
     a738:	44 00       	.word	0x0044	; ????
-    a73a:	9a 01       	movw	r18, r20
+    a73a:	9e 01       	movw	r18, r28
     a73c:	4c 00       	.word	0x004c	; ????
     a73e:	00 00       	nop
     a740:	00 00       	nop
     a742:	00 00       	nop
     a744:	44 00       	.word	0x0044	; ????
-    a746:	9c 01       	movw	r18, r24
+    a746:	a0 01       	movw	r20, r0
     a748:	50 00       	.word	0x0050	; ????
     a74a:	00 00       	nop
     a74c:	00 00       	nop
@@ -41537,13 +41537,13 @@ Disassembly of section .stab:
     a764:	98 38       	cpi	r25, 0x88	; 136
     a766:	00 00       	nop
     a768:	24 00       	.word	0x0024	; ????
-    a76a:	66 01       	movw	r12, r12
+    a76a:	6a 01       	movw	r12, r20
     a76c:	7a 49       	sbci	r23, 0x9A	; 154
     a76e:	00 00       	nop
     a770:	8b 38       	cpi	r24, 0x8B	; 139
     a772:	00 00       	nop
     a774:	40 00       	.word	0x0040	; ????
-    a776:	66 01       	movw	r12, r12
+    a776:	6a 01       	movw	r12, r20
     a778:	10 00       	.word	0x0010	; ????
     a77a:	00 00       	nop
     a77c:	00 00       	nop
@@ -41555,79 +41555,79 @@ Disassembly of section .stab:
     a788:	00 00       	nop
     a78a:	00 00       	nop
     a78c:	44 00       	.word	0x0044	; ????
-    a78e:	67 01       	movw	r12, r14
+    a78e:	6b 01       	movw	r12, r22
     a790:	00 00       	nop
     a792:	00 00       	nop
     a794:	00 00       	nop
     a796:	00 00       	nop
     a798:	44 00       	.word	0x0044	; ????
-    a79a:	69 01       	movw	r12, r18
+    a79a:	6d 01       	movw	r12, r26
     a79c:	14 00       	.word	0x0014	; ????
     a79e:	00 00       	nop
     a7a0:	00 00       	nop
     a7a2:	00 00       	nop
     a7a4:	44 00       	.word	0x0044	; ????
-    a7a6:	6a 01       	movw	r12, r20
+    a7a6:	6e 01       	movw	r12, r28
     a7a8:	18 00       	.word	0x0018	; ????
     a7aa:	00 00       	nop
     a7ac:	00 00       	nop
     a7ae:	00 00       	nop
     a7b0:	44 00       	.word	0x0044	; ????
-    a7b2:	6b 01       	movw	r12, r22
+    a7b2:	6f 01       	movw	r12, r30
     a7b4:	24 00       	.word	0x0024	; ????
     a7b6:	00 00       	nop
     a7b8:	00 00       	nop
     a7ba:	00 00       	nop
     a7bc:	44 00       	.word	0x0044	; ????
-    a7be:	6c 01       	movw	r12, r24
+    a7be:	70 01       	movw	r14, r0
     a7c0:	28 00       	.word	0x0028	; ????
     a7c2:	00 00       	nop
     a7c4:	00 00       	nop
     a7c6:	00 00       	nop
     a7c8:	44 00       	.word	0x0044	; ????
-    a7ca:	6e 01       	movw	r12, r28
+    a7ca:	72 01       	movw	r14, r4
     a7cc:	3c 00       	.word	0x003c	; ????
     a7ce:	00 00       	nop
     a7d0:	00 00       	nop
     a7d2:	00 00       	nop
     a7d4:	44 00       	.word	0x0044	; ????
-    a7d6:	6f 01       	movw	r12, r30
+    a7d6:	73 01       	movw	r14, r6
     a7d8:	40 00       	.word	0x0040	; ????
     a7da:	00 00       	nop
     a7dc:	00 00       	nop
     a7de:	00 00       	nop
     a7e0:	44 00       	.word	0x0044	; ????
-    a7e2:	71 01       	movw	r14, r2
+    a7e2:	75 01       	movw	r14, r10
     a7e4:	58 00       	.word	0x0058	; ????
     a7e6:	00 00       	nop
     a7e8:	00 00       	nop
     a7ea:	00 00       	nop
     a7ec:	44 00       	.word	0x0044	; ????
-    a7ee:	72 01       	movw	r14, r4
+    a7ee:	76 01       	movw	r14, r12
     a7f0:	5c 00       	.word	0x005c	; ????
     a7f2:	00 00       	nop
     a7f4:	00 00       	nop
     a7f6:	00 00       	nop
     a7f8:	44 00       	.word	0x0044	; ????
-    a7fa:	73 01       	movw	r14, r6
+    a7fa:	77 01       	movw	r14, r14
     a7fc:	60 00       	.word	0x0060	; ????
     a7fe:	00 00       	nop
     a800:	00 00       	nop
     a802:	00 00       	nop
     a804:	44 00       	.word	0x0044	; ????
-    a806:	76 01       	movw	r14, r12
+    a806:	7a 01       	movw	r14, r20
     a808:	64 00       	.word	0x0064	; ????
     a80a:	00 00       	nop
     a80c:	00 00       	nop
     a80e:	00 00       	nop
     a810:	44 00       	.word	0x0044	; ????
-    a812:	78 01       	movw	r14, r16
+    a812:	7c 01       	movw	r14, r24
     a814:	68 00       	.word	0x0068	; ????
     a816:	00 00       	nop
     a818:	00 00       	nop
     a81a:	00 00       	nop
     a81c:	44 00       	.word	0x0044	; ????
-    a81e:	7a 01       	movw	r14, r20
+    a81e:	7e 01       	movw	r14, r28
     a820:	6c 00       	.word	0x006c	; ????
     a822:	00 00       	nop
     a824:	00 00       	nop
@@ -41645,13 +41645,13 @@ Disassembly of section .stab:
     a83c:	ae 38       	cpi	r26, 0x8E	; 142
     a83e:	00 00       	nop
     a840:	24 00       	.word	0x0024	; ????
-    a842:	40 01       	movw	r8, r0
+    a842:	44 01       	movw	r8, r8
     a844:	f8 49       	sbci	r31, 0x98	; 152
     a846:	00 00       	nop
     a848:	d3 38       	cpi	r29, 0x83	; 131
     a84a:	00 00       	nop
     a84c:	40 00       	.word	0x0040	; ????
-    a84e:	40 01       	movw	r8, r0
+    a84e:	44 01       	movw	r8, r8
     a850:	1c 00       	.word	0x001c	; ????
     a852:	00 00       	nop
     a854:	00 00       	nop
@@ -41663,97 +41663,97 @@ Disassembly of section .stab:
     a860:	00 00       	nop
     a862:	00 00       	nop
     a864:	44 00       	.word	0x0044	; ????
-    a866:	41 01       	movw	r8, r2
+    a866:	45 01       	movw	r8, r10
     a868:	00 00       	nop
     a86a:	00 00       	nop
     a86c:	00 00       	nop
     a86e:	00 00       	nop
     a870:	44 00       	.word	0x0044	; ????
-    a872:	44 01       	movw	r8, r8
+    a872:	48 01       	movw	r8, r16
     a874:	08 00       	.word	0x0008	; ????
     a876:	00 00       	nop
     a878:	00 00       	nop
     a87a:	00 00       	nop
     a87c:	44 00       	.word	0x0044	; ????
-    a87e:	46 01       	movw	r8, r12
+    a87e:	4a 01       	movw	r8, r20
     a880:	0c 00       	.word	0x000c	; ????
     a882:	00 00       	nop
     a884:	00 00       	nop
     a886:	00 00       	nop
     a888:	44 00       	.word	0x0044	; ????
-    a88a:	47 01       	movw	r8, r14
+    a88a:	4b 01       	movw	r8, r22
     a88c:	10 00       	.word	0x0010	; ????
     a88e:	00 00       	nop
     a890:	00 00       	nop
     a892:	00 00       	nop
     a894:	44 00       	.word	0x0044	; ????
-    a896:	49 01       	movw	r8, r18
+    a896:	4d 01       	movw	r8, r26
     a898:	14 00       	.word	0x0014	; ????
     a89a:	00 00       	nop
     a89c:	00 00       	nop
     a89e:	00 00       	nop
     a8a0:	44 00       	.word	0x0044	; ????
-    a8a2:	4a 01       	movw	r8, r20
+    a8a2:	4e 01       	movw	r8, r28
     a8a4:	18 00       	.word	0x0018	; ????
     a8a6:	00 00       	nop
     a8a8:	00 00       	nop
     a8aa:	00 00       	nop
     a8ac:	44 00       	.word	0x0044	; ????
-    a8ae:	4b 01       	movw	r8, r22
+    a8ae:	4f 01       	movw	r8, r30
     a8b0:	24 00       	.word	0x0024	; ????
     a8b2:	00 00       	nop
     a8b4:	00 00       	nop
     a8b6:	00 00       	nop
     a8b8:	44 00       	.word	0x0044	; ????
-    a8ba:	4c 01       	movw	r8, r24
+    a8ba:	50 01       	movw	r10, r0
     a8bc:	28 00       	.word	0x0028	; ????
     a8be:	00 00       	nop
     a8c0:	00 00       	nop
     a8c2:	00 00       	nop
     a8c4:	44 00       	.word	0x0044	; ????
-    a8c6:	51 01       	movw	r10, r2
+    a8c6:	55 01       	movw	r10, r10
     a8c8:	2e 00       	.word	0x002e	; ????
     a8ca:	00 00       	nop
     a8cc:	00 00       	nop
     a8ce:	00 00       	nop
     a8d0:	44 00       	.word	0x0044	; ????
-    a8d2:	52 01       	movw	r10, r4
+    a8d2:	56 01       	movw	r10, r12
     a8d4:	32 00       	.word	0x0032	; ????
     a8d6:	00 00       	nop
     a8d8:	00 00       	nop
     a8da:	00 00       	nop
     a8dc:	44 00       	.word	0x0044	; ????
-    a8de:	54 01       	movw	r10, r8
+    a8de:	58 01       	movw	r10, r16
     a8e0:	48 00       	.word	0x0048	; ????
     a8e2:	00 00       	nop
     a8e4:	00 00       	nop
     a8e6:	00 00       	nop
     a8e8:	44 00       	.word	0x0044	; ????
-    a8ea:	55 01       	movw	r10, r10
+    a8ea:	59 01       	movw	r10, r18
     a8ec:	4c 00       	.word	0x004c	; ????
     a8ee:	00 00       	nop
     a8f0:	00 00       	nop
     a8f2:	00 00       	nop
     a8f4:	44 00       	.word	0x0044	; ????
-    a8f6:	56 01       	movw	r10, r12
+    a8f6:	5a 01       	movw	r10, r20
     a8f8:	50 00       	.word	0x0050	; ????
     a8fa:	00 00       	nop
     a8fc:	00 00       	nop
     a8fe:	00 00       	nop
     a900:	44 00       	.word	0x0044	; ????
-    a902:	59 01       	movw	r10, r18
+    a902:	5d 01       	movw	r10, r26
     a904:	54 00       	.word	0x0054	; ????
     a906:	00 00       	nop
     a908:	00 00       	nop
     a90a:	00 00       	nop
     a90c:	44 00       	.word	0x0044	; ????
-    a90e:	5a 01       	movw	r10, r20
+    a90e:	5e 01       	movw	r10, r28
     a910:	58 00       	.word	0x0058	; ????
     a912:	00 00       	nop
     a914:	00 00       	nop
     a916:	00 00       	nop
     a918:	44 00       	.word	0x0044	; ????
-    a91a:	5c 01       	movw	r10, r24
+    a91a:	60 01       	movw	r12, r0
     a91c:	5c 00       	.word	0x005c	; ????
     a91e:	00 00       	nop
     a920:	00 00       	nop
@@ -41771,7 +41771,7 @@ Disassembly of section .stab:
     a938:	dc 38       	cpi	r29, 0x8C	; 140
     a93a:	00 00       	nop
     a93c:	24 00       	.word	0x0024	; ????
-    a93e:	26 01       	movw	r4, r12
+    a93e:	2a 01       	movw	r4, r20
     a940:	5e 4a       	sbci	r21, 0xAE	; 174
     a942:	00 00       	nop
     a944:	00 00       	nop
@@ -41783,85 +41783,85 @@ Disassembly of section .stab:
     a950:	00 00       	nop
     a952:	00 00       	nop
     a954:	44 00       	.word	0x0044	; ????
-    a956:	27 01       	movw	r4, r14
+    a956:	2b 01       	movw	r4, r22
     a958:	00 00       	nop
     a95a:	00 00       	nop
     a95c:	00 00       	nop
     a95e:	00 00       	nop
     a960:	44 00       	.word	0x0044	; ????
-    a962:	2a 01       	movw	r4, r20
+    a962:	2e 01       	movw	r4, r28
     a964:	02 00       	.word	0x0002	; ????
     a966:	00 00       	nop
     a968:	00 00       	nop
     a96a:	00 00       	nop
     a96c:	44 00       	.word	0x0044	; ????
-    a96e:	2c 01       	movw	r4, r24
+    a96e:	30 01       	movw	r6, r0
     a970:	06 00       	.word	0x0006	; ????
     a972:	00 00       	nop
     a974:	00 00       	nop
     a976:	00 00       	nop
     a978:	44 00       	.word	0x0044	; ????
-    a97a:	2d 01       	movw	r4, r26
+    a97a:	31 01       	movw	r6, r2
     a97c:	0a 00       	.word	0x000a	; ????
     a97e:	00 00       	nop
     a980:	00 00       	nop
     a982:	00 00       	nop
     a984:	44 00       	.word	0x0044	; ????
-    a986:	2e 01       	movw	r4, r28
+    a986:	32 01       	movw	r6, r4
     a988:	1a 00       	.word	0x001a	; ????
     a98a:	00 00       	nop
     a98c:	00 00       	nop
     a98e:	00 00       	nop
     a990:	44 00       	.word	0x0044	; ????
-    a992:	2f 01       	movw	r4, r30
+    a992:	33 01       	movw	r6, r6
     a994:	1e 00       	.word	0x001e	; ????
     a996:	00 00       	nop
     a998:	00 00       	nop
     a99a:	00 00       	nop
     a99c:	44 00       	.word	0x0044	; ????
-    a99e:	33 01       	movw	r6, r6
+    a99e:	37 01       	movw	r6, r14
     a9a0:	24 00       	.word	0x0024	; ????
     a9a2:	00 00       	nop
     a9a4:	00 00       	nop
     a9a6:	00 00       	nop
     a9a8:	44 00       	.word	0x0044	; ????
-    a9aa:	34 01       	movw	r6, r8
+    a9aa:	38 01       	movw	r6, r16
     a9ac:	28 00       	.word	0x0028	; ????
     a9ae:	00 00       	nop
     a9b0:	00 00       	nop
     a9b2:	00 00       	nop
     a9b4:	44 00       	.word	0x0044	; ????
-    a9b6:	36 01       	movw	r6, r12
+    a9b6:	3a 01       	movw	r6, r20
     a9b8:	3e 00       	.word	0x003e	; ????
     a9ba:	00 00       	nop
     a9bc:	00 00       	nop
     a9be:	00 00       	nop
     a9c0:	44 00       	.word	0x0044	; ????
-    a9c2:	37 01       	movw	r6, r14
+    a9c2:	3b 01       	movw	r6, r22
     a9c4:	42 00       	.word	0x0042	; ????
     a9c6:	00 00       	nop
     a9c8:	00 00       	nop
     a9ca:	00 00       	nop
     a9cc:	44 00       	.word	0x0044	; ????
-    a9ce:	38 01       	movw	r6, r16
+    a9ce:	3c 01       	movw	r6, r24
     a9d0:	46 00       	.word	0x0046	; ????
     a9d2:	00 00       	nop
     a9d4:	00 00       	nop
     a9d6:	00 00       	nop
     a9d8:	44 00       	.word	0x0044	; ????
-    a9da:	3b 01       	movw	r6, r22
+    a9da:	3f 01       	movw	r6, r30
     a9dc:	4a 00       	.word	0x004a	; ????
     a9de:	00 00       	nop
     a9e0:	00 00       	nop
     a9e2:	00 00       	nop
     a9e4:	44 00       	.word	0x0044	; ????
-    a9e6:	3c 01       	movw	r6, r24
+    a9e6:	40 01       	movw	r8, r0
     a9e8:	4e 00       	.word	0x004e	; ????
     a9ea:	00 00       	nop
     a9ec:	00 00       	nop
     a9ee:	00 00       	nop
     a9f0:	44 00       	.word	0x0044	; ????
-    a9f2:	3e 01       	movw	r6, r28
+    a9f2:	42 01       	movw	r8, r4
     a9f4:	52 00       	.word	0x0052	; ????
     a9f6:	00 00       	nop
     a9f8:	00 00       	nop
@@ -41879,7 +41879,7 @@ Disassembly of section .stab:
     aa10:	fe 38       	cpi	r31, 0x8E	; 142
     aa12:	00 00       	nop
     aa14:	24 00       	.word	0x0024	; ????
-    aa16:	1c 01       	movw	r2, r24
+    aa16:	20 01       	movw	r4, r0
     aa18:	b6 4a       	sbci	r27, 0xA6	; 166
     aa1a:	00 00       	nop
     aa1c:	00 00       	nop
@@ -41891,31 +41891,31 @@ Disassembly of section .stab:
     aa28:	00 00       	nop
     aa2a:	00 00       	nop
     aa2c:	44 00       	.word	0x0044	; ????
-    aa2e:	1d 01       	movw	r2, r26
+    aa2e:	21 01       	movw	r4, r2
     aa30:	00 00       	nop
     aa32:	00 00       	nop
     aa34:	00 00       	nop
     aa36:	00 00       	nop
     aa38:	44 00       	.word	0x0044	; ????
-    aa3a:	1e 01       	movw	r2, r28
+    aa3a:	22 01       	movw	r4, r4
     aa3c:	00 00       	nop
     aa3e:	00 00       	nop
     aa40:	00 00       	nop
     aa42:	00 00       	nop
     aa44:	44 00       	.word	0x0044	; ????
-    aa46:	1f 01       	movw	r2, r30
+    aa46:	23 01       	movw	r4, r6
     aa48:	0e 00       	.word	0x000e	; ????
     aa4a:	00 00       	nop
     aa4c:	00 00       	nop
     aa4e:	00 00       	nop
     aa50:	44 00       	.word	0x0044	; ????
-    aa52:	22 01       	movw	r4, r4
+    aa52:	26 01       	movw	r4, r12
     aa54:	1a 00       	.word	0x001a	; ????
     aa56:	00 00       	nop
     aa58:	00 00       	nop
     aa5a:	00 00       	nop
     aa5c:	44 00       	.word	0x0044	; ????
-    aa5e:	24 01       	movw	r4, r8
+    aa5e:	28 01       	movw	r4, r16
     aa60:	1e 00       	.word	0x001e	; ????
     aa62:	00 00       	nop
     aa64:	00 00       	nop
@@ -41933,13 +41933,13 @@ Disassembly of section .stab:
     aa7c:	1a 39       	cpi	r17, 0x9A	; 154
     aa7e:	00 00       	nop
     aa80:	24 00       	.word	0x0024	; ????
-    aa82:	07 02       	muls	r16, r23
+    aa82:	0b 02       	muls	r16, r27
     aa84:	d8 4a       	sbci	r29, 0xA8	; 168
     aa86:	00 00       	nop
     aa88:	06 38       	cpi	r16, 0x86	; 134
     aa8a:	00 00       	nop
     aa8c:	a0 00       	.word	0x00a0	; ????
-    aa8e:	07 02       	muls	r16, r23
+    aa8e:	0b 02       	muls	r16, r27
     aa90:	09 00       	.word	0x0009	; ????
     aa92:	00 00       	nop
     aa94:	00 00       	nop
@@ -41951,55 +41951,55 @@ Disassembly of section .stab:
     aaa0:	00 00       	nop
     aaa2:	00 00       	nop
     aaa4:	44 00       	.word	0x0044	; ????
-    aaa6:	08 02       	muls	r16, r24
+    aaa6:	0c 02       	muls	r16, r28
     aaa8:	00 00       	nop
     aaaa:	00 00       	nop
     aaac:	00 00       	nop
     aaae:	00 00       	nop
     aab0:	44 00       	.word	0x0044	; ????
-    aab2:	12 02       	muls	r17, r18
+    aab2:	16 02       	muls	r17, r22
     aab4:	38 00       	.word	0x0038	; ????
     aab6:	00 00       	nop
     aab8:	00 00       	nop
     aaba:	00 00       	nop
     aabc:	44 00       	.word	0x0044	; ????
-    aabe:	14 02       	muls	r17, r20
+    aabe:	18 02       	muls	r17, r24
     aac0:	40 00       	.word	0x0040	; ????
     aac2:	00 00       	nop
     aac4:	00 00       	nop
     aac6:	00 00       	nop
     aac8:	44 00       	.word	0x0044	; ????
-    aaca:	16 02       	muls	r17, r22
+    aaca:	1a 02       	muls	r17, r26
     aacc:	68 00       	.word	0x0068	; ????
     aace:	00 00       	nop
     aad0:	00 00       	nop
     aad2:	00 00       	nop
     aad4:	44 00       	.word	0x0044	; ????
-    aad6:	20 02       	muls	r18, r16
+    aad6:	24 02       	muls	r18, r20
     aad8:	6c 00       	.word	0x006c	; ????
     aada:	00 00       	nop
     aadc:	00 00       	nop
     aade:	00 00       	nop
     aae0:	44 00       	.word	0x0044	; ????
-    aae2:	22 02       	muls	r18, r18
+    aae2:	26 02       	muls	r18, r22
     aae4:	80 00       	.word	0x0080	; ????
     aae6:	00 00       	nop
     aae8:	00 00       	nop
     aaea:	00 00       	nop
     aaec:	44 00       	.word	0x0044	; ????
-    aaee:	18 02       	muls	r17, r24
+    aaee:	1c 02       	muls	r17, r28
     aaf0:	84 00       	.word	0x0084	; ????
     aaf2:	00 00       	nop
     aaf4:	00 00       	nop
     aaf6:	00 00       	nop
     aaf8:	44 00       	.word	0x0044	; ????
-    aafa:	23 02       	muls	r18, r19
+    aafa:	27 02       	muls	r18, r23
     aafc:	86 00       	.word	0x0086	; ????
     aafe:	00 00       	nop
     ab00:	30 39       	cpi	r19, 0x90	; 144
     ab02:	00 00       	nop
     ab04:	80 00       	.word	0x0080	; ????
-    ab06:	09 02       	muls	r16, r25
+    ab06:	0d 02       	muls	r16, r29
     ab08:	01 00       	.word	0x0001	; ????
     ab0a:	00 00       	nop
     ab0c:	00 00       	nop
@@ -42029,7 +42029,7 @@ Disassembly of section .stab:
     ab3c:	39 39       	cpi	r19, 0x99	; 153
     ab3e:	00 00       	nop
     ab40:	24 00       	.word	0x0024	; ????
-    ab42:	26 02       	muls	r18, r22
+    ab42:	2a 02       	muls	r18, r26
     ab44:	84 4b       	sbci	r24, 0xB4	; 180
     ab46:	00 00       	nop
     ab48:	00 00       	nop
@@ -42041,19 +42041,19 @@ Disassembly of section .stab:
     ab54:	00 00       	nop
     ab56:	00 00       	nop
     ab58:	44 00       	.word	0x0044	; ????
-    ab5a:	27 02       	muls	r18, r23
+    ab5a:	2b 02       	muls	r18, r27
     ab5c:	00 00       	nop
     ab5e:	00 00       	nop
     ab60:	00 00       	nop
     ab62:	00 00       	nop
     ab64:	44 00       	.word	0x0044	; ????
-    ab66:	28 02       	muls	r18, r24
+    ab66:	2c 02       	muls	r18, r28
     ab68:	00 00       	nop
     ab6a:	00 00       	nop
     ab6c:	00 00       	nop
     ab6e:	00 00       	nop
     ab70:	44 00       	.word	0x0044	; ????
-    ab72:	29 02       	muls	r18, r25
+    ab72:	2d 02       	muls	r18, r29
     ab74:	08 00       	.word	0x0008	; ????
     ab76:	00 00       	nop
     ab78:	00 00       	nop
@@ -86399,10 +86399,10 @@ Disassembly of section .stabstr:
     61c0:	2f 74       	andi	r18, 0x4F	; 79
     61c2:	6d 70       	andi	r22, 0x0D	; 13
     61c4:	2f 63       	ori	r18, 0x3F	; 63
-    61c6:	63 45       	sbci	r22, 0x53	; 83
-    61c8:	72 48       	sbci	r23, 0x82	; 130
-    61ca:	43 48       	sbci	r20, 0x83	; 131
-    61cc:	71 2e       	mov	r7, r17
+    61c6:	63 34       	cpi	r22, 0x43	; 67
+    61c8:	7a 67       	ori	r23, 0x7A	; 122
+    61ca:	4c 58       	subi	r20, 0x8C	; 140
+    61cc:	31 2e       	mov	r3, r17
     61ce:	73 00       	.word	0x0073	; ????
     61d0:	2e 2e       	mov	r2, r30
     61d2:	2f 2e       	mov	r2, r31

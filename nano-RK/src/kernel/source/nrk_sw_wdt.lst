@@ -605,19 +605,19 @@
  719               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_sw_wdt.c
-     /tmp/ccmlRk5o.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccmlRk5o.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccmlRk5o.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccmlRk5o.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccmlRk5o.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccmlRk5o.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccmlRk5o.s:141    .text:00000000 _nrk_sw_wdt_check
+     /tmp/ccLU3IGY.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccLU3IGY.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccLU3IGY.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccLU3IGY.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccLU3IGY.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccLU3IGY.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccLU3IGY.s:141    .text:00000000 _nrk_sw_wdt_check
                             *COM*:00000039 sw_wdts
-     /tmp/ccmlRk5o.s:308    .text:00000102 _nrk_sw_wdt_init
-     /tmp/ccmlRk5o.s:336    .text:00000110 nrk_sw_wdt_init
-     /tmp/ccmlRk5o.s:414    .text:00000164 nrk_sw_wdt_update
-     /tmp/ccmlRk5o.s:547    .text:00000220 nrk_sw_wdt_start
-     /tmp/ccmlRk5o.s:662    .text:000002ba nrk_sw_wdt_stop
+     /tmp/ccLU3IGY.s:308    .text:00000102 _nrk_sw_wdt_init
+     /tmp/ccLU3IGY.s:336    .text:00000110 nrk_sw_wdt_init
+     /tmp/ccLU3IGY.s:414    .text:00000164 nrk_sw_wdt_update
+     /tmp/ccLU3IGY.s:547    .text:00000220 nrk_sw_wdt_start
+     /tmp/ccLU3IGY.s:662    .text:000002ba nrk_sw_wdt_stop
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000002 nrk_kernel_stk_ptr

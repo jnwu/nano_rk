@@ -2168,35 +2168,35 @@
  2293               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_stats.c
-     /tmp/ccTKasfx.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccTKasfx.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccTKasfx.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccTKasfx.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccTKasfx.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccTKasfx.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccTKasfx.s:141    .text:00000000 nrk_stats_reset
+     /tmp/cc8jDyeh.s:2      *ABS*:0000003f __SREG__
+     /tmp/cc8jDyeh.s:3      *ABS*:0000003e __SP_H__
+     /tmp/cc8jDyeh.s:4      *ABS*:0000003d __SP_L__
+     /tmp/cc8jDyeh.s:5      *ABS*:00000034 __CCP__
+     /tmp/cc8jDyeh.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/cc8jDyeh.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/cc8jDyeh.s:141    .text:00000000 nrk_stats_reset
                             *COM*:00000008 _nrk_stats_sleep_time
                             *COM*:00000096 cur_task_stats
-     /tmp/ccTKasfx.s:226    .text:00000064 _nrk_stats_sleep
-     /tmp/ccTKasfx.s:275    .text:000000aa nrk_stats_get_deep_sleep
-     /tmp/ccTKasfx.s:317    .text:000000de _nrk_stats_add_violation
-     /tmp/ccTKasfx.s:410    .text:00000164 _nrk_stats_task_start
-     /tmp/ccTKasfx.s:540    .text:0000022e _nrk_stats_task_preempted
-     /tmp/ccTKasfx.s:779    .text:000003c8 _nrk_stats_task_suspend
-     /tmp/ccTKasfx.s:1110   .text:000005f8 nrk_stats_display_pid
-     /tmp/ccTKasfx.s:2268   .progmem.data:000000e1 __c.2129
-     /tmp/ccTKasfx.s:2264   .progmem.data:000000c6 __c.2131
-     /tmp/ccTKasfx.s:2260   .progmem.data:000000a5 __c.2133
-     /tmp/ccTKasfx.s:2256   .progmem.data:00000094 __c.2135
-     /tmp/ccTKasfx.s:2252   .progmem.data:00000079 __c.2137
-     /tmp/ccTKasfx.s:2248   .progmem.data:00000069 __c.2139
-     /tmp/ccTKasfx.s:2244   .progmem.data:00000056 __c.2141
-     /tmp/ccTKasfx.s:2240   .progmem.data:0000003d __c.2143
-     /tmp/ccTKasfx.s:2236   .progmem.data:00000020 __c.2145
-     /tmp/ccTKasfx.s:2232   .progmem.data:0000001d __c.2147
-     /tmp/ccTKasfx.s:1918   .text:00000bf6 nrk_stats_display_all
-     /tmp/ccTKasfx.s:2228   .progmem.data:00000000 __c.2152
-     /tmp/ccTKasfx.s:1957   .text:00000c1e nrk_stats_get
+     /tmp/cc8jDyeh.s:226    .text:00000064 _nrk_stats_sleep
+     /tmp/cc8jDyeh.s:275    .text:000000aa nrk_stats_get_deep_sleep
+     /tmp/cc8jDyeh.s:317    .text:000000de _nrk_stats_add_violation
+     /tmp/cc8jDyeh.s:410    .text:00000164 _nrk_stats_task_start
+     /tmp/cc8jDyeh.s:540    .text:0000022e _nrk_stats_task_preempted
+     /tmp/cc8jDyeh.s:779    .text:000003c8 _nrk_stats_task_suspend
+     /tmp/cc8jDyeh.s:1110   .text:000005f8 nrk_stats_display_pid
+     /tmp/cc8jDyeh.s:2268   .progmem.data:000000e1 __c.2129
+     /tmp/cc8jDyeh.s:2264   .progmem.data:000000c6 __c.2131
+     /tmp/cc8jDyeh.s:2260   .progmem.data:000000a5 __c.2133
+     /tmp/cc8jDyeh.s:2256   .progmem.data:00000094 __c.2135
+     /tmp/cc8jDyeh.s:2252   .progmem.data:00000079 __c.2137
+     /tmp/cc8jDyeh.s:2248   .progmem.data:00000069 __c.2139
+     /tmp/cc8jDyeh.s:2244   .progmem.data:00000056 __c.2141
+     /tmp/cc8jDyeh.s:2240   .progmem.data:0000003d __c.2143
+     /tmp/cc8jDyeh.s:2236   .progmem.data:00000020 __c.2145
+     /tmp/cc8jDyeh.s:2232   .progmem.data:0000001d __c.2147
+     /tmp/cc8jDyeh.s:1918   .text:00000bf6 nrk_stats_display_all
+     /tmp/cc8jDyeh.s:2228   .progmem.data:00000000 __c.2152
+     /tmp/cc8jDyeh.s:1957   .text:00000c1e nrk_stats_get
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000002 nrk_kernel_stk_ptr

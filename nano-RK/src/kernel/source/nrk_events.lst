@@ -1430,31 +1430,31 @@
  1431               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_events.c
-     /tmp/cchsQs9Q.s:2      *ABS*:0000003f __SREG__
-     /tmp/cchsQs9Q.s:3      *ABS*:0000003e __SP_H__
-     /tmp/cchsQs9Q.s:4      *ABS*:0000003d __SP_L__
-     /tmp/cchsQs9Q.s:5      *ABS*:00000034 __CCP__
-     /tmp/cchsQs9Q.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/cchsQs9Q.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/cchsQs9Q.s:140    .text:00000000 nrk_signal_create
+     /tmp/ccDhQkix.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccDhQkix.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccDhQkix.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccDhQkix.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccDhQkix.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccDhQkix.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccDhQkix.s:140    .text:00000000 nrk_signal_create
                             *COM*:00000004 _nrk_signal_list
-     /tmp/cchsQs9Q.s:219    .text:0000006c nrk_signal_get_registered_mask
+     /tmp/ccDhQkix.s:219    .text:0000006c nrk_signal_get_registered_mask
                             *COM*:00000002 nrk_cur_task_TCB
-     /tmp/cchsQs9Q.s:250    .text:0000007e nrk_signal_delete
+     /tmp/ccDhQkix.s:250    .text:0000007e nrk_signal_delete
                             *COM*:000000a5 nrk_task_TCB
-     /tmp/cchsQs9Q.s:434    .text:0000018e nrk_signal_unregister
-     /tmp/cchsQs9Q.s:535    .text:00000212 nrk_signal_register
-     /tmp/cchsQs9Q.s:609    .text:0000027a nrk_event_signal
-     /tmp/cchsQs9Q.s:802    .text:00000360 nrk_event_wait
+     /tmp/ccDhQkix.s:434    .text:0000018e nrk_signal_unregister
+     /tmp/ccDhQkix.s:535    .text:00000212 nrk_signal_register
+     /tmp/ccDhQkix.s:609    .text:0000027a nrk_event_signal
+     /tmp/ccDhQkix.s:802    .text:00000360 nrk_event_wait
                             *COM*:00000001 nrk_wakeup_signal
-     /tmp/cchsQs9Q.s:895    .text:000003d6 nrk_sem_create
-     /tmp/cchsQs9Q.s:918    .text:000003dc nrk_get_resource_index
+     /tmp/ccDhQkix.s:895    .text:000003d6 nrk_sem_create
+     /tmp/ccDhQkix.s:918    .text:000003dc nrk_get_resource_index
                             *COM*:00000003 nrk_sem_list
-     /tmp/cchsQs9Q.s:955    .text:000003ec nrk_sem_delete
+     /tmp/ccDhQkix.s:955    .text:000003ec nrk_sem_delete
                             *COM*:00000001 _nrk_resource_cnt
-     /tmp/cchsQs9Q.s:1030   .text:00000430 nrk_sem_post
-     /tmp/cchsQs9Q.s:1187   .text:000004ea nrk_sem_pend
-     /tmp/cchsQs9Q.s:1327   .text:0000059e nrk_sem_query
+     /tmp/ccDhQkix.s:1030   .text:00000430 nrk_sem_post
+     /tmp/ccDhQkix.s:1187   .text:000004ea nrk_sem_pend
+     /tmp/ccDhQkix.s:1327   .text:0000059e nrk_sem_query
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000002 nrk_kernel_stk_ptr
                             *COM*:0000001e _nrk_readyQ

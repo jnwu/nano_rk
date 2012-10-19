@@ -10715,7 +10715,7 @@ void nrk_add_to_readyQ (int8_t task_ID)
 		nrk_task_TCB[task_ID].period < nrk_task_TCB[NextNode->task_ID].period)
 			break;
 		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
-		nrk_task_TCB[task_ID].next_wakeup != 0 &&
+                nrk_task_TCB[task_ID].next_wakeup == 0 &&
     4546:	9b 01       	movw	r18, r22
     4548:	15 e0       	ldi	r17, 0x05	; 5
     454a:	22 0f       	add	r18, r18
@@ -10790,7 +10790,7 @@ void nrk_add_to_readyQ (int8_t task_ID)
 		nrk_task_TCB[task_ID].period < nrk_task_TCB[NextNode->task_ID].period)
 			break;
 		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
-		nrk_task_TCB[task_ID].next_wakeup != 0 &&
+                nrk_task_TCB[task_ID].next_wakeup == 0 &&
     45b0:	eb 01       	movw	r28, r22
     45b2:	e8 80       	ld	r14, Y
     45b4:	f9 80       	ldd	r15, Y+1	; 0x01
@@ -10802,7 +10802,11 @@ void nrk_add_to_readyQ (int8_t task_ID)
 		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
     45b6:	e1 14       	cp	r14, r1
     45b8:	f1 04       	cpc	r15, r1
-    45ba:	19 f0       	breq	.+6      	; 0x45c2 <nrk_add_to_readyQ+0xb0>
+    45ba:	61 f0       	breq	.+24     	; 0x45d4 <nrk_add_to_readyQ+0xc2>
+                nrk_task_TCB[task_ID].next_wakeup == 0 &&
+                nrk_task_TCB[task_ID].next_wakeup < nrk_task_TCB[NextNode->task_ID].next_wakeup)
+			break;
+		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
 		nrk_task_TCB[task_ID].next_wakeup != 0 &&
     45bc:	e0 16       	cp	r14, r16
     45be:	f1 06       	cpc	r15, r17

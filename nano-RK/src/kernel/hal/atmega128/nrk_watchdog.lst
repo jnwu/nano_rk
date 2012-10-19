@@ -218,16 +218,16 @@
  302               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_watchdog.c
-     /tmp/ccH9FwaA.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccH9FwaA.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccH9FwaA.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccH9FwaA.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccH9FwaA.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccH9FwaA.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccH9FwaA.s:135    .text:00000000 nrk_watchdog_disable
-     /tmp/ccH9FwaA.s:185    .text:0000001a nrk_watchdog_enable
-     /tmp/ccH9FwaA.s:236    .text:00000036 nrk_watchdog_check
-     /tmp/ccH9FwaA.s:266    .text:00000044 nrk_watchdog_reset
+     /tmp/ccH2c6mf.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccH2c6mf.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccH2c6mf.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccH2c6mf.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccH2c6mf.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccH2c6mf.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccH2c6mf.s:135    .text:00000000 nrk_watchdog_disable
+     /tmp/ccH2c6mf.s:185    .text:0000001a nrk_watchdog_enable
+     /tmp/ccH2c6mf.s:236    .text:00000036 nrk_watchdog_check
+     /tmp/ccH2c6mf.s:266    .text:00000044 nrk_watchdog_reset
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000001 error_task
                             *COM*:00000001 error_num

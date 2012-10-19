@@ -1035,16 +1035,16 @@
  999               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk.c
-     /tmp/ccogtkOA.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccogtkOA.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccogtkOA.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccogtkOA.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccogtkOA.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccogtkOA.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccogtkOA.s:141    .text:00000000 nrk_int_disable
-     /tmp/ccogtkOA.s:169    .text:00000004 nrk_int_enable
-     /tmp/ccogtkOA.s:197    .text:00000008 nrk_halt
-     /tmp/ccogtkOA.s:218    .text:0000000e nrk_init
+     /tmp/ccDI3SK8.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccDI3SK8.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccDI3SK8.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccDI3SK8.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccDI3SK8.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccDI3SK8.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccDI3SK8.s:141    .text:00000000 nrk_int_disable
+     /tmp/ccDI3SK8.s:169    .text:00000004 nrk_int_enable
+     /tmp/ccDI3SK8.s:197    .text:00000008 nrk_halt
+     /tmp/ccDI3SK8.s:218    .text:0000000e nrk_init
                             *COM*:00000001 nrk_wakeup_signal
                             *COM*:00000001 nrk_cur_task_prio
                             *COM*:00000002 nrk_cur_task_TCB
@@ -1057,11 +1057,11 @@ DEFINED SYMBOLS
                             *COM*:00000002 _head_node
                             *COM*:00000002 _free_node
                             *COM*:00000080 nrk_idle_task_stk
-     /tmp/ccogtkOA.s:498    .text:00000194 nrk_start
-     /tmp/ccogtkOA.s:634    .text:0000023c nrk_TCB_init
+     /tmp/ccDI3SK8.s:498    .text:00000194 nrk_start
+     /tmp/ccDI3SK8.s:634    .text:0000023c nrk_TCB_init
                             *COM*:00000001 nrk_task_init_cnt
-     /tmp/ccogtkOA.s:909    .text:000003e6 _nrk_timer_tick
-     /tmp/ccogtkOA.s:932    .text:000003ec nrk_version
+     /tmp/ccDI3SK8.s:909    .text:000003e6 _nrk_timer_tick
+     /tmp/ccDI3SK8.s:932    .text:000003ec nrk_version
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000002 nrk_kernel_stk_ptr
                             *COM*:00000008 nrk_system_time
