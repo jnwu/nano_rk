@@ -40,7 +40,17 @@ inline void _nrk_wait_for_scheduler ();
 
 uint8_t nrk_get_high_ready_task_ID ()
 {
-    return (_head_node->task_ID);
+	nrk_queue *ptr;
+    ptr = _head_node;
+	//check task_preemption level to see if it is above system ceiling
+	while (true) {
+		if (ptr->preemption_level < nrk_system_ceiling)
+			break;
+			
+		ptr = ptr->Next;
+	}
+		
+    return (ptr->task_ID);
 }
 
 void nrk_print_readyQ ()

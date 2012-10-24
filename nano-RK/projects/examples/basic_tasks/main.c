@@ -43,6 +43,10 @@ NRK_STK Stack2[NRK_APP_STACKSIZE];
 nrk_task_type TaskTwo;
 void Task2 (void);
 
+NRK_STK Stack3[NRK_APP_STACKSIZE];
+nrk_task_type TaskThree;
+void Task3 (void);
+
 void nrk_create_taskset();
 
 nrk_sem_t *my_semaphore;
@@ -116,24 +120,36 @@ void Task2()
 	if(v==NRK_ERROR) nrk_kprintf( PSTR("T2 error pend\r\n"));
         nrk_kprintf( PSTR("Task2 holding semaphore\r\n"));
 	// wait some time inside semaphore to show the effect
-        nrk_wait_until_next_period();
+        nrk_spin_wait_us(1000000);
         v = nrk_sem_post(my_semaphore);
 	if(v==NRK_ERROR) nrk_kprintf( PSTR("T2 error post\r\n"));
         nrk_kprintf( PSTR("Task2 released semaphore\r\n"));
         nrk_wait_until_next_period();
         cnt++;
         }
-
-
-
 }
+
+void Task3()
+{
+uint16_t cnt;
+uint16_t i;
+  printf( "Task3 PID=%d\r\n",nrk_get_pid());
+  cnt=0;
+  while(1) {
+	printf( "Task3 cnt=%d\r\n",cnt );
+	nrk_spin_wait_us(100000);
+	nrk_wait_until_next_period();
+	cnt++;
+	}
+}
+
 void
 nrk_create_taskset()
 {
   TaskOne.task = Task1;
   TaskOne.Ptos = (void *) &Stack1[NRK_APP_STACKSIZE];
   TaskOne.Pbos = (void *) &Stack1[0];
-  TaskOne.prio = 3;
+  TaskOne.prio = 2;
   TaskOne.FirstActivation = TRUE;
   TaskOne.Type = BASIC_TASK;
   TaskOne.SchType = PREEMPTIVE;
@@ -148,11 +164,11 @@ nrk_create_taskset()
   TaskTwo.task = Task2;
   TaskTwo.Ptos = (void *) &Stack2[NRK_APP_STACKSIZE];
   TaskTwo.Pbos = (void *) &Stack2[0];
-  TaskTwo.prio = 2;
+  TaskTwo.prio = 4;
   TaskTwo.FirstActivation = TRUE;
   TaskTwo.Type = BASIC_TASK;
   TaskTwo.SchType = PREEMPTIVE;
-  TaskTwo.period.secs = 10;
+  TaskTwo.period.secs = 2;
   TaskTwo.period.nano_secs = 0;
   TaskTwo.cpu_reserve.secs = 0;
   TaskTwo.cpu_reserve.nano_secs = 100*NANOS_PER_MS;
@@ -160,7 +176,20 @@ nrk_create_taskset()
   TaskTwo.offset.nano_secs= 0;
   nrk_activate_task (&TaskTwo);
 
-
+  TaskThree.task = Task3;
+  TaskThree.Ptos = (void *) &Stack3[NRK_APP_STACKSIZE];
+  TaskThree.Pbos = (void *) &Stack3[0];
+  TaskThree.prio = 3;
+  TaskThree.FirstActivation = TRUE;
+  TaskThree.Type = BASIC_TASK;
+  TaskThree.SchType = PREEMPTIVE;
+  TaskThree.period.secs = 0;
+  TaskThree.period.nano_secs = 500*NANOS_PER_MS;
+  TaskThree.cpu_reserve.secs = 0;
+  TaskThree.cpu_reserve.nano_secs = 100*NANOS_PER_MS;
+  TaskThree.offset.secs = 0;
+  TaskThree.offset.nano_secs= 0;
+  nrk_activate_task (&TaskThree);
 }
 
 

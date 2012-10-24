@@ -38,6 +38,10 @@
 #define NRK_MAX_RESOURCE_CNT 0
 #endif
 
+#ifndef NRK_SYSTEM_CEILING
+#define NRK_SYSTEM_CEILING 1000
+#endif
+
 #ifdef NRK_KERNEL_TEST
 uint8_t nrk_max_sleep_wakeup_time;
 #endif
