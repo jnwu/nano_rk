@@ -289,8 +289,10 @@ return NRK_OK;
 nrk_sem_t* nrk_sem_create(uint8_t count,uint8_t ceiling_prio)
 {
 uint8_t i;
-	if(_nrk_resource_cnt>=(NRK_MAX_RESOURCE_CNT-1))
-		return NULL;  
+	if(_nrk_resource_cnt>(NRK_MAX_RESOURCE_CNT-1)) {
+		printf("resource count: %d, max: %d\n",_nrk_resource_cnt,NRK_MAX_RESOURCE_CNT);
+		return NULL;
+	}  
 	for(i=0; i<NRK_MAX_RESOURCE_CNT; i++ )
 		{
 		   if(nrk_sem_list[i].count==-1) break;

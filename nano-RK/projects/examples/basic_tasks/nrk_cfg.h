@@ -61,7 +61,7 @@
 #define NRK_TASK_IDLE_STK_SIZE         128 // Idle task stack size min=32 
 #define NRK_APP_STACKSIZE              128 
 #define NRK_KERNEL_STACKSIZE           128 
-#define NRK_MAX_RESOURCE_CNT           1
+#define NRK_MAX_RESOURCE_CNT           5
 
 
 #endif
