@@ -62,5 +62,7 @@ int8_t nrk_sem_post(nrk_sem_t *rsrc);
 int8_t nrk_sem_pend(nrk_sem_t *rsrc );
 int8_t nrk_sem_query(nrk_sem_t *rsrc );
 
+//cath @T3 SRP: update the system resource ceiling every time nrk_sem_post and nrk_sem_pend is called
+void update_system_ceiling(void);
 
 #endif

@@ -235,6 +235,9 @@ int8_t nrk_sem_pend(nrk_sem_t *rsrc )
 	nrk_cur_task_TCB->elevated_prio_flag=1;
 	nrk_int_enable();
 
+	//cath @T3 SRP: call the update_system_ceiling function to update the system ceiling
+	update_system_ceiling();
+
 	return NRK_OK;
 }
 
@@ -268,6 +271,9 @@ int8_t nrk_sem_post(nrk_sem_t *rsrc)
 		}
 		nrk_int_enable();
 	}
+
+	//cath @T3 SRP: call the update_system_ceiling function to update the system ceiling
+	update_system_ceiling();
 		
 return NRK_OK;
 }
@@ -314,6 +320,29 @@ int8_t nrk_get_resource_index(nrk_sem_t *resrc)
 	return NRK_ERROR;
 }
 
+// cath @T3 SRP: implementation for update_system_ceiling. This function is to be invoked in the nrk_sem_post and nrk_sem_pend
+void update_system_ceiling(void){
+
+uint8_t i; //counter
+
+//initialize a tmp_SC (system ceiling) variable for system ceiling to a very large variable
+
+int8_t tmp_SC = 127; //can change the value later...I assume we don't want more than 100 tasks for our simulation right...?unless we want stress testing........
+
+//going through nrk_sem_list (a global array holding information for all semaphores)
+for(i=0; i<NRK_MAX_RESOURCE_CNT; i++ ){
+
+//constantly check if there is a semaphore with value>0 and resource_ceiling < tmp_SC. If true update tmp_SC
+	 
+	if(nrk_sem_list[i].value > 0 && nrk_sem_list[i].resource_ceiling < tmp_SC)
+			tmp_SC = nrk_sem_list[i].resource_ceiling
+
+}
+//end of loop. Update global variable NRK_SYSTEM_CEILING (defined in nrk_defs.h)
+
+	nrk_system_ceiling = tmp_SC;
+	
+}
 
 
 
