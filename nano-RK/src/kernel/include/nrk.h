@@ -55,6 +55,10 @@
 void	nrk_init(void);
 void 	nrk_start(void);
 
+//cath @t3 SRP: function for assigning preemption level to all tasks created
+//this function is to be called inside the nrk_start(void), which is invoked after a task set is created in the main.c 
+void	nrk_SRPAssignPreempLevel(void);
+
 void nrk_halt();
 inline void nrk_int_disable();
 inline void nrk_int_enable();

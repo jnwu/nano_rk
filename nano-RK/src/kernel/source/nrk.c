@@ -262,6 +262,9 @@ void nrk_start (void)
     // *stkc++ = (uint16_t)((uint16_t)_nrk_timer_tick&0xFF);
     // *stkc = (uint16_t)((uint16_t)_nrk_timer_tick>>8); 
 */
+
+    //cath @T3 SRP: call the function to assign task preemption level
+    nrk_SRPAssignPreempLevel();
     nrk_target_start();
     nrk_stack_pointer_init(); 
     nrk_start_high_ready_task();	
@@ -270,6 +273,40 @@ void nrk_start (void)
     while(1);
 }
 
+//cath @T3 SRP: implementing the function to assign each task a preemption level based on their period (priority) and the order of arrival
+void nrk_SRPAssignPreempLevel(void){
+	//according to SRP: if A arrives after B and priority(A) > priority(B) then PreemptionLevel(A) > PreemptionLevel(B)
+
+	int8_t task_ID;
+	uint16_t curTaskPeriod;
+	uint8_t i,j;
+	
+
+	//firstly, initialize all task preemption levels to 0
+
+     for (i=0; i<NRK_MAX_TASKS;i++){
+		nrk_task_TCB[i].SRPpreempLevel=0;
+	}
+	
+	//for each task set in nrk_task_TCB, we check each of the other tasks if their period is longer than the current task's period. If so, the preemption level will be incremented
+    for(i=0; i<NRK_MAX_TASKS; i++ )
+    {
+	task_ID=nrk_task_TCB[i].task_ID;
+	curTaskPeriod = nrk_task_TCB[i].period;
+	
+	if(task_ID!=-1)
+	{
+    		for(j=0; j<NRK_MAX_TASKS; j++ )
+		{
+			if (nrk_task_TCB[j].period>curTaskPeriod)
+				nrk_task_TCB[j].SRPpreempLevel++;
+		}
+	}
+
+    }
+
+	
+}
 
 int8_t nrk_TCB_init (nrk_task_type *Task, NRK_STK *ptos, NRK_STK *pbos, uint16_t stk_size, void *pext, uint16_t opt)
 {
