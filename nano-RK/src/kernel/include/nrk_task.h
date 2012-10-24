@@ -71,6 +71,9 @@ typedef struct os_tcb {
 	uint16_t  cpu_reserve;
 	uint16_t  num_periods;	
 
+	//cath @T3 SRP: add preemption level attribute to a task
+	uint8_t SRPpreempLevel;
+
 
 } NRK_TCB;
 
