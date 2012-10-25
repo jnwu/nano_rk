@@ -383,20 +383,20 @@
  407               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 i2c_driver.c
-     /tmp/ccV0LMAV.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccV0LMAV.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccV0LMAV.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccV0LMAV.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccV0LMAV.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccV0LMAV.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccV0LMAV.s:74     .text:00000000 i2c_init
-     /tmp/ccV0LMAV.s:108    .text:00000016 i2c_waitForInterruptFlag
-     /tmp/ccV0LMAV.s:134    .text:00000020 i2c_actionStart
-     /tmp/ccV0LMAV.s:161    .text:0000002c i2c_start
-     /tmp/ccV0LMAV.s:203    .text:0000004e i2c_stop
-     /tmp/ccV0LMAV.s:238    .text:00000066 i2c_send
-     /tmp/ccV0LMAV.s:287    .text:00000090 i2c_receive
-     /tmp/ccV0LMAV.s:333    .text:000000b4 i2c_controlByte_RX
-     /tmp/ccV0LMAV.s:372    .text:000000d6 i2c_controlByte_TX
+     /tmp/ccPBNzjS.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccPBNzjS.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccPBNzjS.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccPBNzjS.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccPBNzjS.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccPBNzjS.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccPBNzjS.s:74     .text:00000000 i2c_init
+     /tmp/ccPBNzjS.s:108    .text:00000016 i2c_waitForInterruptFlag
+     /tmp/ccPBNzjS.s:134    .text:00000020 i2c_actionStart
+     /tmp/ccPBNzjS.s:161    .text:0000002c i2c_start
+     /tmp/ccPBNzjS.s:203    .text:0000004e i2c_stop
+     /tmp/ccPBNzjS.s:238    .text:00000066 i2c_send
+     /tmp/ccPBNzjS.s:287    .text:00000090 i2c_receive
+     /tmp/ccPBNzjS.s:333    .text:000000b4 i2c_controlByte_RX
+     /tmp/ccPBNzjS.s:372    .text:000000d6 i2c_controlByte_TX
 
 NO UNDEFINED SYMBOLS

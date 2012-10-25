@@ -1586,51 +1586,51 @@
  1284               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_error.c
-     /tmp/ccjUn9eR.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccjUn9eR.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccjUn9eR.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccjUn9eR.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccjUn9eR.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccjUn9eR.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccjUn9eR.s:139    .text:00000000 _nrk_errno_set
-     /tmp/ccjUn9eR.s:164    .text:0000000c nrk_errno_get
-     /tmp/ccjUn9eR.s:191    .text:00000018 _nrk_log_error
+     /tmp/ccNu0CbO.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccNu0CbO.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccNu0CbO.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccNu0CbO.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccNu0CbO.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccNu0CbO.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccNu0CbO.s:139    .text:00000000 _nrk_errno_set
+     /tmp/ccNu0CbO.s:164    .text:0000000c nrk_errno_get
+     /tmp/ccNu0CbO.s:191    .text:00000018 _nrk_log_error
                              .bss:00000000 error_cnt
-     /tmp/ccjUn9eR.s:329    .text:00000110 nrk_error_get
+     /tmp/ccNu0CbO.s:329    .text:00000110 nrk_error_get
                             *COM*:00000001 error_num
                             *COM*:00000001 error_task
-     /tmp/ccjUn9eR.s:374    .text:0000012c nrk_error_print
-     /tmp/ccjUn9eR.s:1266   .progmem.data:0000022c __c.2158
-     /tmp/ccjUn9eR.s:1262   .progmem.data:00000228 __c.2160
-     /tmp/ccjUn9eR.s:1258   .progmem.data:000001ec __c.2163
-     /tmp/ccjUn9eR.s:1254   .progmem.data:000001c5 __c.2167
-     /tmp/ccjUn9eR.s:1250   .progmem.data:000001b1 __c.2170
-     /tmp/ccjUn9eR.s:1246   .progmem.data:0000019b __c.2173
-     /tmp/ccjUn9eR.s:1242   .progmem.data:00000180 __c.2176
-     /tmp/ccjUn9eR.s:1238   .progmem.data:0000016a __c.2179
-     /tmp/ccjUn9eR.s:1234   .progmem.data:00000152 __c.2182
-     /tmp/ccjUn9eR.s:1230   .progmem.data:0000013f __c.2185
-     /tmp/ccjUn9eR.s:1226   .progmem.data:0000012c __c.2188
-     /tmp/ccjUn9eR.s:1222   .progmem.data:0000010e __c.2191
-     /tmp/ccjUn9eR.s:1218   .progmem.data:000000e9 __c.2194
-     /tmp/ccjUn9eR.s:1214   .progmem.data:000000dd __c.2197
-     /tmp/ccjUn9eR.s:1210   .progmem.data:000000c2 __c.2200
-     /tmp/ccjUn9eR.s:1206   .progmem.data:000000b3 __c.2203
-     /tmp/ccjUn9eR.s:1202   .progmem.data:0000009f __c.2206
-     /tmp/ccjUn9eR.s:1198   .progmem.data:0000008e __c.2209
-     /tmp/ccjUn9eR.s:1194   .progmem.data:0000007a __c.2212
-     /tmp/ccjUn9eR.s:1190   .progmem.data:0000005a __c.2215
-     /tmp/ccjUn9eR.s:1186   .progmem.data:00000042 __c.2218
-     /tmp/ccjUn9eR.s:1182   .progmem.data:00000027 __c.2221
-     /tmp/ccjUn9eR.s:1178   .progmem.data:00000016 __c.2224
-     /tmp/ccjUn9eR.s:1174   .progmem.data:00000007 __c.2227
-     /tmp/ccjUn9eR.s:1170   .progmem.data:00000000 __c.2230
-     /tmp/ccjUn9eR.s:670    .text:00000270 nrk_kernel_error_add
-     /tmp/ccjUn9eR.s:725    .text:0000029e nrk_error_add
-     /tmp/ccjUn9eR.s:760    .text:000002ba pause
-     /tmp/ccjUn9eR.s:812    .text:000002e4 blink_dot
-     /tmp/ccjUn9eR.s:848    .text:000002fe blink_dash
-     /tmp/ccjUn9eR.s:891    .text:00000320 blink_morse_code_error
+     /tmp/ccNu0CbO.s:374    .text:0000012c nrk_error_print
+     /tmp/ccNu0CbO.s:1266   .progmem.data:0000022c __c.2158
+     /tmp/ccNu0CbO.s:1262   .progmem.data:00000228 __c.2160
+     /tmp/ccNu0CbO.s:1258   .progmem.data:000001ec __c.2163
+     /tmp/ccNu0CbO.s:1254   .progmem.data:000001c5 __c.2167
+     /tmp/ccNu0CbO.s:1250   .progmem.data:000001b1 __c.2170
+     /tmp/ccNu0CbO.s:1246   .progmem.data:0000019b __c.2173
+     /tmp/ccNu0CbO.s:1242   .progmem.data:00000180 __c.2176
+     /tmp/ccNu0CbO.s:1238   .progmem.data:0000016a __c.2179
+     /tmp/ccNu0CbO.s:1234   .progmem.data:00000152 __c.2182
+     /tmp/ccNu0CbO.s:1230   .progmem.data:0000013f __c.2185
+     /tmp/ccNu0CbO.s:1226   .progmem.data:0000012c __c.2188
+     /tmp/ccNu0CbO.s:1222   .progmem.data:0000010e __c.2191
+     /tmp/ccNu0CbO.s:1218   .progmem.data:000000e9 __c.2194
+     /tmp/ccNu0CbO.s:1214   .progmem.data:000000dd __c.2197
+     /tmp/ccNu0CbO.s:1210   .progmem.data:000000c2 __c.2200
+     /tmp/ccNu0CbO.s:1206   .progmem.data:000000b3 __c.2203
+     /tmp/ccNu0CbO.s:1202   .progmem.data:0000009f __c.2206
+     /tmp/ccNu0CbO.s:1198   .progmem.data:0000008e __c.2209
+     /tmp/ccNu0CbO.s:1194   .progmem.data:0000007a __c.2212
+     /tmp/ccNu0CbO.s:1190   .progmem.data:0000005a __c.2215
+     /tmp/ccNu0CbO.s:1186   .progmem.data:00000042 __c.2218
+     /tmp/ccNu0CbO.s:1182   .progmem.data:00000027 __c.2221
+     /tmp/ccNu0CbO.s:1178   .progmem.data:00000016 __c.2224
+     /tmp/ccNu0CbO.s:1174   .progmem.data:00000007 __c.2227
+     /tmp/ccNu0CbO.s:1170   .progmem.data:00000000 __c.2230
+     /tmp/ccNu0CbO.s:670    .text:00000270 nrk_kernel_error_add
+     /tmp/ccNu0CbO.s:725    .text:0000029e nrk_error_add
+     /tmp/ccNu0CbO.s:760    .text:000002ba pause
+     /tmp/ccNu0CbO.s:812    .text:000002e4 blink_dot
+     /tmp/ccNu0CbO.s:848    .text:000002fe blink_dash
+     /tmp/ccNu0CbO.s:891    .text:00000320 blink_morse_code_error
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk

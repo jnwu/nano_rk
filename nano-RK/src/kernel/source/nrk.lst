@@ -1256,16 +1256,16 @@
  1173               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk.c
-     /tmp/ccE7NtDF.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccE7NtDF.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccE7NtDF.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccE7NtDF.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccE7NtDF.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccE7NtDF.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccE7NtDF.s:141    .text:00000000 nrk_int_disable
-     /tmp/ccE7NtDF.s:169    .text:00000004 nrk_int_enable
-     /tmp/ccE7NtDF.s:197    .text:00000008 nrk_halt
-     /tmp/ccE7NtDF.s:218    .text:0000000e nrk_init
+     /tmp/cchDQEiK.s:2      *ABS*:0000003f __SREG__
+     /tmp/cchDQEiK.s:3      *ABS*:0000003e __SP_H__
+     /tmp/cchDQEiK.s:4      *ABS*:0000003d __SP_L__
+     /tmp/cchDQEiK.s:5      *ABS*:00000034 __CCP__
+     /tmp/cchDQEiK.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/cchDQEiK.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/cchDQEiK.s:141    .text:00000000 nrk_int_disable
+     /tmp/cchDQEiK.s:169    .text:00000004 nrk_int_enable
+     /tmp/cchDQEiK.s:197    .text:00000008 nrk_halt
+     /tmp/cchDQEiK.s:218    .text:0000000e nrk_init
                             *COM*:00000002 nrk_system_ceiling
                             *COM*:00000001 nrk_wakeup_signal
                             *COM*:00000001 nrk_cur_task_prio
@@ -1279,12 +1279,12 @@ DEFINED SYMBOLS
                             *COM*:00000002 _head_node
                             *COM*:00000002 _free_node
                             *COM*:00000080 nrk_idle_task_stk
-     /tmp/ccE7NtDF.s:516    .text:000001a8 nrk_SRPAssignPreempLevel
-     /tmp/ccE7NtDF.s:668    .text:00000264 nrk_start
-     /tmp/ccE7NtDF.s:808    .text:00000312 nrk_TCB_init
+     /tmp/cchDQEiK.s:516    .text:000001a8 nrk_SRPAssignPreempLevel
+     /tmp/cchDQEiK.s:668    .text:00000264 nrk_start
+     /tmp/cchDQEiK.s:808    .text:00000312 nrk_TCB_init
                             *COM*:00000001 nrk_task_init_cnt
-     /tmp/ccE7NtDF.s:1081   .text:000004b8 _nrk_timer_tick
-     /tmp/ccE7NtDF.s:1104   .text:000004be nrk_version
+     /tmp/cchDQEiK.s:1081   .text:000004b8 _nrk_timer_tick
+     /tmp/cchDQEiK.s:1104   .text:000004be nrk_version
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000002 nrk_kernel_stk_ptr
                             *COM*:00000008 nrk_system_time

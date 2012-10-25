@@ -1134,20 +1134,20 @@
  1159               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_time.c
-     /tmp/ccJxVaVj.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccJxVaVj.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccJxVaVj.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccJxVaVj.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccJxVaVj.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccJxVaVj.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccJxVaVj.s:141    .text:00000000 nrk_time_get
-     /tmp/ccJxVaVj.s:265    .text:000000bc nrk_time_sub
-     /tmp/ccJxVaVj.s:462    .text:000001da nrk_time_compact_nanos
-     /tmp/ccJxVaVj.s:529    .text:00000220 nrk_time_add
-     /tmp/ccJxVaVj.s:646    .text:000002d6 nrk_time_set
-     /tmp/ccJxVaVj.s:679    .text:000002f8 _nrk_time_to_ticks
-     /tmp/ccJxVaVj.s:874    .text:00000416 _nrk_ticks_to_time
-     /tmp/ccJxVaVj.s:958    .text:00000488 _nrk_time_to_ticks_long
+     /tmp/ccGH2Qze.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccGH2Qze.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccGH2Qze.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccGH2Qze.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccGH2Qze.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccGH2Qze.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccGH2Qze.s:141    .text:00000000 nrk_time_get
+     /tmp/ccGH2Qze.s:265    .text:000000bc nrk_time_sub
+     /tmp/ccGH2Qze.s:462    .text:000001da nrk_time_compact_nanos
+     /tmp/ccGH2Qze.s:529    .text:00000220 nrk_time_add
+     /tmp/ccGH2Qze.s:646    .text:000002d6 nrk_time_set
+     /tmp/ccGH2Qze.s:679    .text:000002f8 _nrk_time_to_ticks
+     /tmp/ccGH2Qze.s:874    .text:00000416 _nrk_ticks_to_time
+     /tmp/ccGH2Qze.s:958    .text:00000488 _nrk_time_to_ticks_long
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk

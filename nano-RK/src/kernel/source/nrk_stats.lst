@@ -2169,35 +2169,35 @@
  2295               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_stats.c
-     /tmp/ccQ7L9yL.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccQ7L9yL.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccQ7L9yL.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccQ7L9yL.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccQ7L9yL.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccQ7L9yL.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccQ7L9yL.s:141    .text:00000000 nrk_stats_reset
+     /tmp/ccCUMcdO.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccCUMcdO.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccCUMcdO.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccCUMcdO.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccCUMcdO.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccCUMcdO.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccCUMcdO.s:141    .text:00000000 nrk_stats_reset
                             *COM*:00000008 _nrk_stats_sleep_time
                             *COM*:00000096 cur_task_stats
-     /tmp/ccQ7L9yL.s:226    .text:00000064 _nrk_stats_sleep
-     /tmp/ccQ7L9yL.s:275    .text:000000aa nrk_stats_get_deep_sleep
-     /tmp/ccQ7L9yL.s:317    .text:000000de _nrk_stats_add_violation
-     /tmp/ccQ7L9yL.s:410    .text:00000164 _nrk_stats_task_start
-     /tmp/ccQ7L9yL.s:540    .text:0000022e _nrk_stats_task_preempted
-     /tmp/ccQ7L9yL.s:779    .text:000003c8 _nrk_stats_task_suspend
-     /tmp/ccQ7L9yL.s:1110   .text:000005f8 nrk_stats_display_pid
-     /tmp/ccQ7L9yL.s:2269   .progmem.data:000000e1 __c.2137
-     /tmp/ccQ7L9yL.s:2265   .progmem.data:000000c6 __c.2139
-     /tmp/ccQ7L9yL.s:2261   .progmem.data:000000a5 __c.2141
-     /tmp/ccQ7L9yL.s:2257   .progmem.data:00000094 __c.2143
-     /tmp/ccQ7L9yL.s:2253   .progmem.data:00000079 __c.2145
-     /tmp/ccQ7L9yL.s:2249   .progmem.data:00000069 __c.2147
-     /tmp/ccQ7L9yL.s:2245   .progmem.data:00000056 __c.2149
-     /tmp/ccQ7L9yL.s:2241   .progmem.data:0000003d __c.2151
-     /tmp/ccQ7L9yL.s:2237   .progmem.data:00000020 __c.2153
-     /tmp/ccQ7L9yL.s:2233   .progmem.data:0000001d __c.2155
-     /tmp/ccQ7L9yL.s:1918   .text:00000bf6 nrk_stats_display_all
-     /tmp/ccQ7L9yL.s:2229   .progmem.data:00000000 __c.2160
-     /tmp/ccQ7L9yL.s:1957   .text:00000c1e nrk_stats_get
+     /tmp/ccCUMcdO.s:226    .text:00000064 _nrk_stats_sleep
+     /tmp/ccCUMcdO.s:275    .text:000000aa nrk_stats_get_deep_sleep
+     /tmp/ccCUMcdO.s:317    .text:000000de _nrk_stats_add_violation
+     /tmp/ccCUMcdO.s:410    .text:00000164 _nrk_stats_task_start
+     /tmp/ccCUMcdO.s:540    .text:0000022e _nrk_stats_task_preempted
+     /tmp/ccCUMcdO.s:779    .text:000003c8 _nrk_stats_task_suspend
+     /tmp/ccCUMcdO.s:1110   .text:000005f8 nrk_stats_display_pid
+     /tmp/ccCUMcdO.s:2269   .progmem.data:000000e1 __c.2137
+     /tmp/ccCUMcdO.s:2265   .progmem.data:000000c6 __c.2139
+     /tmp/ccCUMcdO.s:2261   .progmem.data:000000a5 __c.2141
+     /tmp/ccCUMcdO.s:2257   .progmem.data:00000094 __c.2143
+     /tmp/ccCUMcdO.s:2253   .progmem.data:00000079 __c.2145
+     /tmp/ccCUMcdO.s:2249   .progmem.data:00000069 __c.2147
+     /tmp/ccCUMcdO.s:2245   .progmem.data:00000056 __c.2149
+     /tmp/ccCUMcdO.s:2241   .progmem.data:0000003d __c.2151
+     /tmp/ccCUMcdO.s:2237   .progmem.data:00000020 __c.2153
+     /tmp/ccCUMcdO.s:2233   .progmem.data:0000001d __c.2155
+     /tmp/ccCUMcdO.s:1918   .text:00000bf6 nrk_stats_display_all
+     /tmp/ccCUMcdO.s:2229   .progmem.data:00000000 __c.2160
+     /tmp/ccCUMcdO.s:1957   .text:00000c1e nrk_stats_get
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk

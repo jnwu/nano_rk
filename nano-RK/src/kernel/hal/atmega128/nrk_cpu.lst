@@ -521,22 +521,22 @@
  567               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_cpu.c
-     /tmp/ccfWkLbM.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccfWkLbM.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccfWkLbM.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccfWkLbM.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccfWkLbM.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccfWkLbM.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccfWkLbM.s:138    .text:00000000 nrk_battery_save
-     /tmp/ccfWkLbM.s:160    .text:00000002 nrk_task_set_entry_function
-     /tmp/ccfWkLbM.s:185    .text:0000000a nrk_sleep
-     /tmp/ccfWkLbM.s:225    .text:00000022 nrk_idle
-     /tmp/ccfWkLbM.s:265    .text:00000038 nrk_task_stk_init
-     /tmp/ccfWkLbM.s:374    .text:0000008e nrk_task_set_stk
-     /tmp/ccfWkLbM.s:432    .text:000000cc nrk_stack_pointer_restore
-     /tmp/ccfWkLbM.s:460    .text:000000da nrk_stack_pointer_init
+     /tmp/cce5B2NQ.s:2      *ABS*:0000003f __SREG__
+     /tmp/cce5B2NQ.s:3      *ABS*:0000003e __SP_H__
+     /tmp/cce5B2NQ.s:4      *ABS*:0000003d __SP_L__
+     /tmp/cce5B2NQ.s:5      *ABS*:00000034 __CCP__
+     /tmp/cce5B2NQ.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/cce5B2NQ.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/cce5B2NQ.s:138    .text:00000000 nrk_battery_save
+     /tmp/cce5B2NQ.s:160    .text:00000002 nrk_task_set_entry_function
+     /tmp/cce5B2NQ.s:185    .text:0000000a nrk_sleep
+     /tmp/cce5B2NQ.s:225    .text:00000022 nrk_idle
+     /tmp/cce5B2NQ.s:265    .text:00000038 nrk_task_stk_init
+     /tmp/cce5B2NQ.s:374    .text:0000008e nrk_task_set_stk
+     /tmp/cce5B2NQ.s:432    .text:000000cc nrk_stack_pointer_restore
+     /tmp/cce5B2NQ.s:460    .text:000000da nrk_stack_pointer_init
                             *COM*:00000002 nrk_kernel_stk_ptr
-     /tmp/ccfWkLbM.s:498    .text:000000f8 nrk_target_start
+     /tmp/cce5B2NQ.s:498    .text:000000f8 nrk_target_start
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk
