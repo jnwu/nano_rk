@@ -335,7 +335,7 @@ for(i=0; i<NRK_MAX_RESOURCE_CNT; i++ ){
 //constantly check if there is a semaphore with value>0 and resource_ceiling < tmp_SC. If true update tmp_SC
 	 
 	if(nrk_sem_list[i].value > 0 && nrk_sem_list[i].resource_ceiling < tmp_SC)
-			tmp_SC = nrk_sem_list[i].resource_ceiling
+			tmp_SC = nrk_sem_list[i].resource_ceiling;
 
 }
 //end of loop. Update global variable NRK_SYSTEM_CEILING (defined in nrk_defs.h)

@@ -44,7 +44,7 @@ uint8_t nrk_get_high_ready_task_ID ()
     ptr = _head_node;
 	//check task_preemption level to see if it is above system ceiling
 	while (true) {
-		if (ptr->preemption_level < nrk_system_ceiling)
+		if (nrk_task_TCB[ptr->task_ID].SRPpreempLevel < nrk_system_ceiling)
 			break;
 			
 		ptr = ptr->Next;

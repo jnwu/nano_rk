@@ -52,6 +52,9 @@
 *	                   CORE SERVICES		   *
 ***********************************************************/
 
+
+int nrk_system_ceiling;
+
 void	nrk_init(void);
 void 	nrk_start(void);
 

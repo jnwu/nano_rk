@@ -44,8 +44,6 @@
 #include <nrk_cfg.h>
 #include <nrk_stats.h>
 
-int nrk_system_ceiling;
-
 inline void nrk_int_disable(void) {
   DISABLE_GLOBAL_INT();
 };

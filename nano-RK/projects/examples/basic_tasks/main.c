@@ -70,7 +70,7 @@ main ()
   nrk_time_set(0,0);
   nrk_create_taskset ();
 
-  my_semaphore = nrk_sem_create(1,4);
+  my_semaphore = nrk_sem_create(1,2);
   if(my_semaphore==NULL) nrk_kprintf( PSTR("Error creating sem\r\n" ));
   nrk_start();
   
