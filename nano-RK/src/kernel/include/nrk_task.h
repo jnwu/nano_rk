@@ -40,6 +40,7 @@
 
 typedef	uint16_t		EventMaskType;
 typedef EventMaskType*	EventMaskRefType;
+
 /*
  **********************************************************
  *                      TASK CONTROL BLOCK                *
@@ -74,6 +75,9 @@ typedef struct os_tcb {
 	//cath @T3 SRP: add preemption level attribute to a task
 	uint8_t SRPpreempLevel;
 
+	// @T3 SRP: Add semaphores boolean array.
+	bool semaphores[NRK_MAX_RESOURCE_CNT];
+
 
 } NRK_TCB;
 
@@ -101,6 +105,7 @@ typedef struct task_type {
 	nrk_time_t period;
 	nrk_time_t cpu_reserve;
 	nrk_time_t offset;
+	bool semaphores[NRK_MAX_RESOURCE_CNT];
 
 } nrk_task_type;
 

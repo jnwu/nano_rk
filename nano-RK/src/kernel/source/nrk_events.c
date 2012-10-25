@@ -327,7 +327,7 @@ uint8_t i; //counter
 
 //initialize a tmp_SC (system ceiling) variable for system ceiling to a very large variable
 
-int8_t tmp_SC = 127; //can change the value later...I assume we don't want more than 100 tasks for our simulation right...?unless we want stress testing........
+int8_t tmp_SC = NRK_MIN_RESOURCE_CEILING; //can change the value later...I assume we don't want more than 100 tasks for our simulation right...?unless we want stress testing........
 
 //going through nrk_sem_list (a global array holding information for all semaphores)
 for(i=0; i<NRK_MAX_RESOURCE_CNT; i++ ){

@@ -496,49 +496,51 @@
  518               	.Lscope9:
  520               		.stabd	78,0,0
  521               		.comm _nrk_signal_list,4,1
- 522               		.comm nrk_idle_task_stk,128,1
- 523               		.comm nrk_kernel_stk_ptr,2,1
- 524               		.comm nrk_task_TCB,165,1
- 525               		.comm nrk_wakeup_signal,1,1
- 526               		.comm _nrk_readyQ,30,1
- 527               		.comm _free_node,2,1
- 528               		.comm _head_node,2,1
- 529               		.comm nrk_cur_task_prio,1,1
- 530               		.comm nrk_cur_task_TCB,2,1
- 531               		.comm nrk_high_ready_prio,1,1
- 532               		.comm nrk_high_ready_TCB,2,1
- 533               		.comm _nrk_resource_cnt,1,1
- 534               		.comm nrk_system_time,8,1
- 535               		.comm error_task,1,1
- 536               		.comm error_num,1,1
- 537               		.comm nrk_sem_list,3,1
- 538               		.comm _nrk_prev_timer_val,1,1
- 539               		.comm _nrk_time_trigger,1,1
- 540               		.comm app_timer0_callback,2,1
- 541               		.comm app_timer0_prescale,1,1
- 564               	.Letext0:
- 565               	.global __do_clear_bss
+ 522               		.comm nrk_system_ceiling,2,1
+ 523               		.comm nrk_idle_task_stk,128,1
+ 524               		.comm nrk_kernel_stk_ptr,2,1
+ 525               		.comm nrk_task_TCB,195,1
+ 526               		.comm nrk_wakeup_signal,1,1
+ 527               		.comm _nrk_readyQ,30,1
+ 528               		.comm _free_node,2,1
+ 529               		.comm _head_node,2,1
+ 530               		.comm nrk_cur_task_prio,1,1
+ 531               		.comm nrk_cur_task_TCB,2,1
+ 532               		.comm nrk_high_ready_prio,1,1
+ 533               		.comm nrk_high_ready_TCB,2,1
+ 534               		.comm _nrk_resource_cnt,1,1
+ 535               		.comm nrk_system_time,8,1
+ 536               		.comm error_task,1,1
+ 537               		.comm error_num,1,1
+ 538               		.comm nrk_sem_list,15,1
+ 539               		.comm _nrk_prev_timer_val,1,1
+ 540               		.comm _nrk_time_trigger,1,1
+ 541               		.comm app_timer0_callback,2,1
+ 542               		.comm app_timer0_prescale,1,1
+ 566               	.Letext0:
+ 567               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_cpu.c
-     /tmp/ccwFhcEl.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccwFhcEl.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccwFhcEl.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccwFhcEl.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccwFhcEl.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccwFhcEl.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccwFhcEl.s:138    .text:00000000 nrk_battery_save
-     /tmp/ccwFhcEl.s:160    .text:00000002 nrk_task_set_entry_function
-     /tmp/ccwFhcEl.s:185    .text:0000000a nrk_sleep
-     /tmp/ccwFhcEl.s:225    .text:00000022 nrk_idle
-     /tmp/ccwFhcEl.s:265    .text:00000038 nrk_task_stk_init
-     /tmp/ccwFhcEl.s:374    .text:0000008e nrk_task_set_stk
-     /tmp/ccwFhcEl.s:432    .text:000000cc nrk_stack_pointer_restore
-     /tmp/ccwFhcEl.s:460    .text:000000da nrk_stack_pointer_init
+     /tmp/ccfWkLbM.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccfWkLbM.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccfWkLbM.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccfWkLbM.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccfWkLbM.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccfWkLbM.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccfWkLbM.s:138    .text:00000000 nrk_battery_save
+     /tmp/ccfWkLbM.s:160    .text:00000002 nrk_task_set_entry_function
+     /tmp/ccfWkLbM.s:185    .text:0000000a nrk_sleep
+     /tmp/ccfWkLbM.s:225    .text:00000022 nrk_idle
+     /tmp/ccfWkLbM.s:265    .text:00000038 nrk_task_stk_init
+     /tmp/ccfWkLbM.s:374    .text:0000008e nrk_task_set_stk
+     /tmp/ccfWkLbM.s:432    .text:000000cc nrk_stack_pointer_restore
+     /tmp/ccfWkLbM.s:460    .text:000000da nrk_stack_pointer_init
                             *COM*:00000002 nrk_kernel_stk_ptr
-     /tmp/ccwFhcEl.s:498    .text:000000f8 nrk_target_start
+     /tmp/ccfWkLbM.s:498    .text:000000f8 nrk_target_start
                             *COM*:00000004 _nrk_signal_list
+                            *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk
-                            *COM*:000000a5 nrk_task_TCB
+                            *COM*:000000c3 nrk_task_TCB
                             *COM*:00000001 nrk_wakeup_signal
                             *COM*:0000001e _nrk_readyQ
                             *COM*:00000002 _free_node
@@ -551,7 +553,7 @@ DEFINED SYMBOLS
                             *COM*:00000008 nrk_system_time
                             *COM*:00000001 error_task
                             *COM*:00000001 error_num
-                            *COM*:00000003 nrk_sem_list
+                            *COM*:0000000f nrk_sem_list
                             *COM*:00000001 _nrk_prev_timer_val
                             *COM*:00000001 _nrk_time_trigger
                             *COM*:00000002 app_timer0_callback

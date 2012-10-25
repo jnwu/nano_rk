@@ -287,29 +287,43 @@ void nrk_SRPAssignPreempLevel(void){
 	
 
 	//firstly, initialize all task preemption levels to 0
-
-     for (i=0; i<NRK_MAX_TASKS;i++){
+	for (i=0; i<NRK_MAX_TASKS; i++)
+	{
 		nrk_task_TCB[i].SRPpreempLevel=0;
 	}
 	
-	//for each task set in nrk_task_TCB, we check each of the other tasks if their period is longer than the current task's period. If so, the preemption level will be incremented
-    for(i=0; i<NRK_MAX_TASKS; i++ )
-    {
-	task_ID=nrk_task_TCB[i].task_ID;
-	curTaskPeriod = nrk_task_TCB[i].period;
-	
-	if(task_ID!=-1)
+	// For each task set in nrk_task_TCB, we check each of the other tasks if their period is longer than the current task's period.
+	// If so, the preemption level will be incremented
+	for(i=0; i<NRK_MAX_TASKS; i++)
 	{
-    		for(j=0; j<NRK_MAX_TASKS; j++ )
+		task_ID=nrk_task_TCB[i].task_ID;
+		curTaskPeriod = nrk_task_TCB[i].period;
+	
+		if(task_ID!=-1)
 		{
-			if (nrk_task_TCB[j].period>curTaskPeriod)
-				nrk_task_TCB[j].SRPpreempLevel++;
+    			for(j=0; j<NRK_MAX_TASKS; j++ )
+			{
+				if (nrk_task_TCB[j].period>curTaskPeriod)
+					nrk_task_TCB[j].SRPpreempLevel++;
+			}
 		}
 	}
 
-    }
-
-	
+	// Update all semaphore max ceilings after task preemption levels have been set.
+	for (i = 0; i < NRK_MAX_TASKS; i++)
+	{
+		for (j = 0; j < NRK_MAX_RESOURCE_CNT; j++)
+		{
+			if (nrk_task_TCB[i].semaphores[j])
+			{
+				if ((nrk_sem_list[j].resource_ceiling > nrk_task_TCB[i].SRPpreempLevel) ||
+				    (nrk_sem_list[j].resource_ceiling == -1))
+				{
+					nrk_sem_list[j].resource_ceiling = nrk_task_TCB[i].SRPpreempLevel;
+				}
+			}
+		}
+	}
 }
 
 int8_t nrk_TCB_init (nrk_task_type *Task, NRK_STK *ptos, NRK_STK *pbos, uint16_t stk_size, void *pext, uint16_t opt)

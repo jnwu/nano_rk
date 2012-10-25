@@ -290,6 +290,14 @@ nrk_status_t nrk_activate_task (nrk_task_type * Task)
         nrk_add_to_readyQ (Task->task_ID);
     }
 
+    // @T3 SRP: Transfer semaphores to TCB.
+    uint8_t i;
+    for (i = 0; i < NRK_MAX_RESOURCE_CNT; i++)
+        if (Task->semaphores[i])
+            nrk_task_TCB[Task->task_ID].semaphores[i] = true;
+        else
+            nrk_task_TCB[Task->task_ID].semaphores[i] = false;
+
     return NRK_OK;
 }
 

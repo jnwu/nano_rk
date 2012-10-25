@@ -596,29 +596,31 @@
  702               	.Lscope6:
  704               		.stabd	78,0,0
  705               		.comm _nrk_signal_list,4,1
- 706               		.comm nrk_idle_task_stk,128,1
- 707               		.comm nrk_kernel_stk_ptr,2,1
- 708               		.comm error_task,1,1
- 709               		.comm error_num,1,1
- 710               		.comm sw_wdts,57,1
- 718               	.Letext0:
- 719               	.global __do_clear_bss
+ 706               		.comm nrk_system_ceiling,2,1
+ 707               		.comm nrk_idle_task_stk,128,1
+ 708               		.comm nrk_kernel_stk_ptr,2,1
+ 709               		.comm error_task,1,1
+ 710               		.comm error_num,1,1
+ 711               		.comm sw_wdts,57,1
+ 720               	.Letext0:
+ 721               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_sw_wdt.c
-     /tmp/ccLU3IGY.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccLU3IGY.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccLU3IGY.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccLU3IGY.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccLU3IGY.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccLU3IGY.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccLU3IGY.s:141    .text:00000000 _nrk_sw_wdt_check
+     /tmp/ccUMmY6z.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccUMmY6z.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccUMmY6z.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccUMmY6z.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccUMmY6z.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccUMmY6z.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccUMmY6z.s:141    .text:00000000 _nrk_sw_wdt_check
                             *COM*:00000039 sw_wdts
-     /tmp/ccLU3IGY.s:308    .text:00000102 _nrk_sw_wdt_init
-     /tmp/ccLU3IGY.s:336    .text:00000110 nrk_sw_wdt_init
-     /tmp/ccLU3IGY.s:414    .text:00000164 nrk_sw_wdt_update
-     /tmp/ccLU3IGY.s:547    .text:00000220 nrk_sw_wdt_start
-     /tmp/ccLU3IGY.s:662    .text:000002ba nrk_sw_wdt_stop
+     /tmp/ccUMmY6z.s:308    .text:00000102 _nrk_sw_wdt_init
+     /tmp/ccUMmY6z.s:336    .text:00000110 nrk_sw_wdt_init
+     /tmp/ccUMmY6z.s:414    .text:00000164 nrk_sw_wdt_update
+     /tmp/ccUMmY6z.s:547    .text:00000220 nrk_sw_wdt_start
+     /tmp/ccUMmY6z.s:662    .text:000002ba nrk_sw_wdt_stop
                             *COM*:00000004 _nrk_signal_list
+                            *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000002 nrk_kernel_stk_ptr
                             *COM*:00000001 error_task

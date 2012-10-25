@@ -136,30 +136,32 @@
  207               	.Lscope1:
  209               		.stabd	78,0,0
  210               		.comm _nrk_signal_list,4,1
- 211               		.comm nrk_idle_task_stk,128,1
- 212               		.comm nrk_kernel_stk_ptr,2,1
- 213               		.comm error_task,1,1
- 214               		.comm error_num,1,1
- 215               		.comm _nrk_prev_timer_val,1,1
- 216               		.comm _nrk_time_trigger,1,1
- 217               		.comm app_timer0_callback,2,1
- 218               		.comm app_timer0_prescale,1,1
- 219               		.comm _nrk_cpu_state,1,1
- 220               		.comm next_next_wakeup,2,1
- 233               	.Letext0:
- 234               	.global __do_clear_bss
+ 211               		.comm nrk_system_ceiling,2,1
+ 212               		.comm nrk_idle_task_stk,128,1
+ 213               		.comm nrk_kernel_stk_ptr,2,1
+ 214               		.comm error_task,1,1
+ 215               		.comm error_num,1,1
+ 216               		.comm _nrk_prev_timer_val,1,1
+ 217               		.comm _nrk_time_trigger,1,1
+ 218               		.comm app_timer0_callback,2,1
+ 219               		.comm app_timer0_prescale,1,1
+ 220               		.comm _nrk_cpu_state,1,1
+ 221               		.comm next_next_wakeup,2,1
+ 235               	.Letext0:
+ 236               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_idle_task.c
-     /tmp/cc6mwMdN.s:2      *ABS*:0000003f __SREG__
-     /tmp/cc6mwMdN.s:3      *ABS*:0000003e __SP_H__
-     /tmp/cc6mwMdN.s:4      *ABS*:0000003d __SP_L__
-     /tmp/cc6mwMdN.s:5      *ABS*:00000034 __CCP__
-     /tmp/cc6mwMdN.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/cc6mwMdN.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/cc6mwMdN.s:140    .text:00000000 nrk_idle_task
+     /tmp/ccOk6Mzr.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccOk6Mzr.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccOk6Mzr.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccOk6Mzr.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccOk6Mzr.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccOk6Mzr.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccOk6Mzr.s:140    .text:00000000 nrk_idle_task
                             *COM*:00000001 _nrk_cpu_state
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000004 _nrk_signal_list
+                            *COM*:00000002 nrk_system_ceiling
                             *COM*:00000002 nrk_kernel_stk_ptr
                             *COM*:00000001 error_task
                             *COM*:00000001 error_num

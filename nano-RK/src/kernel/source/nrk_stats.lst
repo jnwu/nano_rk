@@ -1017,8 +1017,8 @@
   89:../../../src/kernel/source/nrk_stats.c **** 
   90:../../../src/kernel/source/nrk_stats.c ****     nrk_kprintf( PSTR( " Task ID: "));
  1140               	.LM51:
- 1141 0620 80E0      		ldi r24,lo8(__c.2129)
- 1142 0622 90E0      		ldi r25,hi8(__c.2129)
+ 1141 0620 80E0      		ldi r24,lo8(__c.2137)
+ 1142 0622 90E0      		ldi r25,hi8(__c.2137)
  1143 0624 0E94 0000 		call nrk_kprintf
   91:../../../src/kernel/source/nrk_stats.c ****     printf( "%d",pid );
  1145               	.LM52:
@@ -1050,8 +1050,8 @@
   93:../../../src/kernel/source/nrk_stats.c ****     {
   94:../../../src/kernel/source/nrk_stats.c ****         nrk_kprintf( PSTR( "\r\n   Total System Uptime: "));
  1172               	.LM54:
- 1173 0658 80E0      		ldi r24,lo8(__c.2131)
- 1174 065a 90E0      		ldi r25,hi8(__c.2131)
+ 1173 0658 80E0      		ldi r24,lo8(__c.2139)
+ 1174 065a 90E0      		ldi r25,hi8(__c.2139)
  1175 065c 0E94 0000 		call nrk_kprintf
   95:../../../src/kernel/source/nrk_stats.c ****         nrk_time_get(&t);
  1177               	.LM55:
@@ -1120,8 +1120,8 @@
  1240 06da FEBF      		out __SP_H__,r31
  1241 06dc 0FBE      		out __SREG__,__tmp_reg__
  1242 06de EDBF      		out __SP_L__,r30
- 1243 06e0 80E0      		ldi r24,lo8(__c.2133)
- 1244 06e2 90E0      		ldi r25,hi8(__c.2133)
+ 1243 06e0 80E0      		ldi r24,lo8(__c.2141)
+ 1244 06e2 90E0      		ldi r25,hi8(__c.2141)
  1245 06e4 0E94 0000 		call nrk_kprintf
   98:../../../src/kernel/source/nrk_stats.c ****         //t=_nrk_ticks_to_time(_nrk_stats_sleep_time);
   99:../../../src/kernel/source/nrk_stats.c ****         //printf( "%lu secs %lu ms", t.secs, t.nano_secs/NANOS_PER_MS );
@@ -1182,8 +1182,8 @@
  101:../../../src/kernel/source/nrk_stats.c ****     }
  102:../../../src/kernel/source/nrk_stats.c ****     nrk_kprintf( PSTR( "\r\n   Total CPU: "));
  1301               	.LM59:
- 1302 0762 80E0      		ldi r24,lo8(__c.2135)
- 1303 0764 90E0      		ldi r25,hi8(__c.2135)
+ 1302 0762 80E0      		ldi r24,lo8(__c.2143)
+ 1303 0764 90E0      		ldi r25,hi8(__c.2143)
  1304 0766 0E94 0000 		call nrk_kprintf
  103:../../../src/kernel/source/nrk_stats.c ****     t=_nrk_ticks_to_time(cur_task_stats[pid].total_ticks);
  1306               	.LM60:
@@ -1283,8 +1283,8 @@
  1400 0820 FEBF      		out __SP_H__,r31
  1401 0822 0FBE      		out __SREG__,__tmp_reg__
  1402 0824 EDBF      		out __SP_L__,r30
- 1403 0826 80E0      		ldi r24,lo8(__c.2137)
- 1404 0828 90E0      		ldi r25,hi8(__c.2137)
+ 1403 0826 80E0      		ldi r24,lo8(__c.2145)
+ 1404 0828 90E0      		ldi r25,hi8(__c.2145)
  1405 082a 0E94 0000 		call nrk_kprintf
  106:../../../src/kernel/source/nrk_stats.c ****     t=_nrk_ticks_to_time(cur_task_stats[pid].min_exec_ticks);
  1407               	.LM63:
@@ -1576,8 +1576,8 @@
  1693 0a5c FEBF      		out __SP_H__,r31
  1694 0a5e 0FBE      		out __SREG__,__tmp_reg__
  1695 0a60 EDBF      		out __SP_L__,r30
- 1696 0a62 80E0      		ldi r24,lo8(__c.2139)
- 1697 0a64 90E0      		ldi r25,hi8(__c.2139)
+ 1696 0a62 80E0      		ldi r24,lo8(__c.2147)
+ 1697 0a64 90E0      		ldi r25,hi8(__c.2147)
  1698 0a66 0E94 0000 		call nrk_kprintf
  113:../../../src/kernel/source/nrk_stats.c ****     printf( "%lu",cur_task_stats[pid].swapped_in );
  1700               	.LM70:
@@ -1629,8 +1629,8 @@
  1746 0ac2 9EBF      		out __SP_H__,r25
  1747 0ac4 0FBE      		out __SREG__,__tmp_reg__
  1748 0ac6 8DBF      		out __SP_L__,r24
- 1749 0ac8 80E0      		ldi r24,lo8(__c.2141)
- 1750 0aca 90E0      		ldi r25,hi8(__c.2141)
+ 1749 0ac8 80E0      		ldi r24,lo8(__c.2149)
+ 1750 0aca 90E0      		ldi r25,hi8(__c.2149)
  1751 0acc 0E94 0000 		call nrk_kprintf
  115:../../../src/kernel/source/nrk_stats.c ****     printf( "%lu",cur_task_stats[pid].preempted);
  1753               	.LM72:
@@ -1678,8 +1678,8 @@
  1795 0b20 9EBF      		out __SP_H__,r25
  1796 0b22 0FBE      		out __SREG__,__tmp_reg__
  1797 0b24 8DBF      		out __SP_L__,r24
- 1798 0b26 80E0      		ldi r24,lo8(__c.2143)
- 1799 0b28 90E0      		ldi r25,hi8(__c.2143)
+ 1798 0b26 80E0      		ldi r24,lo8(__c.2151)
+ 1799 0b28 90E0      		ldi r25,hi8(__c.2151)
  1800 0b2a 0E94 0000 		call nrk_kprintf
  117:../../../src/kernel/source/nrk_stats.c ****     printf( "%u",cur_task_stats[pid].violations);
  1802               	.LM74:
@@ -1723,8 +1723,8 @@
  1840 0b76 0F90      		pop __tmp_reg__
  1841 0b78 0F90      		pop __tmp_reg__
  1842 0b7a 0F90      		pop __tmp_reg__
- 1843 0b7c 80E0      		ldi r24,lo8(__c.2145)
- 1844 0b7e 90E0      		ldi r25,hi8(__c.2145)
+ 1843 0b7c 80E0      		ldi r24,lo8(__c.2153)
+ 1844 0b7e 90E0      		ldi r25,hi8(__c.2153)
  1845 0b80 0E94 0000 		call nrk_kprintf
  119:../../../src/kernel/source/nrk_stats.c ****     printf( "%u",cur_task_stats[pid].overflow);
  1847               	.LM76:
@@ -1764,8 +1764,8 @@
  1881 0bc4 0F90      		pop __tmp_reg__
  1882 0bc6 0F90      		pop __tmp_reg__
  1883 0bc8 0F90      		pop __tmp_reg__
- 1884 0bca 80E0      		ldi r24,lo8(__c.2147)
- 1885 0bcc 90E0      		ldi r25,hi8(__c.2147)
+ 1884 0bca 80E0      		ldi r24,lo8(__c.2155)
+ 1885 0bcc 90E0      		ldi r25,hi8(__c.2155)
  1886 0bce 0E94 0000 		call nrk_kprintf
  1887               	/* epilogue start */
  121:../../../src/kernel/source/nrk_stats.c **** 
@@ -1807,8 +1807,8 @@
  127:../../../src/kernel/source/nrk_stats.c ****     uint8_t i;
  128:../../../src/kernel/source/nrk_stats.c ****     nrk_kprintf( PSTR( "\r\nNano-RK Task Statistics:\r\n" ));
  1928               	.LM80:
- 1929 0bf6 80E0      		ldi r24,lo8(__c.2152)
- 1930 0bf8 90E0      		ldi r25,hi8(__c.2152)
+ 1929 0bf6 80E0      		ldi r24,lo8(__c.2160)
+ 1930 0bf8 90E0      		ldi r25,hi8(__c.2160)
  1931 0bfa 0E94 0000 		call nrk_kprintf
  129:../../../src/kernel/source/nrk_stats.c **** 
  130:../../../src/kernel/source/nrk_stats.c ****     for(i=0; i<NRK_MAX_TASKS; i++ )
@@ -2084,123 +2084,125 @@
  2203               	.Lscope10:
  2205               		.stabd	78,0,0
  2206               		.comm _nrk_signal_list,4,1
- 2207               		.comm nrk_idle_task_stk,128,1
- 2208               		.comm nrk_kernel_stk_ptr,2,1
- 2209               		.comm nrk_task_TCB,165,1
- 2210               		.comm nrk_wakeup_signal,1,1
- 2211               		.comm _nrk_readyQ,30,1
- 2212               		.comm _free_node,2,1
- 2213               		.comm _head_node,2,1
- 2214               		.comm nrk_cur_task_prio,1,1
- 2215               		.comm nrk_cur_task_TCB,2,1
- 2216               		.comm nrk_high_ready_prio,1,1
- 2217               		.comm nrk_high_ready_TCB,2,1
- 2218               		.comm _nrk_resource_cnt,1,1
- 2219               		.comm nrk_system_time,8,1
- 2220               		.comm cur_task_stats,150,1
- 2221               		.comm _nrk_stats_sleep_time,8,1
- 2222               		.comm nrk_sem_list,3,1
- 2223               		.comm error_task,1,1
- 2224               		.comm error_num,1,1
- 2225               		.section	.progmem.data,"a",@progbits
- 2228               	__c.2152:
- 2229 0000 0D0A 4E61 		.string	"\r\nNano-RK Task Statistics:\r\n"
- 2229      6E6F 2D52 
- 2229      4B20 5461 
- 2229      736B 2053 
- 2229      7461 7469 
- 2232               	__c.2147:
- 2233 001d 0D0A 00   		.string	"\r\n"
- 2236               	__c.2145:
- 2237 0020 0D0A 2020 		.string	"\r\n   Overflow Error Status: "
- 2237      204F 7665 
- 2237      7266 6C6F 
- 2237      7720 4572 
- 2237      726F 7220 
- 2240               	__c.2143:
- 2241 003d 0D0A 2020 		.string	"\r\n   Kernel Violations: "
- 2241      204B 6572 
- 2241      6E65 6C20 
- 2241      5669 6F6C 
- 2241      6174 696F 
- 2244               	__c.2141:
- 2245 0056 0D0A 2020 		.string	"\r\n   Preemptions: "
- 2245      2050 7265 
- 2245      656D 7074 
- 2245      696F 6E73 
- 2245      3A20 00
- 2248               	__c.2139:
- 2249 0069 0D0A 2020 		.string	"\r\n   Swap-ins: "
- 2249      2053 7761 
- 2249      702D 696E 
- 2249      733A 2000 
- 2252               	__c.2137:
- 2253 0079 0D0A 2020 		.string	"\r\n   Time [Min,Last,Max]: "
- 2253      2054 696D 
- 2253      6520 5B4D 
- 2253      696E 2C4C 
- 2253      6173 742C 
- 2256               	__c.2135:
- 2257 0094 0D0A 2020 		.string	"\r\n   Total CPU: "
- 2257      2054 6F74 
- 2257      616C 2043 
- 2257      5055 3A20 
- 2257      00
- 2260               	__c.2133:
- 2261 00a5 0D0A 2020 		.string	"\r\n   Idle Task Deep Sleep Time: "
- 2261      2049 646C 
- 2261      6520 5461 
- 2261      736B 2044 
- 2261      6565 7020 
- 2264               	__c.2131:
- 2265 00c6 0D0A 2020 		.string	"\r\n   Total System Uptime: "
- 2265      2054 6F74 
- 2265      616C 2053 
- 2265      7973 7465 
- 2265      6D20 5570 
- 2268               	__c.2129:
- 2269 00e1 2054 6173 		.string	" Task ID: "
- 2269      6B20 4944 
- 2269      3A20 00
- 2289               		.text
- 2291               	.Letext0:
- 2292               	.global __do_copy_data
- 2293               	.global __do_clear_bss
+ 2207               		.comm nrk_system_ceiling,2,1
+ 2208               		.comm nrk_idle_task_stk,128,1
+ 2209               		.comm nrk_kernel_stk_ptr,2,1
+ 2210               		.comm nrk_task_TCB,195,1
+ 2211               		.comm nrk_wakeup_signal,1,1
+ 2212               		.comm _nrk_readyQ,30,1
+ 2213               		.comm _free_node,2,1
+ 2214               		.comm _head_node,2,1
+ 2215               		.comm nrk_cur_task_prio,1,1
+ 2216               		.comm nrk_cur_task_TCB,2,1
+ 2217               		.comm nrk_high_ready_prio,1,1
+ 2218               		.comm nrk_high_ready_TCB,2,1
+ 2219               		.comm _nrk_resource_cnt,1,1
+ 2220               		.comm nrk_system_time,8,1
+ 2221               		.comm cur_task_stats,150,1
+ 2222               		.comm _nrk_stats_sleep_time,8,1
+ 2223               		.comm nrk_sem_list,15,1
+ 2224               		.comm error_task,1,1
+ 2225               		.comm error_num,1,1
+ 2226               		.section	.progmem.data,"a",@progbits
+ 2229               	__c.2160:
+ 2230 0000 0D0A 4E61 		.string	"\r\nNano-RK Task Statistics:\r\n"
+ 2230      6E6F 2D52 
+ 2230      4B20 5461 
+ 2230      736B 2053 
+ 2230      7461 7469 
+ 2233               	__c.2155:
+ 2234 001d 0D0A 00   		.string	"\r\n"
+ 2237               	__c.2153:
+ 2238 0020 0D0A 2020 		.string	"\r\n   Overflow Error Status: "
+ 2238      204F 7665 
+ 2238      7266 6C6F 
+ 2238      7720 4572 
+ 2238      726F 7220 
+ 2241               	__c.2151:
+ 2242 003d 0D0A 2020 		.string	"\r\n   Kernel Violations: "
+ 2242      204B 6572 
+ 2242      6E65 6C20 
+ 2242      5669 6F6C 
+ 2242      6174 696F 
+ 2245               	__c.2149:
+ 2246 0056 0D0A 2020 		.string	"\r\n   Preemptions: "
+ 2246      2050 7265 
+ 2246      656D 7074 
+ 2246      696F 6E73 
+ 2246      3A20 00
+ 2249               	__c.2147:
+ 2250 0069 0D0A 2020 		.string	"\r\n   Swap-ins: "
+ 2250      2053 7761 
+ 2250      702D 696E 
+ 2250      733A 2000 
+ 2253               	__c.2145:
+ 2254 0079 0D0A 2020 		.string	"\r\n   Time [Min,Last,Max]: "
+ 2254      2054 696D 
+ 2254      6520 5B4D 
+ 2254      696E 2C4C 
+ 2254      6173 742C 
+ 2257               	__c.2143:
+ 2258 0094 0D0A 2020 		.string	"\r\n   Total CPU: "
+ 2258      2054 6F74 
+ 2258      616C 2043 
+ 2258      5055 3A20 
+ 2258      00
+ 2261               	__c.2141:
+ 2262 00a5 0D0A 2020 		.string	"\r\n   Idle Task Deep Sleep Time: "
+ 2262      2049 646C 
+ 2262      6520 5461 
+ 2262      736B 2044 
+ 2262      6565 7020 
+ 2265               	__c.2139:
+ 2266 00c6 0D0A 2020 		.string	"\r\n   Total System Uptime: "
+ 2266      2054 6F74 
+ 2266      616C 2053 
+ 2266      7973 7465 
+ 2266      6D20 5570 
+ 2269               	__c.2137:
+ 2270 00e1 2054 6173 		.string	" Task ID: "
+ 2270      6B20 4944 
+ 2270      3A20 00
+ 2291               		.text
+ 2293               	.Letext0:
+ 2294               	.global __do_copy_data
+ 2295               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_stats.c
-     /tmp/cc8jDyeh.s:2      *ABS*:0000003f __SREG__
-     /tmp/cc8jDyeh.s:3      *ABS*:0000003e __SP_H__
-     /tmp/cc8jDyeh.s:4      *ABS*:0000003d __SP_L__
-     /tmp/cc8jDyeh.s:5      *ABS*:00000034 __CCP__
-     /tmp/cc8jDyeh.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/cc8jDyeh.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/cc8jDyeh.s:141    .text:00000000 nrk_stats_reset
+     /tmp/ccQ7L9yL.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccQ7L9yL.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccQ7L9yL.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccQ7L9yL.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccQ7L9yL.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccQ7L9yL.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccQ7L9yL.s:141    .text:00000000 nrk_stats_reset
                             *COM*:00000008 _nrk_stats_sleep_time
                             *COM*:00000096 cur_task_stats
-     /tmp/cc8jDyeh.s:226    .text:00000064 _nrk_stats_sleep
-     /tmp/cc8jDyeh.s:275    .text:000000aa nrk_stats_get_deep_sleep
-     /tmp/cc8jDyeh.s:317    .text:000000de _nrk_stats_add_violation
-     /tmp/cc8jDyeh.s:410    .text:00000164 _nrk_stats_task_start
-     /tmp/cc8jDyeh.s:540    .text:0000022e _nrk_stats_task_preempted
-     /tmp/cc8jDyeh.s:779    .text:000003c8 _nrk_stats_task_suspend
-     /tmp/cc8jDyeh.s:1110   .text:000005f8 nrk_stats_display_pid
-     /tmp/cc8jDyeh.s:2268   .progmem.data:000000e1 __c.2129
-     /tmp/cc8jDyeh.s:2264   .progmem.data:000000c6 __c.2131
-     /tmp/cc8jDyeh.s:2260   .progmem.data:000000a5 __c.2133
-     /tmp/cc8jDyeh.s:2256   .progmem.data:00000094 __c.2135
-     /tmp/cc8jDyeh.s:2252   .progmem.data:00000079 __c.2137
-     /tmp/cc8jDyeh.s:2248   .progmem.data:00000069 __c.2139
-     /tmp/cc8jDyeh.s:2244   .progmem.data:00000056 __c.2141
-     /tmp/cc8jDyeh.s:2240   .progmem.data:0000003d __c.2143
-     /tmp/cc8jDyeh.s:2236   .progmem.data:00000020 __c.2145
-     /tmp/cc8jDyeh.s:2232   .progmem.data:0000001d __c.2147
-     /tmp/cc8jDyeh.s:1918   .text:00000bf6 nrk_stats_display_all
-     /tmp/cc8jDyeh.s:2228   .progmem.data:00000000 __c.2152
-     /tmp/cc8jDyeh.s:1957   .text:00000c1e nrk_stats_get
+     /tmp/ccQ7L9yL.s:226    .text:00000064 _nrk_stats_sleep
+     /tmp/ccQ7L9yL.s:275    .text:000000aa nrk_stats_get_deep_sleep
+     /tmp/ccQ7L9yL.s:317    .text:000000de _nrk_stats_add_violation
+     /tmp/ccQ7L9yL.s:410    .text:00000164 _nrk_stats_task_start
+     /tmp/ccQ7L9yL.s:540    .text:0000022e _nrk_stats_task_preempted
+     /tmp/ccQ7L9yL.s:779    .text:000003c8 _nrk_stats_task_suspend
+     /tmp/ccQ7L9yL.s:1110   .text:000005f8 nrk_stats_display_pid
+     /tmp/ccQ7L9yL.s:2269   .progmem.data:000000e1 __c.2137
+     /tmp/ccQ7L9yL.s:2265   .progmem.data:000000c6 __c.2139
+     /tmp/ccQ7L9yL.s:2261   .progmem.data:000000a5 __c.2141
+     /tmp/ccQ7L9yL.s:2257   .progmem.data:00000094 __c.2143
+     /tmp/ccQ7L9yL.s:2253   .progmem.data:00000079 __c.2145
+     /tmp/ccQ7L9yL.s:2249   .progmem.data:00000069 __c.2147
+     /tmp/ccQ7L9yL.s:2245   .progmem.data:00000056 __c.2149
+     /tmp/ccQ7L9yL.s:2241   .progmem.data:0000003d __c.2151
+     /tmp/ccQ7L9yL.s:2237   .progmem.data:00000020 __c.2153
+     /tmp/ccQ7L9yL.s:2233   .progmem.data:0000001d __c.2155
+     /tmp/ccQ7L9yL.s:1918   .text:00000bf6 nrk_stats_display_all
+     /tmp/ccQ7L9yL.s:2229   .progmem.data:00000000 __c.2160
+     /tmp/ccQ7L9yL.s:1957   .text:00000c1e nrk_stats_get
                             *COM*:00000004 _nrk_signal_list
+                            *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000002 nrk_kernel_stk_ptr
-                            *COM*:000000a5 nrk_task_TCB
+                            *COM*:000000c3 nrk_task_TCB
                             *COM*:00000001 nrk_wakeup_signal
                             *COM*:0000001e _nrk_readyQ
                             *COM*:00000002 _free_node
@@ -2211,7 +2213,7 @@ DEFINED SYMBOLS
                             *COM*:00000002 nrk_high_ready_TCB
                             *COM*:00000001 _nrk_resource_cnt
                             *COM*:00000008 nrk_system_time
-                            *COM*:00000003 nrk_sem_list
+                            *COM*:0000000f nrk_sem_list
                             *COM*:00000001 error_task
                             *COM*:00000001 error_num
 

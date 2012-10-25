@@ -212,25 +212,27 @@
  290               		.comm _nrk_signal_list,4,1
  291               		.comm error_task,1,1
  292               		.comm error_num,1,1
- 293               		.comm nrk_idle_task_stk,128,1
- 294               		.comm nrk_kernel_stk_ptr,2,1
- 301               	.Letext0:
- 302               	.global __do_clear_bss
+ 293               		.comm nrk_system_ceiling,2,1
+ 294               		.comm nrk_idle_task_stk,128,1
+ 295               		.comm nrk_kernel_stk_ptr,2,1
+ 303               	.Letext0:
+ 304               	.global __do_clear_bss
 DEFINED SYMBOLS
                             *ABS*:00000000 nrk_watchdog.c
-     /tmp/ccH2c6mf.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccH2c6mf.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccH2c6mf.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccH2c6mf.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccH2c6mf.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccH2c6mf.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccH2c6mf.s:135    .text:00000000 nrk_watchdog_disable
-     /tmp/ccH2c6mf.s:185    .text:0000001a nrk_watchdog_enable
-     /tmp/ccH2c6mf.s:236    .text:00000036 nrk_watchdog_check
-     /tmp/ccH2c6mf.s:266    .text:00000044 nrk_watchdog_reset
+     /tmp/ccpH37WH.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccpH37WH.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccpH37WH.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccpH37WH.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccpH37WH.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccpH37WH.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccpH37WH.s:135    .text:00000000 nrk_watchdog_disable
+     /tmp/ccpH37WH.s:185    .text:0000001a nrk_watchdog_enable
+     /tmp/ccpH37WH.s:236    .text:00000036 nrk_watchdog_check
+     /tmp/ccpH37WH.s:266    .text:00000044 nrk_watchdog_reset
                             *COM*:00000004 _nrk_signal_list
                             *COM*:00000001 error_task
                             *COM*:00000001 error_num
+                            *COM*:00000002 nrk_system_ceiling
                             *COM*:00000080 nrk_idle_task_stk
                             *COM*:00000002 nrk_kernel_stk_ptr
 

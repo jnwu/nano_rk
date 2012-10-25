@@ -42,6 +42,11 @@
 #define NRK_SYSTEM_CEILING 1000
 #endif
 
+// @T3 SRP: Used to define the minimum possible resource ceiling.
+#ifndef NRK_MIN_RESOURCE_CEILING
+#define NRK_MIN_RESOURCE_CEILING 127
+#endif
+
 #ifdef NRK_KERNEL_TEST
 uint8_t nrk_max_sleep_wakeup_time;
 #endif

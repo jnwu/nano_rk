@@ -146,6 +146,8 @@ uint16_t i;
 void
 nrk_create_taskset()
 {
+  uint8_t i;
+
   TaskOne.task = Task1;
   TaskOne.Ptos = (void *) &Stack1[NRK_APP_STACKSIZE];
   TaskOne.Pbos = (void *) &Stack1[0];
@@ -159,6 +161,13 @@ nrk_create_taskset()
   TaskOne.cpu_reserve.nano_secs =  50*NANOS_PER_MS;
   TaskOne.offset.secs = 0;
   TaskOne.offset.nano_secs= 0;
+  
+  // @T3 SRP: Task registers which resources it will use.
+  //     Indices are in order of the created semaphores.
+  for (i = 0; i < NRK_MAX_RESOURCE_CNT; i++)
+  	TaskOne.semaphores[i] = false;
+  TaskOne.semaphores[0] = true;
+  
   nrk_activate_task (&TaskOne);
 
   TaskTwo.task = Task2;
@@ -174,6 +183,13 @@ nrk_create_taskset()
   TaskTwo.cpu_reserve.nano_secs = 100*NANOS_PER_MS;
   TaskTwo.offset.secs = 0;
   TaskTwo.offset.nano_secs= 0;
+
+  // @T3 SRP: Task registers which resources it will use.
+  //          Indices are in order of the created semaphores.
+  for (i = 0; i < NRK_MAX_RESOURCE_CNT; i++) 
+        TaskTwo.semaphores[i] = false;
+  TaskTwo.semaphores[0] = true;
+
   nrk_activate_task (&TaskTwo);
 
   TaskThree.task = Task3;
@@ -189,6 +205,13 @@ nrk_create_taskset()
   TaskThree.cpu_reserve.nano_secs = 100*NANOS_PER_MS;
   TaskThree.offset.secs = 0;
   TaskThree.offset.nano_secs= 0;
+
+  // @T3 SRP: Task registers which resources it will use.
+  //          Indices are in order of the created semaphores.
+  for (i = 0; i < NRK_MAX_RESOURCE_CNT; i++) 
+        TaskThree.semaphores[i] = false;
+  TaskThree.semaphores[0] = true;
+
   nrk_activate_task (&TaskThree);
 }
 
