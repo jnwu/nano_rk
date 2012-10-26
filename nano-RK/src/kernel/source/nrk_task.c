@@ -40,7 +40,7 @@ inline void _nrk_wait_for_scheduler ();
 
 uint8_t nrk_get_high_ready_task_ID ()
 {
-	nrk_queue *ptr;
+/*	nrk_queue *ptr;
     	ptr = _head_node;
 	//check task_preemption level to see if it is above system ceiling
 	while (true) {
@@ -51,6 +51,8 @@ uint8_t nrk_get_high_ready_task_ID ()
 	}
 	
     return (ptr->task_ID);
+*/
+	return _head_node->task_ID;
 }
 
 void nrk_print_readyQ ()
@@ -99,20 +101,36 @@ void nrk_add_to_readyQ (int8_t task_ID)
                     break;
 */
 
+/*
+		if(nrk_task_TCB[NextNode->task_ID].next_wakeup == 0 && nrk_task_TCB[task_ID].next_wakeup == 0)
+			printf("0 %d:%d\n", nrk_task_TCB[task_ID].period, nrk_task_TCB[NextNode->task_ID].period);
+
+		if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 && nrk_task_TCB[task_ID].next_wakeup != 0)
+			printf("1 %d:%d\n", nrk_task_TCB[task_ID].next_wakeup, nrk_task_TCB[NextNode->task_ID].next_wakeup);
+*/
+	
 		// Put any new tasks in front of the idle task
 	    	if(NextNode->task_ID == 0)
+		{
+			
 			break;
+		}
 
 		// Both tasks starting for the first time
 		// Compare both task's period only
 		if(nrk_task_TCB[NextNode->task_ID].next_wakeup == 0 && 
 		nrk_task_TCB[task_ID].next_wakeup == 0 && 
 		nrk_task_TCB[task_ID].period < nrk_task_TCB[NextNode->task_ID].period)
+		{
 			break;
+		}
+
 		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
                 nrk_task_TCB[task_ID].next_wakeup == 0 &&
                 nrk_task_TCB[task_ID].next_wakeup < nrk_task_TCB[NextNode->task_ID].next_wakeup)
+		{
 			break;
+		}
 		else if (nrk_task_TCB[NextNode->task_ID].next_wakeup != 0 &&
 		nrk_task_TCB[task_ID].next_wakeup != 0 &&
 		nrk_task_TCB[task_ID].next_wakeup < nrk_task_TCB[NextNode->task_ID].next_wakeup)
@@ -164,6 +182,7 @@ void nrk_add_to_readyQ (int8_t task_ID)
         }
 
     }
+nrk_print_readyQ ();
 }
 
 
@@ -247,58 +266,54 @@ void nrk_rem_from_readyQ (int8_t task_ID)
 
 nrk_status_t nrk_activate_task (nrk_task_type * Task)
 {
-    uint8_t rtype;
-    void *topOfStackPtr;
+	uint8_t rtype;
+    	void *topOfStackPtr;
 
-    topOfStackPtr =
-        (void *) nrk_task_stk_init (Task->task, Task->Ptos, Task->Pbos);
+    	topOfStackPtr = (void *) nrk_task_stk_init (Task->task, Task->Ptos, Task->Pbos);
 
-    //printf("activate %d\n",(int)Task.task_ID);
-    if (Task->FirstActivation == TRUE)
-    {
-        rtype = nrk_TCB_init (Task, topOfStackPtr, Task->Pbos, 0, (void *) 0, 0);
-        Task->FirstActivation = FALSE;
+    	//printf("activate %d\n",(int)Task.task_ID);
+    	if (Task->FirstActivation == TRUE)
+    	{
+        	rtype = nrk_TCB_init (Task, topOfStackPtr, Task->Pbos, 0, (void *) 0, 0);
+        	Task->FirstActivation = FALSE;
+   	 }
+    	else
+    	{
+        	if (nrk_task_TCB[Task->task_ID].task_state != SUSPENDED)
+            		return NRK_ERROR;
+        	
+		//Re-init some parts of TCB
+		nrk_task_TCB[Task->task_ID].OSTaskStkPtr = (NRK_STK *) topOfStackPtr;
+    	}
 
-    }
-    else
-    {
-        if (nrk_task_TCB[Task->task_ID].task_state != SUSPENDED)
-            return NRK_ERROR;
-        //Re-init some parts of TCB
-
-        nrk_task_TCB[Task->task_ID].OSTaskStkPtr = (NRK_STK *) topOfStackPtr;
-
-
-
-    }
-
-    //nrk_task_TCB[Task->task_ID].task_state = READY;
-
-    // Remove from suspended or waiting if extended
-
-    // OSSchedLock();
+    	//nrk_task_TCB[Task->task_ID].task_state = READY;
+    	// Remove from suspended or waiting if extended
+    	// OSSchedLock();
 
 
-    // If Idle Task then Add to ready Q
-    //if(Task->task_ID==0) nrk_add_to_readyQ(Task->task_ID);
-    //nrk_add_to_readyQ(Task->task_ID);
-    //printf( "task %d nw %d \r\n",Task->task_ID,nrk_task_TCB[Task->task_ID].next_wakeup);
-    //printf( "task %d nw %d \r\n",Task->task_ID,Task->offset.secs);
-    if (nrk_task_TCB[Task->task_ID].next_wakeup == 0)
-    {
-        nrk_task_TCB[Task->task_ID].task_state = READY;
-        nrk_add_to_readyQ (Task->task_ID);
-    }
+   	// If Idle Task then Add to ready Q
+    	//if(Task->task_ID==0) nrk_add_to_readyQ(Task->task_ID);
+    	//nrk_add_to_readyQ(Task->task_ID);
+    	//printf( "task %d nw %d \r\n",Task->task_ID,nrk_task_TCB[Task->task_ID].next_wakeup);
+    	//printf( "task %d nw %d \r\n",Task->task_ID,Task->offset.secs);
+    	if (nrk_task_TCB[Task->task_ID].next_wakeup == 0)
+    	{
+        	nrk_task_TCB[Task->task_ID].task_state = READY;
+        	nrk_add_to_readyQ (Task->task_ID);
+    	}
 
-    // @T3 SRP: Transfer semaphores to TCB.
-    uint8_t i;
-    for (i = 0; i < _nrk_resource_cnt; i++)
-        if (Task->semaphores[i])
-            nrk_task_TCB[Task->task_ID].semaphores[i] = true;
-        else
-            nrk_task_TCB[Task->task_ID].semaphores[i] = false;
+    	// @T3 SRP: Transfer semaphores to TCB.
+    	uint8_t i;
 
-    return NRK_OK;
+    	for (i = 0; i < NRK_MAX_RESOURCE_CNT; i++)
+	{
+		if (Task->semaphores[i])
+		    nrk_task_TCB[Task->task_ID].semaphores[i] = true;
+		else
+		    nrk_task_TCB[Task->task_ID].semaphores[i] = false;
+	}
+
+    	return NRK_OK;
 }
 
 

@@ -185,8 +185,6 @@ for(i=0;i<NRK_MAX_RESOURCE_CNT;i++)
 	_head_node = NULL;
 	_free_node = &_nrk_readyQ[0];
 	
-	
-	
 
 	nrk_task_set_entry_function( &IdleTask, nrk_idle_task);
 	nrk_task_set_stk( &IdleTask, nrk_idle_task_stk, NRK_TASK_IDLE_STK_SIZE);
@@ -202,6 +200,9 @@ for(i=0;i<NRK_MAX_RESOURCE_CNT;i++)
 	IdleTask.FirstActivation = TRUE;
 	IdleTask.Type = IDLE_TASK;
 	IdleTask.SchType = PREEMPTIVE;
+
+	for (i = 0; i < NRK_MAX_RESOURCE_CNT; i++)
+		IdleTask.semaphores[i] = false;
 
 	nrk_activate_task(&IdleTask);
 	
@@ -285,6 +286,7 @@ void nrk_SRPAssignPreempLevel(void){
 	int8_t task_ID;
 	uint16_t curTaskPeriod;
 	uint8_t i,j;
+	
 
 	//firstly, initialize all task preemption levels to 0
 	for (i=0; i<NRK_MAX_TASKS; i++)
@@ -298,14 +300,14 @@ void nrk_SRPAssignPreempLevel(void){
 	{
 		task_ID=nrk_task_TCB[i].task_ID;
 		curTaskPeriod = nrk_task_TCB[i].period;
-	
-		if(task_ID!=-1)
+		
+		if(task_ID == 0 || task_ID == -1) continue;
+		for(j=0; j<NRK_MAX_TASKS; j++ )
 		{
-    			for(j=0; j<NRK_MAX_TASKS; j++ )
-			{
-				if (nrk_task_TCB[j].period>curTaskPeriod)
-					nrk_task_TCB[j].SRPpreempLevel++;
-			}
+			if(nrk_task_TCB[j].task_ID == 0)
+				nrk_task_TCB[j].SRPpreempLevel++;					
+			else if (nrk_task_TCB[j].period>curTaskPeriod)
+				nrk_task_TCB[j].SRPpreempLevel++;
 		}
 	}
 
