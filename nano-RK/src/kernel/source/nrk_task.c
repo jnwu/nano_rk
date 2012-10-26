@@ -41,7 +41,7 @@ inline void _nrk_wait_for_scheduler ();
 uint8_t nrk_get_high_ready_task_ID ()
 {
 	nrk_queue *ptr;
-    ptr = _head_node;
+    	ptr = _head_node;
 	//check task_preemption level to see if it is above system ceiling
 	while (true) {
 		if (nrk_task_TCB[ptr->task_ID].SRPpreempLevel < nrk_system_ceiling)
@@ -49,7 +49,7 @@ uint8_t nrk_get_high_ready_task_ID ()
 			
 		ptr = ptr->Next;
 	}
-		
+	
     return (ptr->task_ID);
 }
 
@@ -60,9 +60,10 @@ void nrk_print_readyQ ()
     //nrk_kprintf (PSTR ("nrk_queue: "));
     while (ptr != NULL)
     {
-        //printf ("%d ", ptr->task_ID);
+        printf ("%d ", ptr->task_ID);
         ptr = ptr->Next;
     }
+    printf("\n");
     //nrk_kprintf (PSTR ("\n\r"));
 }
 
@@ -163,7 +164,6 @@ void nrk_add_to_readyQ (int8_t task_ID)
         }
 
     }
-
 }
 
 
@@ -292,7 +292,7 @@ nrk_status_t nrk_activate_task (nrk_task_type * Task)
 
     // @T3 SRP: Transfer semaphores to TCB.
     uint8_t i;
-    for (i = 0; i < NRK_MAX_RESOURCE_CNT; i++)
+    for (i = 0; i < _nrk_resource_cnt; i++)
         if (Task->semaphores[i])
             nrk_task_TCB[Task->task_ID].semaphores[i] = true;
         else

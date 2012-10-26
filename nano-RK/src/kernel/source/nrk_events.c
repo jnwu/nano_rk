@@ -331,7 +331,7 @@ uint8_t i; //counter
 int8_t tmp_SC = NRK_MIN_RESOURCE_CEILING; //can change the value later...I assume we don't want more than 100 tasks for our simulation right...?unless we want stress testing........
 
 //going through nrk_sem_list (a global array holding information for all semaphores)
-for(i=0; i<NRK_MAX_RESOURCE_CNT; i++ ){
+for(i=0; i<_nrk_resource_cnt; i++ ){
 
 //constantly check if there is a semaphore with value>0 and resource_ceiling < tmp_SC. If true update tmp_SC
 	 

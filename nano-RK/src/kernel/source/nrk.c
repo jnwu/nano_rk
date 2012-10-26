@@ -202,6 +202,7 @@ for(i=0;i<NRK_MAX_RESOURCE_CNT;i++)
 	IdleTask.FirstActivation = TRUE;
 	IdleTask.Type = IDLE_TASK;
 	IdleTask.SchType = PREEMPTIVE;
+
 	nrk_activate_task(&IdleTask);
 	
 }
@@ -284,7 +285,6 @@ void nrk_SRPAssignPreempLevel(void){
 	int8_t task_ID;
 	uint16_t curTaskPeriod;
 	uint8_t i,j;
-	
 
 	//firstly, initialize all task preemption levels to 0
 	for (i=0; i<NRK_MAX_TASKS; i++)
@@ -312,7 +312,7 @@ void nrk_SRPAssignPreempLevel(void){
 	// Update all semaphore max ceilings after task preemption levels have been set.
 	for (i = 0; i < NRK_MAX_TASKS; i++)
 	{
-		for (j = 0; j < NRK_MAX_RESOURCE_CNT; j++)
+		for (j = 0; j < _nrk_resource_cnt; j++)
 		{
 			if (nrk_task_TCB[i].semaphores[j])
 			{

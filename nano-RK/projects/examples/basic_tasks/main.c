@@ -96,7 +96,7 @@ void Task1()
 
   	while(1) {
 		nrk_led_toggle(ORANGE_LED);
-		nrk_wait_until_next_period();
+		//nrk_wait_until_next_period();
 
 		// acquire lock
 		printf("t[%d]: sem_pend\n", nrk_get_pid());
@@ -105,13 +105,13 @@ void Task1()
 
 		// wait some time inside semaphore to show the effect
 		printf("t[%d]: sem_acquired\n", nrk_get_pid());
-		nrk_spin_wait_us(1000000);
+		//nrk_spin_wait_us(1000000);
 
 		// release lock
+		printf("t[%d]: sem_post\n", nrk_get_pid());
 		v = nrk_sem_post(r1);
 		if(v==NRK_ERROR) nrk_kprintf( PSTR("T1 error post\r\n"));
-		printf("t[%d]: sem_post\n", nrk_get_pid());
-
+	
 		nrk_wait_until_next_period();
 
 		//printf( "Task1 cnt=%d\r\n",cnt );
@@ -141,12 +141,11 @@ void Task2()
 		nrk_spin_wait_us(1000000);
 
 		// release lock
+		printf("t[%d]: sem_post\n", nrk_get_pid());
 		v = nrk_sem_post(r1);
 		if(v==NRK_ERROR) nrk_kprintf( PSTR("T2 error post\r\n"));
-		printf("t[%d]: sem_post\n", nrk_get_pid());
-
+		
 		nrk_wait_until_next_period();
-
 
 		//printf( "Task2 cnt=%d\r\n",cnt );
 		//nrk_kprintf( PSTR("Task2 accessing semaphore\r\n"));
@@ -163,10 +162,10 @@ void Task3()
 	uint16_t i;
 
   	while(1) {
-		nrk_spin_wait_us(100000);
+		//nrk_spin_wait_us(100000);
 		nrk_wait_until_next_period();
 
-		printf("t[%d]\n", nrk_get_pid());
+		//printf("t[%d]\n", nrk_get_pid());
 		//printf( "Task3 cnt=%d\r\n",cnt );
 		//cnt++;
 	}
@@ -208,17 +207,17 @@ void nrk_create_taskset()
   	TaskOne.Type = BASIC_TASK;
   	TaskOne.SchType = PREEMPTIVE;
   	TaskOne.period.secs = 0;
-  	TaskOne.period.nano_secs = 250*NANOS_PER_MS;
+  	TaskOne.period.nano_secs = 180*NANOS_PER_MS;
   	TaskOne.cpu_reserve.secs = 0;
-  	TaskOne.cpu_reserve.nano_secs =  50*NANOS_PER_MS;
+  	TaskOne.cpu_reserve.nano_secs =  80*NANOS_PER_MS;
   	TaskOne.offset.secs = 0;
   	TaskOne.offset.nano_secs= 0;
 
 	// @T3 SRP: Task registers which resources it will use.
   	//          Indices are in order of the created semaphores.
-  	TaskOne.semaphores[0] = true;
-
+  	//TaskOne.semaphores[0] = true;
   	nrk_activate_task (&TaskOne);
+
 
   	TaskTwo.task = Task2;
   	TaskTwo.Ptos = (void *) &Stack2[NRK_APP_STACKSIZE];
@@ -236,9 +235,10 @@ void nrk_create_taskset()
 
 	// @T3 SRP: Task registers which resources it will use.
   	//          Indices are in order of the created semaphores.
-  	TaskTwo.semaphores[0] = true;
+  	//TaskTwo.semaphores[0] = true;
 
   	nrk_activate_task (&TaskTwo);
+
 
   	TaskThree.task = Task3;
   	TaskThree.Ptos = (void *) &Stack3[NRK_APP_STACKSIZE];
@@ -248,12 +248,14 @@ void nrk_create_taskset()
   	TaskThree.Type = BASIC_TASK;
   	TaskThree.SchType = PREEMPTIVE;
   	TaskThree.period.secs = 0;
-  	TaskThree.period.nano_secs = 500*NANOS_PER_MS;
+  	TaskThree.period.nano_secs = 250*NANOS_PER_MS;
   	TaskThree.cpu_reserve.secs = 0;
   	TaskThree.cpu_reserve.nano_secs = 100*NANOS_PER_MS;
   	TaskThree.offset.secs = 0;
   	TaskThree.offset.nano_secs= 0;
   	nrk_activate_task (&TaskThree);
+
+/*
 
   	TaskFour.task = Task4;
   	TaskFour.Ptos = (void *) &Stack4[NRK_APP_STACKSIZE];
@@ -269,6 +271,7 @@ void nrk_create_taskset()
   	TaskFour.offset.secs = 0;
   	TaskFour.offset.nano_secs= 0;
   	nrk_activate_task (&TaskFour);
+*/
 }
 
 
