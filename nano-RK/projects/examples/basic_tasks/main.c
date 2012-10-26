@@ -77,9 +77,9 @@ int main ()
   	nrk_time_set(0,0);
   	nrk_create_taskset ();
 
-  	r1 = nrk_sem_create(1,2);
-  	r2 = nrk_sem_create(1,2);
-  	r3 = nrk_sem_create(1,2);
+  	r1 = nrk_sem_create(1,100);
+  	r2 = nrk_sem_create(1,100);
+  	r3 = nrk_sem_create(1,100);
   	if(!r1 || !r2 || !r3) nrk_kprintf( PSTR("error: sem_create\r\n" ));
 	else nrk_start();
   
@@ -99,18 +99,18 @@ void Task1()
 		//nrk_wait_until_next_period();
 
 		// acquire lock
-		//printf("t[%d]: sem_pend\n", nrk_get_pid());
-		//v = nrk_sem_pend(r1);
-		//if(v==NRK_ERROR) nrk_kprintf( PSTR("T1 error pend\r\n"));
+		printf("t[%d]: sem_pend\n", nrk_get_pid());
+		v = nrk_sem_pend(r1);
+		if(v==NRK_ERROR) nrk_kprintf( PSTR("T1 error pend\r\n"));
 
 		// wait some time inside semaphore to show the effect
 		//printf("t[%d]: sem_acquired\n", nrk_get_pid());
 		//nrk_spin_wait_us(1000000);
 
 		// release lock
-		//printf("t[%d]: sem_post\n", nrk_get_pid());
-		//v = nrk_sem_post(r1);
-		//if(v==NRK_ERROR) nrk_kprintf( PSTR("T1 error post\r\n"));
+		printf("t[%d]: sem_post\n", nrk_get_pid());
+		v = nrk_sem_post(r1);
+		if(v==NRK_ERROR) nrk_kprintf( PSTR("T1 error post\r\n"));
 	
 		nrk_wait_until_next_period();
 
@@ -237,7 +237,6 @@ void nrk_create_taskset()
   	//          Indices are in order of the created semaphores.
   	TaskTwo.semaphores[0] = true;
   	TaskTwo.semaphores[1] = true;
-  	TaskTwo.semaphores[2] = true;
   	nrk_activate_task (&TaskTwo);
 
 
@@ -254,7 +253,6 @@ void nrk_create_taskset()
   	TaskThree.cpu_reserve.nano_secs = 100*NANOS_PER_MS;
   	TaskThree.offset.secs = 0;
   	TaskThree.offset.nano_secs= 0;
-  	TaskThree.semaphores[0] = true;
   	TaskThree.semaphores[1] = true;
   	nrk_activate_task (&TaskThree);
 

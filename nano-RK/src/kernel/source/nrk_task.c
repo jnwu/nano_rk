@@ -40,18 +40,22 @@ inline void _nrk_wait_for_scheduler ();
 
 uint8_t nrk_get_high_ready_task_ID ()
 {
-/*	nrk_queue *ptr;
+	nrk_queue *ptr;
     	ptr = _head_node;
+
 	//check task_preemption level to see if it is above system ceiling
-	while (true) {
-		if (nrk_task_TCB[ptr->task_ID].SRPpreempLevel < nrk_system_ceiling)
+	while (true) 
+	{
+		if (nrk_task_TCB[ptr->task_ID].SRPpreempLevel < nrk_system_ceiling || 
+		(nrk_task_TCB[ptr->task_ID].elevated_prio_flag && nrk_task_TCB[ptr->task_ID].task_prio_ceil==nrk_system_ceiling))
 			break;
 			
-		ptr = ptr->Next;
+		ptr=ptr->Next;
 	}
-	
-    return (ptr->task_ID);
-*/
+
+	//printf("high: %d\n", ptr->task_ID);
+    	//return (ptr->task_ID);
+
 	return _head_node->task_ID;
 }
 
@@ -182,7 +186,6 @@ void nrk_add_to_readyQ (int8_t task_ID)
         }
 
     }
-nrk_print_readyQ ();
 }
 
 

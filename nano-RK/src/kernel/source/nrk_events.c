@@ -220,6 +220,7 @@ int8_t nrk_sem_pend(nrk_sem_t *rsrc )
 	if(id==-1) { _nrk_errno_set(1); return NRK_ERROR;}
 	if(id==NRK_MAX_RESOURCE_CNT) { _nrk_errno_set(2); return NRK_ERROR; }
 	
+
 	nrk_int_disable();
 	if(nrk_sem_list[id].value==0)
 	{
@@ -228,6 +229,7 @@ int8_t nrk_sem_pend(nrk_sem_t *rsrc )
 		// Wait on suspend event
 		nrk_int_enable();
 		nrk_wait_until_ticks(0);
+		return NRK_ERROR;
 	}
 
 	nrk_sem_list[id].value--;	
@@ -275,7 +277,7 @@ int8_t nrk_sem_post(nrk_sem_t *rsrc)
 	//cath @T3 SRP: call the update_system_ceiling function to update the system ceiling
 	update_system_ceiling();
 		
-return NRK_OK;
+	return NRK_OK;
 }
 
 int8_t  nrk_sem_delete(nrk_sem_t *rsrc)
@@ -322,28 +324,21 @@ int8_t nrk_get_resource_index(nrk_sem_t *resrc)
 }
 
 // cath @T3 SRP: implementation for update_system_ceiling. This function is to be invoked in the nrk_sem_post and nrk_sem_pend
-void update_system_ceiling(void){
+void update_system_ceiling(void)
+{
+	uint8_t i; //counter
 
-uint8_t i; //counter
+	//initialize a tmp_SC (system ceiling) variable for system ceiling to a very large variable
+	int8_t tmp_SC = NRK_MIN_RESOURCE_CEILING;
 
-//initialize a tmp_SC (system ceiling) variable for system ceiling to a very large variable
-
-int8_t tmp_SC = NRK_MIN_RESOURCE_CEILING; //can change the value later...I assume we don't want more than 100 tasks for our simulation right...?unless we want stress testing........
-
-//going through nrk_sem_list (a global array holding information for all semaphores)
-for(i=0; i<_nrk_resource_cnt; i++ ){
-
-//constantly check if there is a semaphore with value>0 and resource_ceiling < tmp_SC. If true update tmp_SC
-	 
-	if(nrk_sem_list[i].value >= 0 && nrk_sem_list[i].resource_ceiling < tmp_SC)
+	//going through nrk_sem_list (a global array holding information for all semaphores)
+	for(i=0; i<_nrk_resource_cnt; i++ )
+	{
+		//constantly check if there is a semaphore with value>0 and resource_ceiling < tmp_SC. If true update tmp_SC
+		if(nrk_sem_list[i].value >= 0 && nrk_sem_list[i].resource_ceiling < tmp_SC)
 			tmp_SC = nrk_sem_list[i].resource_ceiling;
+	}
 
-}
-//end of loop. Update global variable NRK_SYSTEM_CEILING (defined in nrk_defs.h)
-
+	//end of loop. Update global variable NRK_SYSTEM_CEILING (defined in nrk_defs.h)
 	nrk_system_ceiling = tmp_SC;
-	
 }
-
-
-

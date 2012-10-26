@@ -316,16 +316,12 @@ void nrk_SRPAssignPreempLevel(void){
 	{
 		for (j = 0; j < _nrk_resource_cnt; j++)
 		{
-			if (nrk_task_TCB[i].semaphores[j])
-			{
-				if ((nrk_sem_list[j].resource_ceiling > nrk_task_TCB[i].SRPpreempLevel) ||
-				    (nrk_sem_list[j].resource_ceiling == -1))
-				{
-					nrk_sem_list[j].resource_ceiling = nrk_task_TCB[i].SRPpreempLevel;
-				}
-			}
+			if (nrk_task_TCB[i].semaphores[j] && (nrk_sem_list[j].resource_ceiling > nrk_task_TCB[i].SRPpreempLevel))
+				// Workaround to illegal access error, add 1 to resource_ceiling
+				nrk_sem_list[j].resource_ceiling = nrk_task_TCB[i].SRPpreempLevel+1;
 		}
 	}
+
 }
 
 int8_t nrk_TCB_init (nrk_task_type *Task, NRK_STK *ptos, NRK_STK *pbos, uint16_t stk_size, void *pext, uint16_t opt)
