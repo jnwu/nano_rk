@@ -111,6 +111,7 @@ void switch_add_entry(ip_address_t *address,
 void switch_free()
 {
    /* add your code (if any) here */
+	cam_free();
 }
 
 void switch_enqueue(int i, packet_t *packet) 
