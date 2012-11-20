@@ -23,3 +23,7 @@ void switch_add_entry(ip_address_t *address,
 void *switch_thread_routine(void *arg);
 
 void switch_free();                      
+
+void switch_enqueue(int i, packet_t *packet);
+
+packet_t* switch_dequeue (int i);

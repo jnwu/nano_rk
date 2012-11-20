@@ -70,7 +70,7 @@ BOOL received_message[4][NUMBER_PACKETS_TO_SEND];
  *                                                                         *
  *-------------------------------------------------------------------------*/
 
-static void short_sleep()
+void short_sleep()
 {
    struct timespec delay_time, what_time_is_it;
 
@@ -361,10 +361,12 @@ void *harness_thread_routine(void *arg)
 
       /* We exit the loop when we have sent all of our
          packets and we have not received any packets */
-
+/*
       done = (received == FALSE) &&  
              (num_sent >= NUMBER_PACKETS_TO_SEND);
-
+*/
+      if(num_sent >= NUMBER_PACKETS_TO_SEND)
+         done = TRUE;
    }
 
    /* We are done, so set the DIE global variable.  The switch

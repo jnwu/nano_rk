@@ -47,10 +47,12 @@ typedef struct ip_address_t {
  *                                                            *
  *------------------------------------------------------------*/
 
-typedef struct packet_t {
+typedef struct packet packet_t;
+struct packet {
    ip_address_t address;   /* IP Address this packet is destined for */
    int payload;            /* Payload of the packet */
-} packet_t;
+   packet_t *next;
+};
 
 
 /*------------------------------------------------------------*

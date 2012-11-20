@@ -61,3 +61,6 @@ void *harness_thread_routine(void *arg);
  *------------------------------------------------------------*/
 
 void harness_end();                       
+
+
+void short_sleep();
