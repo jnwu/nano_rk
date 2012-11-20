@@ -192,10 +192,12 @@ void cam_free()
 	for (i = 0; i < hashtable->size; i++)
 	{
 		entry_t * entry = hashtable->table[i];
-		if (entry != NULL && entry->key != NULL) 
+		while (entry != NULL && entry->key != NULL)
 		{
+			entry_t *list = entry;
 			free(entry->key);
-			free(entry);
+			entry = entry->next;
+			free(list);
 		}
 	}
 	
