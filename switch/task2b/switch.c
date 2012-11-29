@@ -51,11 +51,16 @@ void *switch_thread_routine(void *arg)
 	int count;
 	int priority_pos;
 
-		
+	init_variables();	
 
 	while(1) {
-		init_variables();
+	
+		for (i=0; i<4; i++){
 
+			for (k=0; k<4; k++){
+				response_queue[i][k]=false;			
+			}
+		}
 		
 		
 		//for each input port, put incoming packets in the corresponding output_port queue
@@ -100,25 +105,28 @@ void *switch_thread_routine(void *arg)
 		for(i=0 ; i<4 ; i++) {
 			for (k=0; k<4; k++){
 				if(VOQ_queue[i][k]){
-					request_queue[i][k] = true;
+					request_queue[i][k] = false;
 					in_port_avail[i]=false;
 				}
 			}
 		}
-
+		
+		
+		
 	
-	//if there are still packet to route && output ports are not fully busy yet
+	//if there are still packet to route 
 	while ( !in_port_matched()){
 		
 		
-				
+		
 		
 		//for each output port, check incoming request and reply with Yes / No response
 		for (i=0; i<4; i++){
-		 
+		
 			count = 0;
 			priority_pos = out_prio[i];
-			while (count < 4 && !request_queue[priority_pos][i]) {
+			while (count < 4 && request_queue[priority_pos][i]) {
+				
 				priority_pos = priority_ring_counter(priority_pos);
 				count++;
 			}
@@ -129,6 +137,10 @@ void *switch_thread_routine(void *arg)
 		   
 			
 		}
+		
+		
+
+		
 
 		//for each input port, if it's not matched yet, check response from the output port, if match, send the packet with highest priority, increment input port priority, increment output port priority
 
@@ -142,14 +154,13 @@ void *switch_thread_routine(void *arg)
 			}
 			
 			if (count != 4){
-				//clear request for packets going to other ports
+				//clear request for packets going to other ports & clear requests for packets from other in_ports to this out_port
 				for (k=0; k<4; k++){
 					request_queue[i][k] = true;
-				}
-				//clear requests for packets from other in_ports to this out_port
-				for (k=0; k<4; k++){
 					request_queue[k][priority_pos]=true;
 				}
+				
+				
 
 
 				//record the match
@@ -168,13 +179,15 @@ void *switch_thread_routine(void *arg)
 		    }
 			
 		}
+
 		//update each in / out port's status
-		update_port_status();		
-	
+		update_port_status();	
+		
 	}
 
-	//for each output port, send packet
+	
 	for(i=0 ; i<4 ; i++) {
+			
 			if(out_match_in[i]!=-1 && !(out_port[i].flag)) { //if there is packet scheduled for this port
 
 					port_lock(&(out_port[i])); //get a hold of the out_port
@@ -285,7 +298,7 @@ bool in_port_matched(){
 int priority_ring_counter(int currentPriority){
 	if (currentPriority == 3) return 0;
 	else
-		return currentPriority++;
+		return ++currentPriority;
 }
 
 //update each in_port's status
@@ -301,9 +314,9 @@ void init_variables(){
 	int i, k;
 	for (i=0; i<4; i++){
 		for (k=0; k<4; k++){
-			request_queue[i][k]=false;
-			response_queue[i][k]=false;
-			VOQ_queue[i][k] = NULL;
+			request_queue[i][k]=true;
+			//response_queue[i][k]=false;
+			//VOQ_queue[i][k] = NULL;
 		}
 		in_port_avail[i]=true;
 		in_prio[i]=0;
