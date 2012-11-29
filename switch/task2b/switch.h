@@ -15,6 +15,8 @@
  ******************************************************/
 
 
+
+
 void switch_init();
 
 void switch_add_entry(ip_address_t *address,
@@ -31,3 +33,17 @@ void VOQ_enqueue();
 
 //for getting packet out of VOQ
 packet_t* VOQ_dequeue (int iPort, int oPort);
+
+//for compute inport status
+bool in_port_matched();
+
+
+
+//for the ports to iterate through requests and responses starting with its priority
+int priority_ring_counter(int currentPriority);
+
+//initialize variables
+void init_variables();
+
+//update each in_port's status
+void update_port_status();
