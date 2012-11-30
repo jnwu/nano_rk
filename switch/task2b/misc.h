@@ -53,6 +53,7 @@ struct packet {
    ip_address_t address;   /* IP Address this packet is destined for */
    int payload;            /* Payload of the packet */
    packet_t *next;
+   struct timeval sendTime;
 };
 
 

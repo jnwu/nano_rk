@@ -38,6 +38,7 @@ typedef struct ip_address_t {
 } ip_address_t;
 
 
+
 /*------------------------------------------------------------*
  *                                                            *
  *  This structure stores a packet.  A packet consists of     *
@@ -52,6 +53,7 @@ struct packet {
    ip_address_t address;   /* IP Address this packet is destined for */
    int payload;            /* Payload of the packet */
    packet_t *next;
+   struct timeval sentTime;
 };
 
 
