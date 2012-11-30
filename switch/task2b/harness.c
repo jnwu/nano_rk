@@ -117,14 +117,16 @@ static void send_message(int input_port)
                     4*my_version_of_the_table[p].port + 
                     16*sequence_numbers[input_port];
 
-	//record sending time for the packet
-	gettimeofday(&packet.sendTime, NULL);
+	
 
    /* Update the sequence number corresponding to this input port (so the
       next packet sent to this input port has a sequence number that is one
       larger than the sequence number of this packet */
 
    (sequence_numbers[input_port])++;
+
+	//record sending time for the packet
+	gettimeofday(&packet.sendTime, NULL);
 
    /* Copy the packet to the port */
 
