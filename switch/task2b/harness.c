@@ -432,7 +432,8 @@ void harness_end()
       }
    } 
 
-	double averageDelay = totalTime / num_packets_received;
+	totalTime = totalTime + 0.1 * (num_packets_sent - num_packets_received);
+	double averageDelay = totalTime / num_packets_sent;
 
    printf("Total packets sent: %d\n",num_packets_sent);
    printf("Total packets received: %d\n",num_packets_received);
@@ -440,6 +441,7 @@ void harness_end()
    printf("Percent packets dropped: %f\%\n", 100*
                (float)(num_packets_sent-num_packets_received)/(num_packets_sent));
    
+   printf("@ debug: Total time: %f \n", totalTime);
    printf("Average packet delay: %f  seconds\n", averageDelay);
 
 
