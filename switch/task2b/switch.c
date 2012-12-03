@@ -207,6 +207,8 @@ void *switch_thread_routine(void *arg)
 					packet_copy(packet,
                					&(out_port[i].packet)); // if not error, copy the packet to out_port to be sent
 
+					free(packet);
+
 					out_port[i].flag = TRUE; //flag outport to be busy
 
 					port_unlock(&(out_port[i])); //send packet

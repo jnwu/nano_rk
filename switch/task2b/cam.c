@@ -113,7 +113,7 @@ entry_t *ht_newpair( ip_address_t *key, int value ) {
 
 void cam_init()
 {
-   hashtable = ht_create( 400000 );
+   hashtable = ht_create( 10000 );
 }
 
 
