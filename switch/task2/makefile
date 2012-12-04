@@ -10,7 +10,7 @@ LIB = -lpthread -lrt
 #FLAGS = -g
 FLAGS = -O2
 
-EXE = task3
+EXE = task2
 OBJ = main.o cam.o harness.o switch.o misc.o
 SRC = main.c cam.c harness.c switch.c misc.c
 H = defs.h ext.h cam.h harness.h switch.h misc.h
