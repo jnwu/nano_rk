@@ -111,36 +111,26 @@ void *switch_thread_routine(void *arg)
 			}
 		}
 		
-		printf("request queue: \n");
-		for (i=0; i<4; i++){
-			for (k=0; k<4; k++){
-				printf("%d ", request_queue[i][k]);
-			}
-		}
-
-		printf("\n");
+		
 		
 	
 	//if there are still packet to route 
 	while ( !in_port_matched()){
 		
-		printf("loop begins \n");
-		printf("%d \n", in_port_matched());
-		//printf("%d, %d, %d, %d \n", in_port_avail[0], in_port_avail[1], in_port_avail[2], in_port_avail[3]);
+		
 		
 		
 		//for each output port, check incoming request and reply with Yes / No response
 		for (i=0; i<4; i++){
-		 printf("hello %d", i);
-		 printf("\n");
+		
 			count = 0;
 			priority_pos = out_prio[i];
 			while (count < 4 && request_queue[priority_pos][i]) {
-				printf("priority_pos: %d \n", priority_pos);
+				
 				priority_pos = priority_ring_counter(priority_pos);
 				count++;
 			}
-			printf("count: %d \n", count);
+			
 			if (count != 4)
 				response_queue[priority_pos][i]=true;
 			
@@ -148,12 +138,7 @@ void *switch_thread_routine(void *arg)
 			
 		}
 		
-		printf("response queue \n");
-		for (i=0; i<4; i++){
-			for (k=0; k<4; k++){
-				printf("%d ", response_queue[i][k]);
-			}
-		}
+		
 
 		
 
@@ -200,8 +185,7 @@ void *switch_thread_routine(void *arg)
 		
 	}
 
-	//printf("%d, %d, %d, %d \n", out_match_in[0], out_match_in[1], out_match_in[2], out_match_in[3]);
-	//for each output port, send packet
+	
 	for(i=0 ; i<4 ; i++) {
 			
 			if(out_match_in[i]!=-1 && !(out_port[i].flag)) { //if there is packet scheduled for this port
@@ -222,6 +206,8 @@ void *switch_thread_routine(void *arg)
 
 					packet_copy(packet,
                					&(out_port[i].packet)); // if not error, copy the packet to out_port to be sent
+
+					free(packet);
 
 					out_port[i].flag = TRUE; //flag outport to be busy
 

@@ -16,10 +16,10 @@
  ******************************************************/
 
 
-#define NUMBER_ENTRIES_IN_ROUTING_TABLE 20000  /* How many IP addresses
+#define NUMBER_ENTRIES_IN_ROUTING_TABLE 40000  /* How many IP addresses
                                                   to load into the routing table */
 #define NUMBER_PACKETS_TO_SEND 100000    /* How many packets to send during the test */
-#define SEND_DENSITY 100	              /* A Density of 100 means that a packet is
+#define SEND_DENSITY 90              /* A Density of 100 means that a packet is
                                         sent through every input port every cycle.
                                         A Density of less than 100 indicates the
                                         percentage of cycles in which a packet
